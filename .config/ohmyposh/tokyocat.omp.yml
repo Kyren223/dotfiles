@@ -11,48 +11,6 @@ blocks:
     alignment: left
     newline: true
     segments:
-      - type: battery
-        style: diamond
-        trailing_diamond: 
-        foreground: "transparent"
-        background: "p:red"
-        background_templates:
-          # The higher it is (earlier in the list), the higher the priority
-          # So if <50 and <20, it will be green and if >20 and >80, it will be dark blue
-          - '{{ if .Error }}p:yellow{{ end }}'
-          - '{{ if and (eq "Discharging" .State.String) (gt .Percentage 50) }}p:green{{end}}'
-          - '{{ if and (eq "Discharging" .State.String) (gt .Percentage 20) }}p:yellow{{end}}'
-          - '{{ if and (eq "Charging" .State.String) (le .Percentage 20) }}p:dark_blue{{end}}'
-          - '{{ if and (eq "Charging" .State.String) (le .Percentage 80) }}p:light_blue{{end}}'
-        templates:
-          - '{{ if .Error }} 󰂑 {{ .Error }} {{ end }}'
-          - '{{ if and (not .Error) (eq .Percentage 100) }} 󰁹 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 90) (ne .Percentage 100)) }} 󰂂 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 80) (lt .Percentage 90)) }} 󰂁 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 70) (lt .Percentage 80)) }} 󰂀 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 60) (lt .Percentage 70)) }} 󰁿 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 50) (lt .Percentage 60)) }} 󰁾 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 40) (lt .Percentage 50)) }} 󰁽 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 30) (lt .Percentage 40)) }} 󰁼 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 20) (lt .Percentage 30)) }} 󰁻 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 10) (lt .Percentage 20)) }} 󰁺 {{ .Percentage }} {{ end }}'
-          - '{{ if and (not .Error) (and (ge .Percentage 0) (lt .Percentage 10) }} 󰂎{{ .Percentage }} {{ end }}'
-
-      - type: status
-        style: diamond
-        foreground: "p:white"
-        background: "p:cyan"
-        background_templates:
-          - "{{ if .Error }}p:red2{{ end }}"
-        trailing_diamond: 
-        template: "<p:dark_blue2></>  "
-        properties:
-          always_enabled: false
-
-  - type: prompt
-    alignment: left
-    newline: true
-    segments:
       - type: path
         style: diamond
         leading_diamond: "\ue0b6"
@@ -73,6 +31,17 @@ blocks:
           fetch_status: true
           branch_icon: " "
           commit_icon: "@"
+
+      - type: status
+        style: diamond
+        foreground: "p:white"
+        background: "p:cyan"
+        background_templates:
+          - "{{ if .Error }}p:red2{{ end }}"
+        trailing_diamond: 
+        template: "<p:dark_blue2></>  "
+        properties:
+          always_enabled: false
 
   - type: rprompt
     overflow: hidden
@@ -99,6 +68,7 @@ blocks:
           - "{{ if gt .Code 0 }}p:red{{end}}"
           - "{{ if eq .Code 0 }}p:magenta{{end}}"
         template: "❯"
+
 
 transient_prompt:
   background: transparent

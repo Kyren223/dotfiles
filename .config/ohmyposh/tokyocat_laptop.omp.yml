@@ -1,0 +1,125 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+# Created by Kyren223 on GitHub https://github.com/Kyren223
+# File hosted on GitHub at https://github.com/Kyren223/dotfiles/blob/master/.config/ohmyposh/tokyocat.omp.yml
+
+version: 2
+final_space: true
+console_title_template: "Tumbleweed"
+
+blocks:
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: battery
+        style: diamond
+        trailing_diamond: 
+        foreground: "transparent"
+        background: "p:red"
+        background_templates:
+          # The higher it is (earlier in the list), the higher the priority
+          # So if <50 and <20, it will be green and if >20 and >80, it will be dark blue
+          - '{{ if .Error }}p:yellow{{ end }}'
+          - '{{ if and (eq "Discharging" .State.String) (gt .Percentage 50) }}p:green{{end}}'
+          - '{{ if and (eq "Discharging" .State.String) (gt .Percentage 20) }}p:yellow{{end}}'
+          - '{{ if and (eq "Charging" .State.String) (le .Percentage 20) }}p:dark_blue{{end}}'
+          - '{{ if and (eq "Charging" .State.String) (le .Percentage 80) }}p:light_blue{{end}}'
+        templates:
+          - '{{ if .Error }} 󰂑 {{ .Error }} {{ end }}'
+          - '{{ if and (not .Error) (eq .Percentage 100) }} 󰁹 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 90) (ne .Percentage 100)) }} 󰂂 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 80) (lt .Percentage 90)) }} 󰂁 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 70) (lt .Percentage 80)) }} 󰂀 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 60) (lt .Percentage 70)) }} 󰁿 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 50) (lt .Percentage 60)) }} 󰁾 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 40) (lt .Percentage 50)) }} 󰁽 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 30) (lt .Percentage 40)) }} 󰁼 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 20) (lt .Percentage 30)) }} 󰁻 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 10) (lt .Percentage 20)) }} 󰁺 {{ .Percentage }} {{ end }}'
+          - '{{ if and (not .Error) (and (ge .Percentage 0) (lt .Percentage 10) }} 󰂎{{ .Percentage }} {{ end }}'
+
+      - type: status
+        style: diamond
+        foreground: "p:white"
+        background: "p:cyan"
+        background_templates:
+          - "{{ if .Error }}p:red2{{ end }}"
+        trailing_diamond: 
+        template: "<p:dark_blue2></>  "
+        properties:
+          always_enabled: false
+
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: path
+        style: diamond
+        leading_diamond: "\ue0b6"
+        trailing_diamond: "\ue0b4"
+        template: "{{ .Path }}"
+        background: p:black
+        foreground: p:blue
+        properties:
+          style: full
+
+      - type: git
+        style: diamond
+        trailing_diamond: "\ue0b4"
+        background: p:black
+        foreground: p:blue
+        template: " {{ .HEAD }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}{{ if and (or (.Working.Changed) (.Staging.Changed)) (or (gt .Ahead 0) (gt .Behind 0)) }} | {{ else }} {{ end }}{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}"
+        properties:
+          fetch_status: true
+          branch_icon: " "
+          commit_icon: "@"
+
+  - type: rprompt
+    overflow: hidden
+    segments:
+      - type: executiontime
+        style: plain
+        background: transparent
+        foreground: p:yellow
+        template: "{{ .FormattedMs }}"
+        properties:
+          threshold: 5000
+          display_style: austin
+
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: text
+        style: powerline
+        powerline_symbol: 
+        background: transparent
+        foreground: p:magenta
+        foreground_templates:
+          - "{{ if gt .Code 0 }}p:red{{end}}"
+          - "{{ if eq .Code 0 }}p:magenta{{end}}"
+        template: "❯"
+
+transient_prompt:
+  background: transparent
+  foreground: p:magenta
+  template: "❯ "
+
+secondary_prompt:
+  background: transparent
+  foreground: p:magenta
+  template: "❯❯ "
+
+palette:
+  blue: "blue"
+  black: "#262B44"
+  magenta: "#F5C2E7"
+  red: "#D81E5B"
+  green: "#4caf50"
+  yellow: "#ffeb3b"
+  dark_blue: "#166e78"
+  light_blue: "#40c4ff"
+  white: "#ffffff"
+  cyan: "#00897b"
+  red2: "#e91e63"
+  dark_blue2: "#193549"
