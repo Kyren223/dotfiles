@@ -91,7 +91,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Shell integrations
 source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/kyren.yml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 
 # Exports
 export EDITOR=nvim
