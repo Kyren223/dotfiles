@@ -104,4 +104,11 @@ export FZF_DEFAULT_OPTS=" \
 alias ls='ls --color'
 alias c='clear'
 alias vim='nvim'
+alias python='python3'
+
+# Open tmux if it's not open
+if [ -z "$TMUX" ]; then
+    tmux
+fi
+
 
