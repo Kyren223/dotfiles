@@ -6,8 +6,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download zinit if it doesn't exist yet
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # Load zinit
@@ -36,22 +36,23 @@ zinit cdreplay -q
 
 # Setup hooks for VIMODE in zsh
 function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]]; then
+if [[ ${KEYMAP} == vicmd ]]; then
     export VIMODE="NORMAL"
-  else
+    echo -ne '\e[2 q'
+else
     export VIMODE="INSERT"
-  fi
-  zle && zle reset-prompt
+    echo -ne '\e[6 q'
+fi
 }
 
 function zle-line-init {
-  export VIMODE="INSERT"
-  zle && zle reset-prompt
+export VIMODE="INSERT"
+echo -ne '\e[6 q'
 }
 
 function zle-line-finish {
-  export VIMODE="INSERT"
-  zle && zle reset-prompt
+export VIMODE="INSERT"
+echo -ne '\e[6 q'
 }
 
 zle -N zle-keymap-select
@@ -110,5 +111,4 @@ alias python='python3'
 if [ -z "$TMUX" ]; then
     tmux
 fi
-
 
