@@ -101,6 +101,11 @@ export FZF_DEFAULT_OPTS=" \
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
+# For CS50x, can be remvoed later
+export CC="clang"
+CFLAGS="-ferror-limit=1 -gdwarf-4 -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-gnu-folding-constant -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-but-set-variable -Wshadow"
+LDLIBS="-lcrypt -lcs50 -lm"
+
 # Aliases
 alias ls='ls --color'
 alias c='clear'
