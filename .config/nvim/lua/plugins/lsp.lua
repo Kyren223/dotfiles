@@ -30,43 +30,18 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities
-            })
-
-            lspconfig.clangd.setup({
-                capabilities = capabilities
-            })
-            lspconfig.gradle_ls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.jdtls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.kotlin_language_server.setup({
-                capabilities = capabilities
-            })
-            lspconfig.pyright.setup({
-                capabilities = capabilities
-            })
-            lspconfig.rust_analyzer.setup({
-                capabilities = capabilities
-            })
-            lspconfig.taplo.setup({
-                capabilities = capabilities
-            })
-            lspconfig.bashls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.lemminx.setup({
-                capabilities = capabilities
-            })
-            lspconfig.yamlls.setup({
-                capabilities = capabilities
-            })
+            lspconfig.lua_ls.setup({})
+            lspconfig.clangd.setup({})
+            lspconfig.gradle_ls.setup({})
+            lspconfig.jdtls.setup({})
+            lspconfig.kotlin_language_server.setup({})
+            lspconfig.pyright.setup({})
+            lspconfig.rust_analyzer.setup({})
+            lspconfig.taplo.setup({})
+            lspconfig.bashls.setup({})
+            lspconfig.lemminx.setup({})
+            lspconfig.yamlls.setup({})
 
             vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { desc = "[G]oto [H]over" })
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
