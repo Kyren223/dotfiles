@@ -3,6 +3,7 @@ vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
 
+-- Remove duplicate mode cuz lualine
 vim.opt.showmode = false
 
 vim.opt.number = true
