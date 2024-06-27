@@ -112,6 +112,14 @@ alias c='clear'
 alias vim='nvim'
 alias python='python3'
 
+alias zshrc='vim ~/.zshrc'
+alias tmuxconf='vim ~/.config/tmux/tmux.conf'
+alias nvimconf='cd ~/.config/nvim && vim init.lua'
+alias vimrc='nvimconf'
+
+alias ivm='vim'
+alias dc='cd'
+
 # Open tmux if it's not open
 if [ -z "$TMUX" ]; then
     tmux
