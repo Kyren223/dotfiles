@@ -62,8 +62,8 @@ zle -N zle-line-finish
 # Keybindings
 bindkey -v 
 bindkey '^y' autosuggest-accept
-bindkey '^k' history-search-backward
-bindkey '^j' history-search-forward
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
 # History
