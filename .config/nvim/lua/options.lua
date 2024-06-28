@@ -31,6 +31,4 @@ vim.opt.smartcase = true
 -- Misc
 vim.opt.scrolloff = 8
 vim.opt.undofile = true
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300 -- Displays which-key sooner, once that's setupped
 
