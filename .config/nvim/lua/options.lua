@@ -1,47 +1,36 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- System
 vim.g.have_nerd_font = true
+vim.opt.mouse = 'a' -- enable mouse
+vim.opt.clipboard = 'unnamedplus' -- use system clipboard
 
--- Remove duplicate mode cuz lualine
-vim.opt.showmode = false
+-- Tab
+vim.opt.expandtab = true            -- convert tabs to spaces
+vim.opt.tabstop = 4                 -- number of visual spaces per TAB
+vim.opt.softtabstop = 4             -- number of idfk tab when editing
+vim.opt.shiftwidth = 4              -- number of spaces to insert on tab
 
+-- UI
+vim.opt.signcolumn = 'auto'
 vim.opt.number = true
 vim.opt.relativenumber = true
-
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-
-vim.opt.mouse = 'a'
-vim.opt.clipboard = 'unnamedplus'
-
-vim.opt.undofile = true
-
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
-vim.opt.signcolumn = 'auto'
-
-vim.opt.updatetime = 250
-
--- Displays which-key sooner, once that's setupped
-vim.opt.timeoutlen = 300
-
+vim.opt.cursorline = true -- highlight current line
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-
--- vim.opt.list = true
--- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
+vim.opt.showmode = false -- don't show mode, because lualine already does
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
-vim.opt.cursorline = true
-
-vim.opt.scrolloff = 8
-
+-- Searching
 vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
+-- Misc
+vim.opt.scrolloff = 8
+vim.opt.undofile = true
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300 -- Displays which-key sooner, once that's setupped
 

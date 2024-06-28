@@ -1,4 +1,3 @@
--- Install Lazy if it doesn't exist yet
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
@@ -15,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 require("options")
 require("keymaps")
 require("autocmds")
+
 require("lazy").setup("plugins")
-
-
-
 
