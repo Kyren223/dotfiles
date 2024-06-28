@@ -42,11 +42,6 @@ return {
             lspconfig.bashls.setup({})
             lspconfig.lemminx.setup({})
             lspconfig.yamlls.setup({})
-
-            vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { desc = "[G]oto [H]over" })
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
-            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
-            vim.keymap.set('n', '<M-Enter>', vim.lsp.buf.code_action, { desc = "Code Actions" })
         end
     }
 }
