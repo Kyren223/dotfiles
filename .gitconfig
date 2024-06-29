@@ -11,3 +11,4 @@
 	defaultBranch = master
 [core]
 	editor = nvim
+	pager = nvimpager
