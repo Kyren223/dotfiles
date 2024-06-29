@@ -10,8 +10,8 @@ return {
         extra = { above = 'gcO', below = 'gco', eol = 'gcA' },
 
         mappings = {
-            basic = true, -- `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+            basic = true,  -- `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
             extra = false, -- `gco`, `gcO`, `gcA`
         },
-    }}
-
+    },
+}

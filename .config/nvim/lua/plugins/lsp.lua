@@ -1,36 +1,37 @@
 return {
     {
-        "williamboman/mason.nvim",
+        'williamboman/mason.nvim',
+        lazy = false,
         config = function()
-            require("mason").setup()
-        end
+            require('mason').setup()
+        end,
     },
-
     {
-        "williamboman/mason-lspconfig.nvim",
+        'williamboman/mason-lspconfig.nvim',
+        lazy = false,
         config = function()
-            require("mason-lspconfig").setup({
+            require('mason-lspconfig').setup({
                 ensure_installed = {
-                    "lua_ls",
-                    "clangd",
-                    "gradle_ls",
-                    "jdtls",
-                    "kotlin_language_server",
-                    "pyright",
-                    "rust_analyzer",
-                    "taplo",
-                    "bashls",
-                    "lemminx",
-                    "yamlls"
-                }
+                    'lua_ls',
+                    'clangd',
+                    'gradle_ls',
+                    'jdtls',
+                    'kotlin_language_server',
+                    'pyright',
+                    'rust_analyzer',
+                    'taplo',
+                    'bashls',
+                    'lemminx',
+                    'yamlls',
+                },
             })
-        end
+        end,
     },
-
     {
-        "neovim/nvim-lspconfig",
+        'neovim/nvim-lspconfig',
+        lazy = false,
         config = function()
-            local lspconfig = require("lspconfig")
+            local lspconfig = require('lspconfig')
             lspconfig.lua_ls.setup({})
             lspconfig.clangd.setup({})
             lspconfig.gradle_ls.setup({})
@@ -42,6 +43,6 @@ return {
             lspconfig.bashls.setup({})
             lspconfig.lemminx.setup({})
             lspconfig.yamlls.setup({})
-        end
-    }
+        end,
+    },
 }

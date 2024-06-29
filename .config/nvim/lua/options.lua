@@ -1,5 +1,5 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- System
 vim.g.have_nerd_font = true
@@ -7,10 +7,10 @@ vim.opt.mouse = 'a' -- enable mouse
 vim.opt.clipboard = 'unnamedplus' -- use system clipboard
 
 -- Tab
-vim.opt.expandtab = true            -- convert tabs to spaces
-vim.opt.tabstop = 4                 -- number of visual spaces per TAB
-vim.opt.softtabstop = 4             -- number of idfk tab when editing
-vim.opt.shiftwidth = 4              -- number of spaces to insert on tab
+vim.opt.expandtab = true -- convert tabs to spaces
+vim.opt.tabstop = 4 -- number of visual spaces per TAB
+vim.opt.softtabstop = 4 -- number of idfk tab when editing
+vim.opt.shiftwidth = 4 -- number of spaces to insert on tab
 
 -- UI
 vim.opt.signcolumn = 'auto'
@@ -31,4 +31,3 @@ vim.opt.smartcase = true
 -- Misc
 vim.opt.scrolloff = 8
 vim.opt.undofile = true
-
