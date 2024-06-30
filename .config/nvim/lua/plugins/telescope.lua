@@ -26,7 +26,7 @@ return {
 
             vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = '[D]ocument [S]symbols' })
             vim.keymap.set('n', '<leader>ps', builtin.lsp_workspace_symbols, { desc = '[P]roject [S]ymbols' })
-
+            vim.keymap.set('n', '<leader>st', ':TodoTelescope<cr>', { desc = '[S]earch [T]odos' })
             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
             vim.keymap.set('n', '<M-Enter>', vim.lsp.buf.code_action, { desc = 'Code Actions' })
 
@@ -64,10 +64,10 @@ return {
                         require('telescope.themes').get_dropdown({}),
                     },
                     fzf = {
-                        fuzzy = true,                   -- false will only do exact matching
+                        fuzzy = true, -- false will only do exact matching
                         override_generic_sorter = true, -- override the generic sorter
-                        override_file_sorter = true,    -- override the file sorter
-                        case_mode = 'smart_case',       -- or "ignore_case" or "respect_case"
+                        override_file_sorter = true, -- override the file sorter
+                        case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
                         -- the default case_mode is "smart_case"
                     },
                 },
