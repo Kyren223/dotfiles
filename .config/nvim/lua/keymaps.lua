@@ -4,7 +4,10 @@ vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>')
 vim.keymap.set('n', '<leader>z', function()
     vim.cmd('Neotree close')
 end, { desc = '[Z]en Mode' })
+
+-- Undo/Redo
 vim.keymap.set('n', 'U', ':redo<cr>')
+vim.keymap.set('i', '<C-z>', ':undo<cr>')
 
 -- Window Navigation
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -22,3 +25,5 @@ vim.keymap.set('n', '<C-Right>', string.format(':vertical resize +%d<CR>', resiz
 -- Keep selection after < and >
 vim.keymap.set('v', '<', '<gv', {})
 vim.keymap.set('v', '>', '>gv', {})
+
+-- TODO: Add refactoring keys like <leader>iv for introduce variable, extract method, introduce constant etc
