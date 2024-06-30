@@ -113,13 +113,18 @@ alias c='clear'
 alias vim='nvim'
 alias python='python3'
 
-alias zshrc='vim ~/.zshrc'
+alias zshrc='vim ~/.zshrc && source ~/.zshrc'
 alias tmuxconf='vim ~/.config/tmux/tmux.conf'
 alias nvimconf='cd ~/.config/nvim && vim init.lua'
 alias vimrc='nvimconf'
 
 alias ivm='vim'
 alias dc='cd'
+
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
 
 # Open tmux if it's not open
 if [ -z "$TMUX" ]; then
