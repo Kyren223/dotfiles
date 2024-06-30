@@ -1,4 +1,5 @@
 return {
+    -- TODO: Customize this or maybe use dashboard.nvim
     'goolord/alpha-nvim',
     dependencies = {
         'nvim-tree/nvim-web-devicons',
