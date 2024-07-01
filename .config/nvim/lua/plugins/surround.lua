@@ -4,6 +4,17 @@ return {
     event = 'VeryLazy',
     config = function()
         require('nvim-surround').setup({})
-        -- TODO: Add a way to not have to press S while in visual mode
+        local opts = {}
+        vim.keymap.set('v', '(', '<Plug>(nvim-surround-visual)(', opts)
+        vim.keymap.set('v', ')', '<Plug>(nvim-surround-visual))', opts)
+        vim.keymap.set('v', '{', '<Plug>(nvim-surround-visual){', opts)
+        vim.keymap.set('v', '}', '<Plug>(nvim-surround-visual)}', opts)
+        vim.keymap.set('v', '<', '<Plug>(nvim-surround-visual)<', opts)
+        vim.keymap.set('v', '>', '<Plug>(nvim-surround-visual)>', opts)
+        vim.keymap.set('v', '[', '<Plug>(nvim-surround-visual)[', opts)
+        vim.keymap.set('v', ']', '<Plug>(nvim-surround-visual)]', opts)
+        vim.keymap.set('v', "'", "<Plug>(nvim-surround-visual)'", opts)
+        vim.keymap.set('v', '"', '<Plug>(nvim-surround-visual)"', opts)
+        vim.keymap.set('v', '`', '<Plug>(nvim-surround-visual)`', opts)
     end,
 }
