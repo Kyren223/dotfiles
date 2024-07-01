@@ -11,6 +11,7 @@ return {
             vim.keymap.set('n', '<leader>h', builtin.help_tags, { desc = '[H]elp' })
             vim.keymap.set('n', '<leader>m', builtin.man_pages, { desc = '[M]an Pages' })
             vim.keymap.set('n', '<leader>th', builtin.colorscheme, { desc = 'List [Th]eme' })
+            vim.keymap.set('n', '<leader>ob', builtin.buffers, { desc = '[O]pen [B]uffers' })
 
             vim.keymap.set('n', '<leader>fs', builtin.find_files, { desc = '[F]ile [S]ystem' })
             vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
@@ -32,7 +33,7 @@ return {
 
             -- TODO: Use some cool plugin to have IntelliJ-like renaming
             -- Make sure to include a rr version for normal renaming and Shift+R for ciw + rr
-            vim.keymap.set('n', 'R', vim.lsp.buf.rename, { desc = '[R]ename' })
+            -- vim.keymap.set('n', 'R', vim.lsp.buf.rename, { desc = '[R]ename' })
 
             -- TODO: Look into the following
             -- builtin.git_commits

@@ -31,6 +31,7 @@ vim.opt.smartcase = true
 -- Misc
 vim.opt.scrolloff = 8
 vim.opt.undofile = true
+vim.opt.termguicolors = true
 
 -- Disable warnings for missing language providers
 vim.g.loaded_node_provider = 0

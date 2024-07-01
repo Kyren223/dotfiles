@@ -36,7 +36,7 @@ return {
             after = 'fg', -- "fg" or "bg" or empty
             pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
             -- pattern = [[.*<(KEYWORDS)\s*]], -- pattern or table of patterns, used for highlighting (vim regex)
-            comments_only = true,
+            comments_only = false,
             max_line_len = 400,
             exclude = {}, -- list of excluded filetypes
         },
