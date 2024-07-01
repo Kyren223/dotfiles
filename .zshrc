@@ -115,7 +115,7 @@ alias python='python3'
 
 alias zshrc='vim ~/.zshrc && source ~/.zshrc'
 alias tmuxconf='vim ~/.config/tmux/tmux.conf'
-alias nvimconf='cd ~/.config/nvim && vim init.lua'
+alias nvimconf='cd ~/.config/nvim && vim'
 alias vimrc='nvimconf'
 
 alias ivm='vim'
