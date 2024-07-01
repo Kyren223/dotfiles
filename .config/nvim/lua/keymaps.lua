@@ -17,10 +17,10 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 
 -- Window resizing
 local resize = 2
-vim.keymap.set('n', '<C-Left>', string.format(':vertical resize -%d<CR>', resize), { desc = 'Resize Left' })
-vim.keymap.set('n', '<C-Up>', string.format(':resize -%d<CR>', resize), { desc = 'Resize Up' })
-vim.keymap.set('n', '<C-Down>', string.format(':resize +%d<CR>', resize), { desc = 'Resize Down' })
-vim.keymap.set('n', '<C-Right>', string.format(':vertical resize +%d<CR>', resize), { desc = 'Resize Right' })
+vim.keymap.set({ 'n', 't' }, '<C-Left>', string.format(':vertical resize -%d<CR>', resize), { desc = 'Resize Left' })
+vim.keymap.set({ 'n', 't' }, '<C-Up>', string.format(':resize -%d<CR>', resize), { desc = 'Resize Up' })
+vim.keymap.set({ 'n', 't' }, '<C-Down>', string.format(':resize +%d<CR>', resize), { desc = 'Resize Down' })
+vim.keymap.set({ 'n', 't' }, '<C-Right>', string.format(':vertical resize +%d<CR>', resize), { desc = 'Resize Right' })
 
 -- Keep selection after < and >
 vim.keymap.set('v', '<', '<gv', {})
