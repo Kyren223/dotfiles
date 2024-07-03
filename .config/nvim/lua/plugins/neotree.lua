@@ -7,6 +7,6 @@ return {
         'MunifTanjim/nui.nvim',
     },
     config = function()
-        vim.keymap.set('n', '<leader>gp', ':Neotree toggle reveal left<cr>', { desc = '[G]oto [P]roject (toggle)' })
+        vim.keymap.set('n', '<leader>nt', ':Neotree toggle reveal left<cr>', { desc = '[N]eotree [T]oggle' })
     end,
 }

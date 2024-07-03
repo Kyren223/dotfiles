@@ -30,6 +30,7 @@ return {
                     end,
                 },
                 window = {
+                    -- TODO: remove border for completions
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
