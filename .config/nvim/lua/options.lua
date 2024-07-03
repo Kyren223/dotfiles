@@ -13,7 +13,7 @@ vim.opt.softtabstop = 4 -- number of idfk tab when editing
 vim.opt.shiftwidth = 4 -- number of spaces to insert on tab
 
 -- UI
-vim.opt.signcolumn = 'auto'
+vim.opt.signcolumn = 'auto:9'
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true -- highlight current line
@@ -29,6 +29,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Misc
+vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.undofile = true
 vim.opt.termguicolors = true
