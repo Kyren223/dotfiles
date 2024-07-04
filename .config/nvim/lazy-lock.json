@@ -48,6 +48,7 @@
   "octo.nvim": { "branch": "master", "commit": "7731ca4e31b32c176a383642ffcd7d593ac17774" },
   "oil.nvim": { "branch": "master", "commit": "65c53dbe4f2140236590a7568a5f22a77d16be39" },
   "okai": { "branch": "main", "commit": "b028c2916c39b1c4ad53756d262f9d0576edac87" },
+  "overseer.nvim": { "branch": "master", "commit": "433ae548434d83ab3c6afe6afc549832f7dd56f1" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "spaceduck": { "branch": "main", "commit": "350491f19343b24fa85809242089caa02d4dadce" },
   "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },

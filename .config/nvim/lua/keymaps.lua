@@ -5,6 +5,7 @@ vim.keymap.set('n', '<leader>z', function()
     vim.cmd('Neotree close')
     vim.cmd('Trouble todo close')
 end, { desc = '[Z]en Mode' })
+vim.keymap.set({ 'i', 'c' }, '<C-v>', '<C-r>+')
 
 -- Undo/Redo
 vim.keymap.set('n', 'U', ':redo<cr>')
