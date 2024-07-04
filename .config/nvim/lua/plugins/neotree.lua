@@ -6,6 +6,9 @@ return {
         'nvim-tree/nvim-web-devicons',
         'MunifTanjim/nui.nvim',
     },
+    opts = {
+        open_files_do_not_replace_types = { 'terminal', 'Trouble', 'qf', 'edgy' },
+    },
     config = function()
         vim.keymap.set('n', '<leader>nt', ':Neotree toggle reveal left<cr>', { desc = '[N]eotree [T]oggle' })
     end,
