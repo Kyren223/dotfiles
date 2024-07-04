@@ -3,6 +3,7 @@ vim.keymap.set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight 
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>')
 vim.keymap.set('n', '<leader>z', function()
     vim.cmd('Neotree close')
+    vim.cmd('Trouble todo close')
 end, { desc = '[Z]en Mode' })
 
 -- Undo/Redo

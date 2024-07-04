@@ -20,7 +20,6 @@ return {
             },
         })
         local diagnostic = require('lspsaga.diagnostic')
-        local unused = 5
 
         vim.keymap.set('n', 'K', ':Lspsaga hover_doc<cr>', { desc = 'Display Docs' })
         vim.keymap.set('n', 'R', ':Lspsaga rename<cr>', { desc = '[R]ename' })

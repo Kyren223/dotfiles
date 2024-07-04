@@ -26,8 +26,6 @@ return {
 
             vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = '[D]ocument [S]symbols' })
             vim.keymap.set('n', '<leader>ps', builtin.lsp_workspace_symbols, { desc = '[P]roject [S]ymbols' })
-            -- TODO: Add filtering to TodoTelescope so it only shows "bad" things like TODOs, fixmes etc and not notes
-            vim.keymap.set('n', '<leader>st', ':TodoTelescope<cr>', { desc = '[S]earch [T]odos' })
 
             -- TODO: Look into the following
             -- builtin.git_commits

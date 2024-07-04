@@ -1,19 +1,27 @@
 return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+        require('todo-comments').setup()
+        vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIX,WARN<cr>', { desc = '[S]earch [T]odos' })
+        vim.keymap.set('n', '<leader>lt', ':TodoTrouble<cr>', { desc = '[L]ist [T]odos' })
+    end,
     opts = {
-        signs = false, -- show icons in the signs column
+        signs = true, -- show icons in the signs column
         sign_priority = 8, -- sign priority
 
         keywords = {
+            -- NOTE: These are "todos"
+            TODO = { icon = ' ', color = 'info', alt = { 'todo' } },
             FIX = { icon = ' ', color = 'error', alt = { 'FIXME', 'BUG', 'ISSUE' } },
-            TODO = { icon = ' ', color = 'info' },
-            HACK = { icon = ' ', color = 'warning', alt = { 'SMELL', 'CODE SMELL', 'BAD', 'BAD PRACTICE' } },
             WARN = { icon = ' ', color = 'warning', alt = { 'WARNING' } },
-            PERF = { icon = ' ', color = 'performance', alt = { 'PERFORMANCE', 'OPTIMIZE' } },
+            OPTIMIZE = { icon = ' ', color = 'performance' },
+            -- NOTE: These are "notes"
+            PERF = { icon = ' ', color = 'performance', alt = { 'PERFORMANCE' } },
+            HACK = { icon = ' ', color = 'warning', alt = { 'SMELL', 'CODE SMELL', 'BAD', 'BAD PRACTICE' } },
             NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
             TEST = { icon = '⏲ ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
-            --UNSAFE = { icon = "󰍛 ", color = "error", alt = { "SAFETY" } },
+            UNSAFE = { icon = '󰍛 ', color = 'error', alt = { 'SAFETY' } },
         },
 
         gui_style = {
@@ -34,8 +42,11 @@ return {
             before = '', -- "fg" or "bg" or empty
             keyword = 'wide', -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
             after = 'fg', -- "fg" or "bg" or empty
-            pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-            -- pattern = [[.*<(KEYWORDS)\s*]], -- pattern or table of patterns, used for highlighting (vim regex)
+            pattern = {
+                [[.*<(KEYWORDS)\s*:]],
+                -- [[.*<(KEYWORDS)\s*]],
+                -- [[.*<(KEYWORDS)\s*!()]],
+            }, -- pattern or table of patterns, used for highlighting (vim regex)
             comments_only = false,
             max_line_len = 400,
             exclude = {}, -- list of excluded filetypes
