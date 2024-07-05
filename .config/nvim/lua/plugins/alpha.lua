@@ -53,6 +53,11 @@ return {
             dashboard.button('w', '  > Find file', '<cmd>cd ' .. find_file_path .. ' | Telescope find_files<cr>'),
             dashboard.button('r', '  > Recent', '<cmd>Telescope oldfiles<cr>'),
             dashboard.button('c', '  > Configuration', '<cmd>e $MYVIMRC<cr> | <cmd>cd %:p:h<cr>'),
+            dashboard.button(
+                's',
+                '󱎠  > Last Session',
+                '<cmd>lua require("auto-session.session-lens.actions").alternate_session()<cr>'
+            ),
             dashboard.button('q', '󰈆  > Quit NVIM', '<cmd>qa<cr>'),
         }
 
