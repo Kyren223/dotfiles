@@ -34,10 +34,15 @@ vim.opt.scrolloff = 8
 vim.opt.undofile = true
 vim.opt.termguicolors = true
 vim.opt.laststatus = 3 -- views can only be fully collapsed with the global statusline
-vim.opt.splitkeep = "screen" -- for edgy.nvim
+vim.opt.splitkeep = 'screen' -- for edgy.nvim
 
 -- Disable warnings for missing language providers
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_python3_provider = 0
+
+-- Disable signcolumn diagnostics
+vim.diagnostic.config({
+    signs = false,
+})
