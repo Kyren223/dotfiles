@@ -3,7 +3,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         require('todo-comments').setup()
-        vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIX,WARN<cr>', { desc = '[S]earch [T]odos' })
+        vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIX<cr>', { desc = '[S]earch [T]odos' })
         vim.keymap.set('n', '<leader>lt', ':TodoTrouble<cr>', { desc = '[L]ist [T]odos' })
     end,
     opts = {
@@ -14,9 +14,9 @@ return {
             -- NOTE: These are "todos"
             TODO = { icon = ' ', color = 'info', alt = { 'todo' } },
             FIX = { icon = ' ', color = 'error', alt = { 'FIXME', 'BUG', 'ISSUE' } },
-            WARN = { icon = ' ', color = 'warning', alt = { 'WARNING' } },
             OPTIMIZE = { icon = ' ', color = 'performance' },
             -- NOTE: These are "notes"
+            WARN = { icon = ' ', color = 'warning', alt = { 'WARNING' } },
             PERF = { icon = ' ', color = 'performance', alt = { 'PERFORMANCE' } },
             HACK = { icon = ' ', color = 'warning', alt = { 'SMELL', 'CODE SMELL', 'BAD', 'BAD PRACTICE' } },
             NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
@@ -59,7 +59,7 @@ return {
             error = { 'DiagnosticError', 'ErrorMsg', '#DC2626' },
             warning = { 'DiagnosticWarn', 'WarningMsg', '#FBBF24' },
             info = { 'DiagnosticInfo', '#2563EB' },
-            hint = { 'DiagnosticHint', '#10B981' },
+            hint = { '#10B981' },
             test = { 'Identifier', '#FF00FF' },
             performance = { 'Identifier', '#FF00FF' },
         },
