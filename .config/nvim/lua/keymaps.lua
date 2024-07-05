@@ -27,5 +27,3 @@ vim.keymap.set({ 'n', 't' }, '<C-Right>', string.format(':vertical resize +%d<CR
 -- Keep selection after < and >
 vim.keymap.set('v', '<', '<gv', {})
 vim.keymap.set('v', '>', '>gv', {})
-
--- TODO: Add refactoring keys like <leader>iv for introduce variable, extract method, introduce constant etc

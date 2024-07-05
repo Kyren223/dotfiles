@@ -18,11 +18,16 @@ return {
                 height = 0.7,
                 width = 0.7,
             },
+            outline = {
+                layout = 'float',
+            },
         })
         local diagnostic = require('lspsaga.diagnostic')
 
         vim.keymap.set('n', 'K', ':Lspsaga hover_doc<cr>', { desc = 'Display Docs' })
         vim.keymap.set('n', 'R', ':Lspsaga rename<cr>', { desc = '[R]ename' })
+
+        vim.keymap.set('n', '<leader>os', '<cmd>Lspsaga outline<cr>', { desc = '[T]erminal' })
 
         vim.keymap.set({ 'n', 'i' }, '<M-Enter>', '<cmd>Lspsaga code_action<cr><Esc>', { desc = 'Code Actions' })
         vim.keymap.set('n', '<leader>ca', ':Lspsaga code_action<cr><Esc>', { desc = '[C]ode [A]ctions' })
@@ -41,8 +46,5 @@ return {
         )
 
         vim.keymap.set({ 'n', 't' }, '<A-t>', '<cmd>Lspsaga term_toggle<cr>', { desc = '[T]erminal' })
-
-        -- TODO: use require(lspsaga.symbol.winbar).get_bar()
-        -- and add it to lualine rather than have it at the top of the screen which is a bit annoying
     end,
 }
