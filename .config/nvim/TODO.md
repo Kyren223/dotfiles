@@ -28,4 +28,12 @@ when there is an lsp active, it shouldn't show any other types like regex
 it should just show lsp stuff
 
 
+# Look at in the future
+
+- Database integration plugins
+https://github.com/kndndrj/nvim-dbee?tab=readme-ov-file
+https://github.com/tpope/vim-dadbod
+
+- Colorscheme https://github.com/scottmckendry/cyberdream.nvim?tab=readme-ov-file
+
 

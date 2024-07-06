@@ -2,6 +2,4 @@ require('options')
 require('keymaps')
 require('autocmds')
 require('plugin-manager')
---vim.cmd.colorscheme('darcula')
---vim.cmd.colorscheme('tokyonight-night')
-require('dapui-colorscheme').set()
+

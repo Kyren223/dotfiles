@@ -14,10 +14,11 @@ return {
         end)
 
         for i = 1, 9 do
-            vim.keymap.set('n', '<C-F' .. i .. '>', function()
+            local select = function()
                 harpoon:list():select(i)
-            end)
+            end
+            vim.keymap.set('n', string.format('<C-F%d>', i), select)
+            vim.keymap.set('n', string.format('<leader>%d', i), select)
         end
-
     end,
 }
