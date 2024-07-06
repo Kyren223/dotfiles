@@ -7,6 +7,7 @@ return {
     config = function()
         require('lspsaga').setup({
             lightbulb = {
+                enable = false,
                 sign = false,
                 virtual_text = true,
             },
