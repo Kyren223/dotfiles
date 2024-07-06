@@ -4,7 +4,7 @@ return {
     opts = {
         bottom = {
             'Trouble',
-            { ft = 'qf', title = 'QuickFix' },
+            { ft = 'qf',            title = 'QuickFix' },
             {
                 ft = 'help',
                 size = { height = 20 },
