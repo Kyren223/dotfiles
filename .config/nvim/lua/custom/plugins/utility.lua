@@ -43,4 +43,10 @@ return {
         ft = 'lua',
         opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
     },
+    {
+        'mbbill/undotree',
+        config = function()
+            vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle)
+        end,
+    },
 }

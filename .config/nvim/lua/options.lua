@@ -5,6 +5,7 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 vim.opt.mouse = 'a'               -- enable mouse
 vim.opt.clipboard = 'unnamedplus' -- use system clipboard
+vim.opt.undofile = true -- Persist undo history by saving it to a file
 
 -- Tab
 vim.opt.expandtab = true -- convert tabs to spaces
