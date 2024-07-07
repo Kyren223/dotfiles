@@ -4,7 +4,7 @@ return {
     opts = {
         bottom = {
             'Trouble',
-            { ft = 'qf',            title = 'QuickFix' },
+            { ft = 'qf', title = 'QuickFix' },
             {
                 ft = 'help',
                 size = { height = 20 },
@@ -12,8 +12,7 @@ return {
                     return vim.bo[buf].buftype == 'help'
                 end,
             },
-            -- TODO: Add spectral
-            -- { ft = 'spectre_panel', size = { height = 0.4 } },
+            { ft = 'spectre_panel', size = { height = 0.4 } },
         },
         left = {
             {
