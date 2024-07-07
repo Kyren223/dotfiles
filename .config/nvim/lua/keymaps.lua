@@ -8,6 +8,7 @@ set({ 'i', 'c' }, '<C-v>', '<C-r>+')
 set('n', '<leader>z', function()
     vim.cmd('Neotree close')
     vim.cmd('Trouble todo close')
+    vim.cmd('UndotreeHide')
 end, { desc = '[Z]en Mode', silent = true })
 
 set('n', 'U', ':redo<cr>')
