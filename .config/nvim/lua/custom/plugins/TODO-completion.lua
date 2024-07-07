@@ -1,50 +1,19 @@
 return {
     {
-        'hrsh7th/cmp-nvim-lsp',
-    },
-    {
-        'L3MON4D3/LuaSnip',
-        dependencies = {
-            'saadparwaiz1/cmp_luasnip',
-            'rafamadriz/friendly-snippets',
-        },
-    },
-    {
         'hrsh7th/nvim-cmp',
-        opts = function(_, opts)
-            -- Setup options for lazydev.nvim
-            opts.sources = opts.sources or {}
-            table.insert(opts.sources, {
-                name = 'lazydev',
-                group_index = 0,
-            })
-        end,
+        lazy = false,
+        priority = 100,
+        dependencies = {
+            -- 'onsails/lspkind.nvim',
+            -- 'hrsh7th/cmp-path',
+            -- 'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp', -- lsp source for nvim-cmp
+            'saadparwaiz1/cmp_luasnip', -- snippets source for nvim-cmp
+            { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' }, -- snippets plugin
+        },
+        -- TODO: Move to setup opts
         config = function()
-            local cmp = require('cmp')
-            require('luasnip.loaders.from_vscode').lazy_load()
-
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end,
-                },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-k>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                }),
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                    { name = 'luasnip' },
-                }, { { name = 'buffer' } }),
-            })
+            require('custom.completion')
         end,
     },
 }

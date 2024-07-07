@@ -10,8 +10,8 @@ vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('disable-auto-comment', { clear = true }),
     pattern = '*',
     callback = function()
-        -- autowrap using textwidth | enter in insert mode | o/O in normal mode
+        -- c - autowrap using textwidth | r - enter in insert mode | o - o/O in normal mode
         -- vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
-        vim.cmd('set formatoptions-=cro')
+        vim.cmd('set formatoptions-=co')
     end,
 })
