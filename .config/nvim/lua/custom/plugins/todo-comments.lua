@@ -1,24 +1,13 @@
--- Showcase
--- TODO: lorem ipsum
-
--- FIX: lorem ipsum
-
--- OPTIMIZE: lorem ipsum
-
--- WARN: lorem ipsum
-
--- PERF: lorem ipsum
-
--- HACK: lorem ipsum
-
--- NOTE: lorem ipsum
-
--- TEST: lorem ipsum
-
--- UNSAFE: lorem ipsum
-
 -- NORMAL: lorem ipsum
-
+-- TODO: lorem ipsum
+-- FIX: lorem ipsum
+-- OPTIMIZE: lorem ipsum
+-- WARN: lorem ipsum
+-- PERF: lorem ipsum
+-- HACK: lorem ipsum
+-- NOTE: lorem ipsum
+-- TEST: lorem ipsum
+-- UNSAFE: lorem ipsum
 return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
