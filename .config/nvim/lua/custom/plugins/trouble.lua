@@ -2,9 +2,12 @@ return {
     'folke/trouble.nvim',
     opts = {},
     cmd = 'Trouble',
+    -- TODO: Consider maybe using this for outlines (code structure)
+    -- and also configuring some of the keys to better fit me
+    -- and probably removing most of them in the process
     keys = {
         {
-            '<leader>xx',
+        '<leader>xx',
             '<cmd>Trouble diagnostics toggle<cr>',
             desc = 'Diagnostics (Trouble)',
         },

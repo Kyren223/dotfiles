@@ -11,6 +11,8 @@
 - TODO: Remove the vsc*de snippets/completions and make my own luasnip snippets [tutorial](https://www.youtube.com/watch?v=FmHhonPjvvA)
 - TODO: Setup [nvim spectre](https://github.com/nvim-pack/nvim-spectre)
 
+- TODO: learn what dot repeat is
+
 # VERY IMPORTANT
 
 ##  TODO: Code actions

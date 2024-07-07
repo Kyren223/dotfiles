@@ -12,9 +12,14 @@ return {
         'ggandor/leap.nvim',
         dependencies = { 'tpope/vim-repeat' },
         config = function()
-            vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)')
-            vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
-            vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)')
+            -- vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)')
+            -- vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)')
+            -- vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)')
+
+            vim.keymap.set('n', 's', '<Plug>(leap)')
+            vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
+            vim.keymap.set({ 'x', 'o' }, 's', '<Plug>(leap-forward)')
+            vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
 
             -- Define equivalence classes for brackets and quotes, in addition to
             -- the default whitespace group.
@@ -68,8 +73,8 @@ return {
             vim.keymap.set('v', '{', '<Plug>(nvim-surround-visual){')
             vim.keymap.set('v', '}', '<Plug>(nvim-surround-visual)}')
             -- I still want to be able to do < and > for indentation
-            -- vim.keymap.set('v', '<', '<Plug>(nvim-surround-visual)<', opts)
-            -- vim.keymap.set('v', '>', '<Plug>(nvim-surround-visual)>', opts)
+            -- vim.keymap.set('v', '<', '<Plug>(nvim-surround-visual)<')
+            -- vim.keymap.set('v', '>', '<Plug>(nvim-surround-visual)>')
             vim.keymap.set('v', '[', '<Plug>(nvim-surround-visual)[')
             vim.keymap.set('v', ']', '<Plug>(nvim-surround-visual)]')
             vim.keymap.set('v', "'", "<Plug>(nvim-surround-visual)'")
