@@ -1,5 +1,6 @@
 require('custom.snippets.lua')
 local luasnip = require('luasnip')
+local lspkind = require('lspkind')
 local cmp = require('cmp')
 
 -- Enable paretheses for function completions
@@ -36,21 +37,24 @@ cmp.setup({
     enabled = is_enabled,
     completion = { completeopt = 'menu,menuone,noinsert' },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
+        { name = 'nvim_lsp' }, -- for lsp
+        { name = 'luasnip' }, -- for snippets
         { name = 'lazydev', group_index = 0 }, -- for lazydev.nvim
         { name = 'path' }, -- for filesystem
-    }),
-
+    }, {}),
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
         end,
     },
     window = {
-        -- TODO: Decide if I like borders or not
-        completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
+        completion = {
+            border = 'rounded',
+            winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+            col_offset = -3,
+            side_padding = 0,
+        },
     },
     mapping = cmp.mapping.preset.insert({
         ['<Tab>'] = tab(true),
@@ -60,10 +64,18 @@ cmp.setup({
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-m>'] = cmp.mapping.abort(),
-        -- NOTE: Select makes it so it doesn't put the text in the buffer (like Insert or defualt does)
-        -- Ex: typing "p" and then select "private" will not write "private" in your buffer, but keep it "p"
-        -- Only after accepting the suggestion then it'll become "private"
         ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     }),
+    ---@diagnostic disable-next-line: missing-fields
+    formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(entry, vim_item)
+            local kind = lspkind.cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
+            local strings = vim.split(kind.kind, '%s', { trimempty = true })
+            kind.kind = ' ' .. (strings[1] or '') .. ' ' -- left (icon)
+            kind.menu = '    ' .. (strings[2] or '') .. '' -- right (text)
+            return kind
+        end,
+    },
 })

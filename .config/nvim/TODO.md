@@ -8,6 +8,8 @@
 - TODO: Add refactoring keys like <leader>iv for introduce variable, extract method, introduce constant etc
 - TODO: Decide which outline-plugin to use (lspsaga or aerial, or smthing else)
 - TODO: Finish configuring lsp saga (I think it has supertypes and stuff which aren't in the doc)
+- TODO: Create your own luasnip snippets, search what "choices" are
+- TODO: Look for a list of sources for completions to add more cool stuff https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
 
 - TODO: learn what dot repeat is
 

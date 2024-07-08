@@ -56,9 +56,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local bufnr = args.buf
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id), 'must have valid client')
 
-        -- TODO: Check if I need this line
-        -- vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-
         local settings = servers[client.name]
         if type(settings) ~= 'table' then
             ---@diagnostic disable-next-line: cast-local-type

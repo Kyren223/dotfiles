@@ -28,6 +28,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Misc
+vim.opt_local.wrap = false
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.undofile = true

@@ -12,10 +12,7 @@ return {
                 opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
             },
 
-            -- FIXME: Starts with a black blackground
-            -- Desired behaviour is same color as background or transparent
-            -- Progress ui
-            { 'j-hui/fidget.nvim', opts = {} },
+            { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0 } } } },
 
             -- AUtoformatting
             -- 'stevear/conform.nvim',
