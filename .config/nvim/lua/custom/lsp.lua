@@ -97,5 +97,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --
 -- require('lsp_lines').setup()
 -- vim.diagnostic.config({ virtual_text = false })
-
-print('Sourced lsp.lua')

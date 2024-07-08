@@ -1,15 +1,12 @@
 
 # Plans for the future
 
-- TODO: Refactor stuff to `plugin` folder (keymaps and options) and also `after` folder for filetype-specific things
-p.s if some1 reads this and gets triggered by folders, GET REKT
-
 - TODO: Look into bufferline.nvim for "tabs"
 - TODO: Look at configuring Noice.nvim and decide if u like it or not
 - TODO: Look at buffer-management plugins that automatically delete old buffers (and also ways to close buffers without exiting nvim, and be able to exit nvim with 1 keypress)
 - TODO: Replace obsidian with Neorg
 - TODO: Add refactoring keys like <leader>iv for introduce variable, extract method, introduce constant etc
-- TODO: Decided which outline-plugin to use (lspsaga or aerial, or smthing else)
+- TODO: Decide which outline-plugin to use (lspsaga or aerial, or smthing else)
 - TODO: Finish configuring lsp saga (I think it has supertypes and stuff which aren't in the doc)
 
 - TODO: learn what dot repeat is
@@ -25,8 +22,6 @@ A lightbulb somewhere ONLY if the cursor (not line) has a code action and ONLY i
 ##  TODO: Completions and snippets
 Make my own snippets per file type
 HAVE ACTUAL GOOD SORTING FOR SNIPPETS (hopefully this is possible)
-*when there is an lsp active, it shouldn't show any other types like regex
-it should just show lsp stuff
 
 # Look at in the future
 

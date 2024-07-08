@@ -67,5 +67,3 @@ cmp.setup({
         ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     }),
 })
-
-print('Sourced completion.lua')
