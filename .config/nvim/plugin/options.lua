@@ -35,7 +35,6 @@ vim.opt.termguicolors = true
 vim.opt.laststatus = 3 -- views can only be fully collapsed with the global statusline
 vim.opt.splitkeep = 'screen' -- for edgy.nvim
 vim.opt.inccommand = 'split' -- shows preview for commands like :%s/from/to
-vim.opt.formatoptions:remove('o') -- don't have `o` add a comment
 
 -- Disable warnings for missing language providers
 vim.g.loaded_node_provider = 0

@@ -6,13 +6,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
--- vim.api.nvim_create_autocmd('FileType', {
---     group = vim.api.nvim_create_augroup('disable-auto-comment', { clear = true }),
---     pattern = '*',
---     callback = function()
---         -- c - autowrap using textwidth | r - enter in insert mode | o - o/O in normal mode
---         -- vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
---         vim.opt.formatoptions:remove('o')
---         -- vim.cmd('set formatoptions-=o')
---     end,
--- })
+vim.api.nvim_create_autocmd('BufEnter', {
+    desc = 'Disable newlines on commented lines from continuing the comment',
+    group = vim.api.nvim_create_augroup('disable-comments-continuation', { clear = true }),
+    callback = function()
+        -- vim.opt_local.formatoptions:remove('r') -- no comments on enter
+        vim.opt_local.formatoptions:remove('o') -- no comments on `o` or `O`
+    end,
+})
