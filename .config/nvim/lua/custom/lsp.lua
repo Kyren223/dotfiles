@@ -1,18 +1,18 @@
 -- NOTE: A list of language servers (and potentially their config)
 -- Accepts either true to enable, false to disable or a table with settings
 local servers = {
-    lua_ls = true,                 -- lua
-    clangd = true,                 -- C/C++
-    gradle_ls = true,              -- java package manager
-    jdtls = true,                  -- java eclipse lsp
+    lua_ls = true, -- lua
+    clangd = true, -- C/C++
+    gradle_ls = true, -- java package manager
+    jdtls = true, -- java eclipse lsp
     kotlin_language_server = true, -- kotlin
-    pyright = true,                -- python
-    rust_analyzer = true,          -- rust
-    bashls = true,                 -- bash
-    taplo = true,                  -- toml
-    lemminx = true,                -- xml
-    yamlls = true,                 -- yaml
-    jsonls = true,                 -- json
+    pyright = true, -- python
+    rust_analyzer = true, -- rust
+    bashls = true, -- bash
+    taplo = true, -- toml
+    lemminx = true, -- xml
+    yamlls = true, -- yaml
+    jsonls = true, -- json
 }
 
 -- NOTE: Not language servers but still make sure mason installs them
@@ -97,3 +97,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --
 -- require('lsp_lines').setup()
 -- vim.diagnostic.config({ virtual_text = false })
+
+print('Sourced lsp.lua')

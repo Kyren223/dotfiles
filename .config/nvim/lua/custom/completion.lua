@@ -7,7 +7,7 @@ cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm
 
 -- Helper functions
 local function tab(is_forward)
-    cmp.mapping(function(fallback)
+    return cmp.mapping(function(fallback)
         local jump_amount = is_forward and 1 or -1
         if cmp.visible() then
             local behaviour = cmp.SelectBehavior.Select
@@ -20,8 +20,6 @@ local function tab(is_forward)
         end
     end, { 'i', 's' })
 end
-
-local function enter() end
 
 local function is_enabled()
     local context = require('cmp.config.context')
@@ -43,6 +41,7 @@ cmp.setup({
         { name = 'lazydev', group_index = 0 }, -- for lazydev.nvim
         { name = 'path' }, -- for filesystem
     }),
+
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -54,46 +53,19 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        -- TODO: Make good keybindings
         ['<Tab>'] = tab(true),
         ['<S-Tab>'] = tab(false),
-        ['<CR>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                if luasnip.expandable() then
-                    luasnip.expand()
-                else
-                    cmp.confirm({ select = true })
-                end
-            else
-                fallback()
-            end
-        end),
-
+        ['<C-Space>'] = cmp.mapping.complete(), -- invoke completion
+        ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-m>'] = cmp.mapping.abort(),
         -- NOTE: Select makes it so it doesn't put the text in the buffer (like Insert or defualt does)
         -- Ex: typing "p" and then select "private" will not write "private" in your buffer, but keep it "p"
         -- Only after accepting the suggestion then it'll become "private"
         ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-
-        ['<CR>'] = cmp.mapping(
-            cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
-            { 'i', 'c' }
-        ),
-
-        ['<C-Space>'] = cmp.mapping.complete(), -- invoke completion
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-
-        -- ['<C-k>'] = cmp.mapping.abort(),
-        -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        -- ['<C-y>'] = cmp.mapping(
-        --     cmp.mapping.confirm({
-        --         behavior = cmp.ConfirmBehavior.Insert,
-        --         select = true,
-        --     }),
-        --     { 'i', 'c' }
-        -- ),
     }),
 })
 
-print('Sourced lsp.lua')
+print('Sourced completion.lua')
