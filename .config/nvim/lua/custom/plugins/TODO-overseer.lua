@@ -5,6 +5,6 @@ return {
         require('overseer').setup({
             templates = { 'builtin', 'user.c_build_make' },
         })
-        vim.keymap.set('n', '<leader>r', ':OverseerRun<cr>', { desc = '[R]un Task' })
+        vim.keymap.set('n', '<leader>r', '<cmd>OverseerRun<cr>', { desc = '[R]un Task' })
     end,
 }

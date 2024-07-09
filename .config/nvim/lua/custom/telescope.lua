@@ -43,6 +43,7 @@ vim.keymap.set('n', '<leader>ps', builtin.lsp_workspace_symbols, { desc = '[P]ro
 
 vim.keymap.set('n', '<leader>sb', builtin.git_branches, { desc = '[S]earch [B]ranches' })
 vim.keymap.set('n', '<leader>sc', builtin.git_commits, { desc = '[S]earch [C]ommits' })
+
 -- TODO: Look into the following
 -- builtin.git_commits
 -- builtin.git_branches

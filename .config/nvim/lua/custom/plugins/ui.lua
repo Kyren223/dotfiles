@@ -16,14 +16,14 @@ return {
                     auto_enable = true,
                 },
             })
-            vim.keymap.set('n', '<leader>cp', ':CccPick<cr>', { desc = '[C]olor [P]icker' })
-            vim.keymap.set('n', '<leader>ct', ':CccHighlighterToggle<cr>', { desc = '[C]olor [T]oggle' })
+            vim.keymap.set('n', '<leader>cp', '<cmd<CccPick<cr>', { desc = '[C]olor [P]icker' })
+            vim.keymap.set('n', '<leader>ct', '<cmd>CccHighlighterToggle<cr>', { desc = '[C]olor [T]oggle' })
         end,
     },
     {
         'RRethy/vim-illuminate',
         config = function()
-            vim.keymap.set('n', '<leader>it', ':IlluminateToggle<cr>', { desc = '[I]lluminate [Tloggle]' })
+            vim.keymap.set('n', '<leader>it', '<cmd>IlluminateToggle<cr>', { desc = '[I]lluminate [Tloggle]' })
         end,
     },
     {

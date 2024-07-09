@@ -88,7 +88,7 @@ return {
                 -- pattern = [[\b(KEYWORDS)\b]],
             },
         })
-        vim.keymap.set('n', '<leader>st', ':TodoTelescope keywords=TODO,FIX<cr>', { desc = '[S]earch [T]odos' })
-        vim.keymap.set('n', '<leader>lt', ':TodoTrouble<cr>', { desc = '[L]ist [T]odos' })
+        vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope keywords=TODO,FIX<cr>', { desc = '[S]earch [T]odos' })
+        vim.keymap.set('n', '<leader>lt', '<cmd>TodoTrouble<cr>', { desc = '[L]ist [T]odos' })
     end,
 }

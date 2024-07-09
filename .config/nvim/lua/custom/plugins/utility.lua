@@ -11,10 +11,7 @@ return {
             vim.keymap.set('n', '<C-s>', session.search_session, { desc = '[S]ession Manager' })
         end,
     },
-    {
-        'wakatime/vim-wakatime',
-        lazy = false,
-    },
+    { 'wakatime/vim-wakatime', lazy = false },
     {
         'AckslD/nvim-neoclip.lua',
         dependencies = {
@@ -34,7 +31,7 @@ return {
                 },
             })
             -- NOTE: Using `plus` to set the plus register to the selected value
-            vim.keymap.set('n', '<leader>nc', ':Telescope neoclip plus<cr>', { desc = '[N]eo[c]lip History' })
+            vim.keymap.set('n', '<leader>nc', '<cmd>Telescope neoclip plus<cr>', { desc = '[N]eo[c]lip History' })
         end,
     },
     {
@@ -54,5 +51,5 @@ return {
     -- NOTE: No keybindings, use `:Spectre` or `:Spectre <file>`
     -- Spectre has no undo, so it should be rarely used,
     -- which is why no keybindings are defined
-    { 'nvim-pack/nvim-spectre', },
+    { 'nvim-pack/nvim-spectre' },
 }
