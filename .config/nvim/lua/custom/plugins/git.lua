@@ -4,7 +4,6 @@ return {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope.nvim',
         'sindrets/diffview.nvim',
-        'tpope/vim-fugitive',
         'lewis6991/gitsigns.nvim',
         'pwntester/octo.nvim',
     },
