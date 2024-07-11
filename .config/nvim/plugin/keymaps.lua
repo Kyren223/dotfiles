@@ -7,6 +7,7 @@ local function unbind(mode, keymap)
 end
 
 -- Misc
+set('n', 'q:', ':', { noremap = true }) -- disables opening some window if q was accidentally typed before :
 set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
 set('n', '<Esc>', '<cmd>nohlsearch<CR>', silent)
 set({ 'i', 'c' }, '<C-v>', function()
@@ -42,3 +43,6 @@ set('v', '>', '>gv')
 -- Execute lua file or line
 set('n', '<leader>x', '<cmd>.lua<CR>', { desc = 'Execute the current line' })
 set('n', '<leader><leader>x', '<cmd>source %<CR>', { desc = 'Execute the current file' })
+
+-- Reformats file using lsp
+set('n', '=', vim.lsp.buf.format, { desc = 'Format File' })

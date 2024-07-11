@@ -6,13 +6,29 @@ return {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
 
+            'nvimtools/none-ls.nvim',
+
+            -- NOTE: [Good alternative](https://github.com/rachartier/tiny-inline-diagnostic.nvim)
+            -- although, this plugin is amazing, so I wouldn't switch it most likely
+            { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
+
+            {
+                'nvimdev/lspsaga.nvim',
+                dependencies = {
+                    'nvim-treesitter/nvim-treesitter',
+                    'nvim-tree/nvim-web-devicons',
+                },
+            },
             {
                 'folke/lazydev.nvim',
                 ft = 'lua',
                 opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
             },
-
-            { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0 } } } },
+            {
+                'ray-x/lsp_signature.nvim',
+                event = 'VeryLazy',
+            },
+            { 'j-hui/fidget.nvim',                           opts = { notification = { window = { winblend = 0 } } } },
 
             -- AUtoformatting
             -- 'stevear/conform.nvim',

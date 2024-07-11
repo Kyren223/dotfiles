@@ -1,7 +1,18 @@
 local set = vim.keymap.set
 local gitsigns = require('gitsigns')
 gitsigns.setup()
-require('neogit').setup({})
+require('neogit').setup({
+    mappings = {
+        commit_editor = {
+            ['<C-y>'] = 'Submit',
+            ['<C-n>'] = 'Abort',
+        },
+        commit_editor_I = {
+            ['<C-y>'] = 'Submit',
+            ['<C-n>'] = 'Abort',
+        },
+    },
+})
 require('octo').setup()
 require('diffview').setup({
     enhanced_diff_hl = true,
@@ -31,21 +42,25 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- GitHub keymaps
-set('n', '<leader>gi', '<cmd>Octo issue search<cr>', { desc = '[G]ithub [I]ssues' })
-set('n', '<leader>pr', '<cmd>Octo issue search<cr>', { desc = 'Github [PR]s' })
+set('n', '<leader>gi', '<cmd>Octo issue search<cr>', { desc = '[G]ithub [I]ssues (local)' })
+set('n', '<leader>pr', '<cmd>Octo pr search<cr>', { desc = 'Github [PR]s (local)' })
+set('n', '<leader>gI', '<cmd>Octo search is:issue is:open author:@me<cr>', { desc = '[G]ithub [I]ssues (global)' })
+set('n', '<leader>pR', '<cmd>Octo search is:pr author:@me<cr>', { desc = 'Github [PR]s (global)' })
 
 -- Git keymaps
-set('n', '<leader>gb', gitsigns.toggle_current_line_blame, { desc = '[G]it [B]lame Line' })
+set('n', '<leader>gB', gitsigns.toggle_current_line_blame, { desc = '[G]it [B]lame Line' })
 set('n', '<leader>gD', gitsigns.toggle_deleted, { desc = '[G]it [D]eleted' })
+set('n', '<leader>gb', '<cmd>Neogit branch<cr>', { desc = '[G]it [B]ranch' })
 set('n', '<leader>gd', '<cmd>DiffviewOpen<cr>', { desc = '[G]it [D]iff' })
-set('n', '<leader>gl', '<cmd>DiffviewFileHistory<cr>', { desc = '[G]it [L]og' })
+set('n', '<leader>gl', '<cmd>DiffviewFileHistory<cr>', { desc = '[G]it [L]og (diffview)' })
+set('n', '<leader>gL', '<cmd>Neogit log<cr>', { desc = '[G]it [L]og (neogit)' })
 set('n', '<leader>gs', '<cmd>Neogit<cr>', { desc = '[G]it [S]tatus' })
 set('n', '<leader>gc', '<cmd>Neogit commit<cr>', { desc = '[G]it [C]ommit' })
 set('n', '<leader>gp', '<cmd>Neogit push<cr>', { desc = '[G]it [P]ush' })
 set('n', '<leader>gP', '<cmd>Neogit pull<cr>', { desc = '[G]it [P]ull' })
--- NOTE: Waiting to actually have my next merge conflict and 
+-- NOTE: Waiting to actually have my next merge conflict and
 -- see how diffview handles and then deciding if I want to use
--- neogit or diffview for merge (prob diffview), same with rebase 
+-- neogit or diffview for merge (prob diffview), same with rebase
 -- althoug I don't think I will use rebase anytime soon
 set('n', '<leader>gr', 'TODO:', { desc = '[G]it [R]ebase' })
 set('n', '<leader>gm', 'TODO:', { desc = '[G]it [M]erge' })

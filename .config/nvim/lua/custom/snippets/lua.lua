@@ -10,6 +10,7 @@ local function s(abbr, expansion, args)
 end
 
 ls.add_snippets('lua', {
-    s('fu', 'function {}({})\n    {}\nend', { i(1), i(2), i(0) }),
     s('desc', "{{ desc = '{}' }}", { i(0) }),
+    s('cmd', '<cmd>{}<cr>', { i(0) }),
+    s('scmd', "'<cmd>{}<cr>'", { i(0) }),
 })
