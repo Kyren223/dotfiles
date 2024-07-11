@@ -7,7 +7,6 @@ local function unbind(mode, keymap)
 end
 
 -- Misc
-set('n', 'q:', ':', { noremap = true }) -- disables opening some window if q was accidentally typed before :
 set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
 set('n', '<Esc>', '<cmd>nohlsearch<CR>', silent)
 set({ 'i', 'c' }, '<C-v>', function()
