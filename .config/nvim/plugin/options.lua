@@ -2,7 +2,8 @@
 vim.g.have_nerd_font = true
 vim.opt.mouse = 'a'               -- enable mouse
 vim.opt.clipboard = 'unnamedplus' -- use system clipboard
-vim.opt.undofile = true           -- Persist undo history by saving it to a file
+vim.opt.undofile = true           -- persist undo history by saving it to a file
+vim.opt.exrc = true -- WARNING: runs .nvim.lua in cwd, which may execute arbitrary code
 
 -- Tab
 vim.opt.expandtab = true -- convert tabs to spaces
