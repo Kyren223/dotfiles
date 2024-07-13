@@ -1,3 +1,4 @@
+vim.loader.enable() -- WARNING: potentially sppeds up loading, it's experimental so I added the warning
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
