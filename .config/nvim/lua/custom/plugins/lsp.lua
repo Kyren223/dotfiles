@@ -25,7 +25,6 @@ return {
                 'ray-x/lsp_signature.nvim',
                 event = 'VeryLazy',
             },
-            { 'j-hui/fidget.nvim',                           opts = { notification = { window = { winblend = 0 } } } },
 
             -- AUtoformatting
             -- 'stevear/conform.nvim',
