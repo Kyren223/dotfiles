@@ -22,7 +22,17 @@ pcall(telescope.load_extension('ui-select'))
 pcall(telescope.load_extension('fzf'))
 
 local builtin = require('telescope.builtin')
+local function find_all()
+    builtin.find_files({
+        cwd = '~',
+        hidden = true,
+        no_ignore = true,
+        no_ignore_parent = true,
+    })
+end
+
 vim.keymap.set('n', '<leader>fs', builtin.find_files, { desc = '[F]ile [S]ystem' })
+vim.keymap.set('n', '<leader>fa', find_all, { desc = '[F]ind [A]ll files' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
 vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = '[F]ind [M]an Pages' })
 -- vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
