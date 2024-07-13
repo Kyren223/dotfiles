@@ -34,6 +34,9 @@ require('lspsaga').setup({
     outline = {
         layout = 'float',
     },
+    -- TODO: Change <C-k> in rename to smthing else
+    -- bcz I am using <C-k> for moving between windows
+    -- Maybe <C-c> for abort, <cr> for confirm
 })
 
 -- NOTE: A list of language servers (and potentially their config)
