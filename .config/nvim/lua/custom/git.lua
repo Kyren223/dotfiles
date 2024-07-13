@@ -58,12 +58,8 @@ set('n', '<leader>gs', '<cmd>Neogit<cr>', { desc = '[G]it [S]tatus' })
 set('n', '<leader>gc', '<cmd>Neogit commit<cr>', { desc = '[G]it [C]ommit' })
 set('n', '<leader>gp', '<cmd>Neogit push<cr>', { desc = '[G]it [P]ush' })
 set('n', '<leader>gP', '<cmd>Neogit pull<cr>', { desc = '[G]it [P]ull' })
--- NOTE: Waiting to actually have my next merge conflict and
--- see how diffview handles and then deciding if I want to use
--- neogit or diffview for merge (prob diffview), same with rebase
--- althoug I don't think I will use rebase anytime soon
-set('n', '<leader>gr', 'TODO:', { desc = '[G]it [R]ebase' })
-set('n', '<leader>gm', 'TODO:', { desc = '[G]it [M]erge' })
+set('n', '<leader>gr', '<cmd>Neogit rebase<cr>', { desc = '[G]it [R]ebase' })
+set('n', '<leader>gm', '<cmd>Neogit merge<cr>', { desc = '[G]it [M]erge' })
 
 -- Hunk Keymaps
 local function stage_visual_chunk()
