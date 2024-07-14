@@ -22,11 +22,11 @@ unbind({ 'i', 'n', 'v' }, '<C-r>')
 set('n', 'U', '<cmd>redo<cr>')
 set('i', '<C-z>', '<cmd>undo<cr>')
 
--- Window Navigation
-set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the down window' })
-set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the up window' })
-set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+-- Window Navigation - NO NEED BECAUSE IT CONFLICTS WITH TMUX
+-- set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+-- set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the down window' })
+-- set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the up window' })
+-- set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 
 -- Window resizing
 local resize = 2
