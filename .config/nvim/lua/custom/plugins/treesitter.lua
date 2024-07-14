@@ -35,9 +35,9 @@ return {
                         },
                         selection_modes = {
                             ['@parameter.outer'] = 'v', -- charwise
-                            ['@function.outer'] = 'V',  -- linewise
+                            ['@function.outer'] = 'V', -- linewise
                             ['@class.outer'] = '<c-v>', -- blockwise
-                            ['@assignment.rhs'] = 'v',  -- charwise
+                            ['@assignment.rhs'] = 'v', -- charwise
                         },
                     },
                     swap = {
@@ -56,6 +56,12 @@ return {
             -- Repeat movement with ; and ,
             vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
             vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+
+            -- NOTE: You need this, otherwise the normal ; and , won't work for fFtT
+            vim.keymap.set({ 'n', 'x', 'o' }, 'f', ts_repeat_move.builtin_f_expr, { expr = true })
+            vim.keymap.set({ 'n', 'x', 'o' }, 'F', ts_repeat_move.builtin_F_expr, { expr = true })
+            vim.keymap.set({ 'n', 'x', 'o' }, 't', ts_repeat_move.builtin_t_expr, { expr = true })
+            vim.keymap.set({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
         end,
     },
 }
