@@ -1,4 +1,7 @@
-require('custom.snippets.lua')
+for _, ft_path in ipairs(vim.api.nvim_get_runtime_file('lua/custom/snippets/*.lua', true)) do
+    loadfile(ft_path)()
+end
+
 local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 local cmp = require('cmp')
@@ -37,10 +40,10 @@ cmp.setup({
     enabled = is_enabled,
     completion = { completeopt = 'menu,menuone,noinsert' },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' }, -- for lsp
-        { name = 'luasnip' }, -- for snippets
+        { name = 'nvim_lsp' },                 -- for lsp
+        { name = 'luasnip' },                  -- for snippets
         { name = 'lazydev', group_index = 0 }, -- for lazydev.nvim
-        { name = 'path' }, -- for filesystem
+        { name = 'path' },                     -- for filesystem
     }, {}),
     snippet = {
         expand = function(args)
@@ -73,7 +76,7 @@ cmp.setup({
         format = function(entry, vim_item)
             local kind = lspkind.cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
             local strings = vim.split(kind.kind, '%s', { trimempty = true })
-            kind.kind = ' ' .. (strings[1] or '') .. ' ' -- left (icon)
+            kind.kind = ' ' .. (strings[1] or '') .. ' '   -- left (icon)
             kind.menu = '    ' .. (strings[2] or '') .. '' -- right (text)
             return kind
         end,
