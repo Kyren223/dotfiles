@@ -83,8 +83,8 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza $realpath'
 
 # Load Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -94,7 +94,35 @@ source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat_laptop.omp.yml)"
 
+# Aliases
+alias nvim='nvim.sh'
+alias cat='bat'
+alias ls='eza'
+alias lsv='eza -lah' # v for verbose
+alias tree='eza --tree'
+alias c='clear'
+alias q='exit'
+alias ':q'='exit'
+alias vim='nvim'
+alias python='python3'
+alias vi='nvim $(fzf --preview="bat --style=numbers --color=always --line-range :500 {}")'
+
+alias zshrc='vim ~/.zshrc && source ~/.zshrc'
+alias tmuxconf='vim ~/.config/tmux/tmux.conf'
+alias nvimconf='cd ~/.config/nvim && nvim'
+alias vimrc='nvimconf'
+
+alias ivm='vim'
+alias dc='cd'
+
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+
 # Exports
+export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
 export EDITOR=nvim
 export PAGER=nvimpager
 export FZF_DEFAULT_OPTS=" \
@@ -106,25 +134,6 @@ export FZF_DEFAULT_OPTS=" \
 export CC="clang"
 export CFLAGS="-ferror-limit=1 -gdwarf-4 -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-gnu-folding-constant -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-but-set-variable -Wshadow"
 export LDLIBS="-lcrypt -lcs50 -lm"
-
-# Aliases
-alias ls='ls --color'
-alias c='clear'
-alias vim='nvim'
-alias python='python3'
-
-alias zshrc='vim ~/.zshrc && source ~/.zshrc'
-alias tmuxconf='vim ~/.config/tmux/tmux.conf'
-alias nvimconf='cd ~/.config/nvim && vim'
-alias vimrc='nvimconf'
-
-alias ivm='vim'
-alias dc='cd'
-
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gp='git push'
 
 # Open tmux if it's not open
 if [ -z "$TMUX" ]; then
