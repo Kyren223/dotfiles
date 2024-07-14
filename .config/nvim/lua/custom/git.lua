@@ -11,6 +11,10 @@ require('neogit').setup({
             ['<C-y>'] = 'Submit',
             ['<C-n>'] = 'Abort',
         },
+        popup = {
+            ['p'] = 'PushPopup', -- P for push
+            ['P'] = 'PullPopup', -- shift P for Pull
+        },
     },
 })
 require('octo').setup()
