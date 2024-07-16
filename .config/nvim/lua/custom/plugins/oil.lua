@@ -5,13 +5,16 @@ return {
         local oil = require('oil')
         oil.setup({
             keymaps = {
+                ['gs'] = false,
                 ['<C-h>'] = false,
                 ['<C-l>'] = false,
                 ['<C-k>'] = false,
                 ['<C-j>'] = false,
                 ['<M-h>'] = 'actions.select_split',
+                ['<M-v>'] = 'actions.select_vsplit',
                 ['<C-r>'] = 'actions.refresh',
-                ['<C-q>'] = "actions.close"
+                ['<C-q>'] = 'actions.close',
+                ['gS'] = 'actions.change_sort',
             },
             view_options = {
                 show_hidden = true,
