@@ -4,6 +4,8 @@ return {
     config = function()
         local oil = require('oil')
         oil.setup({
+            default_file_explorer = true,
+            skip_confirm_for_simple_edits = true,
             keymaps = {
                 ['gs'] = false,
                 ['<C-h>'] = false,
@@ -18,6 +20,7 @@ return {
             },
             view_options = {
                 show_hidden = true,
+                natural_order = true,
             },
         })
         vim.keymap.set('n', '<leader>ob', '<cmd>Oil<cr>', { desc = '[O]il [B]uffer' })
