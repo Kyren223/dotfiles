@@ -1,13 +1,5 @@
 return {
     {
-        'gukz/ftFT.nvim',
-        opts = {
-            keys = { 'f', 't', 'F', 'T' },
-            modes = { 'n', 'v' },
-        },
-        config = true,
-    },
-    {
         'uga-rosa/ccc.nvim',
         lazy = false,
         config = function()
@@ -31,28 +23,32 @@ return {
     {
         'lukas-reineke/indent-blankline.nvim',
         main = 'ibl',
-        opts = {},
         config = function()
-            require('ibl').setup()
-        end,
-    },
-    {
-        'kosayoda/nvim-lightbulb',
-        config = function()
-            require('nvim-lightbulb').setup({
-                autocmd = {
-                    enabled = true,
-                    updatetime = 50,
-                },
-                action_kinds = { 'quickfix', 'refactor.rewrite' },
-                sign = { enabled = false },
-                virtual_text = { enabled = true },
-                float = { enabled = false },
-                ignore = {
-                    ft = { 'neo-tree' },
-                    actions_without_kind = true,
+            require('ibl').setup({
+                scope = {
+                    show_start = false,
+                    show_end = false,
                 },
             })
         end,
     },
+    -- {
+    --     'kosayoda/nvim-lightbulb',
+    --     config = function()
+    --         require('nvim-lightbulb').setup({
+    --             autocmd = {
+    --                 enabled = true,
+    --                 updatetime = 50,
+    --             },
+    --             action_kinds = { 'quickfix', 'refactor.rewrite' },
+    --             sign = { enabled = false },
+    --             virtual_text = { enabled = true },
+    --             float = { enabled = false },
+    --             ignore = {
+    --                 ft = { 'neo-tree' },
+    --                 actions_without_kind = true,
+    --             },
+    --         })
+    --     end,
+    -- },
 }
