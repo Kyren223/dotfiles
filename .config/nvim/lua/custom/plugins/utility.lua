@@ -1,5 +1,29 @@
 return {
     {
+        'okuuva/auto-save.nvim',
+        cmd = 'ASToggle', -- optional for lazy loading on command
+        event = { 'InsertLeave', 'TextChanged' },
+        opts = {
+            execution_message = { enabled = false },
+            condition = function(buf)
+                local excluded_ft = {}
+
+                if vim.fn.getbufvar(buf, '&buftype') ~= '' then
+                    return false
+                end
+
+                local filetype = vim.fn.getbufvar(buf, '&filetype')
+                for _, ft in ipairs(excluded_ft) do
+                    if ft == filetype then
+                        return false
+                    end
+                end
+
+                return true
+            end,
+        },
+    },
+    {
         'rmagatti/auto-session',
         config = function()
             vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
@@ -52,4 +76,16 @@ return {
     -- Spectre has no undo, so it should be rarely used,
     -- which is why no keybindings are defined
     { 'nvim-pack/nvim-spectre' },
+    {
+        'echasnovski/mini.nvim',
+        version = false,
+        config = function()
+            vim.keymap.set('n', 'Q', function()
+                if vim.bo.modified then
+                    vim.cmd.write()
+                end
+                require('mini.bufremove').delete(0)
+            end, { desc = '[Q]uit Buffer' })
+        end,
+    },
 }
