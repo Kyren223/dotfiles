@@ -24,10 +24,15 @@ local c = {
     -- mocha_hi1 = '#28283e', -- by Kyren
     mocha_hi1 = '#2A2B3C',    -- by Kyren (from tokyonight-night)
     -- mocha_hi2 = '#3c3c5c', -- by Kyren
-    -- mocha_hi2 = '#283457', -- by Kyren (from tokyonight-night)
+    -- mocha_hi2 = '#283457',    -- by Kyren (from tokyonight-night)
     mocha_hi2 = '#45475A', -- by Kyren (from catpuccin-mocha)
-    black = '#15161E',     -- by Kyren (from tokyonight-night)
+    black = '#15161E',        -- by Kyren (from tokyonight-night)
     -- black = '#181825' -- by Kyren (from catpuccin-mocha)
+    -- illum = '#413761', -- by Kyren
+    -- illum = '#3E5767', -- by Kyren
+    -- illum = '#462250', -- by Kyren
+    -- illum = '#352d53', -- by Kyren
+    -- illum =    '#5c3d50', -- by Kyren
 }
 
 c.normal = c.grey5
@@ -307,7 +312,7 @@ local highlights = {
     NeogitHunkHeader = { fg = '#cccccc' },
     NeogitHunkHeaderHighlight = { fg = '#cccccc' },
 
-    FzfLuaBorder = { fg = c.border },
+    -- FzfLuaBorder = { fg = c.border },
 
     NeotestPassedWinBar = { fg = c.success, bg = c.grey1 },
     NeotestFailedWinBar = { fg = c.error, bg = c.grey1 },
@@ -315,6 +320,11 @@ local highlights = {
     NeotestSkippedWinBar = { fg = c.cyan, bg = c.grey1 },
 
     AerialVariableIcon = { fg = c.green },
+
+    -- vim-illuminate
+    -- IlluminatedWordText = { bg = c.illum },  -- by Kyren
+    -- IlluminatedWordRead = { bg = c.illum },  -- by Kyren
+    -- IlluminatedWordWrite = { bg = c.illum }, -- by Kyren
 }
 
 local M = {}
