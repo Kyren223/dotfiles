@@ -6,20 +6,26 @@ local function unbind(mode, keymap)
     set(mode, keymap, function() end)
 end
 
--- Misc
-set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
-set('n', '<Esc>', '<cmd>nohlsearch<CR>', silent)
-set({ 'i', 'c' }, '<C-v>', function()
-    vim.fn.getreg('+')
-end)
-set('n', '<leader>z', function()
+local function toggle_zen()
     vim.cmd('Neotree close')
     vim.cmd('Trouble todo close')
     vim.cmd('UndotreeHide')
-end, { desc = '[Z]en Mode', silent = true })
+end
+
+
+local function paste()
+    vim.fn.getreg('+')
+end
+
+-- Misc
+set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
+set('n', '<Esc>', '<cmd>nohlsearch<CR>', silent)
+set({ 'i', 'c' }, '<C-v>', paste) -- FIXME: seems to not work
+set('n', '<leader>z', toggle_zen, { desc = '[Z]en Mode', silent = true })
 unbind({ 'i', 'n', 'v' }, '<C-r>')
 
 set('n', 'U', '<cmd>redo<cr>')
+set('i', '<C-z>', '<cmd>undo<cr>')
 set('i', '<C-z>', '<cmd>undo<cr>')
 
 -- Window Navigation - NO NEED BECAUSE IT CONFLICTS WITH TMUX
