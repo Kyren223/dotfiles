@@ -81,8 +81,8 @@ vim.keymap.set('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<cr>', { desc = 
 
 return {
     { 'NeogitOrg/neogit',        opts = neogit_opts,   cmd = 'Neogit' },
-    { 'lewis6991/gitsigns.nvim', config = true },
     { 'pwntester/octo.nvim',     config = octo_config, cmd = 'Octo' },
+    { 'lewis6991/gitsigns.nvim', config = true,        cmd = 'Gitsigns', event = 'BufWinEnter' },
     {
         'sindrets/diffview.nvim',
         opts = diffview_opts,
