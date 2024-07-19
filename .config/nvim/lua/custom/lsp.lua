@@ -152,6 +152,12 @@ local function prev_diagnostic(diagnostic_severity)
         lspsaga_diagnostic:goto_prev({ severity = diagnostic_severity })
     end
 end
+local function cursor_diagnostics()
+    vim.diagnostic.open_float({
+        scope = 'cursor',
+        border = 'single',
+    })
+end
 
 -- LSP Keybindings
 vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = '[G]oto [D]efinition' })
@@ -172,4 +178,6 @@ vim.keymap.set('n', 'gE', prev_diagnostic(severity.ERROR), { desc = '[G]oto [E]r
 vim.keymap.set('n', 'gw', next_diagnostic(severity.ERROR), { desc = '[G]oto [W]arning' })
 vim.keymap.set('n', 'gW', prev_diagnostic(severity.ERROR), { desc = '[G]oto [W]arning (prev)' })
 vim.keymap.set('n', '<leader>dw', show_workspace_diagnostics, { desc = '[D]iagnostics for [W]orkspace' })
+vim.keymap.set('n', '<leader>D', cursor_diagnostics, { desc = '[D]iagnostics under cursor' })
+
 vim.keymap.set({ 'n', 't' }, '<A-t>', '<cmd>Lspsaga term_toggle<cr>', { desc = '[T]erminal' })
