@@ -65,17 +65,4 @@ return {
             vim.keymap.set('v', '<C-_>', toggole_linewise_selection, { noremap = true, silent = true })
         end,
     },
-    {
-        'kylechui/nvim-surround',
-        version = '*',
-        config = true,
-        keys = {
-            { '(', '<Plug>(nvim-surround-visual)(', mode = 'v' },
-            { ')', '<Plug>(nvim-surround-visual))', mode = 'v' },
-            { '{', '<Plug>(nvim-surround-visual){', mode = 'v' },
-            { '}', '<Plug>(nvim-surround-visual)}', mode = 'v' },
-            { '[', '<Plug>(nvim-surround-visual)[', mode = 'v' },
-            { '`', '<Plug>(nvim-surround-visual)`', mode = 'v' },
-        },
-    },
 }

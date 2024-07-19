@@ -1,25 +1,20 @@
 return {
     {
+        'uga-rosa/ccc.nvim',
+        opts = { highlighter = { auto_enable = true } },
+        keys = {
+            { '<leader>cp', '<cmd>CccPick<cr>',              desc = '[C]olor [P]icker' },
+            { '<leader>ct', '<cmd>CccHighlighterToggle<cr>', desc = '[C]olor [T]oggle' },
+        },
+    },
+    {
         'okuuva/auto-save.nvim',
-        cmd = 'ASToggle', -- optional for lazy loading on command
+        cmd = 'ASToggle',
         event = { 'InsertLeave', 'TextChanged' },
         opts = {
             execution_message = { enabled = false },
             condition = function(buf)
-                local excluded_ft = {}
-
-                if vim.fn.getbufvar(buf, '&buftype') ~= '' then
-                    return false
-                end
-
-                local filetype = vim.fn.getbufvar(buf, '&filetype')
-                for _, ft in ipairs(excluded_ft) do
-                    if ft == filetype then
-                        return false
-                    end
-                end
-
-                return true
+                return vim.fn.getbufvar(buf, '&buftype') == ''
             end,
         },
     },
@@ -37,31 +32,9 @@ return {
     },
     { 'wakatime/vim-wakatime',  lazy = false },
     {
-        'AckslD/nvim-neoclip.lua',
-        dependencies = {
-            { 'kkharji/sqlite.lua',           module = 'sqlite' },
-            { 'nvim-telescope/telescope.nvim' },
-        },
-        config = function()
-            require('neoclip').setup({
-                enable_persistent_history = true,
-                keys = {
-                    telescope = {
-                        i = {
-                            paste = '<C-y>',
-                            paste_behind = '<C-S-Y>',
-                        },
-                    },
-                },
-            })
-            -- NOTE: Using `plus` to set the plus register to the selected value
-            vim.keymap.set('n', '<leader>nc', '<cmd>Telescope neoclip plus<cr>', { desc = '[N]eo[c]lip History' })
-        end,
-    },
-    {
         'mbbill/undotree',
+        keys = { { '<leader>ut', vim.cmd.UndotreeToggle } },
         config = function()
-            vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle)
             vim.g.undotree_DiffAutoOpen = false
             vim.g.undotree_DiffpanelHeight = 0
             vim.g.undotree_SetFocusWhenToggle = false
@@ -77,14 +50,51 @@ return {
     { 'nvim-pack/nvim-spectre', cmd = 'Spectre', config = true },
     {
         'echasnovski/mini.nvim',
+        lazy = true,
         version = false,
-        config = function()
-            vim.keymap.set('n', 'Q', function()
+        init = function()
+            local function quit_buffer()
                 if vim.bo.modified then
                     vim.cmd.write()
                 end
                 require('mini.bufremove').delete(0)
-            end, { desc = '[Q]uit Buffer' })
+            end
+            vim.keymap.set('n', 'Q', quit_buffer, { desc = '[Q]uit Buffer' })
         end,
+    },
+    {
+        'kylechui/nvim-surround',
+        version = '*',
+        config = true,
+        keys = {
+            { '(', '<Plug>(nvim-surround-visual)(', mode = 'v' },
+            { ')', '<Plug>(nvim-surround-visual))', mode = 'v' },
+            { '{', '<Plug>(nvim-surround-visual){', mode = 'v' },
+            { '}', '<Plug>(nvim-surround-visual)}', mode = 'v' },
+            { '[', '<Plug>(nvim-surround-visual)[', mode = 'v' },
+            { '`', '<Plug>(nvim-surround-visual)`', mode = 'v' },
+            'cs',
+            'ds',
+            'ys',
+        },
+    },
+    {
+        -- TODO: Make sure it uses a diff color
+        -- the color rn is too similar to visual mode
+        'RRethy/vim-illuminate',
+        config = function()
+            vim.keymap.set('n', '<leader>it', '<cmd>IlluminateToggle<cr>', { desc = '[I]lluminate [Tloggle]' })
+        end,
+    },
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        main = 'ibl',
+        event = 'BufEnter',
+        opts = {
+            scope = {
+                show_start = false,
+                show_end = false,
+            },
+        },
     },
 }
