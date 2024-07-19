@@ -16,15 +16,8 @@ return {
                 'nvimdev/lspsaga.nvim',
                 dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
             },
-            {
-                'folke/lazydev.nvim',
-                ft = 'lua',
-                opts = { library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } } },
-            },
-            {
-                'ray-x/lsp_signature.nvim',
-                event = 'VeryLazy',
-            },
+            { 'folke/lazydev.nvim',                          ft = 'lua' },
+            { 'ray-x/lsp_signature.nvim',                    event = 'VeryLazy' },
 
             -- AUtoformatting
             -- 'stevear/conform.nvim',

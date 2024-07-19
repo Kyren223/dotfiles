@@ -35,7 +35,7 @@ return {
             vim.keymap.set('n', '<C-s>', session.search_session, { desc = '[S]ession Manager' })
         end,
     },
-    { 'wakatime/vim-wakatime', lazy = false },
+    { 'wakatime/vim-wakatime',  lazy = false },
     {
         'AckslD/nvim-neoclip.lua',
         dependencies = {
@@ -73,9 +73,8 @@ return {
         end,
     },
     -- NOTE: No keybindings, use `:Spectre` or `:Spectre <file>`
-    -- Spectre has no undo, so it should be rarely used,
-    -- which is why no keybindings are defined
-    { 'nvim-pack/nvim-spectre' },
+    -- Spectre has no undo, so it should be rarely used, which is why no keybindings are defined
+    { 'nvim-pack/nvim-spectre', cmd = 'Spectre', config = true },
     {
         'echasnovski/mini.nvim',
         version = false,

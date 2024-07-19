@@ -68,21 +68,14 @@ return {
     {
         'kylechui/nvim-surround',
         version = '*',
-        event = 'VeryLazy',
-        config = function()
-            require('nvim-surround').setup({})
-            vim.keymap.set('v', '(', '<Plug>(nvim-surround-visual)(')
-            vim.keymap.set('v', ')', '<Plug>(nvim-surround-visual))')
-            vim.keymap.set('v', '{', '<Plug>(nvim-surround-visual){')
-            vim.keymap.set('v', '}', '<Plug>(nvim-surround-visual)}')
-            -- I still want to be able to do < and > for indentation
-            -- vim.keymap.set('v', '<', '<Plug>(nvim-surround-visual)<')
-            -- vim.keymap.set('v', '>', '<Plug>(nvim-surround-visual)>')
-            vim.keymap.set('v', '[', '<Plug>(nvim-surround-visual)[')
-            vim.keymap.set('v', ']', '<Plug>(nvim-surround-visual)]')
-            vim.keymap.set('v', "'", "<Plug>(nvim-surround-visual)'")
-            vim.keymap.set('v', '"', '<Plug>(nvim-surround-visual)"')
-            vim.keymap.set('v', '`', '<Plug>(nvim-surround-visual)`')
-        end,
+        config = true,
+        keys = {
+            { '(', '<Plug>(nvim-surround-visual)(', mode = 'v' },
+            { ')', '<Plug>(nvim-surround-visual))', mode = 'v' },
+            { '{', '<Plug>(nvim-surround-visual){', mode = 'v' },
+            { '}', '<Plug>(nvim-surround-visual)}', mode = 'v' },
+            { '[', '<Plug>(nvim-surround-visual)[', mode = 'v' },
+            { '`', '<Plug>(nvim-surround-visual)`', mode = 'v' },
+        },
     },
 }
