@@ -17,24 +17,23 @@ require('neogit').setup({
         },
     },
 })
-require('octo').setup()
+require('octo').setup({
+    suppress_missing_scope = { projects_v2 = true },
+})
+local quit_keymap = { 'n', 'q', '<cmd>DiffviewClose<cr>', { desc = 'Quit the diffview' } }
 require('diffview').setup({
     enhanced_diff_hl = true,
     default = { winbar_info = true },
     keymaps = {
-        view = {
-            { 'n', 'q', '<cmd>DiffviewClose<cr>', { desc = 'Quit the diffview' } },
-        },
-        file_panel = {
-            { 'n', 'q', '<cmd>DiffviewClose<cr>', { desc = 'Quit the diffview' } },
-        },
-        file_history_panel = {
-            { 'n', 'q', '<cmd>DiffviewClose<cr>', { desc = 'Quit the diffview' } },
-        },
+        view = { quit_keymap },
+        file_panel = { quit_keymap },
+        file_history_panel = { quit_keymap },
     },
 })
 
+-- Add support for markdown in octo.nvim
 vim.treesitter.language.register('markdown', 'octo')
+
 -- Autocomplete for @ (user mention) and # (issue)
 -- Works in GitHub issues/PRs (for octo.nvim)
 vim.api.nvim_create_autocmd('FileType', {
