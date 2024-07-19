@@ -2,6 +2,7 @@ return {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    keys = { '<C-e>', '<leader>a', '<C-F1>', '<C-F2>', '<C-F3>', '<C-F4>', '<C-F5>' },
     config = function()
         local harpoon = require('harpoon')
         harpoon:setup()
@@ -18,7 +19,6 @@ return {
                 harpoon:list():select(i)
             end
             vim.keymap.set('n', string.format('<C-F%d>', i), select)
-            vim.keymap.set('n', string.format('<leader>%d', i), select)
         end
     end,
 }
