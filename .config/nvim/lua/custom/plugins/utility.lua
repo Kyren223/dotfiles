@@ -50,8 +50,8 @@ return {
     { 'nvim-pack/nvim-spectre', cmd = 'Spectre', config = true },
     {
         'echasnovski/mini.nvim',
-        lazy = true,
         version = false,
+        keys = {},
         init = function()
             local function quit_buffer()
                 if vim.bo.modified then
@@ -65,26 +65,46 @@ return {
     {
         'kylechui/nvim-surround',
         version = '*',
-        config = true,
+        lazy = false,
+        opts = {
+            keymaps = {
+                insert = false,
+                insert_line = false,
+                normal_line = false,
+                normal_cur_line = false,
+                visual_line = false,
+                normal = false,
+                normal_cur = false,
+                visual = false,
+                delete = false,
+                change = false,
+                -- normal = 'yS',
+                -- normal_cur = 'ySS',
+                -- visual = 'S',
+                -- delete = 'dS',
+                -- change = 'cW',
+            },
+        },
         keys = {
             { '(', '<Plug>(nvim-surround-visual)(', mode = 'v' },
-            { ')', '<Plug>(nvim-surround-visual))', mode = 'v' },
             { '{', '<Plug>(nvim-surround-visual){', mode = 'v' },
-            { '}', '<Plug>(nvim-surround-visual)}', mode = 'v' },
             { '[', '<Plug>(nvim-surround-visual)[', mode = 'v' },
             { '`', '<Plug>(nvim-surround-visual)`', mode = 'v' },
-            'cs',
-            'ds',
-            'ys',
+            { '"', '<Plug>(nvim-surround-visual)"', mode = 'v' },
+            { "'", "<Plug>(nvim-surround-visual)'", mode = 'v' },
+            -- { 'yS',  '<Plug>(nvim-surround-normal)' },
+            -- { 'ySS', '<Plug>(nvim-surround-normal-cur)' },
+            -- { 'S',   '<Plug>(nvim-surround-visual)',  mode = 'v' },
+            -- { 'cS', '<Plug>{ nvim-surround-change }' },
+            -- { 'dS', '<Plug>(nvim-surround-delete)' },
         },
     },
     {
         -- TODO: Make sure it uses a diff color
         -- the color rn is too similar to visual mode
         'RRethy/vim-illuminate',
-        config = function()
-            vim.keymap.set('n', '<leader>it', '<cmd>IlluminateToggle<cr>', { desc = '[I]lluminate [Tloggle]' })
-        end,
+        event = 'BufEnter',
+        keys = { { '<leader>it', '<cmd>IlluminateToggle<cr>', desc = '[I]lluminate [Tloggle]' } },
     },
     {
         'lukas-reineke/indent-blankline.nvim',
@@ -96,5 +116,60 @@ return {
                 show_end = false,
             },
         },
+    },
+    {
+        'christoomey/vim-tmux-navigator',
+        keys = {
+            { '<C-h>', '<cmd>TmuxNavigateLeft<cr>' },
+            { '<C-j>', '<cmd>TmuxNavigateDown<cr>' },
+            { '<C-k>', '<cmd>TmuxNavigateUp<cr>' },
+            { '<C-l>', '<cmd>TmuxNavigateRight<cr>' },
+        },
+    },
+    {
+        'ggandor/leap.nvim',
+        dependencies = { 'tpope/vim-repeat' },
+        keys = {
+            { 's', '<Plug>(leap)',            mode = { 'n', 'x', 'o' } },
+            { 'S', '<Plug>(leap-from-window)' },
+            {
+                'gs',
+                function()
+                    require('leap.remote').action()
+                end,
+            },
+        },
+        config = function()
+            -- Define equivalence classes for brackets and quotes, in addition to
+            -- the default whitespace group.
+            require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
+
+            -- Set background to gray in searchable area
+            vim.api.nvim_set_hl(0, 'LeapBackdrop', { fg = '#777777' })
+        end,
+    },
+    {
+        'windwp/nvim-autopairs',
+        event = 'InsertEnter',
+        config = true,
+    },
+    {
+        -- 'numToStr/Comment.nvim',
+        'os-mey/Comment.nvim',
+        branch = 'fix-inline-visual-linewise-comment',
+        event = 'BufEnter',
+        config = function()
+            require('Comment').setup()
+            local api = require('Comment.api')
+            local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+            local toggle_linewise_selection = function()
+                vim.api.nvim_feedkeys(esc, 'nx', false)
+                api.toggle.linewise(vim.fn.visualmode())
+            end
+
+            -- <C-_> means Ctrl slash, `_` is a `/`
+            vim.keymap.set('n', '<C-_>', api.toggle.linewise.current, { noremap = true, silent = true })
+            vim.keymap.set('v', '<C-_>', toggle_linewise_selection, { noremap = true, silent = true })
+        end,
     },
 }
