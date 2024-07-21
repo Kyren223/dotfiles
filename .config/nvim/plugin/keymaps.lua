@@ -12,7 +12,6 @@ local function toggle_zen()
     vim.cmd('UndotreeHide')
 end
 
-
 local function paste()
     vim.fn.getreg('+')
 end
@@ -27,6 +26,7 @@ unbind({ 'i', 'n', 'v' }, '<C-r>')
 set('n', 'U', '<cmd>redo<cr>')
 set('i', '<C-z>', '<cmd>undo<cr>')
 set('i', '<C-z>', '<cmd>undo<cr>')
+set({ 'i', 'n', 'v' }, '<C-q>', '<cmd>wqa<cr>')
 
 -- Window Navigation - NO NEED BECAUSE IT CONFLICTS WITH TMUX
 -- set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
