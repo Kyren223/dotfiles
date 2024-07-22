@@ -1,7 +1,19 @@
 -- NOTE: A list of language servers (and potentially their config)
 -- Accepts either true to enable, false to disable or a table with settings
 return {
-    lua_ls = true,                 -- lua
+    lua_ls = {
+        settings = {
+            diagnostics = {
+                globals = { 'vim' },
+            },
+            workspace = {
+                library = {
+                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                    [vim.fn.stdpath('config') .. '/lua'] = true,
+                },
+            },
+        },
+    },                             -- lua
     clangd = true,                 -- C/C++
     gradle_ls = true,              -- java package manager
     jdtls = true,                  -- java eclipse lsp
