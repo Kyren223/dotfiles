@@ -8,6 +8,15 @@ return {
     },
     cmd = 'Telescope',
     config = function()
-        require('custom.telescope')
+        require('custom.configs.telescope')
     end,
+    keys = {
+        '<leader>fs',
+        '<leader>fa',
+        '<leader>fh',
+        '<leader>fm',
+        '<leader>lv',
+        '<leader>f.',
+        '<leader>th',
+    },
 }

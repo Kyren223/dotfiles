@@ -53,14 +53,16 @@ return {
         dashboard.section.buttons.opts.spacing = 0
         dashboard.section.buttons.val = {
             dashboard.button('e', '  > New file', '<cmd>ene <BAR> startinsert<cr>'),
-            dashboard.button('w', '  > Find file', '<cmd>cd ' .. find_file_path .. ' | Telescope find_files<cr>'),
+            dashboard.button('f', '  > Find file', '<cmd>cd ' .. find_file_path .. ' | Telescope find_files<cr>'),
             dashboard.button('r', '  > Recent', '<cmd>Telescope oldfiles<cr>'),
             dashboard.button('c', '  > Configuration', '<cmd>e $MYVIMRC<cr> | <cmd>cd %:p:h<cr>'),
-            dashboard.button(
-                's',
-                '󱎠  > Last Session',
-                '<cmd>lua require("auto-session.session-lens.actions").alternate_session()<cr>'
-            ),
+            -- FIX: doesn't seem to work so great, probably just use a project manager
+            -- will most likely make my own project manager plugin
+            -- dashboard.button(
+            --     's',
+            --     '󱎠  > Last Session',
+            --     '<cmd>lua require("auto-session.session-lens.actions").alternate_session()<cr>'
+            -- ),
             dashboard.button('q', '󰈆  > Quit NVIM', '<cmd>qa<cr>'),
         }
 

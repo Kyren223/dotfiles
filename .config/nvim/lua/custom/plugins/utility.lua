@@ -25,9 +25,18 @@ return {
             require('auto-session').setup({
                 log_level = 'error',
                 auto_session_suppress_dirs = { '~/', '/' },
+                session_lens = { load_on_setup = false },
             })
-            local session = require('auto-session.session-lens')
-            vim.keymap.set('n', '<C-s>', session.search_session, { desc = '[S]ession Manager' })
+
+            local session_lens_setup_done = false
+            local function search_session()
+                if not session_lens_setup_done then
+                    require('auto-session').setup_session_lens()
+                    session_lens_setup_done = true
+                end
+                require('auto-session.session-lens').search_session()
+            end
+            vim.keymap.set('n', '<C-s>', search_session, { desc = '[S]ession Manager' })
         end,
     },
     { 'wakatime/vim-wakatime',  lazy = false },
@@ -144,11 +153,7 @@ return {
             vim.api.nvim_set_hl(0, 'LeapBackdrop', { fg = '#777777' })
         end,
     },
-    {
-        'windwp/nvim-autopairs',
-        event = 'InsertEnter',
-        config = true,
-    },
+    { 'windwp/nvim-autopairs', event = 'InsertEnter', config = true },
     {
         -- 'numToStr/Comment.nvim',
         'os-mey/Comment.nvim',
@@ -167,5 +172,17 @@ return {
             vim.keymap.set('n', '<C-_>', api.toggle.linewise.current, { noremap = true, silent = true })
             vim.keymap.set('v', '<C-_>', toggle_linewise_selection, { noremap = true, silent = true })
         end,
+    },
+    {
+        'j-morano/buffer_manager.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        keys = {
+            {
+                '<leader>e',
+                function()
+                    require('buffer_manager.ui').toggle_quick_menu()
+                end,
+            },
+        },
     },
 }
