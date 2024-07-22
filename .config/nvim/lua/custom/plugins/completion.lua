@@ -1,7 +1,6 @@
 return {
     'hrsh7th/nvim-cmp',
-    lazy = false,
-    priority = 100,
+    event = "InsertEnter",
     dependencies = {
         'onsails/lspkind.nvim', -- icons for completion type
         'hrsh7th/cmp-path', -- complete filepaths
@@ -10,6 +9,6 @@ return {
         { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' }, -- snippets plugin
     },
     config = function()
-        require('custom.completion')
+        require('custom.configs.completion')
     end,
 }

@@ -1,3 +1,4 @@
+-- Load snippets
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file('lua/custom/snippets/*.lua', true)) do
     loadfile(ft_path)()
 end
@@ -10,14 +11,9 @@ local cmp = require('cmp')
 cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 
 -- Helper functions
-local function tab(is_forward)
+local function snippet_jump(jump_amount)
     return cmp.mapping(function(fallback)
-        local jump_amount = is_forward and 1 or -1
-        if cmp.visible() then
-            local behaviour = cmp.SelectBehavior.Select
-            local select_item = is_forward and cmp.select_next_item or cmp.select_prev_item
-            select_item({ behaviour = behaviour })
-        elseif luasnip.locally_jumpable(jump_amount) then
+        if luasnip.locally_jumpable(jump_amount) then
             luasnip.jump(jump_amount)
         else
             fallback()
@@ -60,8 +56,8 @@ cmp.setup({
         },
     },
     mapping = cmp.mapping.preset.insert({
-        ['<Tab>'] = tab(true),
-        ['<S-Tab>'] = tab(false),
+        ['<Tab>'] = snippet_jump(1),
+        ['<S-Tab>'] = snippet_jump(-1),
         ['<C-Space>'] = cmp.mapping.complete(), -- invoke completion
         ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
