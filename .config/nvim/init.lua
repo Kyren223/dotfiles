@@ -19,8 +19,8 @@ require('lazy').setup({ import = 'custom/plugins' }, {
     defaults = { lazy = true },
     ui = {
         icons = {
-            ft = '',
-            lazy = '󰂠',
+            ft = ' ',
+            lazy = '󰂠 ',
             loaded = ' ',
             not_loaded = ' ',
         },
