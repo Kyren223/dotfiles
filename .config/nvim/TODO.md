@@ -1,7 +1,6 @@
 
 # Plans for the future
 
-- TODO: Look into bufferline.nvim for "tabs"
 - TODO: Look at configuring Noice.nvim and decide if u like it or not
 - TODO: Look at buffer-management plugins that automatically delete old buffers (and also ways to close buffers without exiting nvim, and be able to exit nvim with 1 keypress)
 - TODO: Replace obsidian with Neorg

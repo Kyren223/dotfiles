@@ -1,0 +1,32 @@
+return {
+    'kylechui/nvim-surround',
+    version = '*',
+    keys = {
+        { 'yS', '<Plug>(nvim-surround-normal)' },
+        { 'ySS', '<Plug>(nvim-surround-normal-cur)' },
+        { 'S', '<Plug>(nvim-surround-visual)', mode = 'v' },
+        { 'cS', '<Plug>(nvim-surround-change)' },
+        { 'dS', '<Plug>(nvim-surround-delete)' },
+        { '(', '<Plug>(nvim-surround-visual)(', mode = 'v' },
+        { '{', '<Plug>(nvim-surround-visual){', mode = 'v' },
+        { '[', '<Plug>(nvim-surround-visual)[', mode = 'v' },
+        { '`', '<Plug>(nvim-surround-visual)`', mode = 'v' },
+        { '"', '<Plug>(nvim-surround-visual)"', mode = 'v' },
+        { "'", "<Plug>(nvim-surround-visual)'", mode = 'v' },
+    },
+    opts = {
+        keymaps = {
+            insert = false,
+            insert_line = false,
+            normal_line = false,
+            normal_cur_line = false,
+            visual_line = false,
+            normal = false,
+            normal_cur = false,
+            visual = false,
+            delete = false,
+            change = false,
+            change_line = false,
+        },
+    },
+}
