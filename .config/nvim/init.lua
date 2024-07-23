@@ -16,6 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({ import = 'custom/plugins' }, {
     change_detection = { enabled = true, notify = false },
+    defaults = { lazy = true },
     ui = {
         icons = {
             ft = '',
