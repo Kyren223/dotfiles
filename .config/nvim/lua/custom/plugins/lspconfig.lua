@@ -14,11 +14,11 @@ return {
             },
             build = ':MasonUpdate',
             config = function()
-                require('lua.custom.configs.mason')
+                require('custom.config.mason')
             end,
         },
     },
     config = function()
-        require('lua.custom.configs.lsp')
+        require('custom.config.lsp')
     end,
 }

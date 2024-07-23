@@ -2,7 +2,7 @@
 local ensure_installed = {
     stylua = true, -- lua formatting
 }
-local servers = require('custom.configs.language-servers')
+local servers = require('custom.config.language-servers')
 
 require('mason').setup({
     ui = {

@@ -9,6 +9,6 @@ return {
         { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' }, -- snippets plugin
     },
     config = function()
-        require('lua.custom.configs.completion')
+        require('custom.config.cmp')
     end,
 }
