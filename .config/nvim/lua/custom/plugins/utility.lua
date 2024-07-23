@@ -2,9 +2,9 @@ return {
     {
         'uga-rosa/ccc.nvim',
         opts = { highlighter = { auto_enable = true } },
-        event = "VeryLazy",
+        event = 'VeryLazy',
         keys = {
-            { '<leader>cp', '<cmd>CccPick<cr>',              desc = '[C]olor [P]icker' },
+            { '<leader>cp', '<cmd>CccPick<cr>', desc = '[C]olor [P]icker' },
             { '<leader>ct', '<cmd>CccHighlighterToggle<cr>', desc = '[C]olor [T]oggle' },
         },
     },
@@ -21,12 +21,18 @@ return {
     },
     {
         'rmagatti/auto-session',
+        lazy = false,
         config = function()
             vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
             require('auto-session').setup({
                 log_level = 'error',
                 auto_session_suppress_dirs = { '~/', '/' },
                 session_lens = { load_on_setup = false },
+                no_restore_cmds = {
+                    function()
+                        vim.cmd('Alpha')
+                    end,
+                },
             })
 
             local session_lens_setup_done = false
@@ -40,7 +46,7 @@ return {
             vim.keymap.set('n', '<C-s>', search_session, { desc = '[S]ession Manager' })
         end,
     },
-    { 'wakatime/vim-wakatime',  lazy = false },
+    { 'wakatime/vim-wakatime', lazy = false },
     {
         'mbbill/undotree',
         keys = { { '<leader>ut', vim.cmd.UndotreeToggle } },
@@ -78,17 +84,17 @@ return {
         'kylechui/nvim-surround',
         version = '*',
         keys = {
-            { 'yS',  '<Plug>(nvim-surround-normal)' },
+            { 'yS', '<Plug>(nvim-surround-normal)' },
             { 'ySS', '<Plug>(nvim-surround-normal-cur)' },
-            { 'S',   '<Plug>(nvim-surround-visual)',    mode = 'v' },
-            { 'cS',  '<Plug>(nvim-surround-change)' },
-            { 'dS',  '<Plug>(nvim-surround-delete)' },
-            { '(',   '<Plug>(nvim-surround-visual)(',   mode = 'v' },
-            { '{',   '<Plug>(nvim-surround-visual){',   mode = 'v' },
-            { '[',   '<Plug>(nvim-surround-visual)[',   mode = 'v' },
-            { '`',   '<Plug>(nvim-surround-visual)`',   mode = 'v' },
-            { '"',   '<Plug>(nvim-surround-visual)"',   mode = 'v' },
-            { "'",   "<Plug>(nvim-surround-visual)'",   mode = 'v' },
+            { 'S', '<Plug>(nvim-surround-visual)', mode = 'v' },
+            { 'cS', '<Plug>(nvim-surround-change)' },
+            { 'dS', '<Plug>(nvim-surround-delete)' },
+            { '(', '<Plug>(nvim-surround-visual)(', mode = 'v' },
+            { '{', '<Plug>(nvim-surround-visual){', mode = 'v' },
+            { '[', '<Plug>(nvim-surround-visual)[', mode = 'v' },
+            { '`', '<Plug>(nvim-surround-visual)`', mode = 'v' },
+            { '"', '<Plug>(nvim-surround-visual)"', mode = 'v' },
+            { "'", "<Plug>(nvim-surround-visual)'", mode = 'v' },
         },
         opts = {
             keymaps = {
@@ -137,7 +143,7 @@ return {
         'ggandor/leap.nvim',
         dependencies = { 'tpope/vim-repeat' },
         keys = {
-            { 's', '<Plug>(leap)',            mode = { 'n', 'x', 'o' } },
+            { 's', '<Plug>(leap)', mode = { 'n', 'x', 'o' } },
             { 'S', '<Plug>(leap-from-window)' },
             {
                 'gs',
@@ -157,11 +163,11 @@ return {
         'os-mey/Comment.nvim',
         branch = 'fix-inline-visual-linewise-comment',
         keys = {
-            { 'gc',    mode = { 'n', 'v' } },
-            { 'gb',    mode = { 'n', 'v' } },
+            { 'gc', mode = { 'n', 'v' } },
+            { 'gb', mode = { 'n', 'v' } },
             { '<C-_>', mode = { 'n', 'v' } },
-            { 'gcc',   mode = 'n' },
-            { 'gcb',   mode = 'n' },
+            { 'gcc', mode = 'n' },
+            { 'gcb', mode = 'n' },
         },
         config = function()
             require('Comment').setup()
