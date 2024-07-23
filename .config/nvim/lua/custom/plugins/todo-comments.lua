@@ -11,9 +11,14 @@
 return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    event = "VeryLazy",
+    keys = {
+        { '<leader>st', '<cmd>TodoTelescope keywords=TODO,FIX<cr>', desc = '[S]earch [T]odos' },
+        { '<leader>lt', '<cmd>TodoTrouble<cr>',                     desc = '[L]ist [T]odos' },
+    },
     config = function()
         require('todo-comments').setup({
-            signs = true, -- show icons in the signs column
+            signs = false,     -- show icons in the signs column
             sign_priority = 8, -- sign priority
 
             keywords = {
@@ -44,10 +49,10 @@ return {
             highlight = {
                 multiline = true,
                 multiline_pattern = '^.', -- lua pattern to match the next multiline from the start of the matched keyword
-                multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
-                before = '', -- "fg" or "bg" or empty
-                keyword = 'wide', -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-                after = 'fg', -- "fg" or "bg" or empty
+                multiline_context = 10,   -- extra lines that will be re-evaluated when changing a line
+                before = '',              -- "fg" or "bg" or empty
+                keyword = 'wide',         -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+                after = 'fg',             -- "fg" or "bg" or empty
                 pattern = {
                     [[.*<(KEYWORDS)\s*:]],
                     -- [[.*<(KEYWORDS)\s*]],
@@ -88,7 +93,5 @@ return {
                 -- pattern = [[\b(KEYWORDS)\b]],
             },
         })
-        vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope keywords=TODO,FIX<cr>', { desc = '[S]earch [T]odos' })
-        vim.keymap.set('n', '<leader>lt', '<cmd>TodoTrouble<cr>', { desc = '[L]ist [T]odos' })
     end,
 }
