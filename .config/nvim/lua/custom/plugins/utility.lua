@@ -2,6 +2,7 @@ return {
     {
         'uga-rosa/ccc.nvim',
         opts = { highlighter = { auto_enable = true } },
+        event = "VeryLazy",
         keys = {
             { '<leader>cp', '<cmd>CccPick<cr>',              desc = '[C]olor [P]icker' },
             { '<leader>ct', '<cmd>CccHighlighterToggle<cr>', desc = '[C]olor [T]oggle' },
@@ -60,21 +61,22 @@ return {
     {
         'echasnovski/mini.nvim',
         version = false,
-        keys = {},
-        init = function()
-            local function quit_buffer()
-                if vim.bo.modified then
-                    vim.cmd.write()
-                end
-                require('mini.bufremove').delete(0)
-            end
-            vim.keymap.set('n', 'Q', quit_buffer, { desc = '[Q]uit Buffer' })
-        end,
+        keys = {
+            {
+                'Q',
+                function()
+                    if vim.bo.modified then
+                        vim.cmd.write()
+                    end
+                    require('mini.bufremove').delete(0)
+                end,
+                desc = '[Q]uit Buffer',
+            },
+        },
     },
     {
         'kylechui/nvim-surround',
         version = '*',
-        lazy = false,
         keys = {
             { 'yS',  '<Plug>(nvim-surround-normal)' },
             { 'ySS', '<Plug>(nvim-surround-normal-cur)' },
@@ -108,7 +110,7 @@ return {
         -- TODO: Make sure it uses a diff color
         -- the color rn is too similar to visual mode
         'RRethy/vim-illuminate',
-        event = 'BufEnter',
+        event = 'LspAttach',
         keys = { { '<leader>it', '<cmd>IlluminateToggle<cr>', desc = '[I]lluminate [Tloggle]' } },
     },
     {
@@ -145,11 +147,7 @@ return {
             },
         },
         config = function()
-            -- Define equivalence classes for brackets and quotes, in addition to
-            -- the default whitespace group.
             require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
-
-            -- Set background to gray in searchable area
             vim.api.nvim_set_hl(0, 'LeapBackdrop', { fg = '#777777' })
         end,
     },
@@ -158,7 +156,13 @@ return {
         -- 'numToStr/Comment.nvim',
         'os-mey/Comment.nvim',
         branch = 'fix-inline-visual-linewise-comment',
-        event = 'BufEnter',
+        keys = {
+            { 'gc',    mode = { 'n', 'v' } },
+            { 'gb',    mode = { 'n', 'v' } },
+            { '<C-_>', mode = { 'n', 'v' } },
+            { 'gcc',   mode = 'n' },
+            { 'gcb',   mode = 'n' },
+        },
         config = function()
             require('Comment').setup()
             local api = require('Comment.api')
