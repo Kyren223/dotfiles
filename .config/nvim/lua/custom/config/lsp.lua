@@ -1,8 +1,11 @@
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = require('custom.config.language-servers')
-
 local lspconfig = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local servers = require('custom.config.language-servers')
 for name, config in pairs(servers) do
+    if config == false then
+        goto continue
+    end
     if config == true then
         ---@diagnostic disable-next-line: cast-local-type
         config = {}
@@ -13,6 +16,7 @@ for name, config in pairs(servers) do
     }, config)
 
     lspconfig[name].setup(config)
+    ::continue::
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
