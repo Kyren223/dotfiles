@@ -9,7 +9,9 @@ return {
             session_lens = { load_on_setup = false },
             no_restore_cmds = {
                 function()
-                    vim.cmd('Alpha')
+                    if vim.fn.argc() == 0 then
+                        vim.cmd('Alpha')
+                    end
                 end,
             },
         })
