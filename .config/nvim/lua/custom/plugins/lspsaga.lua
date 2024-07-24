@@ -1,26 +1,40 @@
 return {
-    -- TODO: Change <C-k> in rename to smthing else
-    -- bcz I am using <C-k> for moving between windows
-    -- Maybe <C-c> for abort, <cr> for confirm
-    'nvimdev/lspsaga.nvim',
+    -- 'nvimdev/lspsaga.nvim',
+    'Kyren223/lspsaga.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     event = 'LspAttach',
     opts = {
-        lightbulb = {
-            enable = false,
-            sign = false,
-            virtual_text = true,
+        ui = {
+            border = 'rounded',
+            foldericon = false,
+            title = false,
+            kind = nil,
         },
-        implement = {
-            sign = false,
-            virtual_text = true,
+        hover = { open_cmd = '!firefox.exe' },
+        diagnostic = {
+            show_layout = 'float',
+            keys = {
+                exec_action = 'o',
+                quit = 'q',
+                toggle_or_jump = '<CR>',
+                quit_in_show = { 'q', '<ESC>' },
+            },
         },
-        floaterm = {
-            height = 0.7,
-            width = 0.7,
+        code_action = { show_preview = false },
+        lightbulb = { enable = false },
+        rename = {
+            pre_hook = function()
+                vim.cmd.IlluminateToggle()
+            end,
+            post_hook = function()
+                vim.cmd.IlluminateToggle()
+            end,
+            keys = {
+                quit = '<C-c>',
+                exec = '<CR>',
+                select = 'x',
+            },
         },
-        outline = {
-            layout = 'float',
-        },
+        symbol_in_winbar = { enable = true },
     },
 }
