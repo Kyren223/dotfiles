@@ -47,3 +47,4 @@ vim.g.loaded_python3_provider = 0
 
 -- LSP
 vim.lsp.inlay_hint.enable()
+vim.diagnostic.config({ virtual_text = false, update_in_insert = true })
