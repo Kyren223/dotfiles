@@ -16,7 +16,7 @@ return {
     },                             -- lua
     clangd = true, -- C/C++
     gradle_ls = true, -- java package manager
-    jdtls = true, -- java eclipse lsp
+    -- jdtls = true, -- java eclipse lsp
     kotlin_language_server = true, -- kotlin
     pyright = true, -- python
     rust_analyzer = false, -- NOTE: using rustaceanvim
