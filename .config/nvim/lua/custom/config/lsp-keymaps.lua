@@ -17,8 +17,9 @@ local function cursor_diagnostics()
 end
 
 local keymaps = {
-    { 'n',          'gd',         '<cmd>Telescope lsp_definitions<cr>',       { desc = '[G]oto [D]efinition' } },
-    { 'n',          'gu',         '<cmd>Telescope lsp_references<cr>',        { desc = '[G]oto [U]sages' } },
+    { 'n',          'gd',         '<cmd>Lspsaga goto_definition<cr>',       { desc = '[G]oto [D]efinition' } },
+    -- { 'n',          'gu',         '<cmd>Telescope lsp_references<cr>',        { desc = '[G]oto [U]sages' } },
+    { 'n',          'gu',         '<cmd>Lspsaga finder<cr>',        { desc = '[G]oto [U]sages' } },
     { 'n',          'gi',         '<cmd>Telescope lsp_implementations<cr>',   { desc = '[G]oto [I]mplementations' } },
     { 'n',          'gt',         '<cmd>Telescope lsp_type_definitions<cr>',  { desc = '[G]oto [T]ype Definitions' } },
     { 'n',          '<leader>ds', '<cmd>Telescope lsp_document_symbols<cr>',  { desc = '[D]ocument [S]symbols' } },
