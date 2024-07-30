@@ -13,7 +13,7 @@ return {
                 },
             },
         },
-    },                             -- lua
+    }, -- lua
     clangd = true, -- C/C++
     gradle_ls = true, -- java package manager
     -- jdtls = true, -- java eclipse lsp
@@ -25,4 +25,11 @@ return {
     lemminx = true, -- xml
     yamlls = true, -- yaml
     jsonls = true, -- json
+
+    -- For CS50x, sorry for everyone who sees this
+    -- FIX: this should be removed ASAP
+    html = true,
+    cssls = true,
+    eslint = true,
+    tsserver = true,
 }
