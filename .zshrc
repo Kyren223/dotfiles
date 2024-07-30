@@ -106,6 +106,7 @@ alias ':q'='exit'
 alias vim='nvim'
 alias python='python3'
 alias vi='nvim $(fzf --preview="bat --style=numbers --color=always --line-range :500 {}")'
+alias sqlite3='sqlite3 --box'
 
 alias zshrc='vim ~/.zshrc && source ~/.zshrc'
 alias tmuxconf='vim ~/.config/tmux/tmux.conf'
