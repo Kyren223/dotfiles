@@ -10,6 +10,9 @@ return {
         'MunifTanjim/nui.nvim',
     },
     cmd = 'Neotree',
+    keys = {
+        { '<leader>nt', '<cmd>Neotree toggle reveal left<cr>', desc = '[N]eotree [T]oggle' },
+    },
     config = function()
         require('neo-tree').setup({
             open_files_do_not_replace_types = { 'terminal', 'Trouble', 'qf', 'edgy' },
@@ -30,6 +33,5 @@ return {
                 },
             },
         })
-        vim.keymap.set('n', '<leader>nt', '<cmd>Neotree toggle reveal left<cr>', { desc = '[N]eotree [T]oggle' })
     end,
 }
