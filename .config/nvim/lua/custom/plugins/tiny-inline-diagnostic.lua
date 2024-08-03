@@ -1,6 +1,6 @@
 return {
     'rachartier/tiny-inline-diagnostic.nvim',
-    event = 'VeryLazy',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
         options = {
             -- Throttle the update of the diagnostic when moving cursor, in milliseconds.
