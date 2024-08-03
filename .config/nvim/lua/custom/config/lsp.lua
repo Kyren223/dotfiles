@@ -40,27 +40,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             end
         end
 
-        -- Register LSP keymaps local to buffer
+        -- Register buffer local LSP keymaps
         require('custom.config.lsp-keymaps').setup(bufnr)
     end,
 })
-
--- TODO: Decide if you want to use conform or not
---
--- -- Autoformatting Setup
--- require('conform').setup({
---     formatters_by_ft = {
---         lua = { 'stylua' },
---     },
--- })
---
--- vim.api.nvim_create_autocmd('BufWritePre', {
---     callback = function(args)
---         require('conform').format({
---             bufnr = args.buf,
---             lsp_fallback = true,
---             quiet = true,
---         })
---     end,
--- })
-
