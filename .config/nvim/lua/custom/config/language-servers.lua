@@ -18,7 +18,13 @@ return {
     gradle_ls = true, -- java package manager
     -- jdtls = true, -- java eclipse lsp
     kotlin_language_server = true, -- kotlin
-    pyright = true, -- python
+    pyright = {
+        settings = {
+            python = {
+                pythonPath = '~/python/venv/bin/python',
+            },
+        },
+    }, -- python
     rust_analyzer = false, -- NOTE: using rustaceanvim
     bashls = true, -- bash
     taplo = true, -- toml
