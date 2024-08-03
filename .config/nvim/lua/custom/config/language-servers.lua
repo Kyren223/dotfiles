@@ -1,11 +1,10 @@
--- NOTE: A list of language servers (and potentially their config)
--- Accepts either true to enable, false to disable or a table with settings
+-- NOTE: a table or true to enable, false to disable
 return {
     lua_ls = {
         settings = {
-            diagnostics = {
-                globals = { 'vim' },
-            },
+            diagnostics = { globals = { 'vim' } },
+            telemetry = { enabled = false },
+            hint = { enable = true },
             workspace = {
                 library = {
                     [vim.fn.expand('$VIMRUNTIME/lua')] = true,
@@ -14,10 +13,17 @@ return {
             },
         },
     }, -- lua
-    clangd = true, -- C/C++
-    gradle_ls = true, -- java package manager
-    -- jdtls = true, -- java eclipse lsp
-    kotlin_language_server = true, -- kotlin
+    clangd = {
+        cmd = { 'clangd', '--clang-tidy' },
+        root_dir = function(fname)
+            return require('lspconfig/util').root_pattern(
+                '.clang-tidy',
+                '.clang-format',
+                'compile_commands.json',
+                '.git'
+            )(fname) or vim.fn.getcwd()
+        end,
+    }, -- c/cpp
     pyright = {
         settings = {
             python = {
@@ -25,17 +31,12 @@ return {
             },
         },
     }, -- python
-    rust_analyzer = false, -- NOTE: using rustaceanvim
     bashls = true, -- bash
     taplo = true, -- toml
     lemminx = true, -- xml
     yamlls = true, -- yaml
     jsonls = true, -- json
-
-    -- For CS50x, sorry for everyone who sees this
-    -- FIX: this should be removed ASAP
-    html = true,
-    cssls = true,
-    eslint = true,
-    tsserver = true,
+    html = true, -- html
+    cssls = true, -- css
+    tsserver = true, -- javascript/typescript
 }
