@@ -1,7 +1,7 @@
 local telescope = require('telescope')
 telescope.setup({
     pickers = {
-        find_files = { follow = true },
+        find_files = { follow = true, hidden = true },
         grep_string = { additional_args = '--follow' },
         live_grep = { additional_args = '--follow' },
     },
