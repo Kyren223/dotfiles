@@ -3,10 +3,11 @@ vim.loader.enable()
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+require('custom.globals')
 require('custom.config.options')
 vim.schedule(function()
     require('custom.config.keymaps')
-    require('custom.config.autocmds')
+    require('custom.config.commands')
 end)
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
