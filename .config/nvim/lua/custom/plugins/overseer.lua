@@ -1,5 +1,10 @@
 return {
     'stevearc/overseer.nvim',
+    event = 'VeryLazy',
+    keys = {
+        { '<leader>or', '<cmd>OverseerRun<cr>', desc = '[O]verseer [R]un' },
+        { '<leader>ot', '<cmd>OverseerToggle<cr>', desc = '[O]verseer [T]oggle' },
+    },
     opts = {
         templates = { 'builtin', 'custom' },
         task_list = {
@@ -17,8 +22,4 @@ return {
             },
         },
     },
-    keys = {
-        { '<leader>or', '<cmd>OverseerRun<cr>',    desc = '[O]verseer [R]un' },
-        { '<leader>ot', '<cmd>OverseerToggle<cr>', desc = '[O]verseer [T]oggle' }
-    }
 }
