@@ -1,5 +1,7 @@
 return {
     'stevearc/overseer.nvim',
+    -- NOTE: without telescope the UI is not custom, so making sure telescope is loaded first
+    dependencies = { 'nvim-telescope/telescope.nvim' },
     event = 'VeryLazy',
     keys = {
         { '<leader>or', '<cmd>OverseerRun<cr>', desc = '[O]verseer [R]un' },
