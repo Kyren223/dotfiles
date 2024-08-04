@@ -24,6 +24,17 @@ return {
             )(fname) or vim.fn.getcwd()
         end,
     }, -- c/cpp
+    neocmake = {
+        root_dir = function(fname)
+            return require('lspconfig/util').root_pattern(
+                'CMakePresets.json',
+                'CTestConfig.cmake',
+                'build',
+                'cmake',
+                '.git' -- NOTE: git is last due to monorepos (so it tries to use build/cmake first)
+            )(fname)
+        end,
+    },
     pyright = {
         settings = {
             python = {
