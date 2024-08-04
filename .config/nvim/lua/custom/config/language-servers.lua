@@ -15,24 +15,24 @@ return {
     }, -- lua
     clangd = {
         cmd = { 'clangd', '--clang-tidy' },
-        root_dir = function(fname)
+        root_dir = function(filename)
             return require('lspconfig/util').root_pattern(
                 '.clang-tidy',
                 '.clang-format',
                 'compile_commands.json',
                 '.git'
-            )(fname) or vim.fn.getcwd()
+            )(filename) or vim.fn.getcwd()
         end,
     }, -- c/cpp
     neocmake = {
-        root_dir = function(fname)
+        root_dir = function(filename)
             return require('lspconfig/util').root_pattern(
                 'CMakePresets.json',
                 'CTestConfig.cmake',
                 'build',
                 'cmake',
                 '.git' -- NOTE: git is last due to monorepos (so it tries to use build/cmake first)
-            )(fname)
+            )(filename) or vim.fn.getcwd()
         end,
     },
     pyright = {
