@@ -12,7 +12,7 @@ return {
             return function()
                 local prompt = show_prompt and 'always' or 'avoid'
                 overseer.run_template({ tags = { tag }, first = true, prompt = prompt })
-                overseer.open({ enter = false }) -- don't focus
+                -- overseer.open({ enter = false }) -- don't focus
             end
         end
         return {
