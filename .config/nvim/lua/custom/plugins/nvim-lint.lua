@@ -1,9 +1,11 @@
 return {
     'mfussenegger/nvim-lint',
-    event = { 'BufReadPre', 'BufNewFile' },
+    lazy = false,
     config = function()
         local lint = require('lint')
         lint.linters_by_ft = {
+            c = { 'clangtidy' },
+            cpp = { 'clangtidy' },
             go = { 'golangci-lint' },
             python = { 'flake8' },
             json = { 'jsonlint' },

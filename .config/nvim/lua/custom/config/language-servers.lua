@@ -14,7 +14,15 @@ return {
         },
     }, -- lua
     clangd = {
-        cmd = { 'clangd', '--clang-tidy' },
+        cmd = {
+            'clangd',
+            '--background-index',
+            '--clang-tidy',
+            '--header-insertion=iwyu',
+            '--completion-style=detailed',
+            '--function-arg-placeholders',
+            '--fallback-style=llvm',
+        },
         root_dir = function(filename)
             return require('lspconfig/util').root_pattern(
                 '.clang-tidy',
@@ -23,6 +31,11 @@ return {
                 '.git'
             )(filename) or vim.fn.getcwd()
         end,
+        -- init_options = {
+        --     usePlaceholders = true,
+        --     completeUnimported = true,
+        --     clangdFileStatus = true,
+        -- },
     }, -- c/cpp
     neocmake = {
         root_dir = function(filename)
