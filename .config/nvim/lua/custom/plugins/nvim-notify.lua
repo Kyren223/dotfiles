@@ -10,10 +10,13 @@ return {
             desc = '[N]otify [D]ismiss All',
         },
     },
-    opts = {
-        fps = 60,
-        render = 'default',
-        timeout = 500,
-        topDown = true,
-    },
+    opts = function()
+        vim.notify = require('notify')
+        return {
+            fps = 60,
+            render = 'default',
+            timeout = 500,
+            topDown = true,
+        }
+    end,
 }
