@@ -13,8 +13,21 @@ return {
         }
     end,
     tags = { overseer.TAG.BUILD },
-    priority = 20,
+    priority = 50,
     condition = {
         filetype = { 'c' },
+        callback = function()
+            -- Disable if already using make/cmake
+            local filename = vim.fn.expand('%:p')
+            local root_dir = require('lspconfig/util').root_pattern(
+                'Makefile',
+                'build/Makefile',
+                'CMakePresets.json',
+                'CTestConfig.cmake',
+                'build',
+                'cmake'
+            )(filename)
+            return root_dir == nil
+        end,
     },
 }
