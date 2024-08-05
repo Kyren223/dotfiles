@@ -2,8 +2,10 @@ return {
     'stevearc/oil.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-        { '<leader>ob', '<cmd>Oil<cr>',                             desc = '[O]il [B]uffer' },
-        { '<leader>of', '<cmd>lua require("oil").toggle_float<cr>', desc = '[O]il [F]loat' },
+        { '<leader>of', '<cmd>Oil<cr>', desc = '[O]il [F]ilesystem' },
+        { '<leader>oF', '<cmd>lua require("oil").toggle_float<cr>', desc = '[O]il [F]ilesystem (float)' },
+        { '<leader>fo', '<cmd>Oil<cr>', desc = '[F]ilesystem [O]il' },
+        { '<leader>fO', '<cmd>lua require("oil").toggle_float<cr>', desc = '[F]ilesystem [O]il (float)' },
     },
     opts = {
         default_file_explorer = true,
