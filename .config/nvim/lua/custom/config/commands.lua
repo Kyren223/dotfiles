@@ -32,19 +32,19 @@ vim.api.nvim_create_user_command('FormatToggle', function(args)
     if is_global then
         vim.g.disable_autoformat = not vim.g.disable_autoformat
         if vim.g.disable_autoformat then
-            Notify('Autoformat-on-save disabled globally', 'info')
+            Notify('Autoformat on save disabled globally')
         else
-            Notify('Autoformat-on-save enabled globally', 'info')
+            Notify('Autoformat on save enabled globally')
         end
     else
         vim.b.disable_autoformat = not vim.b.disable_autoformat
         if vim.b.disable_autoformat then
-            Notify('Autoformat-on-save disabled for this buffer', 'info')
+            Notify('Autoformat on save disabled for this buffer')
         else
-            Notify('Autoformat-on-save enabled for this buffer', 'info')
+            Notify('Autoformat on save enabled for this buffer')
         end
     end
 end, {
-    desc = 'Toggle autoformat-on-save',
+    desc = 'Toggle autoformat on save',
     bang = true,
 })
