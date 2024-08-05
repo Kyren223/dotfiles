@@ -18,5 +18,17 @@ return {
                 require('lint').try_lint()
             end,
         })
+
+        -- NOTE: most if not all of clangt-idy warnings are
+        -- also reported by clangd, so this function filters clang-tidy warnings
+        -- to avoid duplication of warnings
+        local clangtidy_parser = lint.linters.clangtidy.parser
+        lint.linters.clangtidy.parser = function(output, bufnr, linter_cwd)
+            local diagnostics = clangtidy_parser(output, bufnr, linter_cwd)
+            diagnostics = vim.tbl_filter(function(diagnostic)
+                return diagnostic.severity ~= vim.diagnostic.severity.WARN
+            end, diagnostics)
+            return diagnostics
+        end
     end,
 }
