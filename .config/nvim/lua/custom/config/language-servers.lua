@@ -31,11 +31,11 @@ return {
                 '.git'
             )(filename) or vim.fn.getcwd()
         end,
-        -- init_options = {
-        --     usePlaceholders = true,
-        --     completeUnimported = true,
-        --     clangdFileStatus = true,
-        -- },
+        init_options = {
+            usePlaceholders = true,
+            completeUnimported = true,
+            clangdFileStatus = true,
+        },
     }, -- c/cpp
     neocmake = {
         root_dir = function(filename)
