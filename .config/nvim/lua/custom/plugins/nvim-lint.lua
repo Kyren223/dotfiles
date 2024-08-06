@@ -26,7 +26,14 @@ return {
         lint.linters.clangtidy.parser = function(output, bufnr, linter_cwd)
             local diagnostics = clangtidy_parser(output, bufnr, linter_cwd)
             diagnostics = vim.tbl_filter(function(diagnostic)
-                return diagnostic.severity ~= vim.diagnostic.severity.WARN
+                if diagnostic.severity == vim.diagnostic.severity.WARN then
+                    return false
+                end
+                if diagnostic.severity == vim.diagnostic.severity.ERROR then
+                    return false
+                end
+
+                return true
             end, diagnostics)
             return diagnostics
         end
