@@ -1,4 +1,4 @@
--- Load snippets
+-- Load cmp_opts
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file('lua/custom/snippets/*.lua', true)) do
     loadfile(ft_path)()
 end
@@ -36,10 +36,10 @@ cmp.setup({
     enabled = is_enabled,
     completion = { completeopt = 'menu,menuone,noinsert' },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },                 -- for lsp
-        { name = 'luasnip' },                  -- for snippets
+        { name = 'nvim_lsp' }, -- for lsp
+        { name = 'luasnip' }, -- for snippets
         { name = 'lazydev', group_index = 0 }, -- for lazydev.nvim
-        { name = 'path' },                     -- for filesystem
+        { name = 'path' }, -- for filesystem
     }, {}),
     snippet = {
         expand = function(args)
@@ -53,6 +53,18 @@ cmp.setup({
             winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
             col_offset = -3,
             side_padding = 0,
+        },
+    },
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.recently_used,
+            require('clangd_extensions.cmp_scores'),
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
         },
     },
     mapping = cmp.mapping.preset.insert({
@@ -72,7 +84,7 @@ cmp.setup({
         format = function(entry, vim_item)
             local kind = lspkind.cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
             local strings = vim.split(kind.kind, '%s', { trimempty = true })
-            kind.kind = ' ' .. (strings[1] or '') .. ' '   -- left (icon)
+            kind.kind = ' ' .. (strings[1] or '') .. ' ' -- left (icon)
             kind.menu = '    ' .. (strings[2] or '') .. '' -- right (text)
             return kind
         end,
