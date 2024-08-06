@@ -1,6 +1,10 @@
 return {
     'mfussenegger/nvim-dap',
     dependencies = { 'williamboman/mason.nvim' },
+    -- NOTE:nvim-dap has no setup function
+    -- if there is just opts, lazy will attempt to call setup which causes an error
+    -- Having an empty config function makes lazy not call setup which fixes the issue
+    config = function() end,
     opts = function()
         local dap = require('dap')
 
