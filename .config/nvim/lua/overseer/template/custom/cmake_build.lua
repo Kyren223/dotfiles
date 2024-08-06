@@ -5,10 +5,11 @@ return {
     builder = function(_)
         local filename = vim.fn.expand('%:p')
         local root_dir = root_pattern(filename) or vim.fn.getcwd()
+        local args = vim.g.overseer_cmake_extra_args or ''
 
         return {
             name = 'Cmake',
-            cmd = 'cmake .. && cmake --build .',
+            cmd = 'cmake ' .. args .. '.. && cmake --build .',
             cwd = root_dir .. '/build',
         }
     end,
