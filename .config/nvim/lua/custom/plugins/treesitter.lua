@@ -1,7 +1,6 @@
 return {
     {
         'nvim-treesitter/nvim-treesitter',
-        lazy = true,
         build = ':TSUpdate',
         config = function()
             ---@type userdata
@@ -16,7 +15,8 @@ return {
     },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        after = 'nvim-treesitter',
+        event = 'VeryLazy',
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
         config = function()
             ---@diagnostic disable-next-line: missing-fields
             require('nvim-treesitter.configs').setup({
