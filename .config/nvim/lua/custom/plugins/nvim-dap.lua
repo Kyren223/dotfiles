@@ -6,6 +6,8 @@ return {
     -- Having an empty config function makes lazy not call setup which fixes the issue
     config = function() end,
     opts = function()
+        -- Load dap keymaps
+        require('custom.config.dap-keymaps')
         local dap = require('dap')
 
         -- Setup C/C++ dap
