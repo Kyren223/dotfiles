@@ -7,6 +7,10 @@ return {
         { '<leader>hT', '<<cmd>Hardtime report<cr>', desc = '[H]ardtime Report' },
     },
     opts = {
-        disabled_filetypes = { 'qf', 'lazy', 'mason', 'oil', 'neo-tree', 'ClangdAST' },
+        restriction_mode = 'hint',
+        restricted_keys = {
+            ['h'] = {},
+            ['l'] = {},
+        },
     },
 }
