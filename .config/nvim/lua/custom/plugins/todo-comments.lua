@@ -11,16 +11,15 @@
 return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    event = "VeryLazy",
+    event = 'VeryLazy',
     keys = {
         { '<leader>st', '<cmd>TodoTelescope keywords=TODO,FIX<cr>', desc = '[S]earch [T]odos' },
-        { '<leader>lt', '<cmd>TodoTrouble<cr>',                     desc = '[L]ist [T]odos' },
+        { '<leader>lt', '<cmd>TodoTrouble<cr>', desc = '[L]ist [T]odos' },
     },
     config = function()
         require('todo-comments').setup({
-            signs = false,     -- show icons in the signs column
+            signs = false, -- show icons in the signs column
             sign_priority = 8, -- sign priority
-
             keywords = {
                 -- NOTE: These are "todos"
                 TODO = { icon = ' ', color = 'info', alt = { 'todo' } },
@@ -34,14 +33,11 @@ return {
                 TEST = { icon = '󰙨 ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
                 UNSAFE = { icon = '󰍛 ', color = 'error', alt = { 'SAFETY' } },
             },
-
             gui_style = {
                 fg = 'NONE',
                 bg = 'BOLD',
             },
-
             merge_keywords = true, -- when true, custom keywords will be merged with the defaults
-
             -- highlighting of the line containing the todo comment
             -- * before: highlights before the keyword (typically comment characters)
             -- * keyword: highlights of the keyword
@@ -49,20 +45,23 @@ return {
             highlight = {
                 multiline = true,
                 multiline_pattern = '^.', -- lua pattern to match the next multiline from the start of the matched keyword
-                multiline_context = 10,   -- extra lines that will be re-evaluated when changing a line
-                before = '',              -- "fg" or "bg" or empty
-                keyword = 'wide',         -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-                after = 'fg',             -- "fg" or "bg" or empty
+                multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
+                before = '', -- "fg" or "bg" or empty
+                keyword = 'wide', -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+                after = 'fg', -- "fg" or "bg" or empty
+                -- TODO():
                 pattern = {
-                    [[.*<(KEYWORDS)\s*:]],
-                    -- [[.*<(KEYWORDS)\s*]],
-                    -- [[.*<(KEYWORDS)\s*!()]],
+                    -- [[.*<(KEYWORDS)\s*(.*)?\s*:]], -- default
+                    [[.*<(KEYWORDS)\s*:]], -- default
+                    [[.*<(KEYWORDS)\s*!?\(\):]], -- keyword!() syntax
+                    -- [[.*<(KEYWORDS)\s*\(.*\):]], -- keyword(anything) syntax
+                    [[.*<(KEYWORDS)\s* ?\(.*\):]], -- keyword(anything) syntax
+                    [[.*<(KEYWORDSky)\s*:]], -- keyword(anything) syntax
                 }, -- pattern or table of patterns, used for highlighting (vim regex)
                 comments_only = false,
                 max_line_len = 400,
                 exclude = {}, -- list of excluded filetypes
             },
-
             -- list of named colors where we try to extract the gui fg from the
             -- list of highlight groups or use the hex color if hl not found as a fallback
             colors = {
@@ -74,7 +73,6 @@ return {
                 test = { 'Identifier', '#FF00FF' },
                 performance = { '#7C3AED' },
             },
-
             search = {
                 command = 'rg',
                 args = {
@@ -86,11 +84,11 @@ return {
                     -- "--hidden", -- show todos in hidden directories and files
                     '--follow', -- follow symlinks
                 },
-
                 -- regex that will be used to match keywords.
                 -- don't replace the (KEYWORDS) placeholder
-                pattern = [[\b(KEYWORDS):]],
-                -- pattern = [[\b(KEYWORDS)\b]],
+                pattern = [[\b(KEYWORDS)(?:\(([^)]*)\))?:]], -- supports optional `(anything)` before colon
+                -- pattern = [[\b(KEYWORDS):]], -- default
+                -- pattern = [[\b(KEYWORDS)\b]], -- no colon
             },
         })
     end,
