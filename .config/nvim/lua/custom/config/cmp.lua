@@ -55,6 +55,7 @@ cmp.setup({
             side_padding = 0,
         },
     },
+    ---@diagnostic disable-next-line: missing-fields
     sorting = {
         comparators = {
             cmp.config.compare.offset,
@@ -67,17 +68,17 @@ cmp.setup({
             cmp.config.compare.order,
         },
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = {
         ['<Tab>'] = snippet_jump(1),
         ['<S-Tab>'] = snippet_jump(-1),
         ['<C-Space>'] = cmp.mapping.complete(), -- invoke completion
         ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        ['<C-m>'] = cmp.mapping.abort(),
+        ['<C-c>'] = cmp.mapping.abort(),
         ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    }),
+    },
     ---@diagnostic disable-next-line: missing-fields
     formatting = {
         fields = { 'kind', 'abbr', 'menu' },
