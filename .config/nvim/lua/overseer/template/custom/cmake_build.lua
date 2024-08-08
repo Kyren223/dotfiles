@@ -9,7 +9,7 @@ return {
 
         return {
             name = 'Cmake',
-            cmd = 'cmake ' .. args .. '.. && cmake --build .',
+            cmd = 'cmake ' .. args .. ' .. && cmake --build .',
             cwd = root_dir .. '/build',
         }
     end,
