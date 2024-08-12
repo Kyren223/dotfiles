@@ -4,9 +4,9 @@ local keymaps = {
     { 'n', '<leader>dt', '<cmd>DapRestartFrame<cr>', { desc = '[D]ebug [R]estart' } },
     { 'n', '<leader>dp', '<cmd>DapToggleBreakpoint<cr>', { desc = '[D]ebug Break[p]oint' } },
     { 'n', '<leader>dh', '<cmd>lua require("dap.ui.widgets").hover()<cr>', { desc = '[D]ebug [H]over' } },
-    { 'n', '<leader>si', '<<cmd>DapStepInto<cr>', { desc = '[S]tep [I]nto' } },
-    { 'n', '<leader>so', '<<cmd>DapStepOver<cr>', { desc = '[S]tep [O]ver' } },
-    { 'n', '<leader>sO', '<<cmd>DapStepOut<cr>', { desc = '[S]tep [O]ut' } },
+    { 'n', '<leader>si', '<cmd>DapStepInto<cr>', { desc = '[S]tep [I]nto' } },
+    { 'n', '<leader>so', '<cmd>DapStepOver<cr>', { desc = '[S]tep [O]ver' } },
+    { 'n', '<leader>sO', '<cmd>DapStepOut<cr>', { desc = '[S]tep [O]ut' } },
 }
 
 for _, keymap in ipairs(keymaps) do
