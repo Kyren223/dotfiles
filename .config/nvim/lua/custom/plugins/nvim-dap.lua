@@ -37,6 +37,12 @@ return {
                         end
                         return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
                     end,
+                    args = function()
+                        if vim.g.dap_codelldb_args then
+                            return vim.g.dap_codelldb_args
+                        end
+                        return {}
+                    end,
                     cwd = '${workspaceFolder}',
                 },
                 {
