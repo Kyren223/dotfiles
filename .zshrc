@@ -94,9 +94,6 @@ source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat_laptop.omp.yml)"
 
-# Activate python venv
-source ~/python/venv/bin/activate
-
 # Aliases
 alias nvim='nvim.sh'
 alias cat='bat'
