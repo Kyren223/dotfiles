@@ -121,12 +121,8 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
-
-alias wgit='git.exe'
-alias wgs='wgit status'
-alias wga='wgit add'
-alias wgc='wgit commit'
-alias wgp='wgit push'
+alias gP='git pull'
+alias gl='git log --oneline -n 10'
 
 # Exports
 export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
