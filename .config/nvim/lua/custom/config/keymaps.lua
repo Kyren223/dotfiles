@@ -16,6 +16,10 @@ local function paste()
     vim.fn.getreg('+')
 end
 
+-- "Great Keymap ever" - ThePrimeagen 
+-- https://www.youtube.com/watch?v=qZO9A5F6BZs&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&index=4
+set('n', '<leader>p', '"_dP')
+
 -- Misc
 set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
 set('n', '<Esc>', '<cmd>nohlsearch<CR>', silent)
