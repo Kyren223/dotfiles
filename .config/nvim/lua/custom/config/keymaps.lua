@@ -18,7 +18,7 @@ end
 
 -- "Great Keymap ever" - ThePrimeagen 
 -- https://www.youtube.com/watch?v=qZO9A5F6BZs&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&index=4
-set('n', '<leader>p', '"_dP')
+set('x', '<leader>p', '"_dP')
 
 -- Misc
 set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
