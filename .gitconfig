@@ -12,3 +12,5 @@
 [core]
 	editor = nvim
 	pager = nvimpager
+[pull]
+	rebase = true
