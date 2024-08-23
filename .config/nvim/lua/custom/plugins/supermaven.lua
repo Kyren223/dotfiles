@@ -24,7 +24,8 @@ return {
             accept_word = nil,
         },
         ignore_filetypes = {
-            markdown = true,
+            ['markdown'] = true,
+            ['help'] = true,
             ['NeogitStatus'] = true,
             ['NeogitPopup'] = true,
             ['NeogitCommitMessage'] = true,
