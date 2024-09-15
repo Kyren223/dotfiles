@@ -117,6 +117,9 @@ alias vimrc='nvimconf'
 alias ivm='vim'
 alias dc='cd'
 
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
@@ -133,11 +136,6 @@ export FZF_DEFAULT_OPTS=" \
     --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-
-# For CS50x, can be remvoed later
-export CC="clang"
-export CFLAGS="-ferror-limit=1 -gdwarf-4 -ggdb3 -O0 -std=c11 -Wall -Werror -Wextra -Wno-gnu-folding-constant -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-but-set-variable -Wshadow"
-export LDLIBS="-lcrypt -lcs50 -lm"
 
 # Open tmux if it's not open
 if [ -z "$TMUX" ]; then
