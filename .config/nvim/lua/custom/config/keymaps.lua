@@ -13,17 +13,25 @@ local function toggle_zen()
 end
 
 local function paste()
-    vim.fn.getreg('+')
+    local value = vim.fn.getreg('+')
+    if vim.fn.mode() == 'c' then
+        -- value = vim.split(value, '\n')[1] -- only use first line (default with normal pasting)
+        value = value:gsub('\n', ' ') -- replace newlines with spaces
+        vim.api.nvim_feedkeys(value, 'c', false)
+    else
+        vim.api.nvim_put({ value }, 'c', true, true)
+    end
 end
 
--- "Great Keymap ever" - ThePrimeagen 
+-- "Greatest Keymap ever" - ThePrimeagen
 -- https://www.youtube.com/watch?v=qZO9A5F6BZs&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&index=4
 set('x', '<leader>p', '"_dP')
 
 -- Misc
 set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
+set('i', '<C-H>', '<C-w>', { desc = 'Ctrl + Backspace to delete word' })
 set('n', '<Esc>', '<cmd>nohlsearch<CR>', silent)
-set({ 'i', 'c' }, '<C-v>', paste) -- FIXME: seems to not work
+set({ 'i', 'c' }, '<C-v>', paste)
 set('n', '<leader>z', toggle_zen, { desc = '[Z]en Mode', silent = true })
 unbind({ 'i', 'n', 'v' }, '<C-r>')
 
