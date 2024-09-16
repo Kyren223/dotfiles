@@ -62,5 +62,5 @@ return {
     jsonls = true, -- json
     html = true, -- html
     cssls = true, -- css
-    tsserver = true, -- javascript/typescript
+    ts_ls = true, -- javascript/typescript
 }
