@@ -80,9 +80,14 @@ vim.keymap.set('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<cr>', { desc = '[R
 vim.keymap.set('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<cr>', { desc = '[H]unk [U]ndo' })
 
 return {
-    { 'NeogitOrg/neogit',        opts = neogit_opts,   cmd = 'Neogit' },
-    { 'pwntester/octo.nvim',     config = octo_config, cmd = 'Octo' },
-    { 'lewis6991/gitsigns.nvim', config = true,        cmd = 'Gitsigns', event = 'VeryLazy' },
+    {
+        'NeogitOrg/neogit',
+        opts = neogit_opts,
+        cmd = 'Neogit',
+        commit = 'c31ef8b5fdb3ea4beaf6ab66e07327b810e32c9f',
+    },
+    { 'pwntester/octo.nvim', config = octo_config, cmd = 'Octo' },
+    { 'lewis6991/gitsigns.nvim', config = true, cmd = 'Gitsigns', event = 'VeryLazy' },
     {
         'sindrets/diffview.nvim',
         opts = diffview_opts,
