@@ -2,7 +2,7 @@ return {
     'stevearc/overseer.nvim',
     -- NOTE: without telescope the UI is not custom, so making sure telescope is loaded first
     dependencies = { 'nvim-telescope/telescope.nvim' },
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
     keys = function()
         local overseer = require('overseer')
         local RUN_TAG = overseer.TAG.RUN
