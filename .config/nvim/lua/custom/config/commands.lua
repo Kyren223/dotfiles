@@ -48,3 +48,16 @@ end, {
     desc = 'Toggle autoformat on save',
     bang = true,
 })
+
+local function filter_marksman_diagnostics(_, result, ctx, config)
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    if client ~= nil and client.name == "marksman" then
+        return
+    end
+    -- For other language servers, show diagnostics as normal
+    vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+end
+
+-- Set diagnostic handler for all language servers
+vim.lsp.handlers["textDocument/publishDiagnostics"] = filter_marksman_diagnostics
+
