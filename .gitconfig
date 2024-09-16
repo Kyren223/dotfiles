@@ -9,8 +9,12 @@
 	email = ulmliad223@gmail.com
 [init]
 	defaultBranch = master
-[core]
-	editor = nvim
-	pager = nvimpager
 [pull]
 	rebase = true
+[core]
+	editor = nvim
+	pager = delta --syntax-theme='Monokai Extended'
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	features = decorations
