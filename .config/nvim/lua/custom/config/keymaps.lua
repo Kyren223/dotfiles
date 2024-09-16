@@ -19,7 +19,7 @@ local function paste()
         value = value:gsub('\n', ' ') -- replace newlines with spaces
         vim.api.nvim_feedkeys(value, 'c', false)
     else
-        vim.api.nvim_put({ value }, 'c', true, true)
+        vim.api.nvim_put(vim.split(value, '\n'), 'c', false, true)
     end
 end
 
