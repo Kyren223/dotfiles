@@ -12,6 +12,25 @@ local function toggle_zen()
     vim.cmd('UndotreeHide')
 end
 
+local function yank_filepath_to_clipboard(os)
+    return function()
+        local filepath = vim.fn.expand('%:p')
+        if os == 'linux' then
+            local home_dir = vim.fn.expand('~')
+            filepath = filepath:gsub(home_dir, '~')
+        elseif os == 'windows' then
+            local mnt = '/mnt/'
+            if filepath:sub(1, #mnt) == mnt then
+                filepath = filepath:sub(#mnt + 1, #mnt + 1) .. ':' .. filepath:sub(#mnt + 2)
+            else
+                filepath = '//wsl.localhost/openSUSE-Tumbleweed' .. filepath
+            end
+            filepath = filepath:gsub('/', '\\')
+        end
+        vim.fn.setreg('+', filepath)
+    end
+end
+
 local function paste()
     local value = vim.fn.getreg('+')
     if vim.fn.mode() == 'c' then
@@ -37,8 +56,9 @@ unbind({ 'i', 'n', 'v' }, '<C-r>')
 
 set('n', 'U', '<cmd>redo<cr>')
 set('i', '<C-z>', '<cmd>undo<cr>')
-set('i', '<C-z>', '<cmd>undo<cr>')
 set({ 'i', 'n', 'v' }, '<C-q>', '<cmd>wqa<cr>')
+set('n', '<leader>yp', yank_filepath_to_clipboard('linux'), { desc = '[Y]oink File [P]ath (linux)' })
+set('n', '<leader>yP', yank_filepath_to_clipboard('windows'), { desc = '[Y]oink File [P]ath (windows)' })
 
 -- Window Navigation - NO NEED BECAUSE IT CONFLICTS WITH TMUX
 -- set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -56,7 +76,6 @@ set({ 'n', 't' }, '<C-Right>', string.format('<cmd>vertical resize +%d<CR>', res
 -- Keep selection after < and > in visual mode
 set('v', '<', '<gv')
 set('v', '>', '>gv')
-
 -- Execute lua file or line
 set('n', '<leader>x', '<cmd>.lua<CR>', { desc = 'Execute the current line' })
 set('n', '<leader><leader>x', '<cmd>source %<CR>', { desc = 'Execute the current file' })
