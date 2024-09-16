@@ -24,10 +24,14 @@ return {
         lightbulb = { enable = false },
         rename = {
             pre_hook = function()
-                vim.cmd.IlluminateToggle()
+                pcall(function()
+                    vim.cmd('IlluminateToggle')
+                end)
             end,
             post_hook = function()
-                vim.cmd.IlluminateToggle()
+                pcall(function()
+                    vim.cmd('IlluminateToggle')
+                end)
             end,
             keys = {
                 quit = '<C-c>',
