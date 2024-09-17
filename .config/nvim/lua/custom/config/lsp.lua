@@ -10,10 +10,25 @@ for name, config in pairs(servers) do
         ---@diagnostic disable-next-line: cast-local-type
         config = {}
     end
-    ---@diagnostic disable-next-line: cast-local-type
-    config = vim.tbl_deep_extend('force', {}, {
-        capabilities = capabilities,
-    }, config)
+
+    -- NOTE: there must be a better way to do it, but it will do for now
+    if name == 'markdown_oxide' then
+        ---@diagnostic disable-next-line: cast-local-type
+        config = vim.tbl_deep_extend('force', {}, {
+            capabilities = vim.tbl_deep_extend('force', capabilities, {
+                workspace = {
+                    didChangeWatchedFiles = {
+                        dynamicRegistration = true,
+                    },
+                },
+            }),
+        }, config)
+    else
+        ---@diagnostic disable-next-line: cast-local-type
+        config = vim.tbl_deep_extend('force', {}, {
+            capabilities = capabilities,
+        }, config)
+    end
 
     lspconfig[name].setup(config)
     ::continue::

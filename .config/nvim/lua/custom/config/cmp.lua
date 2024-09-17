@@ -36,7 +36,14 @@ cmp.setup({
     enabled = is_enabled,
     completion = { completeopt = 'menu,menuone,noinsert' },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' }, -- for lsp
+        {
+            name = 'nvim_lsp',
+            option = {
+                markdown_oxide = {
+                    keyword_pattern = [[\(\k\| \|\/\|#\)\+]],
+                },
+            },
+        }, -- for lsp
         { name = 'luasnip' }, -- for snippets
         { name = 'lazydev', group_index = 0 }, -- for lazydev.nvim
         { name = 'path' }, -- for filesystem

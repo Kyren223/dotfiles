@@ -63,5 +63,6 @@ return {
     html = true, -- html
     cssls = true, -- css
     ts_ls = true, -- javascript/typescript
-    marksman = true, -- Markdown LSP
+    -- marksman = true, -- Markdown LSP
+    markdown_oxide = true, -- Markdown LSP but better
 }
