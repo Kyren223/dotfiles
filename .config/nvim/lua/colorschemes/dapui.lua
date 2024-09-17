@@ -19,14 +19,14 @@ local c = {
     dark_red = '#3F0001',
     float_background = '#132434',
     background = 'NONE',
-    mocha = '#1E1E2E',        -- by Kyren
+    mocha = '#1E1E2E', -- by Kyren
     mocha_search = '#3E5767', -- by Kyren (from catppuccin-mocha)
     -- mocha_hi1 = '#28283e', -- by Kyren
-    mocha_hi1 = '#2A2B3C',    -- by Kyren (from tokyonight-night)
+    mocha_hi1 = '#2A2B3C', -- by Kyren (from tokyonight-night)
     -- mocha_hi2 = '#3c3c5c', -- by Kyren
     -- mocha_hi2 = '#283457',    -- by Kyren (from tokyonight-night)
     mocha_hi2 = '#45475A', -- by Kyren (from catpuccin-mocha)
-    black = '#15161E',        -- by Kyren (from tokyonight-night)
+    black = '#15161E', -- by Kyren (from tokyonight-night)
     -- black = '#181825' -- by Kyren (from catpuccin-mocha)
     -- illum = '#413761', -- by Kyren
     -- illum = '#3E5767', -- by Kyren
@@ -83,12 +83,14 @@ local highlights = {
     -- CursorLine = { fg = c.transparent, bg = c.grey1 }, -- original
     -- CursorColumn = { fg = c.transparent, bg = c.grey1 }, -- original
     -- ColorColumn = { fg = c.transparent, bg = c.grey1 }, -- original
-    CursorLine = { fg = c.transparent, bg = c.mocha_hi1 },   -- by Kyren
-    CursorColumn = { fg = c.transparent, bg = c.mocha_hi1 }, -- by Kyren
-    ColorColumn = { fg = c.transparent, bg = c.mocha_hi1 },  -- by Kyren
     LineNr = { fg = c.hidden },
+    CursorLine = { fg = c.transparent, bg = c.mocha_hi1 }, -- by Kyren
+    CursorColumn = { fg = c.transparent, bg = c.mocha_hi1 }, -- by Kyren
+    ColorColumn = { fg = c.transparent, bg = c.mocha_hi1 }, -- by Kyren
     -- CursorLineNr = { fg = c.success, bold = true }, -- original
-    CursorLineNr = { fg = c.orange2, bold = true }, -- by Kyren
+    CursorLineNr = { fg = c.violet, bold = true }, -- by Kyren
+    LineNrAbove = { fg = c.violet }, -- by Kyren
+    LineNrBelow = { fg = c.violet }, -- by Kyren
     VertSplit = { fg = c.hidden },
     MatchParen = { fg = c.key, underline = true },
     StatusLine = { fg = c.normal },
@@ -100,7 +102,7 @@ local highlights = {
     -- IncSearch = { fg = c.green, bold = true, underline = true }, -- original
     -- Search = { fg = c.green, bold = true, underline = true }, -- original
     IncSearch = { fg = c.black, bg = c.orange2, bold = true }, -- by Kyren
-    Search = { fg = c.black, bg = c.orange2, bold = true },    -- by Kyren
+    Search = { fg = c.black, bg = c.orange2, bold = true }, -- by Kyren
     Directory = { fg = c.cyan },
     Folded = { fg = c.grey3 },
     WildMenu = { fg = c.cyan },
