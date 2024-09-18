@@ -10,6 +10,7 @@ local diffview_opts = {
 }
 
 local neogit_opts = {
+    commit_editor = { spell_check = false },
     mappings = {
         commit_editor = {
             ['<C-y>'] = 'Submit',
@@ -84,7 +85,6 @@ return {
         'NeogitOrg/neogit',
         opts = neogit_opts,
         cmd = 'Neogit',
-        commit = 'c31ef8b5fdb3ea4beaf6ab66e07327b810e32c9f',
     },
     { 'pwntester/octo.nvim', config = octo_config, cmd = 'Octo' },
     { 'lewis6991/gitsigns.nvim', config = true, cmd = 'Gitsigns', event = 'VeryLazy' },
