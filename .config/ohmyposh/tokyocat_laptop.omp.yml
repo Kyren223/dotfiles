@@ -38,16 +38,16 @@ blocks:
           - '{{ if and (not .Error) (and (ge .Percentage 10) (lt .Percentage 20)) }} 󰁺 {{ .Percentage }} {{ end }}'
           - '{{ if and (not .Error) (and (ge .Percentage 0) (lt .Percentage 10) }} 󰂎{{ .Percentage }} {{ end }}'
 
-      - type: status
-        style: diamond
-        foreground: "p:white"
-        background: "p:cyan"
-        background_templates:
-          - "{{ if .Error }}p:red2{{ end }}"
-        trailing_diamond: 
-        template: "<p:dark_blue2></>  "
-        properties:
-          always_enabled: false
+      # - type: status
+      #   style: diamond
+      #   foreground: "p:white"
+      #   background: "p:cyan"
+      #   background_templates:
+      #     - "{{ if .Error }}p:red2{{ end }}"
+      #   trailing_diamond: 
+      #   template: "<p:dark_blue2></>  "
+      #   properties:
+      #     always_enabled: false
 
   - type: prompt
     alignment: left
