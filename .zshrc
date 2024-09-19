@@ -1,63 +1,62 @@
 # Fix for tmux on openSuse with WSL2
 export TMUX_TMPDIR='/tmp'
 
-# Directory to store zinit and plugins
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Download zinit if it doesn't exist yet
-if [ ! -d "$ZINIT_HOME" ]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-# Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
-
-# Zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
-# Zsh snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
-zinit snippet OMZP::command-not-found
-
 # Enable rustup tab completion for zsh - https://rust-lang.github.io/rustup/installation/index.html
+rustup completions zsh > ~/.zfunc/_rustup
 fpath+=~/.zfunc
 
-# Load completions
-autoload -Uz compinit && compinit
-
-zinit cdreplay -q
-
-# Setup hooks for VIMODE in zsh
-function zle-keymap-select {
-if [[ ${KEYMAP} == vicmd ]]; then
-    export VIMODE="NORMAL"
-    echo -ne '\e[2 q'
-else
-    export VIMODE="INSERT"
-    echo -ne '\e[6 q'
+# Install zinit if missing
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
 fi
-}
 
-function zle-line-init {
-export VIMODE="INSERT"
-echo -ne '\e[6 q'
-}
+# Load Zinit
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-function zle-line-finish {
-export VIMODE="INSERT"
-echo -ne '\e[6 q'
-}
+# Zsh plugins
+zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid && zinit light zsh-users/zsh-completions
+zinit ice wait lucid && zinit light Aloxaf/fzf-tab
+zinit ice wait lucid atload'_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
 
-zle -N zle-keymap-select
-zle -N zle-line-init
-zle -N zle-line-finish
+# Zsh snippets
+zinit ice wait lucid && zinit snippet OMZP::git
+zinit ice wait lucid && zinit snippet OMZP::sudo
+zinit ice wait lucid && zinit snippet OMZP::kubectl
+zinit ice wait lucid && zinit snippet OMZP::kubectx
+zinit ice wait lucid && zinit snippet OMZP::command-not-found
+
+# # Setup hooks for VIMODE in zsh
+# function zle-keymap-select {
+# if [[ ${KEYMAP} == vicmd ]]; then
+#     export VIMODE="NORMAL"
+#     echo -ne '\e[2 q'
+# else
+#     export VIMODE="INSERT"
+#     echo -ne '\e[6 q'
+# fi
+# }
+#
+# function zle-line-init {
+# export VIMODE="INSERT"
+# echo -ne '\e[6 q'
+# }
+#
+# function zle-line-finish {
+# export VIMODE="INSERT"
+# echo -ne '\e[6 q'
+# }
+#
+# zle -N zle-keymap-select
+# zle -N zle-line-init
+# zle -N zle-line-finish
 
 # Keybindings
 bindkey -v 
@@ -84,15 +83,24 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
 
 # Load Homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+zinit ice wait lucid atload' eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+zinit load zdharma-continuum/null
 
 # Shell integrations
-source <(fzf --zsh)
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat_laptop.omp.yml)"
+zinit ice wait lucid atload'eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"'
+zinit load zdharma-continuum/null
+
+zinit ice wait'!' nocd lucid atload'_omp_precmd'
+zinit load zdharma-continuum/null
+
+zinit ice wait lucid atload"source <(fzf --zsh)"
+zinit load zdharma-continuum/null
+
+zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"'
+zinit load zdharma-continuum/null
 
 # Aliases
 alias nvim='nvim.sh'
@@ -104,15 +112,7 @@ alias c='clear'
 alias q='exit'
 alias ':q'='exit'
 alias vim='nvim'
-alias python='~/python/venv/bin/python'
-alias pip='~/python/venv/bin/pip'
-alias vi='nvim $(fzf --preview="bat --style=numbers --color=always --line-range :500 {}")'
 alias sqlite3='sqlite3 --box'
-
-alias zshrc='vim ~/.zshrc && source ~/.zshrc'
-alias tmuxconf='vim ~/.config/tmux/tmux.conf'
-alias nvimconf='cd ~/.config/nvim && nvim'
-alias vimrc='nvimconf'
 
 alias ivm='vim'
 alias dc='cd'
@@ -126,6 +126,7 @@ alias gc='git commit'
 alias gp='git push'
 alias gP='git pull'
 alias gl='git log --oneline -n 10'
+alias gd='git diff'
 
 # Exports
 export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
