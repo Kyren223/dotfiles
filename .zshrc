@@ -90,7 +90,7 @@ zinit ice wait lucid atload' eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellen
 zinit load zdharma-continuum/null
 
 # Shell integrations
-zinit ice wait lucid atload'eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"'
+zinit ice wait lucid atload'eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat_laptop.omp.yml)"'
 zinit load zdharma-continuum/null
 
 zinit ice wait'!' nocd lucid atload'_omp_precmd'
