@@ -82,11 +82,11 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
 
 # Load Homebrew
-zinit ice wait lucid atload' eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+zinit ice wait lucid atload'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
 zinit load zdharma-continuum/null
 
 # Shell integrations
@@ -119,14 +119,6 @@ alias dc='cd'
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
-
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gp='git push'
-alias gP='git pull'
-alias gl='git log --oneline -n 10'
-alias gd='git diff'
 
 # Exports
 export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
