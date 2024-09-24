@@ -90,6 +90,7 @@ alias q='exit'
 alias ':q'='exit'
 alias vim='nvim'
 alias sqlite3='sqlite3 --box'
+alias gs='git status'
 
 alias ivm='vim'
 alias dc='cd'
