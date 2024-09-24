@@ -20,7 +20,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.showmode = false -- don't show mode, because lualine already does
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 vim.diagnostic.config({ signs = false }) -- disable signcolumn diagnostics
 vim.opt.fillchars:append({ diff = '╱' }) -- nicer diff view for filled spaces
 
