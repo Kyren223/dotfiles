@@ -6,8 +6,11 @@ return {
         config = function()
             vim.cmd.colorscheme('tokyonight-night')
             require('colorschemes.dapui').set()
+            -- vim.g.material_style = 'deep ocean'
+            -- vim.cmd.colorscheme('material')
         end,
     },
+    -- 'marko-cerovac/material.nvim',
     -- 'rktjmp/lush.nvim',
     -- 'catppuccin/nvim',
     -- 'marko-cerovac/material.nvim',

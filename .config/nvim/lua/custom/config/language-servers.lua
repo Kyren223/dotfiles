@@ -65,4 +65,20 @@ return {
     ts_ls = true, -- javascript/typescript
     -- marksman = true, -- Markdown LSP
     markdown_oxide = true, -- Markdown LSP but better
+    gopls = {
+        cmd = { 'gopls' },
+        filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+        root_dir = function(filename)
+            return require('lspconfig/util').root_pattern('go.work', 'go.mod', '.git')(filename)
+        end,
+        settings = {
+            gopls = {
+                completeUnimported = true,
+                -- usePlaceholders = true,
+                analyses = {
+                    unusedparams = true,
+                },
+            },
+        },
+    }, -- Go LSP
 }
