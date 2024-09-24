@@ -33,30 +33,11 @@ zinit ice wait lucid && zinit snippet OMZP::kubectl
 zinit ice wait lucid && zinit snippet OMZP::kubectx
 zinit ice wait lucid && zinit snippet OMZP::command-not-found
 
-# # Setup hooks for VIMODE in zsh
-# function zle-keymap-select {
-# if [[ ${KEYMAP} == vicmd ]]; then
-#     export VIMODE="NORMAL"
-#     echo -ne '\e[2 q'
-# else
-#     export VIMODE="INSERT"
-#     echo -ne '\e[6 q'
-# fi
-# }
-#
-# function zle-line-init {
-# export VIMODE="INSERT"
-# echo -ne '\e[6 q'
-# }
-#
-# function zle-line-finish {
-# export VIMODE="INSERT"
-# echo -ne '\e[6 q'
-# }
-#
-# zle -N zle-keymap-select
-# zle -N zle-line-init
-# zle -N zle-line-finish
+# Fat cursor
+function zle-line-init {
+    echo -ne '\e[2 q'
+}
+zle -N zle-line-init
 
 # Keybindings
 bindkey -v 
