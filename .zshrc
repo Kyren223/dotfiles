@@ -67,11 +67,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
 
 # Load oh my posh
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
-
-# Load Homebrew
-zinit ice wait lucid atload'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
-zinit load zdharma-continuum/null
 
 # Shell integrations
 zinit ice wait lucid atload"source <(fzf --zsh)"
