@@ -39,6 +39,6 @@ return {
                 select = 'x',
             },
         },
-        symbol_in_winbar = { enable = true },
+        symbol_in_winbar = { enable = false },
     },
 }
