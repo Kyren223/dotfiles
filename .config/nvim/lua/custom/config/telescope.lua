@@ -38,3 +38,4 @@ vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = '[F]ind [M]an Page
 vim.keymap.set('n', '<leader>lv', builtin.live_grep, { desc = '[L]ive [G]rep' })
 vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files' })
 vim.keymap.set('n', '<leader>th', builtin.colorscheme, { desc = 'List [Th]eme' })
+vim.keymap.set('n', '<leader>hi', builtin.highlights, { desc = '[Hi]light Groups' })

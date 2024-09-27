@@ -4,13 +4,14 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme('tokyonight-night')
-            require('colorschemes.dapui').set()
+            -- vim.cmd.colorscheme('tokyonight-night')
+            vim.cmd.colorscheme('autumn-walk')
+            -- require('colorschemes.dapui').set()
+
             -- vim.g.material_style = 'deep ocean'
             -- vim.cmd.colorscheme('material')
         end,
     },
-    -- 'marko-cerovac/material.nvim',
     -- 'rktjmp/lush.nvim',
     -- 'catppuccin/nvim',
     -- 'marko-cerovac/material.nvim',
