@@ -6,26 +6,9 @@ return {
         config = function()
             -- vim.cmd.colorscheme('tokyonight-night')
             -- require('colorschemes.dapui').set()
-            vim.cmd.colorscheme('autumn-walk-tokyo')
-            -- vim.cmd.colorscheme('autumn-walk')
-
-            -- vim.g.material_style = 'deep ocean'
-            -- vim.cmd.colorscheme('material')
+            vim.cmd.colorscheme('carbonight-tokyo')
+            -- vim.cmd.colorscheme('carbonight')
         end,
     },
-    -- 'rktjmp/lush.nvim',
-    -- 'catppuccin/nvim',
-    -- 'marko-cerovac/material.nvim',
-    -- 'rebelot/kanagawa.nvim',
-    -- 'projekt0n/github-nvim-theme',
-    -- 'EdenEast/nightfox.nvim',
-    -- 'rose-pine/neovim',
-    -- 'rafi/awesome-vim-colorschemes',
-    -- 'datsfilipe/min-theme.nvim',
-    -- 'nechaev/darkstorm.nvim',
-    -- 'briones-gabriel/darcula-solid.nvim',
-    -- 'okaihe/okai',
-    -- 'uloco/bluloco.nvim',
-    -- 'doums/darcula',
-    -- 'pineapplegiant/spaceduck',
+    { dir = '~/projects/carbonight' },
 }
