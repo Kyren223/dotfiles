@@ -49,11 +49,6 @@ vim.g.loaded_python3_provider = 0
 vim.lsp.inlay_hint.enable()
 vim.diagnostic.config({ virtual_text = false, update_in_insert = true })
 
--- NOTE: required to allow lsp highlight groups to override diagnostics 
--- Used in my theme for disabling underlines from diagnostics
-vim.highlight.priorities.diagnostics = 125
-vim.highlight.priorities.semantic_tokens = 150
-
 -- Add support for mdx files
 vim.filetype.add({
     extension = {

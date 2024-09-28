@@ -1,1 +1,1 @@
-require("colorschemes.autumn-walk").load()
+require('colorschemes.autumn-walk').load()

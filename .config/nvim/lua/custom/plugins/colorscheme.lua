@@ -5,8 +5,9 @@ return {
         priority = 1000,
         config = function()
             -- vim.cmd.colorscheme('tokyonight-night')
-            vim.cmd.colorscheme('autumn-walk')
             -- require('colorschemes.dapui').set()
+            vim.cmd.colorscheme('autumn-walk-tokyo')
+            -- vim.cmd.colorscheme('autumn-walk')
 
             -- vim.g.material_style = 'deep ocean'
             -- vim.cmd.colorscheme('material')
