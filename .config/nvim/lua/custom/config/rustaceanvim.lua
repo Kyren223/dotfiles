@@ -24,7 +24,12 @@ vim.g.rustaceanvim = {
             end
         end,
         default_settings = {
-            ['rust-analyzer'] = {},
+            ['rust-analyzer'] = {
+                semanticHighlighting = {
+                    operator = { specialization = { enable = true } },
+                    punctuation = { enable = true, specialization = { enable = true } },
+                },
+            },
         },
     },
     ---@type RustaceanDapOpts
