@@ -6,12 +6,8 @@ return {
         sign = { enabled = false },
         bullet = { icons = { '', '◆' } },
         checkbox = {
-            -- unchecked = { icon = '󰄱 ' },
-            -- checked = { icon = '󰄲 ' },
-            unchecked = { icon = '󰄰 ' },
-            checked = { icon = '󰄳 ' },
-            custom = { todo = { rendered = '◯ ' } },
+            unchecked = { icon = ' ' },
+            checked = { icon = ' ' },
         },
     },
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
 }
