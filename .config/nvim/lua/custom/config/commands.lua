@@ -48,3 +48,36 @@ end, {
     desc = 'Toggle autoformat on save',
     bang = true,
 })
+
+-- NOTE: highlight %v, %s etc in go string literals
+vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
+    pattern = '*.go',
+    callback = function()
+        local query = vim.treesitter.query.parse('go', '(interpreted_string_literal) @string')
+        local parser = vim.treesitter.get_parser(0, 'go')
+        local tree = parser:parse()[1]
+        local root = tree:root()
+        local bufnr = vim.api.nvim_get_current_buf()
+
+        for id, node in query:iter_captures(root, bufnr, 0, -1) do
+            if query.captures[id] == 'string' then
+                local start_row, start_col, end_row, end_col = node:range()
+
+                -- Get the text of the string literal
+                local text = vim.api.nvim_buf_get_text(bufnr, start_row, start_col, end_row, end_col, {})[1]
+
+                -- Highlight only the parts matching `%[a-z]`
+                for match_start, match_end in text:gmatch('()%%[a-z]()') do
+                    vim.api.nvim_buf_add_highlight(
+                        bufnr,
+                        -1,
+                        '@lsp.type.formatSpecifier.go', -- Higlight group
+                        start_row,
+                        start_col + match_start - 1,
+                        start_col + match_end - 1
+                    )
+                end
+            end
+        end
+    end,
+})

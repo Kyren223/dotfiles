@@ -55,6 +55,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
             end
         end
 
+        -- Workaround for semantic tokens apparently?
+        -- https://www.lazyvim.org/extras/lang/go
+        -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+        if client.name == 'gopls' and not client.server_capabilities.semanticTokensProvider then
+            local semantic = client.config.capabilities.textDocument.semanticTokens
+            client.server_capabilities.semanticTokensProvider = {
+                full = true,
+                legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },
+                range = true,
+            }
+        end
+
         -- Register buffer local LSP keymaps
         require('custom.config.lsp-keymaps').setup(bufnr)
     end,
