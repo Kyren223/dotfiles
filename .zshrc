@@ -96,6 +96,8 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
 # Exports
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export EDITOR=nvim
