@@ -67,7 +67,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
 
 # Load oh my posh
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 
 # Shell integrations
@@ -98,7 +97,6 @@ alias pbpaste='xclip -selection clipboard -o'
 # Exports
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOMEBREW_PREFIX/opt/ncurses/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export EDITOR=nvim
 export PAGER=nvimpager
@@ -109,6 +107,6 @@ export FZF_DEFAULT_OPTS=" \
 
 # Open tmux if it's not open
 if [ -z "$TMUX" ]; then
-    tmux
+    tmux a || tmux
 fi
 
