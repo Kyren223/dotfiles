@@ -87,6 +87,8 @@ alias ':q'='exit'
 alias vim='nvim'
 alias sqlite3='sqlite3 --box'
 alias gs='git status'
+alias python='python3.12'
+alias py='python'
 
 alias ivm='vim'
 alias dc='cd'
