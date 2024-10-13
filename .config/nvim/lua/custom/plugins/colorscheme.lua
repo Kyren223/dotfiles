@@ -6,8 +6,8 @@ return {
         config = function()
             -- vim.cmd.colorscheme('tokyonight-night')
             -- require('colorschemes.dapui').set()
-            vim.cmd.colorscheme('carbonight-tokyo')
-            -- vim.cmd.colorscheme('carbonight')
+            -- vim.cmd.colorscheme('carbonight-tokyo')
+            vim.cmd.colorscheme('carbonight')
         end,
     },
     { dir = '~/projects/carbonight' },
