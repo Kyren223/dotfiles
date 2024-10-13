@@ -25,7 +25,7 @@ return {
                 'isort', -- python formatter for imports
                 'flake8', -- python linter
                 'gofumpt', -- go formatter
-                'golangci-lint', -- go linter
+                -- 'golangci-lint', -- go linter
                 'prettierd', -- multi-lang formatter
                 'prettier', -- prettierd but slower, used as a fallback
                 'jq', -- json formatter

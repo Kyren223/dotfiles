@@ -85,12 +85,12 @@ return {
                     vendor = true,
                 },
                 hints = {
-                    assignVariableTypes = true,
-                    compositeLiteralFields = true,
+                    assignVariableTypes = false,
+                    compositeLiteralFields = false,
                     compositeLiteralTypes = true,
                     constantValues = true,
                     functionTypeParameters = true,
-                    -- parameterNames = true,
+                    parameterNames = false,
                     rangeVariableTypes = true,
                 },
                 analyses = {

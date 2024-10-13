@@ -6,7 +6,7 @@ return {
         lint.linters_by_ft = {
             c = { 'clangtidy' },
             cpp = { 'clangtidy' },
-            -- go = { 'golangci-lint' },
+            go = { 'golangcilint' },
             python = { 'flake8' },
             json = { 'jsonlint' },
             bash = { 'shellcheck' },

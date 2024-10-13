@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
                 local text = vim.api.nvim_buf_get_text(bufnr, start_row, start_col, end_row, end_col, {})[1]
 
                 -- Highlight only the parts matching `%[a-z]`
-                for match_start, match_end in text:gmatch('()%%[a-z]()') do
+                for match_start, match_end in text:gmatch('()%%[a-zT]()') do
                     vim.api.nvim_buf_add_highlight(
                         bufnr,
                         -1,
