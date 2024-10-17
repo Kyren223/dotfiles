@@ -16,7 +16,7 @@ return {
             ['c'] = { 'clang-format' },
             ['python'] = { 'isort', 'black' },
             ['rust'] = { 'rustfmt' },
-            ['go'] = { 'gofumpt', "goimports-reviser", "golines" },
+            ['go'] = { 'gofumpt', 'goimports-reviser' },
             ['markdown'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['yaml'] = { 'prettierd' },
             ['json'] = { 'jq' },
