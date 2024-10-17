@@ -1,4 +1,5 @@
 # Fix for tmux on openSuse with WSL2
+mkdir -p /tmp
 export TMUX_TMPDIR='/tmp'
 
 # Enable rustup tab completion for zsh - https://rust-lang.github.io/rustup/installation/index.html
@@ -111,4 +112,16 @@ export FZF_DEFAULT_OPTS=" \
 if [ -z "$TMUX" ]; then
     tmux a || tmux
 fi
+
+# NOTE: if clipboard breaks try this:
+# https://superuser.com/questions/1617298/wsl-2-running-ubuntu-x-server-cant-open-display#1618390
+# setting display to:
+# export DISPLAY=wsl:0.0
+# Seems to fix it, but the post says it breaks some stuff (like firefox which I anyways run on windows)
+# But just in case, the better way to do it seems to be:
+# export DISPLAY=:0
+# After more checking, it needs to be the wsl one, otherwise it doesn't work
+# After more issues with both, I just disabled systemd again which seems to have issues
+# with xclip and tmux and probably more issues I haven't noticed, and all I wanted is to use docker
+# I am fine running the docker dameon manually if I need to use docker
 
