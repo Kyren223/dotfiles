@@ -23,7 +23,7 @@ return {
         })
 
         return {
-            execution_message = { enabled = false },
+            -- execution_message = { enabled = false }, removed
             condition = function(buf)
                 -- Save only if the buffer is not a "special buffer"
                 return vim.fn.getbufvar(buf, '&buftype') == ''
