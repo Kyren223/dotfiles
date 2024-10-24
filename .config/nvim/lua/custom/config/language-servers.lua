@@ -108,4 +108,5 @@ return {
             },
         },
     }, -- Go LSP
+    jdtls = true, -- java
 }
