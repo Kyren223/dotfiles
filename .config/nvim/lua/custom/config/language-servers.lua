@@ -89,7 +89,7 @@ return {
                     compositeLiteralFields = false,
                     compositeLiteralTypes = true,
                     constantValues = true,
-                    functionTypeParameters = true,
+                    functionTypeParameters = false,
                     parameterNames = false,
                     rangeVariableTypes = true,
                 },
