@@ -31,7 +31,13 @@ local function yank_filepath_to_clipboard(os)
     end
 end
 
+function RemoveClipboardCR()
+    local clipboard = vim.fn.getreg('+'):gsub('\r', '')
+    vim.fn.setreg('+', clipboard)
+end
+
 local function paste()
+    RemoveClipboardCR()
     local value = vim.fn.getreg('+')
     if vim.fn.mode() == 'c' then
         -- value = vim.split(value, '\n')[1] -- only use first line (default with normal pasting)
@@ -42,9 +48,13 @@ local function paste()
     end
 end
 
+
 -- "Greatest Keymap ever" - ThePrimeagen
 -- https://www.youtube.com/watch?v=qZO9A5F6BZs&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&index=4
 set('x', '<leader>p', '"_dP')
+
+set('n', 'p', '<cmd>lua RemoveClipboardCR()<cr>p', { noremap = true })
+set('n', 'P', '<cmd>lua RemoveClipboardCR()<cr>P', { noremap = true })
 
 -- Misc
 set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
