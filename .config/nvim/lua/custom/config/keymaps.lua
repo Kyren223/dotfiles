@@ -48,7 +48,6 @@ local function paste()
     end
 end
 
-
 -- "Greatest Keymap ever" - ThePrimeagen
 -- https://www.youtube.com/watch?v=qZO9A5F6BZs&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&index=4
 set('x', '<leader>p', '"_dP')
