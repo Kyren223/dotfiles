@@ -109,4 +109,20 @@ return {
         },
     }, -- Go LSP
     jdtls = true, -- java
+    -- sqlls = true,
+    -- sqls = {
+    --     on_attach = function(client, bufnr)
+    --         require('sqls').on_attach(client, bufnr)
+    --     end,
+    --     settings = {
+    --         sqls = {
+    --             connections = {
+    --                 {
+    --                     driver = 'sqlite3',
+    --                     dataSourceName = '/home/kyren/projects/eko/server.db',
+    --                 },
+    --             },
+    --         },
+    --     },
+    -- },
 }
