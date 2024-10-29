@@ -29,10 +29,10 @@ local keymaps = {
     { 'n', 'R', '<cmd>Lspsaga rename<cr>', { desc = '[R]ename' } },
     { { 'n', 'i' }, '<M-Enter>', '<cmd>Lspsaga code_action<cr>', { desc = 'Code Actions' } },
     { 'n', '<leader>ca', '<cmd>Lspsaga code_action<cr><Esc>', { desc = '[C]ode [A]ctions' } },
-    { 'n', 'ge', next_diagnostic(severity.ERROR), { desc = '[G]oto [E]rror' } },
-    { 'n', 'gE', prev_diagnostic(severity.ERROR), { desc = '[G]oto [E]rror (prev)' } },
-    { 'n', 'gw', next_diagnostic(severity.ERROR), { desc = '[G]oto [W]arning' } },
-    { 'n', 'gW', prev_diagnostic(severity.ERROR), { desc = '[G]oto [W]arning (prev)' } },
+    { 'n', '<leader>e', next_diagnostic(severity.ERROR), { desc = 'Goto [E]rror' } },
+    { 'n', '<leader>E', prev_diagnostic(severity.ERROR), { desc = 'Goto [E]rror (prev)' } },
+    { 'n', '<leader>w', next_diagnostic(severity.WARN), { desc = 'Goto [W]arning' } },
+    { 'n', '<leader>W', prev_diagnostic(severity.WARN), { desc = 'Goto [W]arning (prev)' } },
     { 'n', '<leader>D', cursor_diagnostics, { desc = '[D]iagnostics under cursor' } },
 }
 
