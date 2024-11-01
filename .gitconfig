@@ -1,12 +1,10 @@
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [user]
 	name = Kyren223
-	email = ulmliad223@gmail.com
+	email = Kyren223@proton.me
 [init]
 	defaultBranch = master
 [pull]
