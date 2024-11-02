@@ -23,11 +23,13 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Zsh plugins
+zinit ice depth=1 wait lucid && zinit light jeffreytse/zsh-vi-mode
 zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid && zinit light zsh-users/zsh-completions
 zinit ice wait lucid && zinit light Aloxaf/fzf-tab
-zinit ice wait lucid atload'_zsh_autosuggest_start && bindkey "^y" autosuggest-accept' && zinit light zsh-users/zsh-autosuggestions
-zinit ice depth=1 wait lucid && zinit light jeffreytse/zsh-vi-mode
+zinit ice wait lucid atload'_zsh_autosuggest_start && bindkey "^y" autosuggest-accept'
+zinit light zsh-users/zsh-autosuggestions
+zvm_after_init_commands+=('bindkey "^y" autosuggest-accept')
 
 # # Zsh snippets
 zinit ice wait lucid && zinit snippet OMZP::git
@@ -47,10 +49,8 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 # zinit load zdharma-continuum/null
 
 # # Shell integrations
-zinit ice wait lucid atload"source <(fzf --zsh)"
-zinit load zdharma-continuum/null
-zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"'
-zinit load zdharma-continuum/null
+zvm_after_init_commands+=('source <(fzf --zsh)')
+zvm_after_init_commands+=('eval "$(zoxide init --cmd cd zsh)"')
 
 # # Fat cursor
 # function zle-line-init {
@@ -58,9 +58,9 @@ zinit load zdharma-continuum/null
 # }
 # zle -N zle-line-init
 
-# # Keybindings
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+# Keybindings
+# bindkey '^p' history-search-backward
+# bindkey '^n' history-search-forward
 
 # # History
 HISTSIZE=5000
