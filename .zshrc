@@ -26,7 +26,7 @@ autoload -Uz _zinit
 zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid && zinit light zsh-users/zsh-completions
 zinit ice wait lucid && zinit light Aloxaf/fzf-tab
-# zinit ice atload'_zsh_autosuggest_start' && zinit light zsh-users/zsh-autosuggestions # WARNING: EXPENSIVE
+zinit ice wait lucid atload'_zsh_autosuggest_start' && zinit light zsh-users/zsh-autosuggestions
 zinit ice depth=1 wait lucid && zinit light jeffreytse/zsh-vi-mode
 
 # # Zsh snippets
