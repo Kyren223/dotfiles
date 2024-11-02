@@ -49,7 +49,9 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 # zinit load zdharma-continuum/null
 
 # # Shell integrations
-zvm_after_init_commands+=('source <(fzf --zsh)')
+zinit ice wait lucid atload'source <(fzf --zsh)' && zinit load zdharma-continuum/null
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source <(fzf --zsh)')
+zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"' && zinit load zdharma-continuum/null
 zvm_after_init_commands+=('eval "$(zoxide init --cmd cd zsh)"')
 
 # # Fat cursor
@@ -113,4 +115,4 @@ if [ -z "$TMUX" ]; then
 fi
 
 END_TIME=$(date +%s.%3N)
-# echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
+echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
