@@ -1,7 +1,9 @@
 return {
     'lewis6991/gitsigns.nvim',
     cmd = 'Gitsigns',
-    event = 'VeryLazy',
+    -- INFO: lazy loading seems to have some issues so I am trying to load it on buffer load
+    -- event = 'VeryLazy',
+    event = { 'BufReadPre', 'BufNewFile'},
     config = function()
         require('gitsigns').setup()
 
