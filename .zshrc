@@ -99,6 +99,7 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
 # Exports
+export COLORTERM=truecolor
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
@@ -115,4 +116,4 @@ if [ -z "$TMUX" ]; then
 fi
 
 END_TIME=$(date +%s.%3N)
-echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
+# echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
