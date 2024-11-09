@@ -117,3 +117,11 @@ fi
 
 END_TIME=$(date +%s.%3N)
 # echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
+
+# pnpm
+export PNPM_HOME="/home/kyren/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
