@@ -63,6 +63,8 @@ return {
     html = true, -- html
     cssls = true, -- css
     ts_ls = true, -- javascript/typescript
+    astro = true, -- astro framework
+    mdx_analyzer = true, -- markdown with JS I think
     -- marksman = true, -- Markdown LSP
     markdown_oxide = true, -- Markdown LSP but better
     gopls = {
