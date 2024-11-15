@@ -4,6 +4,9 @@ START_TIME=$(date +%s.%3N)
 mkdir -p /tmp
 export TMUX_TMPDIR='/tmp'
 
+# Start ssh-agent if not running
+eval $(keychain --quiet)
+
 # Enable rustup tab completion for zsh - https://rust-lang.github.io/rustup/installation/index.html
 rustup completions zsh > ~/.zfunc/_rustup
 fpath+=~/.zfunc
