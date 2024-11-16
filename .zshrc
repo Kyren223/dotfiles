@@ -23,13 +23,11 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Zsh plugins
-zinit ice depth=1 wait lucid && zinit light jeffreytse/zsh-vi-mode
 zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid && zinit light zsh-users/zsh-completions
 zinit ice wait lucid && zinit light Aloxaf/fzf-tab
 zinit ice wait lucid atload'_zsh_autosuggest_start && bindkey "^y" autosuggest-accept'
 zinit light zsh-users/zsh-autosuggestions
-zvm_after_init_commands+=('bindkey "^y" autosuggest-accept')
 
 # # Zsh snippets
 zinit ice wait lucid && zinit snippet OMZP::git
@@ -50,22 +48,15 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 
 # # Shell integrations
 zinit ice wait lucid atload'source <(fzf --zsh)' && zinit load zdharma-continuum/null
-zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source <(fzf --zsh)')
 zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"' && zinit load zdharma-continuum/null
-zvm_after_init_commands+=('eval "$(zoxide init --cmd cd zsh)"')
-
-# # Fat cursor
-# function zle-line-init {
-#     echo -ne '\e[2 q'
-# }
-# zle -N zle-line-init
 
 # Keybindings
-# bindkey '^p' history-search-backward
-# bindkey '^n' history-search-forward
+bindkey -v # Vim Mode
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
 # # History
-HISTSIZE=5000
+HISTSIZE=10000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
@@ -81,28 +72,18 @@ setopt hist_find_no_dups
 alias nvim='nvim.sh'
 alias cat='bat'
 alias ls='eza'
-alias lsv='eza -lah' # v for verbose
 alias tree='eza --tree'
 alias c='clear'
-alias q='exit'
-alias ':q'='exit'
 alias vim='nvim'
-alias sqlite3='sqlite3 --box'
 alias gs='git status'
 alias python='python3.12'
 alias py='python'
-
-alias ivm='vim'
-alias dc='cd'
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
 # Exports
 export COLORTERM=truecolor
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/scripts:$PATH"
 export EDITOR=nvim
 export PAGER=nvimpager
 export FZF_DEFAULT_OPTS=" \
@@ -110,13 +91,9 @@ export FZF_DEFAULT_OPTS=" \
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
-# Open tmux if it's not open
-if [ -z "$TMUX" ]; then
-    tmux a || tmux
-fi
-
-END_TIME=$(date +%s.%3N)
-# echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
 
 # pnpm
 export PNPM_HOME="/home/kyren/.local/share/pnpm"
@@ -128,3 +105,11 @@ esac
 
 # Start ssh-agent if not running
 eval $(keychain --quiet --eval --timeout 180 ~/.ssh/id_ed25519)
+
+# Open tmux if it's not open
+if [ -z "$TMUX" ]; then
+    tmux a || tmux
+fi
+
+END_TIME=$(date +%s.%3N)
+# echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
