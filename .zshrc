@@ -127,5 +127,4 @@ esac
 # pnpm end
 
 # Start ssh-agent if not running
-eval $(keychain --quiet --eval --timeout 10 ~/.ssh/id_ed25519)
-
+eval $(keychain --quiet --eval --timeout 180 ~/.ssh/id_ed25519)
