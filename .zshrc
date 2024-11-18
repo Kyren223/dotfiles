@@ -1,12 +1,4 @@
 START_TIME=$(date +%s.%3N)
-# 
-# #  Fix for tmux on openSuse with WSL2
-# mkdir -p /tmp
-# export TMUX_TMPDIR='/tmp'
-# 
-# # Enable rustup tab completion for zsh - https://rust-lang.github.io/rustup/installation/index.html
-# rustup completions zsh > ~/.zfunc/_rustup
-# fpath+=~/.zfunc
 
 # Install zinit if missing
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -26,13 +18,9 @@ autoload -Uz _zinit
 zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid && zinit light zsh-users/zsh-completions
 zinit ice wait lucid && zinit light Aloxaf/fzf-tab
+zinit ice wait lucid && zinit snippet OMZP::command-not-found
 zinit ice wait lucid atload'_zsh_autosuggest_start && bindkey "^y" autosuggest-accept'
 zinit light zsh-users/zsh-autosuggestions
-
-# Zsh snippets
-zinit ice wait lucid && zinit snippet OMZP::git
-# zinit ice wait lucid && zinit snippet OMZP::sudo
-# zinit ice wait lucid && zinit snippet OMZP::command-not-found
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -43,8 +31,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
 
 # Load oh my posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
-# zinit ice wait atload"eval '$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)'"
-# zinit load zdharma-continuum/null
 
 # Shell integrations
 zinit ice wait lucid atload'source <(fzf --zsh)' && zinit load zdharma-continuum/null
@@ -67,24 +53,16 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-# 
-# # Aliases
-# alias nvim='nvim.sh'
-# alias cat='bat'
+
+# Aliases
+alias cat='bat'
 alias ls='eza'
 alias tree='eza --tree'
 alias c='clear'
 alias vim='nvim'
 alias gs='git status'
-# alias python='python3.12'
-# alias py='python'
-# 
-# alias pbcopy='xclip -selection clipboard'
-# alias pbpaste='xclip -selection clipboard -o'
-# 
-# # Exports
-# export COLORTERM=truecolor
-# export EDITOR=nvim
+
+export EDITOR=nvim
 # export PAGER=nvimpager
 export FZF_DEFAULT_OPTS=" \
     --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
@@ -102,7 +80,7 @@ export FZF_DEFAULT_OPTS=" \
 #   *) export PATH="$PNPM_HOME:$PATH" ;;
 # esac
 # # pnpm end
-# 
+
 # Start ssh-agent if not running
 eval $(keychain --quiet --eval --timeout 300 ~/.ssh/id_ed25519)
 

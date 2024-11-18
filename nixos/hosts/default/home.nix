@@ -33,6 +33,7 @@
     tmux
     bc
     keychain
+    bat
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -80,7 +81,6 @@
   #  /etc/profiles/per-user/kyren/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "vim";
   };
 
   # Let Home Manager install and manage itself.
