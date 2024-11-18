@@ -103,8 +103,8 @@ export FZF_DEFAULT_OPTS=" \
 # esac
 # # pnpm end
 # 
-# # Start ssh-agent if not running
-# eval $(keychain --quiet --eval --timeout 180 ~/.ssh/id_ed25519)
+# Start ssh-agent if not running
+eval $(keychain --quiet --eval --timeout 300 ~/.ssh/id_ed25519)
 
 # # Open tmux if it's not open
 # if [ -z "$TMUX" ]; then
