@@ -12,7 +12,7 @@
 	rebase = true
 [core]
 	editor = nvim
-	pager = delta --syntax-theme='Monokai Extended'
+	pager = nvim -R
 [interactive]
 	diffFilter = delta --color-only
 [delta]
@@ -21,3 +21,5 @@
 	gpgSign = true
 [gpg]
 	format = ssh
+[color]
+	pager = no

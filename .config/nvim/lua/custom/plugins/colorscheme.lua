@@ -10,5 +10,5 @@ return {
             vim.cmd.colorscheme('carbonight')
         end,
     },
-    { dir = '~/projects/carbonight' },
+    { dir = '~/projects/carbonight.nvim' },
 }
