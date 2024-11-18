@@ -1,12 +1,12 @@
 START_TIME=$(date +%s.%3N)
-
-# Fix for tmux on openSuse with WSL2
-mkdir -p /tmp
-export TMUX_TMPDIR='/tmp'
-
-# Enable rustup tab completion for zsh - https://rust-lang.github.io/rustup/installation/index.html
-rustup completions zsh > ~/.zfunc/_rustup
-fpath+=~/.zfunc
+# 
+# #  Fix for tmux on openSuse with WSL2
+# mkdir -p /tmp
+# export TMUX_TMPDIR='/tmp'
+# 
+# # Enable rustup tab completion for zsh - https://rust-lang.github.io/rustup/installation/index.html
+# rustup completions zsh > ~/.zfunc/_rustup
+# fpath+=~/.zfunc
 
 # Install zinit if missing
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -29,10 +29,10 @@ zinit ice wait lucid && zinit light Aloxaf/fzf-tab
 zinit ice wait lucid atload'_zsh_autosuggest_start && bindkey "^y" autosuggest-accept'
 zinit light zsh-users/zsh-autosuggestions
 
-# # Zsh snippets
+# Zsh snippets
 zinit ice wait lucid && zinit snippet OMZP::git
-zinit ice wait lucid && zinit snippet OMZP::sudo
-zinit ice wait lucid && zinit snippet OMZP::command-not-found
+# zinit ice wait lucid && zinit snippet OMZP::sudo
+# zinit ice wait lucid && zinit snippet OMZP::command-not-found
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -46,16 +46,16 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 # zinit ice wait atload"eval '$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)'"
 # zinit load zdharma-continuum/null
 
-# # Shell integrations
+# Shell integrations
 zinit ice wait lucid atload'source <(fzf --zsh)' && zinit load zdharma-continuum/null
 zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"' && zinit load zdharma-continuum/null
 
-# Keybindings
+# # Keybindings
 bindkey -v # Vim Mode
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
-# # History
+# History
 HISTSIZE=10000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
@@ -67,49 +67,49 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-
-# Aliases
-alias nvim='nvim.sh'
-alias cat='bat'
+# 
+# # Aliases
+# alias nvim='nvim.sh'
+# alias cat='bat'
 alias ls='eza'
 alias tree='eza --tree'
 alias c='clear'
 alias vim='nvim'
 alias gs='git status'
-alias python='python3.12'
-alias py='python'
-
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
-
-# Exports
-export COLORTERM=truecolor
-export EDITOR=nvim
-export PAGER=nvimpager
+# alias python='python3.12'
+# alias py='python'
+# 
+# alias pbcopy='xclip -selection clipboard'
+# alias pbpaste='xclip -selection clipboard -o'
+# 
+# # Exports
+# export COLORTERM=truecolor
+# export EDITOR=nvim
+# export PAGER=nvimpager
 export FZF_DEFAULT_OPTS=" \
     --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/scripts:$PATH"
+# export GOPATH="$HOME/go"
+# export PATH="$GOPATH/bin:$PATH"
+# export PATH="$HOME/scripts:$PATH"
+# 
+# # pnpm
+# export PNPM_HOME="/home/kyren/.local/share/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
+# # pnpm end
+# 
+# # Start ssh-agent if not running
+# eval $(keychain --quiet --eval --timeout 180 ~/.ssh/id_ed25519)
 
-# pnpm
-export PNPM_HOME="/home/kyren/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+# # Open tmux if it's not open
+# if [ -z "$TMUX" ]; then
+#     tmux a || tmux
+# fi
 
-# Start ssh-agent if not running
-eval $(keychain --quiet --eval --timeout 180 ~/.ssh/id_ed25519)
-
-# Open tmux if it's not open
-if [ -z "$TMUX" ]; then
-    tmux a || tmux
-fi
-
-END_TIME=$(date +%s.%3N)
-# echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
+END_TIME=$(date +%s.%4N)
+echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"

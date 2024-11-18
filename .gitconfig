@@ -1,5 +1,5 @@
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/etc/profiles/per-user/kyren/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [user]
