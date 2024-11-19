@@ -119,6 +119,8 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  security.sudo.wheelNeedsPassword = false;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
