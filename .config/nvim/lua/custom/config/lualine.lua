@@ -55,7 +55,7 @@ lualine.setup({
     sections = {
         lualine_a = { { 'mode', icon = '' } },
         lualine_b = {
-            require('auto-session.lib').current_session_name,
+            -- require('auto-session.lib').current_session_name,
             { 'branch', icon = '' },
             {
                 'diagnostics',

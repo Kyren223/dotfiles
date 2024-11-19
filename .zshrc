@@ -18,7 +18,6 @@ autoload -Uz _zinit
 zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid && zinit light zsh-users/zsh-completions
 zinit ice wait lucid && zinit light Aloxaf/fzf-tab
-zinit ice wait lucid && zinit snippet OMZP::command-not-found
 zinit ice wait lucid atload'_zsh_autosuggest_start && bindkey "^y" autosuggest-accept'
 zinit light zsh-users/zsh-autosuggestions
 
@@ -60,7 +59,14 @@ alias ls='eza'
 alias tree='eza --tree'
 alias c='clear'
 alias vim='nvim'
+
+# Git Aliases
 alias gs='git status'
+alias gp='git push'
+alias gP='git pull'
+alias gl='git log --oneline --decorate'
+alias gc='git commit'
+alias ga='git add'
 
 export EDITOR=nvim
 export PAGER='nvim -R'
