@@ -1,9 +1,9 @@
-APP=$1
-WID=$(xdotool search --class "$APP" | head -n 1)
-
-if [ -z "$WID" ]; then
-    nohup $APP &>/dev/null &
+if xdotool search --class "firefox" getwindowname %@ | grep -q "firefox"; then
+if xdotool search --onlyvisible --class "firefox" windowactivate %@; then
+    echo "firefox is focused. Minimizing."
+    xdotool search --onlyvisible --class "firefox" windowminimize %@
 else
-    xdotool windowactivate "$WID"
+    echo "firefox is open but not focused. Focusing the existing instance."
+    xdotool search --class "firefox" windowactivate %@
 fi
 

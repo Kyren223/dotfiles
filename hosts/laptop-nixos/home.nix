@@ -23,6 +23,8 @@
     stow
     eza
     oh-my-posh
+    gcc
+    gnumake
     neovim
     fzf
     zoxide
@@ -31,13 +33,13 @@
     keychain
     bat
     sqlite
-    clang
     fd
     ripgrep
     wakatime-cli
     wmctrl
     xdotool
-    make
+    jumpapp
+    vimPlugins.telescope-fzf-native-nvim
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
@@ -56,6 +58,9 @@
     # '';
   };
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
