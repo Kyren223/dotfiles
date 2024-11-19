@@ -68,6 +68,8 @@ alias gl='git log --oneline --decorate'
 alias gc='git commit'
 alias ga='git add'
 
+# Env vars
+export FLAKE=~/dotfiles/
 export EDITOR=nvim
 export PAGER='nvim -R'
 export MANPAGER='nvim +Man!'
