@@ -14,6 +14,7 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     keepassxc
     discord
     git
@@ -36,11 +37,7 @@
     fd
     ripgrep
     wakatime-cli
-    wmctrl
-    xdotool
-    jumpapp
-    vimPlugins.telescope-fzf-native-nvim
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    fastfetch
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
