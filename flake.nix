@@ -19,10 +19,10 @@
     in
     {
     nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem {
+      laptop-nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs pkgs;};
         modules = [
-          ./hosts/default/configuration.nix
+          ./hosts/laptop-nixos/configuration.nix
         ];
       };
     };

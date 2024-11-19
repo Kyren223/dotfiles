@@ -83,6 +83,7 @@
   #  /etc/profiles/per-user/kyren/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
+        FLAKE = ~/dotfiles/
   };
 
   # Let Home Manager install and manage itself.
