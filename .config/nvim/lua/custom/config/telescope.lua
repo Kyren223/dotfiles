@@ -18,8 +18,8 @@ telescope.setup({
     },
 })
 
--- pcall(telescope.load_extension('ui-select'))
--- pcall(telescope.load_extension('fzf'))
+pcall(telescope.load_extension('ui-select'))
+pcall(telescope.load_extension('fzf'))
 
 local builtin = require('telescope.builtin')
 local function find_all()

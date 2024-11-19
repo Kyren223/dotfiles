@@ -35,6 +35,9 @@
     fd
     ripgrep
     wakatime-cli
+    wmctrl
+    xdotool
+    make
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
