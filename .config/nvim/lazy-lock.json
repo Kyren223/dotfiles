@@ -2,6 +2,7 @@
   "Comment.nvim": { "branch": "fix-inline-visual-linewise-comment", "commit": "01019c2889fa6c63a80a223c55c1d28999b5c959" },
   "LuaSnip": { "branch": "master", "commit": "4bf40748f6fe939bdcb69325918535b1c5edea51" },
   "alpha-nvim": { "branch": "main", "commit": "bf3c8bb8c02ed3d9644cc5bbc48e2bdc39349cd7" },
+  "auto-save.nvim": { "branch": "main", "commit": "5fbcaac0a2698c87a9a1bd2083cb6949505cca12" },
   "auto-session": { "branch": "main", "commit": "542d338ec5ee027638c8e076110b188a465b45d2" },
   "buffer-vacuum": { "branch": "main", "commit": "9ec0ea4ee93bb1faa0419d6890daf9e45c436ea6" },
   "buffer_manager.nvim": { "branch": "main", "commit": "fd36131b2b3e0f03fd6353ae2ffc88cf920b3bbb" },
