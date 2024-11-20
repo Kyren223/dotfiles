@@ -3,27 +3,27 @@ return {
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
-        { '<leader>ft', '<cmd>FormatToggle<cr>', desc = '[F]ormat [T]oggle Globally' },
+        { '<leader>ft', '<cmd>FormatToggle<cr>',  desc = '[F]ormat [T]oggle Globally' },
         { '<leader>fT', '<cmd>FormatToggle!<cr>', desc = '[F]ormat [T]oggle Locally' },
-        { '<leader>ff', '<cmd>Format<cr>', desc = '[F]ormat [F]ile' },
-        { '<leader>f', '<cmd>Format<cr><esc>', desc = '[F]ormat', mode = 'v' },
+        { '<leader>ff', '<cmd>Format<cr>',        desc = '[F]ormat [F]ile' },
+        { '<leader>f',  '<cmd>Format<cr><esc>',   desc = '[F]ormat',                  mode = 'v' },
     },
     ---@module "conform"
     ---@type conform.setupOpts
     opts = {
         formatters_by_ft = {
-            -- ['lua'] = { 'stylua' },
+            ['lua'] = { 'stylua' },
             -- ['c'] = { 'clang-format' },
             -- ['python'] = { 'isort', 'black' },
             -- ['rust'] = { 'rustfmt' },
-            -- ['go'] = { 'gofumpt', 'goimports-reviser' },
-            -- ['markdown'] = { 'prettierd', 'prettier', stop_after_first = true },
-            -- ['yaml'] = { 'prettierd' },
-            -- ['json'] = { 'jq' },
-            -- ['html'] = { 'prettierd', 'prettier', stop_after_first = true },
-            -- ['css'] = { 'prettierd', 'prettier', stop_after_first = true },
-            -- ['javascript'] = { 'prettierd', 'prettier', stop_after_first = true },
-            -- ['typescript'] = { 'prettierd', 'prettier', stop_after_first = true },
+            ['go'] = { 'gofumpt', 'goimports-reviser' },
+            ['markdown'] = { 'prettierd', 'prettier', stop_after_first = true },
+            ['yaml'] = { 'prettierd' },
+            ['json'] = { 'jq' },
+            ['html'] = { 'prettierd', 'prettier', stop_after_first = true },
+            ['css'] = { 'prettierd', 'prettier', stop_after_first = true },
+            ['javascript'] = { 'prettierd', 'prettier', stop_after_first = true },
+            ['typescript'] = { 'prettierd', 'prettier', stop_after_first = true },
         },
         format_on_save = function(bufnr)
             -- Disable with a global or buffer local variable

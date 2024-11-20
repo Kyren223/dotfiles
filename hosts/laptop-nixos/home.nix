@@ -42,6 +42,10 @@
     protonvpn-gui
     unzip
     nvimpager
+    go
+    pnpm
+    nodejs_23
+    python3Full
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -62,6 +66,7 @@
   home.sessionPath = [
     "$HOME/.local/bin"
   ];
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

@@ -55,61 +55,61 @@ return {
     --         },
     --     },
     -- }, -- python
-    -- bashls = true, -- bash
-    -- taplo = true, -- toml
-    -- lemminx = true, -- xml
-    -- yamlls = true, -- yaml
-    -- jsonls = true, -- json
-    -- html = true, -- html
-    -- cssls = true, -- css
-    -- ts_ls = true, -- javascript/typescript
-    -- astro = true, -- astro framework
-    -- mdx_analyzer = true, -- markdown with JS I think
+    bashls = true,       -- bash
+    taplo = true,        -- toml
+    lemminx = true,      -- xml
+    yamlls = true,       -- yaml
+    jsonls = true,       -- json
+    html = true,         -- html
+    cssls = true,        -- css
+    ts_ls = true,        -- javascript/typescript
+    astro = true,        -- astro framework
+    mdx_analyzer = true, -- markdown with JS I think
     -- marksman = true, -- Markdown LSP
     -- markdown_oxide = true, -- Markdown LSP but better
-    -- gopls = {
-    --     cmd = { 'gopls' },
-    --     filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-    --     root_dir = function(filename)
-    --         return require('lspconfig/util').root_pattern('go.work', 'go.mod', '.git')(filename)
-    --     end,
-    --     settings = {
-    --         gopls = {
-    --             gofumpt = true,
-    --             codelenses = {
-    --                 gc_details = false,
-    --                 generate = true,
-    --                 regenerate_cgo = true,
-    --                 run_govulncheck = true,
-    --                 test = true,
-    --                 tidy = true,
-    --                 upgrade_dependency = true,
-    --                 vendor = true,
-    --             },
-    --             hints = {
-    --                 assignVariableTypes = false,
-    --                 compositeLiteralFields = false,
-    --                 compositeLiteralTypes = true,
-    --                 constantValues = true,
-    --                 functionTypeParameters = false,
-    --                 parameterNames = false,
-    --                 rangeVariableTypes = true,
-    --             },
-    --             analyses = {
-    --                 fieldalignment = true,
-    --                 nilness = true,
-    --                 unusedparams = true,
-    --                 unusedwrite = true,
-    --                 useany = true,
-    --             },
-    --             usePlaceholders = false,
-    --             completeUnimported = true,
-    --             staticcheck = true,
-    --             directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
-    --             semanticTokens = true,
-    --         },
-    --     },
-    -- }, -- Go LSP
+    gopls = {
+        cmd = { 'gopls' },
+        filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+        root_dir = function(filename)
+            return require('lspconfig/util').root_pattern('go.work', 'go.mod', '.git')(filename)
+        end,
+        settings = {
+            gopls = {
+                gofumpt = true,
+                codelenses = {
+                    gc_details = false,
+                    generate = true,
+                    regenerate_cgo = true,
+                    run_govulncheck = true,
+                    test = true,
+                    tidy = true,
+                    upgrade_dependency = true,
+                    vendor = true,
+                },
+                hints = {
+                    assignVariableTypes = false,
+                    compositeLiteralFields = false,
+                    compositeLiteralTypes = true,
+                    constantValues = true,
+                    functionTypeParameters = false,
+                    parameterNames = false,
+                    rangeVariableTypes = true,
+                },
+                analyses = {
+                    fieldalignment = true,
+                    nilness = true,
+                    unusedparams = true,
+                    unusedwrite = true,
+                    useany = true,
+                },
+                usePlaceholders = false,
+                completeUnimported = true,
+                staticcheck = true,
+                directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
+                semanticTokens = true,
+            },
+        },
+    }, -- Go LSP
     -- jdtls = true, -- java
     -- sqlls = true,
     -- sqls = {
