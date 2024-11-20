@@ -47,6 +47,7 @@
     nodejs_23
     python3Full
     watchexec
+    golangci-lint
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
