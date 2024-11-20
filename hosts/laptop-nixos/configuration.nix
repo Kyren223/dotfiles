@@ -65,6 +65,9 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Enable dynamic linking of applications that are not in nixpkgs (for vim LSPs for example).
+  programs.nix-ld.enable = true;
+
   # Allow sudo without a password if in "wheel" group.
   security.sudo.wheelNeedsPassword = false;
 
