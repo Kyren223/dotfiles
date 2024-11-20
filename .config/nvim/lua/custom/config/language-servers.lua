@@ -1,18 +1,18 @@
 -- NOTE: a table or true to enable, false to disable
 return {
-    -- lua_ls = {
-    --     settings = {
-    --         diagnostics = { globals = { 'vim' } },
-    --         telemetry = { enabled = false },
-    --         hint = { enable = true },
-    --         workspace = {
-    --             library = {
-    --                 [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-    --                 [vim.fn.stdpath('config') .. '/lua'] = true,
-    --             },
-    --         },
-    --     },
-    -- }, -- lua
+    lua_ls = {
+        settings = {
+            diagnostics = { globals = { 'vim' } },
+            telemetry = { enabled = false },
+            hint = { enable = true },
+            workspace = {
+                library = {
+                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                    [vim.fn.stdpath('config') .. '/lua'] = true,
+                },
+            },
+        },
+    }, -- lua
     -- clangd = {
     --     cmd = {
     --         'clangd',
@@ -65,7 +65,7 @@ return {
     -- ts_ls = true, -- javascript/typescript
     -- astro = true, -- astro framework
     -- mdx_analyzer = true, -- markdown with JS I think
-    -- -- marksman = true, -- Markdown LSP
+    -- marksman = true, -- Markdown LSP
     -- markdown_oxide = true, -- Markdown LSP but better
     -- gopls = {
     --     cmd = { 'gopls' },
@@ -111,20 +111,20 @@ return {
     --     },
     -- }, -- Go LSP
     -- jdtls = true, -- java
-    -- -- sqlls = true,
-    -- -- sqls = {
-    -- --     on_attach = function(client, bufnr)
-    -- --         require('sqls').on_attach(client, bufnr)
-    -- --     end,
-    -- --     settings = {
-    -- --         sqls = {
-    -- --             connections = {
-    -- --                 {
-    -- --                     driver = 'sqlite3',
-    -- --                     dataSourceName = '/home/kyren/projects/eko/server.db',
-    -- --                 },
-    -- --             },
-    -- --         },
-    -- --     },
-    -- -- },
+    -- sqlls = true,
+    -- sqls = {
+    --     on_attach = function(client, bufnr)
+    --         require('sqls').on_attach(client, bufnr)
+    --     end,
+    --     settings = {
+    --         sqls = {
+    --             connections = {
+    --                 {
+    --                     driver = 'sqlite3',
+    --                     dataSourceName = '/home/kyren/projects/eko/server.db',
+    --                 },
+    --             },
+    --         },
+    --     },
+    -- },
 }

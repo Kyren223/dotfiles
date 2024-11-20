@@ -71,7 +71,7 @@ alias ga='git add'
 # Env vars
 export FLAKE=~/dotfiles/
 export EDITOR=nvim
-export PAGER='nvim -R'
+export PAGER=nvimpager
 export MANPAGER='nvim +Man!'
 export FZF_DEFAULT_OPTS=" \
     --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \

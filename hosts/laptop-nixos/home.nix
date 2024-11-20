@@ -40,6 +40,8 @@
     fastfetch
     btop
     protonvpn-gui
+    unzip
+    nvimpager
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
