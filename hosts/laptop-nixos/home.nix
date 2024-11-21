@@ -49,8 +49,8 @@
     watchexec
     golangci-lint
     kdePackages.kdialog
-    xclip
     libnotify
+    wl-clipboard
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

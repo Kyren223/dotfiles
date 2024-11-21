@@ -54,7 +54,6 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Aliases
-# alias cat='bat'
 alias ls='eza'
 alias tree='eza --tree'
 alias c='clear'
@@ -78,25 +77,24 @@ export FZF_DEFAULT_OPTS=" \
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
-# export GOPATH="$HOME/go"
-# export PATH="$GOPATH/bin:$PATH"
-# export PATH="$HOME/scripts:$PATH"
-# 
-# # pnpm
-# export PNPM_HOME="/home/kyren/.local/share/pnpm"
-# case ":$PATH:" in
-#   *":$PNPM_HOME:"*) ;;
-#   *) export PATH="$PNPM_HOME:$PATH" ;;
-# esac
-# # pnpm end
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/kyren/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # Start ssh-agent if not running
 eval $(keychain --quiet --eval --timeout 300 ~/.ssh/id_ed25519)
 
-# # Open tmux if it's not open
-# if [ -z "$TMUX" ]; then
-#     tmux a || tmux
-# fi
+# Open tmux if it's not open
+if [ -z "$TMUX" ]; then
+    tmux a || tmux
+fi
 
 END_TIME=$(date +%s.%4N)
 echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
