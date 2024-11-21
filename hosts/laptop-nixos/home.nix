@@ -48,6 +48,9 @@
     python3Full
     watchexec
     golangci-lint
+    kdePackages.kdialog
+    xclip
+    libnotify
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

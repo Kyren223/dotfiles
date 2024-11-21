@@ -109,6 +109,29 @@
   # Services
   services.openssh.enable = true;
 
+  # battery levels notifier
+  systemd.timers."battery-notifier" = {
+    wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "1m";
+        OnUnitActiveSec = "1m";
+        Unit = "battery-notifier.service";
+      };
+  };
+
+  systemd.services."battery-notifier" = {
+    script = ''
+      set -eu
+      export DISPLAY=:0.0
+      touch $HOME/Desktop/EEEEEEE
+      $HOME/scripts/battery_notifier.sh
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "kyren";
+    };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

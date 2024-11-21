@@ -54,7 +54,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Aliases
-alias cat='bat'
+# alias cat='bat'
 alias ls='eza'
 alias tree='eza --tree'
 alias c='clear'
