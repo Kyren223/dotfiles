@@ -48,7 +48,6 @@
     python3Full
     watchexec
     golangci-lint
-    kdePackages.kdialog
     libnotify
     wl-clipboard
   ];

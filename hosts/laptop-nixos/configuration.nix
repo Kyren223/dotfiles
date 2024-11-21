@@ -120,12 +120,7 @@
   };
 
   systemd.services."battery-notifier" = {
-    script = ''
-      set -eu
-      export DISPLAY=:0.0
-      touch $HOME/Desktop/EEEEEEE
-      $HOME/scripts/battery_notifier.sh
-    '';
+    script = "$HOME/scripts/battery_notifier.sh";
     serviceConfig = {
       Type = "oneshot";
       User = "kyren";
