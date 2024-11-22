@@ -50,6 +50,11 @@
     golangci-lint
     libnotify
     wl-clipboard
+    openssl
+    whatsapp-for-linux
+    whatsie
+    libratbag
+    piper
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
