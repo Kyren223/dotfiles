@@ -109,6 +109,9 @@
   # Services
   services.openssh.enable = true;
 
+  # Mouse config service (used with piper)
+  services.ratbagd.enable = true;
+
   # battery levels notifier
   systemd.timers."battery-notifier" = {
     wantedBy = [ "timers.target" ];
