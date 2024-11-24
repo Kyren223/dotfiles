@@ -57,6 +57,11 @@
     piper
     goose
     sqlc
+    jetbrains.idea-community
+    jdk17
+    jdk
+    maven
+    gradle
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
