@@ -92,12 +92,15 @@ esac
 eval $(keychain --quiet --eval --timeout 300 ~/.ssh/id_ed25519)
 
 # Open tmux if it's not open
-if [ -z "$TMUX" ]; then
-    tmux a || tmux
-    # HACK: Send a notification so systemd notification will work
-    # Using tmux to only run this at startup
-    # I guess this works because it initializes some stuff?
+# if [ -z "$TMUX" ]; then
+#     tmux a || tmux
+# fi
+
+# HACK: Send a notification so systemd notification will work
+MARKER_FILE="/run/user/$(id -u)/zshrc_once_marker"
+if [ ! -f "$MARKER_FILE" ]; then
     notify-send --urgency=normal --expire-time=1 " "
+    touch "$MARKER_FILE"
 fi
 
 END_TIME=$(date +%s.%4N)
