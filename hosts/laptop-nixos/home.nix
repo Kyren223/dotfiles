@@ -64,11 +64,7 @@
     (minecraft.overrideAttrs (finalAttrs: previousAttrs: {
       meta.lib.broken = false;
     }))
-    # modrinth-app
-    # modrinth-app-unwrapped
-    fuse3
     rustup
-
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

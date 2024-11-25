@@ -98,24 +98,6 @@
   environment.systemPackages = with pkgs; [
     glib-networking
     openssl
-    openssl.dev
-
-    pkg-config
-    cairo
-    gdk-pixbuf
-
-    # For modrinth
-    cargo-tauri
-    gobject-introspection
-    at-spi2-atk
-    atkmm
-    glib
-    gtk3
-    harfbuzz
-    librsvg
-    libsoup_3
-    pango
-    webkitgtk_4_1
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
