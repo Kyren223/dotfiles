@@ -96,6 +96,26 @@
 
   # List packages installed in system profile. Use for apps that need sudo.
   environment.systemPackages = with pkgs; [
+    glib-networking
+    openssl
+    openssl.dev
+
+    pkg-config
+    cairo
+    gdk-pixbuf
+
+    # For modrinth
+    cargo-tauri
+    gobject-introspection
+    at-spi2-atk
+    atkmm
+    glib
+    gtk3
+    harfbuzz
+    librsvg
+    libsoup_3
+    pango
+    webkitgtk_4_1
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -106,7 +126,10 @@
   #   enableSSHSupport = true;
   # };
 
-  # Services
+  # Install Flatpak and Flathub
+  services.flatpak.enable = true;
+
+  # Enable openssh
   services.openssh.enable = true;
 
   # Mouse config service (used with piper)
