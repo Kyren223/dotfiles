@@ -65,6 +65,7 @@
       meta.lib.broken = false;
     }))
     rustup
+    tokei
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
