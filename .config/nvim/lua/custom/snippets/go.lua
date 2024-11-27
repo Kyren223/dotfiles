@@ -44,6 +44,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {{
 }}
 ]=]
 
+local server_api = [=[
+func {}(ctx context.Context, sess *session.Session, request packet{}) packet.Payload {{
+}}
+]=]
+
 ls.add_snippets('go', {
     s('tmod', tea_model, { i(0) }),
+    s('sapi', server_api, { i(1), i(0) }),
 })
