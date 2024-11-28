@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+sess=$1
+dir=$2
+
+if [ "$sess" = "eko" ]; then
+  tmux rename-window -t $sess:1 editor
+  tmux send-keys -t $sess:editor.1 "vim" C-m
+
+  tmux new-window -t $sess -n app -c $dir
+  tmux split-window -t $sess:app.1 -v -c $dir
+  tmux send-keys -t $sess:app.2 "watchexec --exts=go './reload.sh'" C-m
+  tmux resize-pane -Z -t $sess:app.1
+
+  tmux new-window -t $sess -n logs -c $dir
+  tmux split-window -t $sess:logs.1 -h -c $dir
+  tmux split-window -t $sess:logs.2 -v -c $dir
+  tmux send-keys -t $sess:logs.1 "tail -f messages.log" C-m
+  tmux send-keys -t $sess:logs.2 "tail -f client.log" C-m
+  tmux send-keys -t $sess:logs.3 "go run ./cmd/server --stdout" C-m
+
+  tmux select-window -t $sess:editor
+elif [[ "$dir" == "$HOME/projects/"* ]]; then
+  tmux rename-window -t $sess:1 editor
+  tmux send-keys -t $sess:editor.1 "vim" C-m
+fi

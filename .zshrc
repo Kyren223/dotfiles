@@ -79,6 +79,7 @@ export FZF_DEFAULT_OPTS=" \
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
 
 # pnpm
 export PNPM_HOME="/home/kyren/.local/share/pnpm"
