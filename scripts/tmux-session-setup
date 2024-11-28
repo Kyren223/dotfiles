@@ -3,7 +3,10 @@
 sess=$1
 dir=$2
 
-if [ "$sess" = "eko" ]; then
+if [ "$dir" = "$HOME" ]; then
+  tmux rename-window -t $sess:1 main
+  tmux send-keys -t $sess:main.1 "fastfetch" C-m
+elif [ "$sess" = "eko" ]; then
   tmux rename-window -t $sess:1 editor
   tmux send-keys -t $sess:editor.1 "vim" C-m
 

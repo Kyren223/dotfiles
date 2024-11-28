@@ -99,10 +99,10 @@ if [ ! -f "$MARKER_FILE" ]; then
   touch "$MARKER_FILE"
 fi
 
-# Open tmux if it's not open
-# if [ -z "$TMUX" ]; then
-#     tmux a || tmux
-# fi
+# Open tmux in default user session if it's not open
+if [ -z "$TMUX" ]; then
+    tms $HOME
+fi
 
 END_TIME=$(date +%s.%4N)
 echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
