@@ -2,11 +2,11 @@ START_TIME=$(date +%s.%3N)
 
 # Install zinit if missing
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+  print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+  command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+  command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+    print -P "%F{33} %F{34}Installation successful.%f%b" || \
+    print -P "%F{160} The clone has failed.%f%b"
 fi
 
 # Load Zinit
@@ -73,9 +73,9 @@ export EDITOR=nvim
 export PAGER=nvimpager
 export MANPAGER='nvim +Man!'
 export FZF_DEFAULT_OPTS=" \
-    --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-    --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
@@ -92,17 +92,17 @@ esac
 # Start ssh-agent if not running
 eval $(keychain --quiet --eval --timeout 300 ~/.ssh/id_ed25519)
 
+# HACK: Send a notification so systemd notification will work
+MARKER_FILE="/run/user/$(id -u)/zshrc_once_marker"
+if [ ! -f "$MARKER_FILE" ]; then
+  notify-send --urgency=normal --expire-time=1 " "
+  touch "$MARKER_FILE"
+fi
+
 # Open tmux if it's not open
 # if [ -z "$TMUX" ]; then
 #     tmux a || tmux
 # fi
-
-# HACK: Send a notification so systemd notification will work
-MARKER_FILE="/run/user/$(id -u)/zshrc_once_marker"
-if [ ! -f "$MARKER_FILE" ]; then
-    notify-send --urgency=normal --expire-time=1 " "
-    touch "$MARKER_FILE"
-fi
 
 END_TIME=$(date +%s.%4N)
 echo "Zsh startup time: $(echo "${END_TIME} - ${START_TIME}" | bc) seconds"
