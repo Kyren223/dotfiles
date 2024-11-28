@@ -6,6 +6,14 @@ dir=$2
 if [ "$dir" = "$HOME" ]; then
   tmux rename-window -t $sess:1 main
   tmux send-keys -t $sess:main.1 "fastfetch" C-m
+
+  tmux new-window -t $sess -n dotfiles -c $HOME/dotfiles
+  tmux send-keys -t $sess:dotfiles.1 "vim" C-m
+
+  tmux new-window -t $sess -n diary -c $HOME/personal/dairy
+  tmux send-keys -t $sess:diary.1 "vim" C-m
+
+  tmux select-window -t $sess:main
 elif [ "$sess" = "eko" ]; then
   tmux rename-window -t $sess:1 editor
   tmux send-keys -t $sess:editor.1 "vim" C-m
