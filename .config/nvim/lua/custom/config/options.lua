@@ -12,6 +12,7 @@ vim.opt.softtabstop = 4 -- number of idfk tab when editing
 vim.opt.shiftwidth = 4 -- number of spaces to insert on tab
 
 -- UI
+vim.opt.colorcolumn = '80'
 vim.opt.signcolumn = 'auto:9'
 vim.opt.number = true
 vim.opt.relativenumber = true
