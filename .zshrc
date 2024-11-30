@@ -54,8 +54,8 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Aliases
-alias ls='eza'
-alias tree='eza --tree'
+alias ls='eza --group-directories-first --across --icons'
+alias tree='eza --tree --icons'
 alias c='clear'
 alias vim='nvim'
 
