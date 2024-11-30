@@ -14,6 +14,7 @@ return {
         },
     }, -- lua
     clangd = {
+        mason = false,
         cmd = {
             'clangd',
             '--background-index',

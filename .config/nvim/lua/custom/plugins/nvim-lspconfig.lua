@@ -14,6 +14,9 @@ return {
                 local ensure_installed = vim.tbl_filter(function(key)
                     local server = language_servers[key]
                     if type(server) == 'table' then
+                        if server.mason ~= nil then
+                            return server.mason
+                        end
                         return true
                     else
                         return server
