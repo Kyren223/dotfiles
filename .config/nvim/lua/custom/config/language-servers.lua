@@ -56,15 +56,15 @@ return {
             },
         },
     }, -- python
-    bashls = true,       -- bash
-    taplo = true,        -- toml
-    lemminx = true,      -- xml
-    yamlls = true,       -- yaml
-    jsonls = true,       -- json
-    html = true,         -- html
-    cssls = true,        -- css
-    ts_ls = true,        -- javascript/typescript
-    astro = true,        -- astro framework
+    bashls = true, -- bash
+    taplo = true, -- toml
+    lemminx = true, -- xml
+    yamlls = true, -- yaml
+    jsonls = true, -- json
+    html = true, -- html
+    cssls = true, -- css
+    ts_ls = true, -- javascript/typescript
+    astro = true, -- astro framework
     mdx_analyzer = true, -- markdown with JS I think
     -- marksman = true, -- Markdown LSP
     -- markdown_oxide = true, -- Markdown LSP but better
@@ -128,4 +128,5 @@ return {
     --         },
     --     },
     -- },
+    zls = true, -- zig
 }
