@@ -111,7 +111,7 @@ return {
             },
         },
     }, -- Go LSP
-    -- jdtls = true, -- java
+    jdtls = true, -- java
     -- sqlls = true,
     -- sqls = {
     --     on_attach = function(client, bufnr)

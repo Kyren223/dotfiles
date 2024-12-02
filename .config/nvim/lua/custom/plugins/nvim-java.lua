@@ -1,5 +1,5 @@
 return {
-    -- 'nvim-java/nvim-java',
-    -- lazy = false,
-    -- opts = {}
+    'nvim-java/nvim-java',
+    lazy = false,
+    opts = {}
 }
