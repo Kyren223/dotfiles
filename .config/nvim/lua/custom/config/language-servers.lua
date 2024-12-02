@@ -128,5 +128,12 @@ return {
     --         },
     --     },
     -- },
-    zls = true, -- zig
+    zls = {
+        cmd = { 'zls' },
+        settings = {
+            zls = {
+                enable_build_on_save = true,
+            },
+        },
+    }, -- zig
 }

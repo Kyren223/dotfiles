@@ -81,6 +81,7 @@ export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.zig:$PATH"
+export PATH="$HOME/.zls:$PATH"
 
 # pnpm
 export PNPM_HOME="/home/kyren/.local/share/pnpm"
