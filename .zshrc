@@ -92,7 +92,7 @@ esac
 # pnpm end
 
 # Start ssh-agent if not running
-eval $(keychain --quiet --eval --timeout 300 ~/.ssh/id_ed25519)
+eval $(keychain --quiet --eval ~/.ssh/id_ed25519)
 
 # HACK: Send a notification so systemd notification will work
 MARKER_FILE="/run/user/$(id -u)/zshrc_once_marker"
