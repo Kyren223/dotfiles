@@ -67,6 +67,8 @@
     rustup
     tokei
     graphviz
+    kdePackages.kmines # Minesweeper for fun lol
+    kdePackages.kpat # Solitaire
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
