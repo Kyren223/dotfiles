@@ -129,6 +129,7 @@ return {
     --     },
     -- },
     zls = {
+        mason = false,
         cmd = { 'zls' },
         settings = {
             zls = {
