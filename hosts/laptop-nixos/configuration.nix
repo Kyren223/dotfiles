@@ -94,11 +94,11 @@
 
   # List packages installed in system profile. Use for apps that need sudo.
   environment.systemPackages = with pkgs; [
-    inputs.ghostty.packages.x86_64-linux.default
     glib-networking
     openssl
     clang
     clang-tools
+    inputs.ghostty.packages.x86_64-linux.default
   ];
 
   # Enable dynamic linking of applications that are not in nixpkgs (for vim LSPs for example).

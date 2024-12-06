@@ -12,15 +12,14 @@
     ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
-    {
-      nixosConfigurations = {
-        laptop-nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
-          modules = [
-            ./hosts/laptop-nixos/configuration.nix
-          ];
-        };
+  outputs = { self, nixpkgs, ... }@inputs: {
+    nixosConfigurations = {
+      laptop-nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/laptop-nixos/configuration.nix
+        ];
       };
     };
+  };
 }
