@@ -8,23 +8,19 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
-    let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
-    in
     {
-    nixosConfigurations = {
-      laptop-nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs pkgs;};
-        modules = [
-          ./hosts/laptop-nixos/configuration.nix
-        ];
+      nixosConfigurations = {
+        laptop-nixos = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [
+            ./hosts/laptop-nixos/configuration.nix
+          ];
+        };
       };
     };
-  };
 }

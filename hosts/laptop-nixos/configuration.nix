@@ -79,6 +79,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs pkgs; };
     useUserPackages = true;
+    useGlobalPkgs = true;
     users = {
       "kyren" = import ./home.nix;
     };
@@ -93,6 +94,7 @@
 
   # List packages installed in system profile. Use for apps that need sudo.
   environment.systemPackages = with pkgs; [
+    inputs.ghostty.packages.x86_64-linux.default
     glib-networking
     openssl
     clang
