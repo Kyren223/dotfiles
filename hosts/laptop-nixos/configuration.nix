@@ -79,6 +79,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs pkgs; };
     useUserPackages = true;
+    useGlobalPkgs = true;
     users = {
       "kyren" = import ./home.nix;
     };
