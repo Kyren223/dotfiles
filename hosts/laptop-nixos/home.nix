@@ -70,6 +70,7 @@
     kdePackages.kmines # Minesweeper for fun lol
     kdePackages.kpat # Solitaire 
     # btw missing the card/brick thing with weird symbols, not sure what that game was called
+    gimp
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
