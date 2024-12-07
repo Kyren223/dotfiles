@@ -1,4 +1,7 @@
-gtk-titlebar = false
+# Configure decorations
+gtk-titlebar = true
+window-decoration = false
+keybind = ctrl+w>d=toggle_window_decorations
 
 window-padding-x = 2
 window-padding-y = 0
