@@ -3,10 +3,50 @@ gtk-titlebar = true
 window-decoration = false
 keybind = ctrl+w>d=toggle_window_decorations
 
-# Makes it so vertical fits perfectly when maximized without filling gaps
-window-padding-y = 0
-adjust-cell-height = 20%
+# Window and cell sizes to look good when maximized with 128c 32r
+window-padding-x = 0
+window-padding-y = 3,0
+adjust-cell-height = -1
+adjust-cell-width = 1
 
 # No confirmation when closing window
-# Tip: close window with ctrl+shift+w
 confirm-close-surface = false
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-synthetic-style = false
+
+# Box chars r effected by this for some fucking reason
+# This value is more or less the width in Konsole
+adjust-underline-thickness = 2
+
+# Theme (carbonight tokyo)
+background = #1E1E2E
+foreground = #EFEDE7
+cursor-color = #F5E0DC
+selection-background = #F5E0DC
+
+# black
+palette = 0=#45475A
+palette = 8=#45475A
+# red
+palette = 1=#F16265
+palette = 9=#F16265
+# green
+palette = 2=#46D46C
+palette = 10=#46D46C
+# yellow
+palette = 3=#F6D087
+palette = 11=#F6D087
+# blue
+palette = 4=#89B4FA
+palette = 12=#007E8A
+# purple
+palette = 5=#FF73B2
+palette = 13=#D484FF
+# aqua
+palette = 6=#94E2D5
+palette = 14=#54D7A9
+# white
+palette = 7=#CCCCCC
+palette = 15=#F2F2F2
