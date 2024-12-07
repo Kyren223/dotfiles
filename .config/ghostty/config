@@ -1,0 +1,6 @@
+gtk-titlebar = false
+
+window-padding-x = 2
+window-padding-y = 0
+
+adjust-cell-height = 20%
