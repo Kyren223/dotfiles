@@ -3,7 +3,10 @@ gtk-titlebar = true
 window-decoration = false
 keybind = ctrl+w>d=toggle_window_decorations
 
-window-padding-x = 2
+# Makes it so vertical fits perfectly when maximized without filling gaps
 window-padding-y = 0
-
 adjust-cell-height = 20%
+
+# No confirmation when closing window
+# Tip: close window with ctrl+shift+w
+confirm-close-surface = false
