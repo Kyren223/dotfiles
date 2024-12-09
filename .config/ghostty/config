@@ -1,3 +1,15 @@
+# Keybindings
+keybind = ctrl+1=text: 1
+keybind = ctrl+2=text: 2
+keybind = ctrl+3=text: 3
+keybind = ctrl+4=text: 4
+keybind = ctrl+5=text: 5
+keybind = ctrl+6=text: 6
+keybind = ctrl+7=text: 7
+keybind = ctrl+8=text: 8
+keybind = ctrl+9=text: 9
+
+
 # Configure decorations
 gtk-titlebar = true
 window-decoration = false
