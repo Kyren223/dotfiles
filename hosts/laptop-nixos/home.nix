@@ -45,7 +45,10 @@
     go
     pnpm
     nodejs_23
-    python3Full
+    (python312.withPackages (pypkgs: [
+      pypkgs.matplotlib
+      pypkgs.pandas
+    ]))
     watchexec
     golangci-lint
     libnotify
