@@ -76,7 +76,6 @@
     gimp
     kdePackages.kontact
     kdePackages.kmail-account-wizard
-    kdePackages.alligator
     kdePackages.kaddressbook
   ];
 

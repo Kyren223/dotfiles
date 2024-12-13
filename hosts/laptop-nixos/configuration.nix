@@ -85,6 +85,13 @@
     };
   };
 
+  nixpkgs.config.allowUnfree = true;
+
+  # Install firefox.
+  programs.firefox.enable = true;
+
+  programs.zsh.enable = true;
+
   # Install Steam
   programs.steam = {
     enable = true;
@@ -93,12 +100,12 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  programs.zsh.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
+  # Install Docker (without using root access)
+  # virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
   # List packages installed in system profile. Use for apps that need sudo.
   environment.systemPackages = with pkgs; [
