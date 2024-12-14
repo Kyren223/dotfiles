@@ -114,6 +114,7 @@
     clang
     clang-tools
     inputs.ghostty.packages.x86_64-linux.default
+    glibcLocales
   ];
 
   # Enable dynamic linking of applications that are not in nixpkgs (for vim LSPs for example).
