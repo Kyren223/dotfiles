@@ -74,9 +74,9 @@
     kdePackages.kpat # Solitaire 
     # btw missing the card/brick thing with weird symbols, not sure what that game was called
     gimp
-    kdePackages.kontact
-    kdePackages.kmail-account-wizard
+    kdePackages.korganizer
     kdePackages.kaddressbook
+    gitleaks
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
