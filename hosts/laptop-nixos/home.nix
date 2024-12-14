@@ -41,7 +41,6 @@
     btop
     protonvpn-gui
     unzip
-    nvimpager
     go
     pnpm
     nodejs_23
