@@ -28,6 +28,11 @@
 
   time.timeZone = "Asia/Hebron";
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "C.UTF-8/UTF-8"
+    "en_IL/UTF-8"
+  ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
