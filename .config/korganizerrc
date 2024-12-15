@@ -1,0 +1,79 @@
+[Calendar]
+Default Calendar=13
+
+[CollectionTreeView]
+Expansion=
+HorizontalScroll=0
+VerticalScroll=0
+
+[EmoticonRecentUsed]
+Recents=
+
+[General]
+CalendarFilters=
+Current Filter=
+Current View=Month
+Range Mode=3
+
+[GlobalCollectionSelection]
+Current=x-1
+Selection=c42,c20,c19
+
+[GlobalCollectionView]
+Expansion=
+HorizontalScroll=0
+VerticalScroll=0
+
+[Internal Settings]
+DefaultResourceColorSeed=5
+Work Week Mask=95
+
+[KOrganizer Geometry]
+Separator1=274,1005
+Separator2=194,0,140,213
+
+[ListView Layout]
+SortColumn=0
+SortOrder=0
+ViewState=\x00\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x03\xe1\x00\x00\x00\x04\x01\x01\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00d\xff\xff\xff\xff\x00\x00\x00\x81\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x01H\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x82\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00z\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x01\x9d\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x03\xe8\x00\x00\x00\x007\x00\x00\x00\x00
+
+[MainWindow]
+ToolBarsMovable=Disabled
+
+[Settings]
+DateNavigatorVisible=true
+EventViewerVisible=true
+ResourceViewVisible=true
+TodoViewVisible=false
+
+[Sidebar Todo View]
+ColumnOrder=0,1,2,3,4,5,6,7,8,9
+ColumnVisibility=true,false,false,false,true,true,false,false,false,false
+ColumnWidths=89,0,0,0,93,86,0,0,0,0
+SortAscending=1
+SortColumn=0
+
+[Time & Date]
+Exclude Holidays=false
+WeekStartDay=6
+
+[Timescale]
+Timescale Timezones=
+
+[TodoTreeViewState]
+Current=x-1
+Expansion=
+HorizontalScroll=0
+Selection=
+VerticalScroll=0
+
+[TodoTreeViewStateS]
+Current=x-1
+Expansion=
+HorizontalScroll=0
+Selection=
+VerticalScroll=0
+
+[Views]
+Separator AgendaView=88,436
+ShownDatesCount=7

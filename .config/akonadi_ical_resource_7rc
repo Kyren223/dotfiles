@@ -1,0 +1,5 @@
+[General]
+DisplayName=Holidays
+MonitorFile=false
+Path[$e]=https://download.hebcal.com/v4/CAEQASABOAFAAWoBc4ABAZgBAaABAQ/hebcal.ics
+ReadOnly=true
