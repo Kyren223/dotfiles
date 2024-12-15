@@ -102,6 +102,12 @@ if [ ! -f "$MARKER_FILE" ]; then
   touch "$MARKER_FILE"
 fi
 
+# Install catppuccin automatically if it's not installed already
+if [[ ! -d "$HOME/.config/tmux/plugins/catppuccin" ]]; then
+  mkdir -p $HOME/.config/tmux/plugins/catppuccin
+  git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+fi
+
 # Open tmux in default user session if it's not open
 if [ -z "$TMUX" ]; then
     tms $HOME
