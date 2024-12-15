@@ -1,0 +1,77 @@
+# date format used, either "us" or "uk"
+dialect = "uk"
+
+## default timezone to use when displaying time
+## either "l", "local" to use the system's current local timezone, or an offset
+## from UTC in the format of "<+|->H[H][:M[M][:S[S]]]"
+## for example: "+9", "-05", "+03:30", "-01:23:45", etc.
+# timezone = "local"
+
+# TODO: Once I have my own server setup then replace this
+# address of the sync server
+# sync_address = "https://api.atuin.sh"
+
+# which style to use, possible values: auto, full, compact
+style = "compact"
+
+# the maximum number of lines the interface should take up
+inline_height = 12
+
+## enable or disable showing a preview of the selected command
+show_preview = false
+
+## possible values: emacs, subl
+# word_jump_mode = "emacs"
+
+## characters that count as a part of a word
+# word_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+## number of context lines to show when scrolling by pages
+# scroll_context_lines = 1
+
+## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
+## alt-0 .. alt-9
+ctrl_n_shortcuts = false
+
+# default history list format - can also be specified with the --format arg
+history_format = "{time}\t{command}\t{duration}yooo"
+
+# prevent commands matching any of these regexes from being written to history.
+history_filter = ["^cd", "^.*--secret=.+"]
+
+show_help = false
+
+# Don't run command on enter, allow editing it
+enter_accept = false
+
+## "emacs", "vim-insert", "vim-normal" or "auto" to detect based on the shell
+keymap_mode = "vim-insert"
+
+[stats]
+# Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
+common_subcommands = [
+    "cargo",
+    "docker",
+    "git",
+    "go",
+    "nix",
+    "npm",
+    "pnpm",
+    "tmux",
+]
+
+## Set commands that should be totally stripped and ignored from stats
+common_prefix = ["sudo"]
+
+# Set commands that will be completely ignored from stats
+ignored_commands = ["cd", "ls"]
+
+[keys]
+# Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.
+scroll_exits = false
+
+[sync]
+# Enable sync v2 by default
+# This ensures that sync v2 is enabled for new installs only
+# In a later release it will become the default across the board
+records = true

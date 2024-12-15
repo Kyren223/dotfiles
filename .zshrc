@@ -35,6 +35,11 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 zinit ice wait lucid atload'source <(fzf --zsh)' && zinit load zdharma-continuum/null
 zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"' && zinit load zdharma-continuum/null
 
+# Load Atuin (better ctrl+r)
+# bindkey '"\C-r"' 'reverse-search-history'
+eval "$(atuin init zsh)"
+zinit load atuinsh/atuin
+
 # # Keybindings
 bindkey -v # Vim Mode
 bindkey '^p' history-search-backward
