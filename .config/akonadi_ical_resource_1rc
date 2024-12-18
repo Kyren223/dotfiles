@@ -1,3 +1,0 @@
-[General]
-DisplayName=Personal Calendar
-Path[$e]=file:$HOME/personal/calendar/std.ics
