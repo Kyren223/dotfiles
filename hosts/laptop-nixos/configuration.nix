@@ -149,14 +149,37 @@
   systemd.timers."battery-notifier" = {
     wantedBy = [ "timers.target" ];
       timerConfig = {
-        OnBootSec = "1m";
-        OnUnitActiveSec = "1m";
+        OnBootSec = "3m";
+        OnUnitActiveSec = "3m";
         Unit = "battery-notifier.service";
       };
   };
 
   systemd.services."battery-notifier" = {
     script = "$HOME/scripts/battery_notifier.sh";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "kyren";
+    };
+  };
+
+  systemd.timers."git-auto-sync" = {
+    wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "5m";
+        OnUnitActiveSec = "5m";
+        Unit = "git-auto-sync.service";
+      };
+  };
+
+  systemd.services."git-auto-sync" = {
+    script = "$HOME/scripts/git-auto-sync.sh";
+    path = [
+      pkgs.git
+      pkgs.gh
+      pkgs.keychain
+      pkgs.openssh
+    ];
     serviceConfig = {
       Type = "oneshot";
       User = "kyren";
