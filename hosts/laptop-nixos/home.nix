@@ -76,6 +76,7 @@
     kdePackages.korganizer
     kdePackages.kaddressbook
     gitleaks
+    rar
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
