@@ -77,6 +77,7 @@
     kdePackages.kaddressbook
     gitleaks
     rar
+    gomodifytags
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
