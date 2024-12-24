@@ -186,6 +186,12 @@
     };
   };
 
+  # Enable KVM/QEMU virtualization
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["kyren"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
