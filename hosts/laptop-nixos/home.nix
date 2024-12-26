@@ -76,6 +76,7 @@
     gitleaks
     rar
     gomodifytags
+    sops
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
