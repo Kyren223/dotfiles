@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.username = "kyren";
@@ -78,7 +78,12 @@
     gitleaks
     rar
     gomodifytags
+    nixfmt-rfc-style
+    alejandra
+    nixd
   ];
+
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -113,7 +118,6 @@
       };
     };
   };
-
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

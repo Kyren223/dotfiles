@@ -3,10 +3,10 @@ return {
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
-        { '<leader>ft', '<cmd>FormatToggle<cr>',  desc = '[F]ormat [T]oggle Globally' },
+        { '<leader>ft', '<cmd>FormatToggle<cr>', desc = '[F]ormat [T]oggle Globally' },
         { '<leader>fT', '<cmd>FormatToggle!<cr>', desc = '[F]ormat [T]oggle Locally' },
-        { '<leader>ff', '<cmd>Format<cr>',        desc = '[F]ormat [F]ile' },
-        { '<leader>f',  '<cmd>Format<cr><esc>',   desc = '[F]ormat',                  mode = 'v' },
+        { '<leader>ff', '<cmd>Format<cr>', desc = '[F]ormat [F]ile' },
+        { '<leader>f', '<cmd>Format<cr><esc>', desc = '[F]ormat', mode = 'v' },
     },
     ---@module "conform"
     ---@type conform.setupOpts
@@ -24,6 +24,8 @@ return {
             ['css'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['javascript'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['typescript'] = { 'prettierd', 'prettier', stop_after_first = true },
+            -- ['nix'] = { 'nixfmt' },
+            -- ['nix'] = { 'alejandra' },
         },
         format_on_save = function(bufnr)
             -- Disable with a global or buffer local variable
