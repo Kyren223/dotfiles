@@ -1,6 +1,4 @@
-{ config, pkgs, inputs, ... }:
-
-{
+{ config, pkgs, inputs, ... }: {
   home.username = "kyren";
   home.homeDirectory = "/home/kyren";
 
@@ -70,7 +68,7 @@
     tokei
     graphviz
     kdePackages.kmines # Minesweeper for fun lol
-    kdePackages.kpat # Solitaire 
+    kdePackages.kpat # Solitaire
     # btw missing the card/brick thing with weird symbols, not sure what that game was called
     gimp
     kdePackages.korganizer
@@ -78,12 +76,10 @@
     gitleaks
     rar
     gomodifytags
-    nixfmt-rfc-style
-    alejandra
-    nixd
   ];
 
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  # For nixd LSP to recognize what nixpkgs version I use
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
