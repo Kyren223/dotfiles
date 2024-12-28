@@ -77,6 +77,7 @@
     rar
     gomodifytags
     sops
+    dig
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
