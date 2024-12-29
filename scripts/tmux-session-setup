@@ -35,7 +35,7 @@ elif [ "$sess" = "server" ]; then
   tmux rename-window -t $sess:1 local
 
   tmux new-window -t $sess -n remote -c $dir
-  tmux send-keys -t $sess:remote.1 "ssh root@server" C-m
+  tmux send-keys -t $sess:remote.1 "ssh root@kyren.codes" C-m
 
   tmux new-window -t $sess -n editor -c $dir
   tmux send-keys -t $sess:editor.1 "vim" C-m
