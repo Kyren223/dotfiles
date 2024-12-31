@@ -8,7 +8,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "laptop-nixos";
+  networking.hostName = "kyren-laptop";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -185,6 +185,17 @@
   users.groups.libvirtd.members = ["kyren"];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+
+  services.syncthing.enable = true;
+  services.syncthing = {
+    group = "users";
+    user = "kyren";
+    dataDir = "/home/kyren";
+    configDir = "/home/kyren/.config/syncthing";
+  };
+  systemd.tmpfiles.rules = [
+    "d /home/kyren/.config/syncthing 0700 kyren users"
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

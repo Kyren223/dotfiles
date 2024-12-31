@@ -20,10 +20,10 @@
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
-      laptop-nixos = nixpkgs.lib.nixosSystem {
+      kyren-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          ./hosts/laptop-nixos/configuration.nix
+          ./hosts/kyren-laptop/configuration.nix
         ];
       };
     };
