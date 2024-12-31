@@ -1,5 +1,8 @@
 # Misc
 mouse-hide-while-typing = true
+ 
+# Patches security vuln, see https://github.com/ghostty-org/ghostty/security/advisories/GHSA-5hcq-3j4q-4v6p#event-398019
+title = Ghostty
 
 # Keybindings
 keybind = ctrl+1=text: 1
