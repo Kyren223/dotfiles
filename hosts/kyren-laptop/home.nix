@@ -45,6 +45,7 @@
     (python312.withPackages (pypkgs: [
       pypkgs.matplotlib
       pypkgs.pandas
+      pypkgs.pygithub
     ]))
     watchexec
     golangci-lint
