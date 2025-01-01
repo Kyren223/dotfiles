@@ -55,7 +55,7 @@
     piper
     goose
     sqlc
-    jetbrains.idea-community
+    jetbrains.idea-community-bin
     jdk
     maven
     gradle
