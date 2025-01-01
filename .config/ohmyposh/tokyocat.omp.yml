@@ -1,94 +1,78 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-# Created by Kyren223 on GitHub https://github.com/Kyren223
-# File hosted on GitHub at https://github.com/Kyren223/dotfiles/blob/master/.config/ohmyposh/tokyocat.omp.yml
-
-version: 2
-final_space: true
-
-blocks:
-  - type: prompt
-    alignment: left
-    newline: true
-    segments:
-      - type: path
-        style: diamond
-        leading_diamond: "\ue0b6"
-        trailing_diamond: "\ue0b4"
-        template: "{{ .Path }}"
-        background: p:black
-        foreground: p:blue
-        properties:
-          style: full
-
-      - type: git
-        style: diamond
-        trailing_diamond: "\ue0b4"
-        background: p:black
-        foreground: p:blue
-        template: " {{ .HEAD }}{{ if .Working.Changed }}   {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}   {{ .Staging.String }}{{ end }}{{ if and (or (.Working.Changed) (.Staging.Changed)) (or (gt .Ahead 0) (gt .Behind 0)) }} | {{ else }} {{ end }}{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}"
-        properties:
-          fetch_status: true
-          branch_icon: " "
-          commit_icon: "@"
-
-      # - type: status
-      #   style: diamond
-      #   foreground: "p:white"
-      #   background: "p:cyan"
-      #   background_templates:
-      #     - "{{ if .Error }}p:red2{{ end }}"
-      #   trailing_diamond: 
-      #   template: "<p:dark_blue2></>  "
-      #   properties:
-      #     always_enabled: false
-
-  - type: rprompt
-    overflow: hidden
-    segments:
-      - type: executiontime
-        style: plain
-        background: transparent
-        foreground: p:yellow
-        template: "{{ .FormattedMs }}"
-        properties:
-          threshold: 5000
-          display_style: austin
-
-  - type: prompt
-    alignment: left
-    newline: true
-    segments:
-      - type: text
-        style: powerline
-        powerline_symbol: 
-        background: transparent
-        foreground: p:magenta
-        foreground_templates:
-          - "{{ if gt .Code 0 }}p:red{{end}}"
-          - "{{ if eq .Code 0 }}p:magenta{{end}}"
-        template: "❯"
-
-
-transient_prompt:
-  background: transparent
-  foreground: p:magenta
-  template: "❯ "
-
-secondary_prompt:
-  background: transparent
-  foreground: p:magenta
-  template: "❯❯ "
 
 palette:
-  blue: "blue"
   black: "#262B44"
+  blue: blue
+  cyan: "#00897b"
+  dark_blue: "#166e78"
+  dark_blue2: "#193549"
+  green: "#4caf50"
+  light_blue: "#40c4ff"
   magenta: "#F5C2E7"
   red: "#D81E5B"
-  green: "#4caf50"
-  yellow: "#ffeb3b"
-  dark_blue: "#166e78"
-  light_blue: "#40c4ff"
-  white: "#ffffff"
-  cyan: "#00897b"
   red2: "#e91e63"
-  dark_blue2: "#193549"
+  white: "#ffffff"
+  yellow: "#ffeb3b"
+secondary_prompt:
+  template: "❯❯ "
+  foreground: p:magenta
+  background: transparent
+transient_prompt:
+  template: "❯ "
+  foreground: p:magenta
+  background: transparent
+blocks:
+- type: prompt
+  alignment: left
+  segments:
+  - properties:
+      cache_duration: none
+      style: full
+    leading_diamond: 
+    trailing_diamond: 
+    template: "{{ .Path }}"
+    foreground: p:blue
+    background: p:black
+    type: path
+    style: diamond
+  - properties:
+      branch_icon: "\ue725 "
+      cache_duration: none
+      commit_icon: "@"
+      fetch_status: true
+    trailing_diamond: 
+    template: " {{ .HEAD }}{{ if .Working.Changed }} \uf044  {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046  {{ .Staging.String }}{{ end }}{{ if and (or (.Working.Changed) (.Staging.Changed)) (or (gt .Ahead 0) (gt .Behind 0)) }} | {{ else }} {{ end }}{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}"
+    foreground: p:blue
+    background: p:black
+    type: git
+    style: diamond
+  newline: true
+- type: rprompt
+  overflow: hidden
+  segments:
+  - properties:
+      cache_duration: none
+      display_style: austin
+      threshold: 5000
+    template: "{{ .FormattedMs }}"
+    foreground: p:yellow
+    background: transparent
+    type: executiontime
+    style: plain
+- type: prompt
+  alignment: left
+  segments:
+  - properties:
+      cache_duration: none
+    template: ❯
+    foreground: p:magenta
+    powerline_symbol: 
+    background: transparent
+    type: text
+    style: powerline
+    foreground_templates:
+    - "{{ if gt .Code 0 }}p:red{{end}}"
+    - "{{ if eq .Code 0 }}p:magenta{{end}}"
+  newline: true
+version: 3
+final_space: true
