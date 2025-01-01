@@ -12,7 +12,7 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     keepassxc
     discord
     git
@@ -55,7 +55,7 @@
     piper
     goose
     sqlc
-    jetbrains.idea-community-bin
+    jetbrains.idea-community
     jdk
     maven
     gradle
