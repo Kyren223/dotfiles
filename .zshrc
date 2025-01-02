@@ -54,7 +54,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Aliases
-alias ls='eza --group-directories-first --across --icons'
+alias ls='eza --group-directories-first --across --icons auto'
 alias tree='eza --tree --icons'
 alias c='clear'
 alias vim='nvim'
@@ -73,16 +73,23 @@ export FLAKE=~/dotfiles/
 export EDITOR=nvim
 export PAGER=less
 export MANPAGER=$PAGER
-export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
+# Path
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.zig:$PATH"
 export PATH="$HOME/.zls:$PATH"
+
+# Fzf
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_OPTS=" \
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+source fzf-git.sh
 
 # pnpm
 export PNPM_HOME="/home/kyren/.local/share/pnpm"
