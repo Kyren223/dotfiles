@@ -81,6 +81,7 @@
     dig
     syncthingtray
     libreoffice
+    vesktop
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
