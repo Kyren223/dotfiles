@@ -82,6 +82,8 @@
     syncthingtray
     libreoffice
     vesktop
+    gparted
+    nasm
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
