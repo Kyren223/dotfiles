@@ -84,6 +84,8 @@
     vesktop
     gparted
     nasm
+    activitywatch
+    awatcher
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
