@@ -109,6 +109,13 @@ if [ ! -f "$MARKER_FILE" ]; then
   touch "$MARKER_FILE"
 fi
 
+MARKER_FILE="/run/user/$(id -u)/activitywatch"
+if [ ! -f "$MARKER_FILE" ]; then
+  nohup aw-qt &>/dev/null & disown
+  nohup awatcher &>/dev/null & disown
+  touch "$MARKER_FILE"
+fi
+
 # Install catppuccin automatically if it's not installed already
 if [[ ! -d "$HOME/.config/tmux/plugins/catppuccin" ]]; then
   mkdir -p $HOME/.config/tmux/plugins/catppuccin
