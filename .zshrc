@@ -114,6 +114,11 @@ if [ ! -f "$MARKER_FILE" ]; then
   nohup aw-qt &>/dev/null & disown
   nohup awatcher &>/dev/null & disown
   touch "$MARKER_FILE"
+
+  {
+    wait $aw_qt_pid || rm -f "$MARKER_FILE"
+    wait $awatcher_pid || rm -f "$MARKER_FILE"
+  } & disown
 fi
 
 # Install catppuccin automatically if it's not installed already
