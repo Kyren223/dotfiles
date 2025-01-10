@@ -86,6 +86,7 @@
     nasm
     activitywatch
     awatcher
+    albert
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
