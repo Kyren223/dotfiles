@@ -14,7 +14,6 @@
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     keepassxc
-    discord
     git
     gh
     delta
@@ -52,7 +51,7 @@
     libnotify
     wl-clipboard
     whatsie
-    libratbag
+    libratbag # Mouse software (GHUB replacement)
     piper
     goose
     sqlc
@@ -67,7 +66,6 @@
     }))
     rustup
     tokei
-    graphviz
     kdePackages.kmines # Minesweeper for fun lol
     kdePackages.kpat # Solitaire
     # btw missing the card/brick thing with weird symbols, not sure what that game was called
@@ -82,7 +80,6 @@
     syncthingtray
     libreoffice
     vesktop
-    gparted
     nasm
     activitywatch
     awatcher
