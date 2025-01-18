@@ -13,6 +13,7 @@
 [core]
 	editor = nvim
     pager = delta --syntax-theme='Monokai Extended'
+    excludesFile = /home/kyren/.config/git/ignore
 [interactive]
 	diffFilter = delta --color-only
 [delta]

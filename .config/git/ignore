@@ -1,0 +1,4 @@
+# Globla .git/info/exclude
+
+# KDE dolphin file
+.directory
