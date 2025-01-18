@@ -154,4 +154,8 @@ return {
     --         },
     --     },
     -- },
+    asm_lsp = {
+        mason = false,
+        cmd = { 'asm-lsp' },
+    },
 }

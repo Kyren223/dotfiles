@@ -87,6 +87,8 @@
     activitywatch
     awatcher
     albert
+    gdb
+    asm-lsp
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
