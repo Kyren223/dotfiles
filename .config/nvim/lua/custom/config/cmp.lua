@@ -34,8 +34,10 @@ end
 
 cmp.setup({
     enabled = is_enabled,
+    preselect = cmp.PreselectMode.None,
     completion = { completeopt = 'menu,menuone,noinsert' },
     sources = cmp.config.sources({
+        { name = 'luasnip' }, -- for snippets
         {
             name = 'nvim_lsp',
             option = {
@@ -44,7 +46,6 @@ cmp.setup({
                 },
             },
         }, -- for lsp
-        { name = 'luasnip' }, -- for snippets
         { name = 'lazydev', group_index = 0 }, -- for lazydev.nvim
         { name = 'path' }, -- for filesystem
     }, {}),
