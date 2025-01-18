@@ -86,6 +86,7 @@
     albert
     gdb
     asm-lsp
+    minisign
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
