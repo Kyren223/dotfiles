@@ -30,12 +30,12 @@ adjust-cell-width = 1
 confirm-close-surface = false
 
 # Font
-font-family = "JetBrainsMono Nerd Font"
+# font-family = "JetBrainsMono Nerd Font"
+# font-family = "JetBrainsMono NF"
 font-synthetic-style = false
 
-# Box chars r effected by this for some fucking reason
-# This value is more or less the width in Konsole
 adjust-underline-thickness = 2
+adjust-box-thickness = 2
 
 # background-opacity = 0.7
 # background-blur-radius = 10
