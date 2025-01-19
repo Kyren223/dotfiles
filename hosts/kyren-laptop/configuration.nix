@@ -112,7 +112,7 @@
     openssl
     clang
     clang-tools
-    inputs.ghostty.packages.x86_64-linux.default
+    ghostty
     glibcLocales
   ];
 
