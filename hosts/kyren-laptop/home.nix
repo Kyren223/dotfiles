@@ -88,6 +88,7 @@
     minisign
     libisoburn
     ncdu
+    imagemagick
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
