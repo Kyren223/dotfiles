@@ -102,23 +102,19 @@ esac
 # Start ssh-agent if not running
 eval $(keychain --quiet --eval ~/.ssh/id_ed25519)
 
-# HACK: Send a notification so systemd notification will work
-MARKER_FILE="/run/user/$(id -u)/zshrc_once_marker"
+MARKER_FILE="/run/user/$(id -u)/autorun_once_marker"
 if [ ! -f "$MARKER_FILE" ]; then
+  # HACK: Send a notification so systemd notification will work
   notify-send --urgency=normal --expire-time=1 " "
-  touch "$MARKER_FILE"
-fi
 
-MARKER_FILE="/run/user/$(id -u)/activitywatch"
-if [ ! -f "$MARKER_FILE" ]; then
+  # Start activity watcher
   nohup aw-qt &>/dev/null & disown
   nohup awatcher &>/dev/null & disown
-  touch "$MARKER_FILE"
 
-  {
-    wait $aw_qt_pid || rm -f "$MARKER_FILE"
-    wait $awatcher_pid || rm -f "$MARKER_FILE"
-  } & disown
+  # Start albert (app launcher like krunner)
+  nohup albert --platform xcb &>/dev/null & disown
+
+  touch "$MARKER_FILE"
 fi
 
 # Install catppuccin automatically if it's not installed already
