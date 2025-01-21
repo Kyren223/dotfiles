@@ -17,7 +17,6 @@
     git
     gh
     delta
-    nh
     stow
     eza
     oh-my-posh
