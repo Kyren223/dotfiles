@@ -90,6 +90,20 @@
     ncdu
     imagemagick
     xxd
+    gnome-clocks
+    duf
+    dust
+    tldr
+    bottom
+    glances
+    gtop
+    hyperfine
+    gping
+    procs
+    doggo
+    nh
+    nvd
+    wget
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
