@@ -114,6 +114,9 @@ if [ ! -f "$MARKER_FILE" ]; then
   # Start albert (app launcher like krunner)
   nohup albert --platform xcb &>/dev/null & disown
 
+  # Start linkwarden
+  (pushd $HOME/personal/linkwarden > /dev/null && docker compose up -d > /dev/null && popd) &>/dev/null
+
   touch "$MARKER_FILE"
 fi
 

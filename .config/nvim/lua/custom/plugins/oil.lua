@@ -3,6 +3,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = { { '<leader>fo', '<cmd>Oil<cr>', desc = '[F]ilesystem [O]il' } },
     opts = {
+        delete_to_trash = true,
         default_file_explorer = true,
         skip_confirm_for_simple_edits = true,
         keymaps = {
