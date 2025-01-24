@@ -92,17 +92,10 @@
     xxd
     gnome-clocks
     duf
-    dust
     tldr
     bottom
-    glances
-    gtop
     hyperfine
-    gping
-    procs
-    doggo
     nh
-    nvd
     wget
   ];
 
