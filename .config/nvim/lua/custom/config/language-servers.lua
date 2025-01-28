@@ -134,6 +134,10 @@ return {
         settings = {
             zls = {
                 enable_build_on_save = true,
+                build_on_save_args = { '-Doptimize=ReleaseSafe', '-Darch=x86_64' },
+                inlay_hints_hide_redundant_param_names = true,
+                inlay_hints_hide_redundant_param_names_last_token = true,
+                warn_style = true,
             },
         },
     }, -- zig
