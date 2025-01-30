@@ -117,12 +117,48 @@
     clang-tools
     ghostty
     glibcLocales
+
+    wayland-scanner
+    raylib
+    egl-wayland
+    libxkbcommon
+    kdePackages.wayland
+    kdePackages.kwayland
+    glfw-wayland
+
+    libGL
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXinerama
+    xorg.libXi
+
+    udev
+    alsa-lib
+    vulkan-loader
+    # libxkbcommon
+    wayland
   ];
 
   # Enable dynamic linking of applications that are not in nixpkgs (for vim LSPs for example).
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc
+
+    kdePackages.wayland
+    kdePackages.kwayland
+    glfw-wayland
+    wayland-scanner
+    raylib
+    wayland
+    egl-wayland
+    libxkbcommon
+    libGL
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXinerama
+    xorg.libXi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
