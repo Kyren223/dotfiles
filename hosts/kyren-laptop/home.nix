@@ -98,6 +98,7 @@
     nh
     wget
     mold
+    aseprite
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
