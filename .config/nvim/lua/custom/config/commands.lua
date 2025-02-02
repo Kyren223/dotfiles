@@ -82,22 +82,69 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
     end,
 })
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-    pattern = { '*.zig', '*.zon' },
-    callback = function(ev)
-        vim.lsp.buf.code_action({
-            context = { only = { 'source.fixAll' } },
-            apply = true,
-        })
+-- NOTE: highlight zig's escape sequences
+vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
+    pattern = '*.go',
+    callback = function()
+        local query = vim.treesitter.query.parse('zig', '(interpreted_string_literal) @string')
+        local parser = vim.treesitter.get_parser(0, 'zig')
+        local tree = parser:parse()[1]
+        local root = tree:root()
+        local bufnr = vim.api.nvim_get_current_buf()
+
+        for id, node in query:iter_captures(root, bufnr, 0, -1) do
+            if query.captures[id] == 'string' then
+                local start_row, start_col, end_row, end_col = node:range()
+
+                -- Get the text of the string literal
+                local text = vim.api.nvim_buf_get_text(bufnr, start_row, start_col, end_row, end_col, {})[1]
+
+                -- Highlight only the parts matching `%[a-z]`
+                for match_start, match_end in text:gmatch('()%%[a-z]()') do
+                    vim.api.nvim_buf_add_highlight(
+                        bufnr,
+                        -1,
+                        '@lsp.type.formatSpecifier.go', -- Higlight group
+                        start_row,
+                        start_col + match_start - 1,
+                        start_col + match_end - 1
+                    )
+                end
+            end
+        end
     end,
 })
 
--- vim.api.nvim_create_autocmd('BufWritePre', {
---     pattern = { '*.zig', '*.zon' },
---     callback = function(ev)
---         vim.lsp.buf.code_action({
---             context = { only = { 'source.organizeImports' } },
---             apply = true,
---         })
---     end,
--- })
+-- NOTE: show unused zig variables as "DiagnosticUnnecessary" instead of error
+local orig_underline_show = vim.diagnostic.handlers.underline.show
+local custom_ns = vim.api.nvim_create_namespace('custom_unused_ns')
+
+vim.diagnostic.handlers.underline.show = function(namespace, bufnr, diagnostics, opts)
+    local normal_diags = {}
+    local custom_diags = {}
+    for _, diag in ipairs(diagnostics) do
+        if diag.message:find('unused', 1, true) then
+            table.insert(custom_diags, diag)
+        else
+            table.insert(normal_diags, diag)
+        end
+    end
+    if #normal_diags > 0 and orig_underline_show ~= nil then
+        orig_underline_show(namespace, bufnr, normal_diags, opts)
+    end
+    for _, diag in ipairs(custom_diags) do
+        vim.highlight.range(
+            bufnr,
+            custom_ns,
+            'DiagnosticUnnecessary',
+            { diag.lnum, diag.col },
+            { diag.end_lnum, diag.end_col },
+            { inclusive = false }
+        )
+    end
+end
+
+vim.diagnostic.handlers.underline.hide = function(namespace, bufnr)
+    vim.api.nvim_buf_clear_namespace(bufnr, namespace, 0, -1)
+    vim.api.nvim_buf_clear_namespace(bufnr, custom_ns, 0, -1)
+end
