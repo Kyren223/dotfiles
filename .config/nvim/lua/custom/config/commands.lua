@@ -82,39 +82,6 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
     end,
 })
 
--- NOTE: highlight zig's escape sequences
-vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
-    pattern = '*.go',
-    callback = function()
-        local query = vim.treesitter.query.parse('zig', '(interpreted_string_literal) @string')
-        local parser = vim.treesitter.get_parser(0, 'zig')
-        local tree = parser:parse()[1]
-        local root = tree:root()
-        local bufnr = vim.api.nvim_get_current_buf()
-
-        for id, node in query:iter_captures(root, bufnr, 0, -1) do
-            if query.captures[id] == 'string' then
-                local start_row, start_col, end_row, end_col = node:range()
-
-                -- Get the text of the string literal
-                local text = vim.api.nvim_buf_get_text(bufnr, start_row, start_col, end_row, end_col, {})[1]
-
-                -- Highlight only the parts matching `%[a-z]`
-                for match_start, match_end in text:gmatch('()%%[a-z]()') do
-                    vim.api.nvim_buf_add_highlight(
-                        bufnr,
-                        -1,
-                        '@lsp.type.formatSpecifier.go', -- Higlight group
-                        start_row,
-                        start_col + match_start - 1,
-                        start_col + match_end - 1
-                    )
-                end
-            end
-        end
-    end,
-})
-
 -- NOTE: show unused zig variables as "DiagnosticUnnecessary" instead of error
 local orig_underline_show = vim.diagnostic.handlers.underline.show
 local custom_ns = vim.api.nvim_create_namespace('custom_unused_ns')
@@ -144,7 +111,11 @@ vim.diagnostic.handlers.underline.show = function(namespace, bufnr, diagnostics,
     end
 end
 
+local orig_underline_hide = vim.diagnostic.handlers.underline.hide
+
 vim.diagnostic.handlers.underline.hide = function(namespace, bufnr)
-    vim.api.nvim_buf_clear_namespace(bufnr, namespace, 0, -1)
+    if orig_underline_hide ~= nil then
+        orig_underline_hide(namespace, bufnr)
+    end
     vim.api.nvim_buf_clear_namespace(bufnr, custom_ns, 0, -1)
 end
