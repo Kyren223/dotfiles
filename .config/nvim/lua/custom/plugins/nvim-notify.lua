@@ -24,6 +24,7 @@ return {
             return require('notify')(message, level, opts)
         end
         return {
+            background_colour = '#000000',
             fps = 60,
             render = 'default',
             timeout = 500,
