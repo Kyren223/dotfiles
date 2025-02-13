@@ -99,6 +99,8 @@
     wget
     mold
     aseprite
+    prismlauncher
+    cloudflare-warp
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use

@@ -199,6 +199,8 @@
   systemd.tmpfiles.rules = [
     "d /home/kyren/.config/syncthing 0700 kyren users"
   ];
+  
+  services.cloudflare-warp.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
