@@ -34,6 +34,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 # Shell integrations
 zinit ice wait lucid atload'source <(fzf --zsh)' && zinit load zdharma-continuum/null
 zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"' && zinit load zdharma-continuum/null
+zinit ice wait lucid atload'source <(k completion zsh)' && zinit load zdharma-continuum/null
 
 # # Keybindings
 bindkey -v # Vim Mode
@@ -59,6 +60,9 @@ alias tree='eza --tree --icons'
 alias c='clear'
 alias vim='nvim'
 
+# K aliases
+alias ks='k switch'
+
 # Git Aliases
 alias gs='git status'
 alias gp='git push'
@@ -80,6 +84,7 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.zig:$PATH"
 export PATH="$HOME/.zls:$PATH"
+export PATH="$HOME/projects/k/bin:$PATH"
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
