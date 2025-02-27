@@ -177,10 +177,21 @@
       pkgs.keychain
       pkgs.openssh
     ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "kyren";
-    };
+    serviceConfig = { Type = "oneshot"; User = "kyren"; };
+  };
+
+  systemd.timers."k-sleep-tracker" = {
+    wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "1m";
+        OnUnitActiveSec = "1m";
+        Unit = "k-sleep-tracker.service";
+      };
+  };
+
+  systemd.services."k-sleep-tracker" = {
+    script = "$HOME/projects/k/bin/k tracker sleep";
+    serviceConfig = { Type = "oneshot"; User = "kyren"; };
   };
 
   # Enable KVM/QEMU virtualization
