@@ -133,7 +133,7 @@ fi
 
 # Open tmux in default user session if it's not open
 if [ -z "$TMUX" ]; then
-    tms $HOME
+    k switch $HOME
 fi
 
 END_TIME=$(date +%s.%4N)
