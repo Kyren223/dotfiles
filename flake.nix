@@ -12,10 +12,16 @@
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
-      kyren-laptop = nixpkgs.lib.nixosSystem {
+      laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          ./hosts/kyren-laptop/configuration.nix
+          ./hosts/laptop.nix
+        ];
+      };
+      lapsktop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/lapsktop.nix
         ];
       };
     };
