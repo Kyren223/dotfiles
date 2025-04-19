@@ -14,7 +14,7 @@ if [ "$dir" = "$HOME" ]; then
   tmux send-keys -t $sess:diary.1 "vim" C-m
 
   tmux select-window -t $sess:main
-elif [ "$sess" = "raytry" ]; then
+elif [[ "$sess" == "ratry" || "$sess" == "kiwen-prototype" ]]; then
   tmux rename-window -t $sess:1 editor
   tmux send-keys -t $sess:editor.1 "nix develop" C-m
   tmux send-keys -t $sess:editor.1 "nvim" C-m

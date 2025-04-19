@@ -101,6 +101,7 @@
     aseprite
     prismlauncher
     cloudflare-warp
+    drawio
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
