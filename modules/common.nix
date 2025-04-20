@@ -4,9 +4,8 @@
 #                                      #
 #--------------------------------------#
 
-{config, pkgs, ...}:
+{config, pkgs, ...}: {
 
-{
   # User
   users.users.kyren = {
     isNormalUser = true;

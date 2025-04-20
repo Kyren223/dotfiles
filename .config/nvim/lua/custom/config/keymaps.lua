@@ -55,6 +55,12 @@ set('x', '<leader>p', '<cmd>lua RemoveClipboardCR()<cr>"_dP')
 set({ 'n', 'x' }, 'p', '<cmd>lua RemoveClipboardCR()<cr>p', { noremap = true })
 set({ 'n', 'x' }, 'P', '<cmd>lua RemoveClipboardCR()<cr>P', { noremap = true })
 
+-- Move lines around
+set('n', '<A-j>', ":m .+1<cr>", { noremap = true })
+set('n', '<A-k>', ":m .-2<cr>", { noremap = true })
+set('v', '<A-j>', ":m '>+1<cr>gv", { noremap = true })
+set('v', '<A-k>', ":m '<-2<cr>gv", { noremap = true })
+
 -- Misc
 set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
 set('i', '<C-H>', '<C-w>', { desc = 'Ctrl + Backspace to delete word' })
