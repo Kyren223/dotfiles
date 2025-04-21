@@ -67,7 +67,7 @@ return {
     astro = true, -- astro framework
     mdx_analyzer = true, -- markdown with JS I think
     -- marksman = true, -- Markdown LSP
-    -- markdown_oxide = true, -- Markdown LSP but better
+    markdown_oxide = true, -- Markdown LSP but better
     gopls = {
         cmd = { 'gopls' },
         filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
