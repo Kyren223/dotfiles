@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ ... }: {
 
   # battery levels notifier
   systemd.timers."battery-notifier" = {

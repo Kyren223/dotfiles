@@ -147,23 +147,7 @@ return {
             },
         },
     }, -- zig
-    -- nixd = {
-    --     mason = false,
-    --     cmd = { 'nixd' },
-    --     settings = {
-    --         nixd = {
-    --             nixpkgs = { expr = 'import <nixpkgs> { }' },
-    --             -- options = {
-    --             --     nixos = {
-    --             --         expr = '(builtins.getFlake \\"/home/kyren/dotfiles/flake.nix").nixosConfigurations.laptop-nixos.options',
-    --             --     },
-    --             --     home_manager = {
-    --             --         expr = '(builtins.getFlake \\"/home/kyren/dotfiles/flake.nix").homeConfigurations.laptop-nixos.options',
-    --             --     },
-    --             -- },
-    --         },
-    --     },
-    -- },
+    nil_ls = {}, -- nix
     asm_lsp = {
         mason = false,
         cmd = { 'asm-lsp' },

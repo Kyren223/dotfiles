@@ -13,13 +13,13 @@
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         modules = [
           ./hosts/laptop.nix
         ];
       };
       lapsktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         modules = [
           ./hosts/lapsktop.nix
         ];
