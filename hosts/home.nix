@@ -83,6 +83,7 @@
     libisoburn
     ncdu
     imagemagick
+    ghostscript # for imagemagick to support pdf files
     xxd
     gnome-clocks
     duf
