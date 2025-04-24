@@ -5,7 +5,7 @@ return {
         { '<leader>gb', '<cmd>Neogit branch<cr>' },
         { '<leader>gs', '<cmd>Neogit<cr>' },
         { '<leader>gL', '<cmd>Neogit log<cr>' },
-        { '<leader>gc', '<cmd>Neogit commit<cr>' },
+        -- { '<leader>gc', '<cmd>Neogit commit<cr>' },
         { '<leader>gp', '<cmd>Neogit push<cr>' },
         { '<leader>gP', '<cmd>Neogit pull<cr>' },
         { '<leader>gr', '<cmd>Neogit rebase<cr>' },

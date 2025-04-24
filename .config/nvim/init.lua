@@ -3,6 +3,14 @@ vim.loader.enable()
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+_G.dd = function(...)
+    Snacks.debug.inspect(...)
+end
+_G.bt = function()
+    Snacks.debug.backtrace()
+end
+vim.print = _G.dd
+
 require('options')
 vim.schedule(function()
     require('keymaps')

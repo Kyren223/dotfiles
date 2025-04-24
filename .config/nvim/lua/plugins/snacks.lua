@@ -25,24 +25,45 @@ return {
     },
     keys = {
         {
+            '<leader>go',
+            function()
+                Snacks.gitbrowse.open()
+            end,
+            desc = '[G]it [O]pen',
+        },
+        {
+            '<leader>gc',
+            function()
+                Snacks.gitbrowse.open({
+                    open = function(url)
+                        vim.fn.setreg('+', url)
+                    end,
+                })
+            end,
+            desc = '[G]it [O]pen',
+        },
+
+        {
             '<leader>si',
             function()
                 Snacks.image.hover()
             end,
+            desc = '[S]how [I]mage',
         },
+
         {
             '<leader>nd',
             function()
                 Snacks.notifier.hide()
             end,
-            desc = '[N]otifications [D]ismiss All',
+            desc = '[N]otification [D]ismiss All',
         },
         {
             '<leader>nh',
             function()
                 Snacks.notifier.show_history()
             end,
-            desc = '[N]otifications [D]ismiss All',
+            desc = '[N]otification [H]istory',
         },
     },
 }
