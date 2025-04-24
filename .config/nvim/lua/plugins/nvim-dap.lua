@@ -7,7 +7,7 @@ return {
     config = function() end,
     opts = function()
         -- Load dap keymaps
-        require('custom.config.dap-keymaps')
+        require('dap-keymaps')
         local dap = require('dap')
 
         -- Setup C/C++ dap

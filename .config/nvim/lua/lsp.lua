@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local servers = require('custom.config.language-servers')
+local servers = require('language-servers')
 for name, config in pairs(servers) do
     if config == false then
         goto continue
@@ -68,6 +68,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         -- Register buffer local LSP keymaps
-        require('custom.config.lsp-keymaps').setup(bufnr)
+        require('lsp-keymaps').setup(bufnr)
     end,
 })

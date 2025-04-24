@@ -8,7 +8,7 @@ return {
     },
     cmd = 'Telescope',
     config = function()
-        require('custom.config.telescope')
+        require('telescope_helper')
     end,
     keys = {
         '<leader>fs',

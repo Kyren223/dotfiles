@@ -10,7 +10,7 @@ return {
             'williamboman/mason-lspconfig.nvim',
             build = ':MasonUpdate',
             config = function()
-                local language_servers = require('custom.config.language-servers')
+                local language_servers = require('language-servers')
                 local ensure_installed = vim.tbl_filter(function(key)
                     local server = language_servers[key]
                     if type(server) == 'table' then
@@ -27,6 +27,6 @@ return {
         },
     },
     config = function()
-        require('custom.config.lsp')
+        require('lsp')
     end,
 }

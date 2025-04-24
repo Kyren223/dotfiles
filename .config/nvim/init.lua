@@ -3,10 +3,10 @@ vim.loader.enable()
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require('custom.config.options')
+require('options')
 vim.schedule(function()
-    require('custom.config.keymaps')
-    require('custom.config.commands')
+    require('keymaps')
+    require('commands')
 end)
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -21,7 +21,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-require('lazy').setup({ import = 'custom/plugins' }, {
+require('lazy').setup({ import = 'plugins' }, {
     change_detection = { enabled = true, notify = false },
     defaults = { lazy = true },
     ui = {
