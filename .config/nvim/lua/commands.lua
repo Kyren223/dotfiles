@@ -119,3 +119,13 @@ vim.diagnostic.handlers.underline.hide = function(namespace, bufnr)
     end
     vim.api.nvim_buf_clear_namespace(bufnr, custom_ns, 0, -1)
 end
+
+-- NOTE: snacks snippet to notify LSP servers when renaming files in oil.nvim
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'OilActionsPost',
+    callback = function(event)
+        if event.data.actions.type == 'move' then
+            Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+        end
+    end,
+})

@@ -24,6 +24,7 @@ return {
             end,
         },
         picker = {},
+        quickfile = {},
     },
     keys = {
         {
@@ -177,6 +178,14 @@ return {
                 Snacks.picker.colorschemes({ layout = 'dropdown' })
             end,
             desc = '[T]hemes [P]icker',
+        },
+
+        {
+            '<leader>rn',
+            function()
+                Snacks.rename.rename_file()
+            end,
+            desc = '[R]e[n]ame',
         },
     },
 }
