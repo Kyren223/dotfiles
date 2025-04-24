@@ -54,6 +54,13 @@ return {
                 },
             },
         },
+        -- scroll = {
+        --     animate = {
+        --         duration = { step = 15, total = 50 },
+        --         easing = 'linear',
+        --     },
+        -- },
+        terminal = {},
     },
     keys = {
         {
@@ -229,7 +236,22 @@ return {
             function()
                 Snacks.scratch.select()
             end,
-            desc = 'Select Scratch Buffer',
+            desc = 'Select [S]cratch Buffer',
+        },
+
+        {
+            '<leader>nt',
+            function()
+                Snacks.terminal.open()
+            end,
+            desc = '[N]ew [T]erminal',
+        },
+        {
+            '<leader>T',
+            function()
+                Snacks.terminal.toggle()
+            end,
+            desc = 'Toggle [T]erminal',
         },
     },
 }
