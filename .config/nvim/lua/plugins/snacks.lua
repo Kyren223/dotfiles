@@ -4,8 +4,11 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
+        gitbrowse = {},
         image = {},
-        ---@class snacks.notifier.Config
+        indent = {
+            scope = { enabled = false },
+        },
         notifier = {
             ---@type snacks.notifier.style
             style = 'compact',
