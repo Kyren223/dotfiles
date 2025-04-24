@@ -18,12 +18,7 @@ end
 
 local keymaps = {
     { 'n', 'gd', '<cmd>Lspsaga goto_definition<cr>', { desc = '[G]oto [D]efinition' } },
-    -- { 'n',          'gu',         '<cmd>Telescope lsp_references<cr>',        { desc = '[G]oto [U]sages' } },
     { 'n', 'gu', '<cmd>Lspsaga finder<cr>', { desc = '[G]oto [U]sages' } },
-    { 'n', 'gi', '<cmd>Telescope lsp_implementations<cr>', { desc = '[G]oto [I]mplementations' } },
-    { 'n', 'gt', '<cmd>Telescope lsp_type_definitions<cr>', { desc = '[G]oto [T]ype Definitions' } },
-    { 'n', '<leader>ds', '<cmd>Telescope lsp_document_symbols<cr>', { desc = '[D]ocument [S]symbols' } },
-    { 'n', '<leader>ps', '<cmd>Telescope lsp_workspace_symbols<cr>', { desc = '[P]roject [S]ymbols' } },
     { { 'n', 'i' }, '<C-p>', vim.lsp.buf.signature_help, { desc = 'Show [P]arameters' } },
     { 'n', 'K', '<cmd>Lspsaga hover_doc<cr>', { desc = 'Documentation' } },
     { 'n', 'R', '<cmd>Lspsaga rename<cr>', { desc = '[R]ename' } },

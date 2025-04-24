@@ -13,8 +13,23 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     event = 'VeryLazy',
     keys = {
-        { '<leader>st', '<cmd>TodoTelescope keywords=TODO,FIX<cr>', desc = '[S]earch [T]odos' },
-        { '<leader>lt', '<cmd>TodoTrouble<cr>', desc = '[L]ist [T]odos' },
+        {
+            '<leader>st',
+            function()
+                Snacks.picker.todo_comments({
+                    layout = 'telescope',
+                    keywords = { 'TODO', 'FIX', 'FIXME', 'BUG', 'ISSUE', 'OPTIMIZE' },
+                })
+            end,
+            desc = '[S]earch [T]odos',
+        },
+        {
+            '<leader>sn',
+            function()
+                Snacks.picker.todo_comments({ layout = 'telescope' })
+            end,
+            desc = '[S]earch [N]otes',
+        },
     },
     config = function()
         require('todo-comments').setup({

@@ -23,6 +23,7 @@ return {
                 return true
             end,
         },
+        picker = {},
     },
     keys = {
         {
@@ -45,11 +46,11 @@ return {
         },
 
         {
-            '<leader>si',
+            '<leader>ri',
             function()
                 Snacks.image.hover()
             end,
-            desc = '[S]how [I]mage',
+            desc = '[R]ender [I]mage',
         },
 
         {
@@ -65,6 +66,117 @@ return {
                 Snacks.notifier.show_history()
             end,
             desc = '[N]otification [H]istory',
+        },
+
+        {
+            '<leader>sp',
+            function()
+                Snacks.picker.pickers({ layout = 'telescope' })
+            end,
+            desc = '[S]how [P]ickers',
+        },
+        {
+            '<leader>fs',
+            function()
+                Snacks.picker.files({
+                    layout = 'telescope',
+                    hidden = true,
+                    follow = true,
+                })
+            end,
+            desc = '[F]ile [S]ystem',
+        },
+        {
+            '<leader>lv',
+            function()
+                Snacks.picker.grep({
+                    layout = 'telescope',
+                    hidden = true,
+                    follow = true,
+                })
+            end,
+            desc = '[L]ive [G]rep',
+        },
+        {
+            'gi',
+            function()
+                Snacks.picker.lsp_implementations()
+            end,
+            { desc = '[G]oto [I]mplementations' },
+        },
+        {
+            'gt',
+            function()
+                Snacks.picker.lsp_type_definitions()
+            end,
+            { desc = '[G]oto [T]ype Definitions' },
+        },
+        {
+            '<leader>ds',
+            function()
+                Snacks.picker.lsp_symbols({ layout = 'telescope' })
+            end,
+            desc = '[D]ocument [S]ymbols',
+        },
+        {
+            '<leader>ps',
+            function()
+                Snacks.picker.lsp_workspace_symbols({ layout = 'telescope' })
+            end,
+            desc = '[P]roject [S]ymbols',
+        },
+        {
+            '<leader>di',
+            function()
+                Snacks.picker.diagnostics({ layout = 'telescope' })
+            end,
+            desc = '[Di]agnostics',
+        },
+        {
+            '<leader>dl',
+            function()
+                Snacks.picker.diagnostics_buffer({ layout = 'telescope' })
+            end,
+            desc = '[D]iagnostics [L]ocal',
+        },
+        {
+            '<leader>fh',
+            function()
+                Snacks.picker.help({ layout = 'telescope' })
+            end,
+            desc = '[F]ind [H]elp',
+        },
+        {
+            '<leader>hi',
+            function()
+                Snacks.picker.highlights({
+                    layout = 'telescope',
+                    hidden = true,
+                    follow = true,
+                })
+            end,
+            desc = '[Hi]light Groups',
+        },
+        {
+            '<leader>si',
+            function()
+                Snacks.picker.icons({ layout = 'select' })
+            end,
+            desc = '[S]earch [I]cons',
+        },
+        {
+            '<leader>sk',
+            function()
+                Snacks.picker.keymaps({ layout = 'dropdown' })
+            end,
+            desc = '[S]earch [K]eymaps',
+        },
+        {
+            '<leader>th',
+            function()
+                Snacks.picker.colorschemes({ layout = 'dropdown' })
+            end,
+            desc = '[T]hemes [P]icker',
         },
     },
 }
