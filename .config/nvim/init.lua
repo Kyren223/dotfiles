@@ -3,7 +3,6 @@ vim.loader.enable()
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require('custom.globals')
 require('custom.config.options')
 vim.schedule(function()
     require('custom.config.keymaps')
@@ -11,7 +10,6 @@ vim.schedule(function()
 end)
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
----@diagnostic disable-next-line: undefined-field
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
         'git',
