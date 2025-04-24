@@ -97,6 +97,9 @@
     prismlauncher
     cloudflare-warp
     drawio
+    tree-sitter
+    tectonic
+    mermaid-cli
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use

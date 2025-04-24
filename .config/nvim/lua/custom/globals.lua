@@ -6,8 +6,7 @@ function Notify(message, title, level)
             title = level
         end
     end
-    local notify = require('notify')
-    notify(message, level, { title = ' ' .. title })
+    vim.notify(message, level, { title = ' ' .. title })
 end
 
 function ToggleWrap()
