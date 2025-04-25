@@ -8,6 +8,11 @@
 -- NOTE: lorem ipsum
 -- TEST: lorem ipsum
 -- UNSAFE: lorem ipsum
+-- TODO(kyren223): lorem ipsum
+-- NOTE:(broken) lorem ipsum
+-- todo!(a);
+-- todo!(aaa);
+
 return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -64,14 +69,9 @@ return {
                 before = '', -- "fg" or "bg" or empty
                 keyword = 'wide', -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
                 after = 'fg', -- "fg" or "bg" or empty
-                -- TODO():
                 pattern = {
-                    -- [[.*<(KEYWORDS)\s*(.*)?\s*:]], -- default
-                    [[.*<(KEYWORDS)\s*:]], -- default
-                    [[.*<(KEYWORDS)\s*!?\(\):]], -- keyword!() syntax
-                    -- [[.*<(KEYWORDS)\s*\(.*\):]], -- keyword(anything) syntax
-                    [[.*<(KEYWORDS)\s* ?\(.*\):]], -- keyword(anything) syntax
-                    [[.*<(KEYWORDSky)\s*:]], -- keyword(anything) syntax
+                    [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
+                    [[((KEYWORDS)!%(\(.{-}\))?)]],
                 }, -- pattern or table of patterns, used for highlighting (vim regex)
                 comments_only = false,
                 max_line_len = 400,
@@ -96,14 +96,9 @@ return {
                     '--with-filename',
                     '--line-number',
                     '--column',
-                    -- "--hidden", -- show todos in hidden directories and files
+                    '--hidden', -- show todos in hidden directories and files
                     '--follow', -- follow symlinks
                 },
-                -- regex that will be used to match keywords.
-                -- don't replace the (KEYWORDS) placeholder
-                pattern = [[\b(KEYWORDS)(?:\(([^)]*)\))?:]], -- supports optional `(anything)` before colon
-                -- pattern = [[\b(KEYWORDS):]], -- default
-                -- pattern = [[\b(KEYWORDS)\b]], -- no colon
             },
         })
     end,
