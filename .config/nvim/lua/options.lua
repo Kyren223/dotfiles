@@ -38,6 +38,7 @@ vim.opt.termguicolors = true
 vim.opt.laststatus = 3 -- views can only be fully collapsed with the global statusline
 vim.opt.splitkeep = 'screen' -- for edgy.nvim
 vim.opt.inccommand = 'split' -- shows preview for commands like :%s/from/to
+vim.opt.sessionoptions = 'buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 -- Disable warnings for missing language providers
 vim.g.loaded_node_provider = 0
