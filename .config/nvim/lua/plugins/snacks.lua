@@ -9,7 +9,7 @@ return {
         },
 
         bigfile = {},
-        dashboard = {},
+        -- dashboard = {},
         gitbrowse = {},
         image = {},
         indent = {
