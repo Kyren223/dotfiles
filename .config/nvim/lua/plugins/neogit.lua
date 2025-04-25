@@ -2,14 +2,7 @@ return {
     'NeogitOrg/neogit',
     cmd = 'Neogit',
     keys = {
-        { '<leader>gb', '<cmd>Neogit branch<cr>' },
         { '<leader>gs', '<cmd>Neogit<cr>' },
-        { '<leader>gL', '<cmd>Neogit log<cr>' },
-        -- { '<leader>gc', '<cmd>Neogit commit<cr>' },
-        { '<leader>gp', '<cmd>Neogit push<cr>' },
-        { '<leader>gP', '<cmd>Neogit pull<cr>' },
-        { '<leader>gr', '<cmd>Neogit rebase<cr>' },
-        { '<leader>gm', '<cmd>Neogit merge<cr>' },
     },
     opts = function()
         return {

@@ -81,8 +81,4 @@ return {
             vim.keymap.set({ 'n', 'x', 'o' }, 'T', ts_repeat_move.builtin_T_expr, { expr = true })
         end,
     },
-    -- NOTE: Might conflict with treeobj but it adds IQ and AQ for any quotes which is cool
-    -- The rest can probably be disabled, but I will try it out and only disable if it annoys me
-    -- Also it does (/{ etc ignore whitespace but )/} don't, which is interesting ig
-    -- { 'echasnovski/mini.ai', version = false, opts = {}, lazy = false },
 }
