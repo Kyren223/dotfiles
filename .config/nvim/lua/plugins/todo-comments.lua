@@ -99,6 +99,7 @@ return {
                     '--hidden', -- show todos in hidden directories and files
                     '--follow', -- follow symlinks
                 },
+                search = { pattern = [[\b(KEYWORDS)(\([^\)]*\))?:]] },
             },
         })
     end,
