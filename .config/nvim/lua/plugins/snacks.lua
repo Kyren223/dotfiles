@@ -20,9 +20,15 @@ return {
             ---@type snacks.notifier.style
             style = 'compact',
             filter = function(notif)
-                local filtered_messages = { 'No information available', 'No code actions available' }
-                for _, msg in ipairs(filtered_messages) do
+                local exact_filter = { 'No information available', 'No code actions available' }
+                local contains_filter = { 'fewer lines', 'lines indented', 'lines yanked' }
+                for _, msg in ipairs(exact_filter) do
                     if notif.msg == msg then
+                        return false
+                    end
+                end
+                for _, msg in ipairs(contains_filter) do
+                    if string.find(notif.msg, msg) then
                         return false
                     end
                 end

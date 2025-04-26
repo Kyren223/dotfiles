@@ -71,6 +71,11 @@ lualine.setup({
             function()
                 return lsp_progress.progress()
             end,
+            {
+                require('noice').api.status.mode.get,
+                cond = require('noice').api.status.mode.has,
+                color = { fg = '#ff9e64' },
+            },
         },
         lualine_x = {
             'searchcount',

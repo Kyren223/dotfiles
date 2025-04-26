@@ -2,7 +2,7 @@ return {
     'rmagatti/auto-session',
     lazy = false,
     opts = {
-        auto_session_suppress_dirs = { '~/', '/' },
+        suppressed_dirs = { '~/', '/' },
         session_lens = { load_on_setup = false },
         no_restore_cmds = {
             function()
