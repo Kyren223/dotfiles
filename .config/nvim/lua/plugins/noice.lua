@@ -85,6 +85,15 @@ return {
                 },
                 opts = { skip = true },
             },
+            {
+                view = 'popup',
+                filter = {
+                    event = 'msg_show',
+                    kind = '',
+                    find = 'written',
+                },
+                -- opts = { skip = true },
+            },
         },
         presets = {
             bottom_search = true, -- use a classic bottom cmdline for search
