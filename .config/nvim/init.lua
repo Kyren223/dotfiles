@@ -15,13 +15,13 @@ require('options')
 vim.schedule(function()
     require('keymaps')
     require('commands')
-
-    -- Enable all LSPs
-    local lsp = require('lsp')
-    for server, _ in pairs(lsp) do
-        vim.lsp.enable(server)
-    end
 end)
+
+-- Enable all LSPs
+local lsp = require('lsp')
+for server, _ in pairs(lsp) do
+    vim.lsp.enable(server)
+end
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
