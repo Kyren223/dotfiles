@@ -8,13 +8,13 @@ return {
             input = { row = 0.4 },
         },
 
-        bigfile = {},
+        -- bigfile = {},
         -- dashboard = {},
         gitbrowse = {},
         image = {},
-        indent = {
-            scope = { enabled = false },
-        },
+        -- indent = {
+        --     scope = { enabled = false },
+        -- },
         input = {},
         notifier = {
             ---@type snacks.notifier.style
