@@ -15,6 +15,7 @@ end
 local function yank_filepath_to_clipboard(os)
     return function()
         local filepath = vim.fn.expand('%:p')
+        -- TODO: simplify bcz idc about windows anymore
         if os == 'linux' then
             local home_dir = vim.fn.expand('~')
             filepath = filepath:gsub(home_dir, '~')
@@ -58,8 +59,8 @@ set({ 'n', 'x' }, 'p', '<cmd>lua RemoveClipboardCR()<cr>p', { noremap = true })
 set({ 'n', 'x' }, 'P', '<cmd>lua RemoveClipboardCR()<cr>P', { noremap = true })
 
 -- Move lines around
-set('n', '<A-j>', ":m .+1<cr>", { noremap = true })
-set('n', '<A-k>', ":m .-2<cr>", { noremap = true })
+set('n', '<A-j>', ':m .+1<cr>', { noremap = true })
+set('n', '<A-k>', ':m .-2<cr>', { noremap = true })
 set('v', '<A-j>', ":m '>+1<cr>gv", { noremap = true })
 set('v', '<A-k>', ":m '<-2<cr>gv", { noremap = true })
 
@@ -99,3 +100,73 @@ set('n', '<leader><leader>x', '<cmd>source %<CR>', { desc = 'Execute the current
 
 -- Reformats file using lsp
 set('n', '=', vim.lsp.buf.format, { desc = 'Format File' })
+
+-- LSP keymaps
+local severity = vim.diagnostic.severity
+local function next_diagnostic(diagnostic_severity)
+    return function()
+        require('lspsaga.diagnostic'):goto_next({ severity = diagnostic_severity })
+    end
+end
+local function prev_diagnostic(diagnostic_severity)
+    return function()
+        require('lspsaga.diagnostic'):goto_prev({ severity = diagnostic_severity })
+    end
+end
+local function cursor_diagnostics()
+    vim.diagnostic.open_float({
+        scope = 'cursor',
+        border = 'single',
+    })
+end
+
+local keymaps = {
+    { 'n', 'gd', '<cmd>Lspsaga goto_definition<cr>', { desc = '[G]oto [D]efinition' } },
+    { 'n', 'gu', '<cmd>Lspsaga finder<cr>', { desc = '[G]oto [U]sages' } },
+    { { 'n', 'i' }, '<C-p>', vim.lsp.buf.signature_help, { desc = 'Show [P]arameters' } },
+    { 'n', 'K', '<cmd>Lspsaga hover_doc<cr>', { desc = 'Documentation' } },
+    { 'n', 'R', '<cmd>Lspsaga rename<cr>', { desc = '[R]ename' } },
+    { { 'n', 'i' }, '<M-Enter>', '<cmd>Lspsaga code_action<cr>', { desc = 'Code Actions' } },
+    { 'n', '<leader>ca', '<cmd>Lspsaga code_action<cr><Esc>', { desc = '[C]ode [A]ctions' } },
+    { 'n', '<leader>e', next_diagnostic(severity.ERROR), { desc = 'Goto [E]rror' } },
+    { 'n', '<leader>E', prev_diagnostic(severity.ERROR), { desc = 'Goto [E]rror (prev)' } },
+    { 'n', '<leader>w', next_diagnostic(severity.WARN), { desc = 'Goto [W]arning' } },
+    { 'n', '<leader>W', prev_diagnostic(severity.WARN), { desc = 'Goto [W]arning (prev)' } },
+    { 'n', '<leader>D', cursor_diagnostics, { desc = '[D]iagnostics under cursor' } },
+}
+
+for _, ft in ipairs({ 'c', 'h', 'cpp', 'hpp' }) do
+    keymaps[ft] = {
+        { 'n', 'H', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' } },
+        { 'n', 'K', '<cmd>lua require("pretty_hover").hover()<cr>', { desc = 'Documentation Hover' } },
+    }
+end
+
+local function set_keymaps(tbl, bufnr)
+    for _, keymap in ipairs(tbl) do
+        local mode = keymap[1]
+        local lhs = keymap[2]
+        local rhs = keymap[3]
+        local opts = keymap[4] or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, lhs, rhs, opts)
+    end
+end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'Register LSP keymaps',
+    group = vim.api.nvim_create_augroup('lsp-keymaps', { clear = true }),
+    callback = function(args)
+        local bufnr = args.buf
+
+        local filetype = vim.bo[bufnr].filetype
+        set_keymaps(keymaps, bufnr)
+        for ft, tbl in pairs(keymaps) do
+            if type(ft) == 'number' or ft ~= filetype then
+                goto continue
+            end
+            set_keymaps(tbl, bufnr)
+            ::continue::
+        end
+    end,
+})

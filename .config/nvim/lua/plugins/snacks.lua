@@ -21,7 +21,7 @@ return {
             style = 'compact',
             filter = function(notif)
                 local exact_filter = { 'No information available', 'No code actions available' }
-                local contains_filter = { 'fewer lines', 'lines indented', 'lines yanked', 'more lines' }
+                local contains_filter = { 'fewer lines', 'lines indented', 'lines yanked', 'more lines', 'E486:' }
                 for _, msg in ipairs(exact_filter) do
                     if notif.msg == msg then
                         return false

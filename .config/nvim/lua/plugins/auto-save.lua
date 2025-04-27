@@ -25,6 +25,11 @@ return {
         return {
             -- execution_message = { enabled = false }, removed
             condition = function(buf)
+                -- TODO: oil issues might be bcz of autosaving?
+                -- Maybe I should exclude Oil ft?
+                -- Might be unrelated tho
+                -- Oil error is "cannot save, action already in progress"
+
                 -- Save only if the buffer is not a "special buffer"
                 return vim.fn.getbufvar(buf, '&buftype') == ''
             end,

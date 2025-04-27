@@ -78,7 +78,6 @@
     awatcher
     albert
     gdb
-    asm-lsp
     minisign
     libisoburn
     ncdu
@@ -100,6 +99,25 @@
     tree-sitter
     tectonic
     mermaid-cli
+
+    # LSP
+    asm-lsp
+    astro-language-server
+    basedpyright
+    bash-language-server
+    vscode-langservers-extracted # html/css/json
+    gopls
+    lemminx
+    lua-language-server
+    markdown-oxide
+    marksman
+    mdx-language-server
+    neocmakelsp
+    nil
+    tailwindcss-language-server
+    taplo
+    typescript-language-server
+    yaml-language-server
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
