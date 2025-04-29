@@ -76,7 +76,9 @@ return {
                 git = {
                     module = 'blink-cmp-git',
                     name = 'Git',
-                    opts = {},
+                    opts = {
+                        commit = { triggers = { '~' } },
+                    },
                 },
 
                 snippets = {
