@@ -1,0 +1,56 @@
+{
+  "eko dblog": {
+    "body": "log.Println(\"$TM_FILENAME:$TM_LINE_NUMBER database error:\", err)",
+    "prefix": "dblog"
+  },
+  "eko dberr": {
+    "body": [
+      "if err != nil {",
+      "\tlog.Println(\"$TM_FILENAME:$TM_LINE_NUMBER database error:\", err)",
+      "\treturn &ErrInternalError",
+      "}"
+    ],
+    "prefix": "dberr"
+  },
+  "eko serverapi": {
+    "body": [
+      "func $1(ctx context.Context, sess *session.Session, request *packet$0) packet.Payload {",
+      "}"
+    ],
+    "prefix": "serverapi"
+  },
+  "eko teamodel": {
+    "body": [
+      "import (",
+      "\t\"fmt\"",
+      "",
+      "\ttea \"github.com/charmbracelet/bubbletea\"",
+      ")",
+      "",
+      "type Model struct{",
+      "    $0",
+      "}",
+      "",
+      "func New() Model {",
+      "\treturn Model",
+      "    }",
+      "}",
+      "",
+      "func (m Model) Init() tea.Cmd {",
+      "\treturn nil",
+      "}",
+      "",
+      "func (m Model) View() string {",
+      "\treturn \"\"",
+      "}",
+      "",
+      "func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {",
+      "\tswitch msg := msg.(type) {",
+      "\tdefault:",
+      "\t\treturn m, nil",
+      "\t}",
+      "}"
+    ],
+    "prefix": "teamodel"
+  }
+}

@@ -1,17 +1,29 @@
 {
-  "name": "personal-snippets",
   "contributes": {
     "snippets": [
       {
-        "path": "./lua.json",
         "language": [
           "lua"
-        ]
+        ],
+        "path": "./lua.json"
       },
       {
         "language": "lua",
-        "path": "./carbonight.nvim/lua.json"
+        "path": "./carbonight-lua.json"
+      },
+      {
+        "language": [
+          "go"
+        ],
+        "path": "./go.json"
+      },
+      {
+        "language": [
+          "go"
+        ],
+        "path": "./eko-go.json"
       }
     ]
-  }
+  },
+  "name": "personal-snippets"
 }
