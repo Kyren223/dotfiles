@@ -99,6 +99,7 @@
     tree-sitter
     tectonic
     mermaid-cli
+    jq
 
     # LSP
     asm-lsp

@@ -1,0 +1,17 @@
+{
+  "name": "personal-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "path": "./lua.json",
+        "language": [
+          "lua"
+        ]
+      },
+      {
+        "language": "lua",
+        "path": "./carbonight.nvim/lua.json"
+      }
+    ]
+  }
+}

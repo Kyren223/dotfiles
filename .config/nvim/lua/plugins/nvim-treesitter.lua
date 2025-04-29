@@ -59,12 +59,12 @@ return {
                     },
                     swap = {
                         enable = true,
-                        swap_next = {
-                            ['<leader>sa'] = { query = '@parameter.inner', desc = 'Swap Argument (next)' },
-                        },
-                        swap_previous = {
-                            ['<leader>sA'] = { query = '@parameter.inner', desc = 'Swap Argument (prev)' },
-                        },
+                        -- swap_next = {
+                        --     ['<leader>sa'] = { query = '@parameter.inner', desc = 'Swap Argument (next)' },
+                        -- },
+                        -- swap_previous = {
+                        --     ['<leader>sA'] = { query = '@parameter.inner', desc = 'Swap Argument (prev)' },
+                        -- },
                     },
                 },
             })

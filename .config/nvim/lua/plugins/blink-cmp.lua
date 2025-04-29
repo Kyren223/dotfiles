@@ -1,44 +1,151 @@
 return {
     'saghen/blink.cmp',
+    event = 'InsertEnter',
     version = '1.*',
+    dependencies = {
+        {
+            'Kaiser-Yang/blink-cmp-git',
+            dependencies = { 'nvim-lua/plenary.nvim' },
+        },
+    },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-        -- 'super-tab' for mappings similar to vscode (tab to accept)
-        -- 'enter' for enter to accept
-        -- 'none' for no mappings
-        --
-        -- All presets have the following mappings:
-        -- C-space: Open menu or open docs if already open
-        -- C-n/C-p or Up/Down: Select next/previous item
-        -- C-e: Hide menu
-        -- C-k: Toggle signature help (if signature.enabled = true)
-        --
-        -- See :h blink-cmp-config-keymap for defining your own keymap
-        keymap = { preset = 'default' },
+        keymap = {
+            preset = 'enter',
+            ['<C-e>'] = {},
+            ['<C-c>'] = { 'hide', 'fallback' },
+
+            ['<C-b>'] = {},
+            ['<C-f>'] = {},
+            ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+            ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+        },
+
+        completion = {
+            -- Show documentation when selecting a completion item
+            documentation = {
+                auto_show = true, -- TODO: turn this to off? once carbonight is ready
+                auto_show_delay_ms = 0,
+                window = { border = 'single' },
+            },
+
+            keyword = { range = 'full' },
+            -- Full seems cool but might be annoying
+            -- TODO: after a while, did I like this?
+            -- If so keep, otherwise switch to prefix
+
+            -- Preselect first one, don't complete until confirmation
+            list = { selection = { preselect = true, auto_insert = false } },
+
+            menu = {
+                draw = {
+                    -- TODO: really cool but ugly AF now
+                    -- need to add support for this in carbonight first
+                    -- We don't need label_description now because label and label_description are already
+                    -- combined together in label by colorful-menu.nvim.
+                    -- columns = { { 'kind_icon' }, { 'label', gap = 1 } },
+                    -- components = {
+                    --     label = {
+                    --         text = function(ctx)
+                    --             return require('colorful-menu').blink_components_text(ctx)
+                    --         end,
+                    --         highlight = function(ctx)
+                    --             return require('colorful-menu').blink_components_highlight(ctx)
+                    --         end,
+                    --     },
+                    -- },
+                },
+            },
+        },
+
+        -- TODO: configure this when I get to fixing the LSP signature thing
+        signature = {},
+
+        fuzzy = { implementation = 'prefer_rust_with_warning' },
+
+        sources = {
+            default = { 'lsp', 'path', 'snippets', 'lazydev', 'git' },
+
+            providers = {
+                lazydev = {
+                    name = 'LazyDev',
+                    module = 'lazydev.integrations.blink',
+                    score_offset = 100, -- prioritize lazydev
+                },
+                git = {
+                    module = 'blink-cmp-git',
+                    name = 'Git',
+                    opts = {},
+                },
+
+                snippets = {
+                    score_offset = 200, -- make snippets highest priority
+                    transform_items = function(_, items)
+                        return vim.tbl_filter(function(item)
+                            if item.kind ~= require('blink.cmp.types').CompletionItemKind.Snippet then
+                                return true
+                            end
+
+                            local name = item.description
+                            -- vim.print(name)
+                            local parts = vim.split(name, ' ', { trimempty = false })
+                            local namespace = #parts > 1 and parts[1] or nil
+                            -- vim.print(namespace)
+                            if not namespace then
+                                return true
+                            end
+
+                            -- vim.print(vim.fn.getcwd())
+                            local path = vim.split(vim.fn.getcwd(), '/')
+                            local dir = path[#path]
+                            -- vim.print(dir)
+
+                            return dir == namespace
+                        end, items)
+                    end,
+                },
+            },
+        },
 
         appearance = {
-            -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-            -- Adjusts spacing to ensure icons are aligned
-            nerd_font_variant = 'mono',
+            -- TODO: change icons to make more sense to me
+            kind_icons = {
+                Text = '', --   󰉿
+                Method = '󰊕',
+                Function = '󰊕',
+                Constructor = '󰒓',
+
+                Field = '󰜢',
+                Variable = '󰆦',
+                Property = '󰖷',
+
+                Class = '󱡠',
+                Interface = '󱡠',
+                Struct = '󱡠',
+                Module = '󰅩',
+
+                Unit = '󰪚',
+                Value = '󰦨',
+                Enum = '󰦨',
+                EnumMember = '󰦨',
+
+                Keyword = '󰻾',
+                Constant = '󰏿',
+
+                Snippet = '',
+                Color = '󰏘',
+                File = '󰈔',
+                Reference = '󰬲',
+                Folder = '󰉋',
+                Event = '󱐋',
+                Operator = '󰪚',
+                TypeParameter = '󰬛',
+            },
         },
-
-        -- (Default) Only show the documentation popup when manually triggered
-        completion = { documentation = { auto_show = false } },
-
-        -- Default list of enabled providers defined so that you can extend it
-        -- elsewhere in your config, without redefining it, due to `opts_extend`
-        sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer' },
-        },
-
-        -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-        -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-        -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-        --
-        -- See the fuzzy documentation for more information
-        fuzzy = { implementation = 'prefer_rust_with_warning' },
     },
     opts_extend = { 'sources.default' },
+
+    -- TODO: pressing backk (deleting), should re-show completion menu
+    -- TODO: ghost text only for LLMs?
 }

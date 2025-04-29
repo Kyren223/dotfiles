@@ -1,0 +1,15 @@
+{
+  "hmmm": {
+    "body": [
+      "for ${1:} in ipairs(${2:}, ${3:}) do",
+      "    ${4:}",
+      "end",
+      "",
+      "What about inside: ${5:${6:${7:}}}",
+      "",
+      "$0",
+      "^ END"
+    ],
+    "prefix": "hmmm"
+  }
+}
