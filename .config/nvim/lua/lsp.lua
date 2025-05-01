@@ -6,6 +6,7 @@ return {
     clangd = true,
     css_variables = true,
     cssls = true,
+    gh_actions_ls = true,
     gopls = true,
     html = true,
     jsonls = true,

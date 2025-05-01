@@ -116,7 +116,8 @@
     taplo
     typescript-language-server
     yaml-language-server
-    # npm i -g css-variables-language-server
+    # pnpm i -g css-variables-language-server
+    # pnpm install -g gh-actions-language-server
 
     # Tools
     stylua
