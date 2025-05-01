@@ -4,6 +4,7 @@ return {
     basedpyright = true, -- python
     bashls = true,
     clangd = true,
+    css_variables = true,
     cssls = true,
     gopls = true,
     html = true,
