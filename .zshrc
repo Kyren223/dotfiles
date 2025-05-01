@@ -112,10 +112,6 @@ if [ ! -f "$MARKER_FILE" ]; then
   # HACK: Send a notification so systemd notification will work
   notify-send --urgency=normal --expire-time=1 " "
 
-  # Start activity watcher
-  nohup aw-qt &>/dev/null & disown
-  nohup awatcher &>/dev/null & disown
-
   # Start albert (app launcher like krunner)
   nohup albert --platform xcb &>/dev/null & disown
 

@@ -74,8 +74,6 @@
     libreoffice
     vesktop
     nasm
-    activitywatch
-    awatcher
     albert
     gdb
     minisign

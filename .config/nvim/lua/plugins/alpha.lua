@@ -1,7 +1,7 @@
 return {
     'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    cmd = "Alpha",
+    cmd = 'Alpha',
     config = function()
         local alpha = require('alpha')
         local dashboard = require('alpha.themes.dashboard')
@@ -21,7 +21,6 @@ return {
             return tostring(day) .. suffix
         end
 
-        local find_file_path = '$HOME'
         local date = os.date('  %A, %B ') .. get_natural_day(tonumber(os.date('%d')))
         local plugins = '  ' .. require('lazy').stats().count .. ' plugins '
         local v = vim.version()
@@ -48,17 +47,6 @@ return {
 
         dashboard.section.buttons.opts.spacing = 0
         dashboard.section.buttons.val = {
-            dashboard.button('e', '  > New file', '<cmd>ene <BAR> startinsert<cr>'),
-            dashboard.button('f', '  > Find file', '<cmd>cd ' .. find_file_path .. ' | Telescope find_files<cr>'),
-            dashboard.button('r', '  > Recent', '<cmd>Telescope oldfiles<cr>'),
-            dashboard.button('c', '  > Configuration', '<cmd>e $MYVIMRC<cr> | <cmd>cd %:p:h<cr>'),
-            -- FIX: doesn't seem to work so great, probably just use a project manager
-            -- will most likely make my own project manager plugin
-            -- dashboard.button(
-            --     's',
-            --     '󱎠  > Last Session',
-            --     '<cmd>lua require("auto-session.session-lens.actions").alternate_session()<cr>'
-            -- ),
             dashboard.button('q', '󰈆  > Quit NVIM', '<cmd>qa<cr>'),
         }
 
