@@ -1,7 +1,11 @@
 return {
     'pwntester/octo.nvim',
     cmd = 'Octo',
-    dependencies = { 'nvim-telescope/telescope.nvim' },
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'folke/snacks.nvim',
+        'nvim-tree/nvim-web-devicons',
+    },
     keys = {
         { '<leader>gi', '<cmd>Octo issue search<cr>', desc = '[G]ithub [I]ssues (local)' },
         { '<leader>pr', '<cmd>Octo pr search<cr>', desc = 'Github [PR]s (local)' },
@@ -9,7 +13,10 @@ return {
         { '<leader>pR', '<cmd>Octo search is:pr author:@me<cr>', desc = 'Github [PR]s (global)' },
     },
     config = function()
-        require('octo').setup({ suppress_missing_scope = { projects_v2 = true } })
+        require('octo').setup({
+            suppress_missing_scope = { projects_v2 = true },
+            picker = 'snacks',
+        })
 
         vim.treesitter.language.register('markdown', 'octo')
         vim.api.nvim_create_autocmd('FileType', {
