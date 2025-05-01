@@ -8,7 +8,7 @@ return {
             -- cpp = { 'clangtidy' },
             go = { 'golangcilint' },
             -- python = { 'flake8' },
-            json = { 'jsonlint' },
+            -- json = { 'jsonlint' },
             bash = { 'shellcheck' },
         }
 

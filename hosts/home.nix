@@ -97,7 +97,6 @@
     tree-sitter
     tectonic
     mermaid-cli
-    jq
 
     # LSP
     asm-lsp
@@ -117,6 +116,16 @@
     taplo
     typescript-language-server
     yaml-language-server
+
+    # Tools
+    stylua
+    gofumpt
+    golangci-lint
+    prettierd
+    jq
+    lldb # codelldb debugger
+    shellcheck
+    beautysh # shell formatter
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use
