@@ -1,6 +1,7 @@
 return {
     'pwntester/octo.nvim',
     cmd = 'Octo',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
     keys = {
         { '<leader>gi', '<cmd>Octo issue search<cr>', desc = '[G]ithub [I]ssues (local)' },
         { '<leader>pr', '<cmd>Octo pr search<cr>', desc = 'Github [PR]s (local)' },
