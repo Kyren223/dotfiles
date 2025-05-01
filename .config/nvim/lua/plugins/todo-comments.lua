@@ -23,6 +23,8 @@ return {
             function()
                 Snacks.picker.todo_comments({
                     layout = 'telescope',
+                    follow = true,
+                    hidden = true,
                     keywords = { 'TODO', 'FIX', 'FIXME', 'BUG', 'ISSUE', 'OPTIMIZE' },
                 })
             end,
@@ -31,7 +33,11 @@ return {
         {
             '<leader>sn',
             function()
-                Snacks.picker.todo_comments({ layout = 'telescope' })
+                Snacks.picker.todo_comments({
+                    layout = 'telescope',
+                    follow = true,
+                    hidden = true,
+                })
             end,
             desc = '[S]earch [N]otes',
         },
