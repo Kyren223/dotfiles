@@ -1,12 +1,27 @@
 return {
     'roodolv/markdown-toggle.nvim',
-    event = 'VeryLazy',
-    config = function()
-        require('markdown-toggle').setup()
-        local opts = { silent = true, noremap = true }
-        local toggle = require('markdown-toggle')
-        vim.keymap.set({ 'n', 'x' }, '<leader>tu', toggle.list, opts)
-        vim.keymap.set({ 'n', 'x' }, '<leader>to', toggle.olist, opts)
-        vim.keymap.set({ 'n', 'x' }, '<leader>tm', toggle.checkbox, opts)
-    end,
+    opts = {},
+    keys = {
+        {
+            '<leader>tu',
+            function()
+                require('markdown-toggle').list()
+            end,
+            mode = { 'n', 'x' },
+        },
+        {
+            '<leader>to',
+            function()
+                require('markdown-toggle').olist()
+            end,
+            mode = { 'n', 'x' },
+        },
+        {
+            '<leader>tm',
+            function()
+                require('markdown-toggle').checkbox()
+            end,
+            mode = { 'n', 'x' },
+        },
+    },
 }
