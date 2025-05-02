@@ -1,5 +1,4 @@
 local set = vim.keymap.set
-local silent = { silent = true }
 ---@param mode string|table
 ---@param keymap string
 local function unbind(mode, keymap)
@@ -12,33 +11,18 @@ local function toggle_zen()
     vim.cmd('UndotreeHide')
 end
 
-local function yank_filepath_to_clipboard(os)
+local function yank_filepath_to_clipboard(absolute)
     return function()
         local filepath = vim.fn.expand('%:p')
-        -- TODO: simplify bcz idc about windows anymore
-        if os == 'linux' then
+        if not absolute then
             local home_dir = vim.fn.expand('~')
             filepath = filepath:gsub(home_dir, '~')
-        elseif os == 'windows' then
-            local mnt = '/mnt/'
-            if filepath:sub(1, #mnt) == mnt then
-                filepath = filepath:sub(#mnt + 1, #mnt + 1) .. ':' .. filepath:sub(#mnt + 2)
-            else
-                filepath = '//wsl.localhost/openSUSE-Tumbleweed' .. filepath
-            end
-            filepath = filepath:gsub('/', '\\')
         end
         vim.fn.setreg('+', filepath)
     end
 end
 
-function RemoveClipboardCR()
-    local clipboard = vim.fn.getreg('+'):gsub('\r', '')
-    vim.fn.setreg('+', clipboard)
-end
-
 local function paste()
-    RemoveClipboardCR()
     local value = vim.fn.getreg('+')
     if vim.fn.mode() == 'c' then
         -- value = vim.split(value, '\n')[1] -- only use first line (default with normal pasting)
@@ -67,22 +51,22 @@ set('v', '<A-k>', ":m '<-2<cr>gv", { noremap = true })
 -- Misc
 set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
 set('i', '<C-H>', '<C-w>', { desc = 'Ctrl + Backspace to delete word' })
-set('n', '<Esc>', '<cmd>nohlsearch<CR>', silent)
+set('n', '<esc>', '<cmd>nohlsearch<cr>', { silent = true })
 set({ 'i', 'c' }, '<C-v>', paste)
 set('n', '<leader>z', toggle_zen, { desc = '[Z]en Mode', silent = true })
+set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
+set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+set('n', '<leader><tab>', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 unbind({ 'i', 'n', 'v' }, '<C-r>')
 
 set('n', 'U', '<cmd>redo<cr>')
 set('i', '<C-z>', '<cmd>undo<cr>')
 set({ 'i', 'n', 'v' }, '<C-q>', '<cmd>wqa<cr>')
-set('n', '<leader>yp', yank_filepath_to_clipboard('linux'), { desc = '[Y]oink File [P]ath (linux)' })
-set('n', '<leader>yP', yank_filepath_to_clipboard('windows'), { desc = '[Y]oink File [P]ath (windows)' })
+set('n', '<leader>yp', yank_filepath_to_clipboard(true), { desc = '[Y]oink File [P]ath (linux)' })
+set('n', '<leader>yP', yank_filepath_to_clipboard(false), { desc = '[Y]oink File [P]ath (windows)' })
 
--- Window Navigation - NO NEED BECAUSE IT CONFLICTS WITH TMUX
--- set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
--- set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the down window' })
--- set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the up window' })
--- set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+-- Terminal
+set('t', '<C-t>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
 
 -- Window resizing
 local resize = 2
@@ -90,6 +74,13 @@ set({ 'n', 't' }, '<C-Left>', string.format('<cmd>vertical resize -%d<CR>', resi
 set({ 'n', 't' }, '<C-Up>', string.format('<cmd>resize -%d<CR>', resize), { desc = 'Resize Up' })
 set({ 'n', 't' }, '<C-Down>', string.format('<cmd>resize +%d<CR>', resize), { desc = 'Resize Down' })
 set({ 'n', 't' }, '<C-Right>', string.format('<cmd>vertical resize +%d<CR>', resize), { desc = 'Resize Right' })
+
+-- highlights under cursor
+set('n', '<leader>ui', vim.show_pos, { desc = 'Inspect Pos' })
+set('n', '<leader>uI', function()
+    vim.treesitter.inspect_tree()
+    vim.api.nvim_input('I')
+end, { desc = 'Inspect Tree' })
 
 -- Keep selection after < and > in visual mode
 set('v', '<', '<gv')

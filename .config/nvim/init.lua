@@ -36,8 +36,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({ import = 'plugins' }, {
-    change_detection = { enabled = true, notify = false },
     defaults = { lazy = true },
+    -- install = { colorscheme = { 'tokyonight', 'habamax' } },
+    change_detection = { enabled = true, notify = false },
+    checker = { enabled = true, notify = false },
     ui = {
         icons = {
             ft = ' ',
@@ -60,6 +62,7 @@ require('lazy').setup({ import = 'plugins' }, {
                 'netrwSettings',
                 'netrwFileHandlers',
                 'matchit',
+                -- "matchparen"
                 'tar',
                 'tarPlugin',
                 'rrhelper',
