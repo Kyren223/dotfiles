@@ -22,4 +22,15 @@ return {
     ts_ls = true, -- typescript and yavashit
     yamlls = true,
     zls = true, -- zig
+
+    global = {
+        capabilities = {
+            workspace = {
+                fileOperations = {
+                    didRename = true,
+                    willRename = true,
+                },
+            },
+        },
+    },
 }

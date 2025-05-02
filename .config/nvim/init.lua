@@ -21,8 +21,12 @@ end)
 
 -- Enable all LSPs
 local lsp = require('lsp')
-for server, _ in pairs(lsp) do
-    vim.lsp.enable(server)
+for server, value in pairs(lsp) do
+    if server == 'global' then
+        vim.lsp.config('*', value)
+    elseif value then
+        vim.lsp.enable(server)
+    end
 end
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'

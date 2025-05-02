@@ -1,12 +1,12 @@
 return {
     'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
+    event = 'VeryLazy',
     cmd = { 'ConformInfo' },
     keys = {
         { '<leader>ft', '<cmd>FormatToggle<cr>', desc = '[F]ormat [T]oggle Globally' },
         { '<leader>fT', '<cmd>FormatToggle!<cr>', desc = '[F]ormat [T]oggle Locally' },
         { '<leader>ff', '<cmd>Format<cr>', desc = '[F]ormat [F]ile' },
-        { '<leader>f', '<cmd>Format<cr><esc>', desc = '[F]ormat', mode = 'v' },
+        { '<leader>f', '<cmd>Format<cr><esc>', desc = '[F]ormat', mode = 'v' }, -- FIX: doesn't work
     },
     ---@module "conform"
     ---@type conform.setupOpts
