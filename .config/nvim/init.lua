@@ -14,7 +14,9 @@ vim.print = _G.dd
 require('options')
 vim.schedule(function()
     require('keymaps')
-    require('commands')
+    require('autocmds')
+    require('usrcmds')
+    require('extra')
 end)
 
 -- Enable all LSPs
