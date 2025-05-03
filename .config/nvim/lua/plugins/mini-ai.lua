@@ -1,12 +1,15 @@
 return {
     'echasnovski/mini.ai',
+    version = false,
     event = 'VeryLazy',
+    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+    enabled = true,
     opts = function()
         local ai = require('mini.ai')
         return {
             n_lines = 500,
             custom_textobjects = {
-                o = ai.gen_spec.treesitter({ -- code block
+                b = ai.gen_spec.treesitter({ -- code block
                     a = { '@block.outer', '@conditional.outer', '@loop.outer' },
                     i = { '@block.inner', '@conditional.inner', '@loop.inner' },
                 }),
@@ -18,7 +21,6 @@ return {
                     { '%u[%l%d]+%f[^%l%d]', '%f[%S][%l%d]+%f[^%l%d]', '%f[%P][%l%d]+%f[^%l%d]', '^[%l%d]+%f[^%l%d]' },
                     '^().*()$',
                 },
-                -- g = LazyVim.mini.ai_buffer, -- buffer
                 u = ai.gen_spec.function_call(), -- u for "Usage"
                 U = ai.gen_spec.function_call({ name_pattern = '[%w_]' }), -- without dot in function name
             },
