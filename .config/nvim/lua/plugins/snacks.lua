@@ -1,3 +1,13 @@
+local function term_nav(dir)
+    ---@param self snacks.terminal
+    return function(self)
+        return self:is_floating() and '<c-' .. dir .. '>'
+            or vim.schedule(function()
+                vim.cmd.wincmd(dir)
+            end)
+    end
+end
+
 return {
     'folke/snacks.nvim',
     priority = 1000,
@@ -21,7 +31,14 @@ return {
             style = 'compact',
             filter = function(notif)
                 local exact_filter = { 'No information available', 'No code actions available' }
-                local contains_filter = { 'fewer lines', 'lines indented', 'lines yanked', 'more lines', 'E486:' }
+                local contains_filter = {
+                    'fewer lines',
+                    'lines indented',
+                    'lines yanked',
+                    'more lines',
+                    'lines moved',
+                    'E486:',
+                }
                 for _, msg in ipairs(exact_filter) do
                     if notif.msg == msg then
                         return false
@@ -67,7 +84,16 @@ return {
         --         easing = 'linear',
         --     },
         -- },
-        terminal = {},
+        terminal = {
+            win = {
+                keys = {
+                    nav_h = { '<C-h>', term_nav('h'), desc = 'Go to Left Window', expr = true, mode = 't' },
+                    nav_j = { '<C-j>', term_nav('j'), desc = 'Go to Lower Window', expr = true, mode = 't' },
+                    nav_k = { '<C-k>', term_nav('k'), desc = 'Go to Upper Window', expr = true, mode = 't' },
+                    nav_l = { '<C-l>', term_nav('l'), desc = 'Go to Right Window', expr = true, mode = 't' },
+                },
+            },
+        },
     },
     keys = {
         {
@@ -107,7 +133,7 @@ return {
         {
             '<leader>nh',
             function()
-                Snacks.notifier.show_history()
+                Snacks.picker.notifications({ layout = 'telescope' })
             end,
             desc = '[N]otification [H]istory',
         },
@@ -247,18 +273,11 @@ return {
         },
 
         {
-            '<leader>nt',
+            '<C-t>',
             function()
-                Snacks.terminal.open()
+                Snacks.terminal()
             end,
             desc = '[N]ew [T]erminal',
-        },
-        {
-            '<leader>T',
-            function()
-                Snacks.terminal.toggle()
-            end,
-            desc = 'Toggle [T]erminal',
         },
     },
 }

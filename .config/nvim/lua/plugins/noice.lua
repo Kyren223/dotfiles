@@ -5,20 +5,18 @@ return {
         notify = { enabled = false },
         lsp = {
             progress = { enabled = false },
-            -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
             override = {
+                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                 -- override the default lsp markdown formatter with Noice
-                ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+                -- ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
                 -- override the lsp markdown formatter with Noice
-                ['vim.lsp.util.stylize_markdown'] = true,
-                -- override cmp documentation with Noice (needs the other options to work)
-                -- ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
+                -- ['vim.lsp.util.stylize_markdown'] = true,
             },
             hover = {
+                ---@type NoiceViewOptions
                 enabled = true,
                 silent = false, -- set to true to not show a message if hover is not available
                 view = nil, -- when nil, use defaults from documentation
-                ---@type NoiceViewOptions
                 opts = {}, -- merged with defaults from documentation
             },
             signature = {
