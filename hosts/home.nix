@@ -97,6 +97,7 @@
     tree-sitter
     tectonic
     mermaid-cli
+    ffmpeg
 
     # LSP
     asm-lsp
