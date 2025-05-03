@@ -32,6 +32,7 @@ return {
             filter = function(notif)
                 local exact_filter = { 'No information available', 'No code actions available' }
                 local contains_filter = {
+                    'lines',
                     'fewer lines',
                     'lines indented',
                     'lines yanked',
