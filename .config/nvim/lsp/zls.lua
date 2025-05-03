@@ -1,7 +1,6 @@
 -- https://github.com/zigtools/zls
 
 return {
-    mason = false,
     cmd = { 'zls' },
     filetypes = { 'zig', 'zir' },
     root_markers = { 'zls.json', 'build.zig', '.git' },

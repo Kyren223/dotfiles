@@ -134,7 +134,7 @@ return {
         {
             '<leader>nh',
             function()
-                Snacks.picker.notifications({ layout = 'telescope' })
+                Snacks.picker.notifications({ layout = 'dropdown' })
             end,
             desc = '[N]otification [H]istory',
         },

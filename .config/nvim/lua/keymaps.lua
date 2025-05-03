@@ -51,8 +51,6 @@ set('i', '<C-H>', '<C-w>', { desc = 'Ctrl + Backspace to delete word' })
 set('n', '<esc>', '<cmd>nohlsearch<cr>', { silent = true })
 set({ 'i', 'c' }, '<C-v>', paste)
 set('n', '<leader>z', toggle_zen, { desc = '[Z]en Mode', silent = true })
-set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
-set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 set('n', '<leader><tab>', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 unbind({ 'i', 'n', 'v' }, '<C-r>')
 
@@ -122,13 +120,6 @@ local keymaps = {
     { 'n', '<leader>W', prev_diagnostic(severity.WARN), { desc = 'Goto [W]arning (prev)' } },
     { 'n', '<leader>D', cursor_diagnostics, { desc = '[D]iagnostics under cursor' } },
 }
-
-for _, ft in ipairs({ 'c', 'h', 'cpp', 'hpp' }) do
-    keymaps[ft] = {
-        { 'n', 'H', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' } },
-        { 'n', 'K', '<cmd>lua require("pretty_hover").hover()<cr>', { desc = 'Documentation Hover' } },
-    }
-end
 
 local function set_keymaps(tbl, bufnr)
     for _, keymap in ipairs(tbl) do

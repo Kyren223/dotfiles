@@ -71,7 +71,7 @@ return {
                 lazydev = {
                     name = 'LazyDev',
                     module = 'lazydev.integrations.blink',
-                    score_offset = 100, -- prioritize lazydev
+                    score_offset = 100, -- show at a higher priority than lsp
                 },
                 git = {
                     module = 'blink-cmp-git',
@@ -118,12 +118,14 @@ return {
                 Method = '󰊕',
                 Function = '󰊕',
                 Constructor = '󰒓',
+                --   Constructor   = " ",
 
                 Field = '󰜢',
                 Variable = '󰆦',
                 Property = '󰖷',
 
                 Class = '󱡠',
+                --   Class         = " ",
                 Interface = '󱡠',
                 Struct = '󱡠',
                 Module = '󰅩',
@@ -137,8 +139,11 @@ return {
                 Constant = '󰏿',
 
                 Snippet = '',
+                --   Snippet       = "󱄽 ",
                 Color = '󰏘',
+                --   Color         = " ",
                 File = '󰈔',
+                --   File          = " ",
                 Reference = '󰬲',
                 Folder = '󰉋',
                 Event = '󱐋',
@@ -152,3 +157,39 @@ return {
     -- TODO: pressing backk (deleting), should re-show completion menu
     -- TODO: ghost text only for LLMs?
 }
+
+-- From LazyVim
+--   Array         = " ",
+--   Boolean       = "󰨙 ",
+--   Codeium       = "󰘦 ",
+--   Control       = " ",
+--   Collapsed     = " ",
+--   Copilot       = " ",
+--   Enum          = " ",
+--   EnumMember    = " ",
+--   Event         = " ",
+--   Field         = " ",
+--   Folder        = " ",
+--   Function      = "󰊕 ",
+--   Interface     = " ",
+--   Key           = " ",
+--   Keyword       = " ",
+--   Method        = "󰊕 ",
+--   Module        = " ",
+--   Namespace     = "󰦮 ",
+--   Null          = " ",
+--   Number        = "󰎠 ",
+--   Object        = " ",
+--   Operator      = " ",
+--   Package       = " ",
+--   Property      = " ",
+--   Reference     = " ",
+--   String        = " ",
+--   Struct        = "󰆼 ",
+--   Supermaven    = " ",
+--   TabNine       = "󰏚 ",
+--   Text          = " ",
+--   TypeParameter = " ",
+--   Unit          = " ",
+--   Value         = " ",
+--   Variable      = "󰀫 ",

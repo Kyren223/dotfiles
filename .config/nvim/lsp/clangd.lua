@@ -58,7 +58,6 @@ local function symbol_info()
 end
 
 return {
-    mason = false,
     cmd = {
         'clangd',
         '--background-index',
@@ -100,7 +99,7 @@ return {
             symbol_info()
         end, { desc = 'Show symbol info' })
 
-        vim.keymap.set('n', 'H', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', '<leader>H', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', 'K', '<cmd>lua require("pretty_hover").hover()<cr>', { desc = 'Documentation Hover' })
         -- TODO: do I need pretty_hover? maybe that's what causes issues?
     end,
