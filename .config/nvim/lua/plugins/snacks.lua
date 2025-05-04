@@ -19,12 +19,145 @@ return {
         },
 
         -- bigfile = {},
-        -- dashboard = {},
+        ---@class snacks.dashboard.Config
+        ---@field enabled? boolean
+        ---@field sections snacks.dashboard.Section
+        ---@field formats table<string, snacks.dashboard.Text|fun(item:snacks.dashboard.Item, ctx:snacks.dashboard.Format.ctx):snacks.dashboard.Text>
+        dashboard = {
+            width = 60,
+            row = nil, -- dashboard position. nil for center
+            col = nil, -- dashboard position. nil for center
+            pane_gap = 4, -- empty columns between vertical panes
+            autokeys = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', -- autokey sequence
+            -- These settings are used by some built-in sections
+            preset = {
+                -- Used by the `keys` section to show keymaps.
+                -- Set your custom keymaps here.
+                -- When using a function, the `items` argument are the default keymaps.
+                ---@type snacks.dashboard.Item[]
+                keys = {
+                    {
+                        icon = ' ',
+                        key = 'f',
+                        desc = 'Find File',
+                        action = ":lua Snacks.dashboard.pick('files')",
+                    },
+                    { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
+                    {
+                        icon = ' ',
+                        key = 'g',
+                        desc = 'Find Text',
+                        action = ":lua Snacks.dashboard.pick('live_grep')",
+                    },
+                    {
+                        icon = ' ',
+                        key = 'r',
+                        desc = 'Recent Files',
+                        action = ":lua Snacks.dashboard.pick('oldfiles')",
+                    },
+                    {
+                        icon = ' ',
+                        key = 'c',
+                        desc = 'Config',
+                        action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+                    },
+                    { icon = ' ', key = 's', desc = 'Restore Session', section = 'session' },
+                    {
+                        icon = '󰒲 ',
+                        key = 'L',
+                        desc = 'Lazy',
+                        action = ':Lazy',
+                        enabled = package.loaded.lazy ~= nil,
+                    },
+                    { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
+                },
+                -- Used by the `header` section
+                header = (function()
+                    return os.time() % 2 == 0
+                            and [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]]
+                        or [[
+                                                                     
+       ████ ██████           █████  ██ ██                     
+      ███████████             █████ ███                          
+      █████████ ███████████████████ ███   ███████████   
+     █████████  ███    █████████████ █████ ██████████████   
+    █████████ ██████████ █████████ █████ █████ ████ █████   
+  ███████████ ███    ███ █████████ █████ █████ ████ █████  
+ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]]
+                end)(),
+                --                                                                        ]],
+            },
+            -- item field formatters
+            formats = {
+                icon = function(item)
+                    if item.file and item.icon == 'file' or item.icon == 'directory' then
+                        return Snacks.dashboard.icon(item.file, item.icon)
+                    end
+                    return { item.icon, width = 2, hl = 'icon' }
+                end,
+                footer = { '%s', align = 'center' },
+                header = { '%s', align = 'center', hl = '@function.call' },
+                file = function(item, ctx)
+                    local fname = vim.fn.fnamemodify(item.file, ':~')
+                    fname = ctx.width and #fname > ctx.width and vim.fn.pathshorten(fname) or fname
+                    if #fname > ctx.width then
+                        local dir = vim.fn.fnamemodify(fname, ':h')
+                        local file = vim.fn.fnamemodify(fname, ':t')
+                        if dir and file then
+                            file = file:sub(-(ctx.width - #dir - 2))
+                            fname = dir .. '/…' .. file
+                        end
+                    end
+                    local dir, file = fname:match('^(.*)/(.+)$')
+                    return dir and { { dir .. '/', hl = 'dir' }, { file, hl = 'file' } } or { { fname, hl = 'file' } }
+                end,
+            },
+            sections = {
+                { section = 'header' },
+                function()
+                    local function get_natural_day(day)
+                        local suffix = 'th'
+                        local day_mod = day % 10
+
+                        if day_mod == 1 and day ~= 11 then
+                            suffix = 'st'
+                        elseif day_mod == 2 and day ~= 12 then
+                            suffix = 'nd'
+                        elseif day_mod == 3 and day ~= 13 then
+                            suffix = 'rd'
+                        end
+
+                        return tostring(day) .. suffix
+                    end
+
+                    local date = os.date(' 📅 %A, %B ') .. get_natural_day(tonumber(os.date('%d')))
+                    local v = vim.version()
+                    local version = '  v' .. v.major .. '.' .. v.minor .. '.' .. v.patch
+                    return {
+                        align = 'center',
+                        text = {
+                            { date, hl = '@boolean' },
+                            { version, hl = 'DevIconQt' },
+                        },
+                        padding = 1,
+                    }
+                end,
+                { section = 'keys', gap = 1, padding = 1 },
+                { section = 'startup' },
+                function()
+                    local fortune = table.concat(require('fortune')(), '\n'):sub(2)
+                    return { title = { fortune, hl = 'CursorLineNr' }, padding = 0 }
+                end,
+            },
+        },
         gitbrowse = {},
         image = {},
-        -- indent = {
-        --     scope = { enabled = false },
-        -- },
         input = {},
         notifier = {
             ---@type snacks.notifier.style
@@ -79,12 +212,6 @@ return {
                 },
             },
         },
-        -- scroll = {
-        --     animate = {
-        --         duration = { step = 15, total = 50 },
-        --         easing = 'linear',
-        --     },
-        -- },
         terminal = {
             win = {
                 keys = {
