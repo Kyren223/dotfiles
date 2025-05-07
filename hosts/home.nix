@@ -98,6 +98,7 @@
     tectonic
     mermaid-cli
     ffmpeg
+    haruna
 
     # LSP
     asm-lsp
