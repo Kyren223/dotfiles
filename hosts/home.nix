@@ -33,7 +33,7 @@
     unzip
     go
     pnpm
-    nodejs_23
+    nodejs_24
     (python312.withPackages (pypkgs: [
       pypkgs.matplotlib
       pypkgs.pandas
@@ -99,6 +99,7 @@
     mermaid-cli
     ffmpeg
     haruna
+    gparted
 
     # LSP
     asm-lsp
