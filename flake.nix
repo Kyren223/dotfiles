@@ -24,6 +24,12 @@
           ./hosts/lapsktop.nix
         ];
       };
+      kyren-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/desktop.nix
+        ];
+      };
     };
   };
 }
