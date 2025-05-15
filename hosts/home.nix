@@ -100,6 +100,7 @@
     ffmpeg
     haruna
     gparted
+    r2modman
 
     # LSP
     asm-lsp
