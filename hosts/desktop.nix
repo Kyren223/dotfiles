@@ -5,6 +5,7 @@
     ../modules/common.nix
     ../modules/kde.nix
     ../modules/networking.nix
+    ../modules/desktop.nix
     inputs.home-manager.nixosModules.default
   ];
 
