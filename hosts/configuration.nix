@@ -1,10 +1,23 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
 
   imports = [
-    ./packages.nix
+    ../modules/apps.nix
+    ../modules/kde.nix
+    ../modules/networking.nix
+    ../modules/development.nix
+    ../modules/gaming.nix
+    inputs.home-manager.nixosModules.default
   ];
 
-  # User
+  home-manager = {
+    extraSpecialArgs = { inherit inputs pkgs; };
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    users = {
+      "kyren" = import ./home.nix;
+    };
+  };
+
   users.users.kyren = {
     isNormalUser = true;
     description = "Kyren";
@@ -29,7 +42,7 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" ]; # for windows fs
 
   # Nix Config
   system.stateVersion = "24.05"; # DO NOT CHANGE!
@@ -43,23 +56,6 @@
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc
   ];
-
-  programs.firefox.enable = true;
-
-  # Install Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
-
-  # Install Docker (without using root access)
-  #virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -85,9 +81,11 @@
 
   # Enable openssh
   services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
 
-  # Mouse config service (used with piper)
-  services.ratbagd.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7P9K9D5RkBk+JCRRS6AtHuTAc6cRpXfRfRMg/Kyren"
+  ];
 
   # Enable KVM/QEMU virtualization
   programs.virt-manager.enable = true;
@@ -105,10 +103,6 @@
   systemd.tmpfiles.rules = [
     "d /home/kyren/.config/syncthing 0700 kyren users"
   ];
-  
-  # VPN for Vault Hunters to avoid connection issues
-  # Note, will break discord, also tried proton VPN, still has conn issues
-  services.cloudflare-warp.enable = true;
 
   systemd.timers."git-auto-sync" = {
     wantedBy = [ "timers.target" ];
@@ -142,5 +136,19 @@
   systemd.services."k-sleep-tracker" = {
     script = "$HOME/projects/k/bin/k tracker sleep";
     serviceConfig = { Type = "oneshot"; User = "kyren"; };
+  };
+
+  xdg.desktopEntries = {
+    "com.ktechpit.whatsie" = {
+      name = "WhatsApp";
+      genericName = "Watsie, unofficial WhatsApp client";
+      exec = "whatsie %U";
+      terminal = false;
+      icon = "com.github.eneshecan.WhatsAppForLinux";
+      categories = [ "Application" "Network" "WebBrowser" ];
+      settings = {
+        Keywords = "chat;im;messaging;messenger;sms;whatsapp;whatsapp-desktop;whatsie;";
+      };
+    };
   };
 }
