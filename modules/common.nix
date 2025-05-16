@@ -1,10 +1,8 @@
-#--------------------------------------#
-#                                      #
-#  Common Config/Packages for system   #
-#                                      #
-#--------------------------------------#
+{ pkgs, ... }: {
 
-{pkgs, ...}: {
+  imports = [
+    ./packages.nix
+  ];
 
   # User
   users.users.kyren = {
@@ -15,17 +13,6 @@
   };
 
   programs.zsh.enable = true;
-
-  # List packages installed in system profile
-  # Use for apps that need sudo (or have issues thru home-manager)
-  environment.systemPackages = with pkgs; [
-    glib-networking
-    openssl
-    clang
-    clang-tools
-    ghostty
-    glibcLocales
-  ];
 
   # Localization
   time.timeZone = "Asia/Hebron";
