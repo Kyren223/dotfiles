@@ -138,17 +138,4 @@
     serviceConfig = { Type = "oneshot"; User = "kyren"; };
   };
 
-  xdg.desktopEntries = {
-    "com.ktechpit.whatsie" = {
-      name = "WhatsApp";
-      genericName = "Watsie, unofficial WhatsApp client";
-      exec = "whatsie %U";
-      terminal = false;
-      icon = "com.github.eneshecan.WhatsAppForLinux";
-      categories = [ "Application" "Network" "WebBrowser" ];
-      settings = {
-        Keywords = "chat;im;messaging;messenger;sms;whatsapp;whatsapp-desktop;whatsie;";
-      };
-    };
-  };
 }
