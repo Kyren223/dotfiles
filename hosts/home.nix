@@ -101,6 +101,7 @@
     haruna
     gparted
     r2modman
+    openrgb-with-all-plugins
 
     # LSP
     asm-lsp
