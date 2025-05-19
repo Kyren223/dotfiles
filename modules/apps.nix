@@ -18,6 +18,11 @@
       libnotify
       wl-clipboard
       jdk
+      noto-fonts
+      noto-fonts-color-emoji
+      dejavu_fonts
+      font-awesome
+      material-design-icons
 
       libratbag # Mouse software (GHUB replacement)
       piper # ^ GUI frontend
