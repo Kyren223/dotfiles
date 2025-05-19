@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, inputs, ... }: {
 
   options.apps.enable = lib.mkOption {
     type        = lib.types.bool;
@@ -42,6 +42,8 @@
       haruna
       gparted
       gnome-clocks
+      inputs.zen-browser.packages."${system}".twilight
+      chromium # for firefox/zen issue not rendering emojis properly
 
       # Communication
       whatsie
