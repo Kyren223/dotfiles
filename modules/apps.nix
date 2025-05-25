@@ -87,6 +87,7 @@
       minisign
       libisoburn
       dua
+      mprocs
       imagemagick
       ghostscript # for imagemagick to support pdf files
       xxd
