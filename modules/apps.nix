@@ -99,6 +99,7 @@
       mermaid-cli
       ffmpeg
       nh
+      kondo # Cleans build caches
     ];
 
     # VPN for Vault Hunters to avoid connection issues
