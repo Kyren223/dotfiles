@@ -86,7 +86,7 @@
       dig
       minisign
       libisoburn
-      ncdu
+      dua
       imagemagick
       ghostscript # for imagemagick to support pdf files
       xxd
