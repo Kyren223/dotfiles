@@ -31,6 +31,7 @@
       yaml-language-server
       # pnpm i -g css-variables-language-server
       # pnpm install -g gh-actions-language-server
+      jdt-language-server
 
       # Tools
       stylua

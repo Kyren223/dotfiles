@@ -76,35 +76,46 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
 })
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
-  pattern = {
-    "PlenaryTestPopup",
-    "checkhealth",
-    "dbout",
-    "gitsigns-blame",
-    "grug-far",
-    "help",
-    "lspinfo",
-    "neotest-output",
-    "neotest-output-panel",
-    "neotest-summary",
-    "notify",
-    "qf",
-    "startuptime",
-    "tsplayground",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.schedule(function()
-      vim.keymap.set("n", "q", function()
-        vim.cmd("close")
-        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-      end, {
-        buffer = event.buf,
-        silent = true,
-        desc = "Quit buffer",
-      })
-    end)
-  end,
+vim.api.nvim_create_autocmd('FileType', {
+    group = augroup('close_with_q'),
+    pattern = {
+        'PlenaryTestPopup',
+        'checkhealth',
+        'dbout',
+        'gitsigns-blame',
+        'grug-far',
+        'help',
+        'lspinfo',
+        'neotest-output',
+        'neotest-output-panel',
+        'neotest-summary',
+        'notify',
+        'qf',
+        'startuptime',
+        'tsplayground',
+    },
+    callback = function(event)
+        vim.bo[event.buf].buflisted = false
+        vim.schedule(function()
+            vim.keymap.set('n', 'q', function()
+                vim.cmd('close')
+                pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+            end, {
+                buffer = event.buf,
+                silent = true,
+                desc = 'Quit buffer',
+            })
+        end)
+    end,
+})
+
+-- Format and organize imports on file save
+vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = '*.java',
+    callback = function()
+        if not vim.g.disable_autoformat then
+            require('jdtls').organize_imports()
+            vim.lsp.buf.format({ async = false })
+        end
+    end,
 })
