@@ -10,6 +10,8 @@ return {
     gopls = true,
     html = true,
     jsonls = true,
+    kotlin_language_server = true,
+    kotlin_lsp = false,
     lemminx = true, -- xml
     lua_ls = true,
     markdown_oxide = true,
