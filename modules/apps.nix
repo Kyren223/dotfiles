@@ -101,6 +101,13 @@
       ffmpeg
       nh
       kondo # Cleans build caches
+
+      kopia
+      kopia-ui
+
+      fuse
+      qemu_kvm
+      virtiofsd
     ];
 
     # VPN for Vault Hunters to avoid connection issues

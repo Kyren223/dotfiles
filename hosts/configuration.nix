@@ -92,6 +92,10 @@
   users.groups.libvirtd.members = ["kyren"];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation.libvirtd.qemu = {
+    runAsRoot = true;
+    ovmf.enable = true;
+  };
 
   services.syncthing.enable = true;
   services.syncthing = {
