@@ -60,15 +60,19 @@ alias vim='nvim'
 
 # K aliases
 alias ks='k switch'
+alias kn='k new'
 
 # Git Aliases
 alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+
 alias gp='git push'
 alias gP='git pull'
+
 alias gl='git log'
 alias glo='git log --oneline'
-alias gc='git commit'
-alias ga='git add'
+alias gb='git branch'
 
 # Env vars
 export FLAKE=~/dotfiles/
