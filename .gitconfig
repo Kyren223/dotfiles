@@ -5,15 +5,16 @@
 [user]
 	name = Kyren223
 	email = Kyren223@proton.me
-	signingkey = /home/kyren/.ssh/id_ed25519.pub
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7P9K9D5RkBk+JCRRS6AtHuTAc6cRpXfRfRMg/Kyren Kyren223@proton.me
 [init]
 	defaultBranch = master
-[pull]
-	rebase = true
 [core]
 	editor = nvim
     pager = delta --syntax-theme='Monokai Extended'
     excludesFile = /home/kyren/.config/git/ignore
+    compression = 9 # Trade CPU for network/disk
+    whitespace = error
+    preloadindex = true # Trade RAM for small speed improvement
 [interactive]
 	diffFilter = delta --color-only
 [delta]
@@ -24,3 +25,24 @@
 	format = ssh
 [log]
 	date = iso
+[url "git@github.com:kyren223/"]
+    insteadOf = "k:"
+[url "git@github.com:"]
+    insteadOf = "gh:"
+[url "git@gitlab.com:"]
+    insteadOf = "gl:"
+[url "git@git.kyren.codes:"]
+    insteadOf = "gt:"
+[status]
+    showStash = true
+    showUntrackedFiles = all
+[push]
+    autoSetupRemote = true
+    default = current
+    followTags = true
+[pull]
+    default = current
+    rebase = true
+[rebase]
+    autoStash = true
+    missingCommitsCheck = warn
