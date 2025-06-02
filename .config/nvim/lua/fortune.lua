@@ -606,6 +606,11 @@ local fortune_list = {
         '- Aaron Swartz',
     },
     { 'What one programmer can do in one month, two programmers can do in two months.', '', '- Frederick P. Brooks' },
+    {
+        'Most good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.',
+        '',
+        '- Linus Torvalds',
+    },
 }
 
 --- @return table
