@@ -27,6 +27,10 @@
       kdePackages.kmines # Minesweeper for fun lol
       kdePackages.kpat # Solitaire
       # btw missing the card/brick thing with weird symbols, not sure what that game was called
+
+      legendary-gl # Epic games launcher CLI
+      heroic # GUI for legendary (and some other stores)
+      wineWow64Packages.stagingFull # For non-steam games support, for GE-wine
     ];
 
   };
