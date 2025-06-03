@@ -96,6 +96,7 @@
     runAsRoot = true;
     ovmf.enable = true;
   };
+  environment.systemPackages = [ pkgs.virtiofsd ]; # For shared fs
 
   services.syncthing.enable = true;
   services.syncthing = {
