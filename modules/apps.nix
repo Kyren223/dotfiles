@@ -10,6 +10,8 @@
 
     programs.firefox.enable = true;
 
+    programs.kdeconnect.enable = true; # Opens TCP/UDP ports (does not when it's a pkg)
+
     environment.systemPackages = with pkgs; [
       # System
       glib-networking
