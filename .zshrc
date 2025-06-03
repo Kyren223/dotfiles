@@ -120,8 +120,10 @@ if [ ! -f "$MARKER_FILE" ]; then
   # Start linkwarden
   (pushd $HOME/personal/linkwarden > /dev/null && docker compose up -d > /dev/null && popd) &>/dev/null
 
-  # Cuz dolphin fails to mount this for some reason?
-  sudo ntfs-3g /dev/nvme0n1p4 /mnt/windows
+  # Automatically mount windows drives
+  sudo mkdir -p /mnt/c /mnt/e
+  sudo ntfs-3g /dev/nvme1n1p4 /mnt/c
+  sudo ntfs-3g /dev/sda2 /mnt/e
 
   touch "$MARKER_FILE"
 fi
