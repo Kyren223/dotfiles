@@ -9,10 +9,9 @@ if [ "$dir" = "$HOME" ]; then
 
   tmux new-window -t $sess -n dotfiles -c $HOME/dotfiles
   tmux send-keys -t $sess:dotfiles.1 "vim" C-m
-
-  tmux new-window -t $sess -n diary -c $HOME/personal/dairy
-  tmux send-keys -t $sess:diary.1 "vim" C-m
-
+  # 𐌲𐍂𐌹𐌼𐍉𐌹𐍂𐌴
+  tmux new-window -t $sess -n "grimoire" -c $HOME/personal/grimoire/
+  tmux send-keys -t $sess:"grimoire".1 "vim" C-m
   tmux select-window -t $sess:main
 elif [[ "$sess" == "ratry" || "$sess" == "kiwen-prototype" ]]; then
   tmux rename-window -t $sess:1 editor

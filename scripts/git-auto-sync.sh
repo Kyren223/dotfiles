@@ -1,10 +1,8 @@
 # Make sure my ssh key is loaded in ssh-agent for use when committing
-eval $(keychain --quiet --eval $HOME/.ssh/id_ed25519)
+eval "$(keychain --quiet --eval "$HOME"/.ssh/id_ed25519)"
 
 REPOS=(
-    "$HOME/personal/dairy"
-    "/path/to/repo2"
-    "/path/to/repo3"
+    "$HOME/personal/grimoire/"
 )
 
 COMMIT_MSG="Auto-sync: $(date +'%Y-%m-%d %H:%M:%S')"

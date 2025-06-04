@@ -5,7 +5,7 @@ import argparse
 from datetime import datetime
 
 # Hardcoded file path
-FILE_PATH = "/home/kyren/personal/dairy/sleep-tracker.md"
+FILE_PATH = "/home/kyren/personal/grimoire/sleep-tracker.md"
 
 def parse_time(value, is_evening=False):
     if value == "N/A" or value == "Morning" or value == "Evening":

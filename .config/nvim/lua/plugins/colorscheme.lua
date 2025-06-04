@@ -8,7 +8,7 @@ return {
             local dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
             if dir == 'kyren' then
                 vim.cmd.colorscheme('carbonight-tokyo')
-            elseif dir == 'dairy' then
+            elseif dir == 'grimoire' then
                 vim.cmd.colorscheme('tokyonight-storm')
             else
                 vim.cmd.colorscheme('carbonight')
