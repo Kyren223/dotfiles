@@ -1,14 +1,15 @@
 { pkgs, inputs, ... }: {
 
   imports = [
+    inputs.sops-nix.nixosModules.sops
     ../modules/apps.nix
     ../modules/kde.nix
     ../modules/networking.nix
     ../modules/development.nix
     ../modules/gaming.nix
     ../modules/secrets.nix
+    ../modules/timers.nix
     inputs.home-manager.nixosModules.default
-    inputs.sops-nix.nixosModules.sops
   ];
 
   home-manager = {
@@ -110,39 +111,5 @@
   systemd.tmpfiles.rules = [
     "d /home/kyren/.config/syncthing 0700 kyren users"
   ];
-
-  systemd.timers."git-auto-sync" = {
-    wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnBootSec = "5m";
-        OnUnitActiveSec = "5m";
-        Unit = "git-auto-sync.service";
-      };
-  };
-
-  systemd.services."git-auto-sync" = {
-    script = "$HOME/scripts/git-auto-sync.sh";
-    path = [
-      pkgs.git
-      pkgs.gh
-      pkgs.keychain
-      pkgs.openssh
-    ];
-    serviceConfig = { Type = "oneshot"; User = "kyren"; };
-  };
-
-  systemd.timers."k-sleep-tracker" = {
-    wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnBootSec = "1m";
-        OnUnitActiveSec = "1m";
-        Unit = "k-sleep-tracker.service";
-      };
-  };
-
-  systemd.services."k-sleep-tracker" = {
-    script = "$HOME/projects/k/bin/k tracker sleep";
-    serviceConfig = { Type = "oneshot"; User = "kyren"; };
-  };
 
 }

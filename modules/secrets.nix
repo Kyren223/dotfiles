@@ -2,7 +2,7 @@
 
     sops = {
       defaultSopsFile = ./secrets.yaml;
-      age.sshKeyPaths = [ "/home/kyren/.ssh/id_ed25519" ];
+      age.sshKeyPaths = [ "/home/kyren/.ssh/sops_id_ed25519" ];
     };
 
 }

@@ -1,13 +1,26 @@
+import os
+import sys
 import requests
 
 from github import Github
 from github import Auth
 
-GITHUB_TOKEN = ""
+def read_token(var: str) -> str:
+    path = os.getenv(var)
+    if path is None:
+        print(f"Missing env var: {var}", file=sys.stderr)
+        sys.exit(1)
+    return open(path).read().strip()
+
+GITHUB_TOKEN: str = read_token("GITHUB_TOKEN_FILE")
 GITHUB_USERNAME = "Kyren223"
 GITEA_URL = "https://git.kyren.codes"
-GITEA_TOKEN = ""
+GITEA_TOKEN: str = read_token("GITEA_TOKEN_FILE")
 GITEA_USER = "Kyren223"
+
+success = 0
+skipped = 0
+failed = 0
 
 def repo_exists(repo_name: str) -> bool:
     headers = {'Authorization': f'token {GITEA_TOKEN}'}
@@ -17,6 +30,7 @@ def repo_exists(repo_name: str) -> bool:
 def mirror(addr: str, repo_name: str):
     if repo_exists(repo_name):
         print(f"Skipping existing repo: {repo_name}")
+        global skipped; skipped += 1
         return
 
     json = {
@@ -43,12 +57,11 @@ def mirror(addr: str, repo_name: str):
                       json=json, params=payload)
         r.raise_for_status()
 
+        global success; success += 1
         print(f'Mirrored {repo_name}')
     except requests.exceptions.HTTPError as e:
-        if r.status_code == 422:
-            print(f"Skipping existing repo: {repo_name} (failed)")
-        else:
-            print(f"Failed to mirror {repo_name}: {e}")
+        global failed; failed += 1
+        print(f"Failed to mirror {repo_name}: {e}")
 
 # using an access token
 auth = Auth.Token(GITHUB_TOKEN or '')
@@ -64,3 +77,5 @@ for repo in g.get_user().get_repos():
 
 # To close connections after use
 g.close()
+
+print(f"\nSummary: {success} mirrored, {skipped} skipped, {failed} failed.")
