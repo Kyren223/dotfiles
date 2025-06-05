@@ -6,7 +6,9 @@
     ../modules/networking.nix
     ../modules/development.nix
     ../modules/gaming.nix
+    ../modules/secrets.nix
     inputs.home-manager.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
   ];
 
   home-manager = {
