@@ -1,5 +1,5 @@
 # Make sure my ssh key is loaded in ssh-agent for use when committing
-eval "$(keychain --quiet --eval "$HOME"/.ssh/id_ed25519)"
+eval $(keychain --quiet --eval $HOME/.ssh/id_ed25519)
 
 REPOS=(
     "$HOME/personal/grimoire/"
