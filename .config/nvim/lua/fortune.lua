@@ -611,6 +611,9 @@ local fortune_list = {
         '',
         '- Linus Torvalds',
     },
+    {
+        "Debugging. A game where you are the criminal, the victim, and the detective at the same time. But you don't know where the crime took place, or what it was. But there definitely is a crime.",
+    },
 }
 
 --- @return table
