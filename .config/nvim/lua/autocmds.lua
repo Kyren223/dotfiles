@@ -111,11 +111,14 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Format and organize imports on file save
 vim.api.nvim_create_autocmd('BufWritePre', {
+    group = augroup('java-auto-format'),
     pattern = '*.java',
-    callback = function()
-        if not vim.g.disable_autoformat then
-            require('jdtls').organize_imports()
-            vim.lsp.buf.format({ async = false })
+    callback = function(event)
+        if vim.g.disable_autoformat or vim.b[event.buf].disable_autoformat then
+            return
         end
+
+        require('jdtls').organize_imports()
+        vim.lsp.buf.format({ async = false })
     end,
 })
