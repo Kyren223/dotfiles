@@ -53,6 +53,7 @@
   "undotree": { "branch": "master", "commit": "b951b87b46c34356d44aa71886aecf9dd7f5788a" },
   "vim-illuminate": { "branch": "master", "commit": "0d1e93684da00ab7c057410fecfc24f434698898" },
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
+  "vim-table-mode": { "branch": "master", "commit": "e4365bde024f73e205eefa2fb78e3029ddb92ea9" },
   "vim-tmux-navigator": { "branch": "master", "commit": "ad4c04239d970981942d6a3e1195a770df09d0d7" },
   "vim-wakatime": { "branch": "master", "commit": "f39c4a201ae350aaba713b59d4a4fdd88e0811aa" },
   "vscode-codicons": { "branch": "main", "commit": "46d16d54b4b3ac467162d5a82ad5e34be8ab1a98" }
