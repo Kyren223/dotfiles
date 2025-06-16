@@ -1,9 +1,8 @@
 { pkgs-emoji-pin, ... }: {
 
-  environment.systemPackages = with pkgs-emoji-pin; [
-    noto-fonts-color-emoji
-    librewolf
-    # vim
+  environment.systemPackages = [
+    pkgs-emoji-pin.noto-fonts-color-emoji
+    pkgs-emoji-pin.librewolf
   ];
 
 }
