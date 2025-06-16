@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-emoji-pin.url = "github:NixOS/nixpkgs/ab7b6889ae9d484eed2876868209e33eb262511d";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -20,7 +21,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-emoji-pin, ... }@inputs: {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -34,8 +35,9 @@
           ./hosts/lapsktop.nix
         ];
       };
-      kyren-desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+      kyren-desktop = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; pkgs-emoji-pin = import nixpkgs-emoji-pin { inherit system; config.allowUnfree = true; }; };
         modules = [
           ./hosts/desktop.nix
         ];

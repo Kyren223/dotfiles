@@ -1,8 +1,9 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, config, ... }: {
 
   imports = [
     inputs.sops-nix.nixosModules.sops
     ../modules/apps.nix
+    ../modules/overrides.nix
     ../modules/kde.nix
     ../modules/networking.nix
     ../modules/development.nix
@@ -52,6 +53,14 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true; # reduces nix store size
+
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      emojipin = import <emojipin> {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
 
   # Enable dynamic linking of apps that are not in nixpkgs
   # Fixes issues with neovim plugins not working
