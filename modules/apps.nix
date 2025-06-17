@@ -44,6 +44,7 @@
       syncthingtray
       libreoffice
       albert
+      goldendict-ng # for albert dictionary feature
       aseprite
       cloudflare-warp
       haruna
