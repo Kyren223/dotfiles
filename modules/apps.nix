@@ -8,6 +8,15 @@
 
   config = lib.mkIf config.apps.enable {
 
+    programs.thunar.enable = true;
+    programs.xfconf.enable = true;
+    programs.thunar.plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+    services.gvfs.enable = true; # Mount, trash, and other functionalities
+    services.tumbler.enable = true; # Thumbnail support for images
+
     programs.firefox.enable = true;
 
     programs.kdeconnect.enable = true; # Opens TCP/UDP ports (does not when it's a pkg)
