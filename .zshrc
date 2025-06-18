@@ -107,7 +107,8 @@ esac
 # pnpm end
 
 # Start ssh-agent if not running
-eval $(keychain --quiet --eval ~/.ssh/id_ed25519)
+export SSH_ASKPASS_REQUIRE="prefer"
+eval $(keychain --quiet --quick --lockwait 60 --eval ~/.ssh/id_ed25519)
 
 MARKER_FILE="/run/user/$(id -u)/autorun_once_marker"
 if [ ! -f "$MARKER_FILE" ]; then
