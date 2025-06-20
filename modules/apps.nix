@@ -54,7 +54,7 @@
       chromium # for firefox/zen issue not rendering emojis properly
 
       # Communication
-      whatsie
+      wasistlos # Whatsapp
       vesktop
 
       # Terminal

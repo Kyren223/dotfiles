@@ -28,13 +28,13 @@
   xdg.desktopEntries = {
     "com.ktechpit.whatsie" = {
       name = "WhatsApp";
-      genericName = "Watsie, unofficial WhatsApp client";
-      exec = "whatsie %U";
+      genericName = "Unofficial WhatsApp client";
+      exec = "WEBKIT_DISABLE_DMABUF_RENDERER=1 wasistlos %U";
       terminal = false;
-      icon = "com.github.eneshecan.WhatsAppForLinux";
+      icon = "whatsapp";
       categories = [ "Application" "Network" "WebBrowser" ];
       settings = {
-        Keywords = "chat;im;messaging;messenger;sms;whatsapp;whatsapp-desktop;whatsie;";
+        Keywords = "chat;im;messaging;messenger;sms;whatsapp;whatsapp-desktop;whatsie;wasistlos;";
       };
     };
   };
