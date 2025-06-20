@@ -65,11 +65,4 @@
     serviceConfig = { Type = "oneshot"; User = "kyren"; };
   };
 
-  ###########################################################################
-
-  systemd.mounts = [
-    { what =  "/dev/nvme1n1p4"; where = "/mnt/c"; type = "ntfs"; options = "rw,noatime"; wantedBy = ["multi-user.target"]; }
-    { what =  "/dev/sda2"; where = "/mnt/e"; type = "ntfs"; options = "rw,noatime"; wantedBy = ["multi-user.target"]; }
-  ];
-
 }
