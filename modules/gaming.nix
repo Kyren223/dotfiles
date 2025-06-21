@@ -33,6 +33,8 @@
       wineWow64Packages.stagingFull # For non-steam games support, for GE-wine
 
       osu-lazer-bin
+
+      lutris
     ];
 
   };
