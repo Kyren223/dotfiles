@@ -1,0 +1,9 @@
+keymap_term: # keymap when terminal is focused
+  <C-n>:
+    c: batch
+    cmds:
+      - { c: next-proc }
+  <C-p>:
+    c: batch
+    cmds:
+      - { c: prev-proc }
