@@ -23,16 +23,4 @@
     options = [ "rw" "noatime" "uid=1000" ];
   };
 
-  fileSystems."/mnt/kopia" = {
-    device = "none";
-    fsType = "fuse";
-    options = [ "noauto" "allow_other" "default_permissions" "fsname=kopia" "uid=1000" ];
-  };
-
-  # services.udev.enable = true;  # usually on by default
-  # services.udev.extraRules = ''
-  #   KERNEL=="kopia", ACTION=="add", ENV{ID_FS_TYPE}=="fuse.kopia", \
-  #   ENV{ID_MOUNT_ID}="kopia-mount", ENV{ID_FS_LABEL}=="kopia", \
-  #   SYMLINK+="kopia-mount"
-  # '';
 }

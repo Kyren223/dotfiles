@@ -21,8 +21,6 @@
       wl-clipboard
       jdk
       noto-fonts
-      kdePackages.kio-fuse
-      kdePackages.kio-extras
 
       dejavu_fonts
       font-awesome
