@@ -65,4 +65,13 @@
     serviceConfig = { Type = "oneshot"; User = "kyren"; };
   };
 
+  ###########################################################################
+
+  # systemd.mounts = [
+  #   { what = "kopia"; type = "fuse.kopia"; where = "/mnt/kopia"; wantedBy = ["multi-user.target"]; options = "noauto,allow_other,default_permissions,fsname=kopia"; }
+  # ];
+  # #
+  # systemd.automounts = [
+  #   { where = "/mnt/kopia"; wantedBy = ["multi-user.target"]; }
+  # ];
 }

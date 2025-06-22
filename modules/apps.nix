@@ -21,6 +21,8 @@
       wl-clipboard
       jdk
       noto-fonts
+      kdePackages.kio-fuse
+      kdePackages.kio-extras
 
       dejavu_fonts
       font-awesome
@@ -31,6 +33,7 @@
 
       # Utility
       gimp
+      inkscape
       keepassxc
       protonvpn-gui
       (python312.withPackages (pypkgs: [

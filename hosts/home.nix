@@ -26,7 +26,7 @@
   ];
 
   xdg.desktopEntries = {
-    "com.ktechpit.whatsie" = {
+    "WhatsAppp" = {
       name = "WhatsApp";
       genericName = "Unofficial WhatsApp client";
       exec = "WEBKIT_DISABLE_DMABUF_RENDERER=1 wasistlos %U";
@@ -38,6 +38,18 @@
       };
     };
   };
+
+  # home.file.".local/share/applications/kopia-mount.desktop".text = ''
+  #   [Desktop Entry]
+  #   Type=Application
+  #   Name=Kopia Backup
+  #   Exec=xdg-open /mnt/kopia
+  #   Icon=folder
+  #   Terminal=false
+  #   X-UDISKS2-Show=true
+  # '';
+
+  # services.udiskie.automount = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
