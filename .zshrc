@@ -75,7 +75,7 @@ alias glo='git log --oneline'
 alias gb='git branch'
 
 # Env vars
-export FLAKE=~/dotfiles/
+export NH_FLAKE=~/dotfiles/
 export EDITOR=nvim
 export PAGER=less
 export MANPAGER=$PAGER
