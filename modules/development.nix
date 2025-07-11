@@ -62,7 +62,98 @@
       mold # fast linker, for rust
       gomodifytags
       sops
+      go-tools # staticcheck
+      gosec
+      devtoolbox
+
+      prometheus
+      grafana-loki
+      grafana-alloy
     ];
+
+    # Grafana for eko
+    services.grafana.enable = true;
+    services.grafana.settings.server.http_port = 3030;
+
+    # Alloy service for eko
+    systemd.services.alloy = {
+      description = "Alloy";
+
+      wants = [ "network-online.target" ];
+      after = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
+
+      reloadTriggers = lib.mapAttrsToList (_: v: v.source or null) (
+        lib.filterAttrs (n: _: lib.hasPrefix "alloy/" n && lib.hasSuffix ".alloy" n) config.environment.etc
+      );
+
+      serviceConfig = {
+        Restart = "always";
+        RestartSec = "2s";
+
+        User = "root"; # TODO: make these not root?
+        Group = "root";
+
+        SupplementaryGroups = [
+          # allow to read the systemd journal for loki log forwarding
+          "systemd-journal"
+        ];
+
+        ConfigurationDirectory = "alloy";
+        StateDirectory = "alloy";
+        WorkingDirectory = "%S/alloy";
+        Type = "simple";
+
+        ExecStart = "${lib.getExe pkgs.grafana-alloy} run /etc/alloy/";
+        ExecReload = "${pkgs.coreutils}/bin/kill -SIGHUP $MAINPID";
+      };
+    };
+
+    environment.etc = {
+      "alloy/eko-config.alloy".text = builtins.readFile ./eko-config.alloy;
+    };
+
+    # Loki service for eko
+    services.loki.enable = true;
+    services.loki.configuration = {
+      auth_enabled = false;
+
+      server = {
+        http_listen_port = 3100;
+      };
+
+      common = {
+        ring = {
+          instance_addr = "127.0.0.1";
+          kvstore = {
+            store = "inmemory";
+          };
+        };
+        replication_factor = 1;
+        path_prefix = "/var/lib/loki";
+      };
+
+      schema_config = {
+        configs = [
+          {
+            from = "2020-05-15";
+            store = "tsdb";
+            object_store = "filesystem";
+            schema = "v13";
+            index = {
+              prefix = "index_";
+              period = "24h";
+            };
+          }
+        ];
+      };
+
+      storage_config = {
+        filesystem = {
+          directory = "/var/lib/loki/chunks";
+        };
+      };
+    };
 
   };
 }

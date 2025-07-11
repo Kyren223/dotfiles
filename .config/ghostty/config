@@ -41,6 +41,7 @@ adjust-box-thickness = 2
 # background-blur-radius = 10
 
 # Theme (carbonight tokyo)
+background = #000000
 background = #1E1E2E
 foreground = #EFEDE7
 cursor-color = #F5E0DC
