@@ -9,7 +9,7 @@ local function term_nav(dir)
 end
 
 return {
-    'folke/snacks.nvim',
+    'asiryk/snacks.nvim',
     priority = 1000,
     lazy = false,
     ---@type snacks.Config
@@ -272,6 +272,18 @@ return {
                 Snacks.picker.pickers({ layout = 'telescope' })
             end,
             desc = '[S]how [P]ickers',
+        },
+        {
+            '<leader>fa',
+            function()
+                Snacks.picker.files({
+                    layout = 'telescope',
+                    hidden = true,
+                    ignored = true,
+                    follow = true,
+                })
+            end,
+            desc = '[F]ind [A]ll',
         },
         {
             '<leader>fs',
