@@ -82,7 +82,7 @@ return {
                 },
 
                 snippets = {
-                    score_offset = 200, -- make snippets highest priority
+                    -- score_offset = 200, -- make snippets highest priority
                     transform_items = function(_, items)
                         return vim.tbl_filter(function(item)
                             -- vim.print(item)
