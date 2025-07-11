@@ -1,15 +1,6 @@
 {
-  "eko dblog": {
-    "body": "log.Println(\"$TM_FILENAME:$TM_LINE_NUMBER database error:\", err)",
-    "prefix": "dblog"
-  },
   "eko dberr": {
-    "body": [
-      "if err != nil {",
-      "\tlog.Println(\"$TM_FILENAME:$TM_LINE_NUMBER database error:\", err)",
-      "\treturn &ErrInternalError",
-      "}"
-    ],
+    "body": "slog.ErrorContext(ctx, \"database error\", \"error\", err)",
     "prefix": "dberr"
   },
   "eko serverapi": {
