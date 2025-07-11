@@ -46,7 +46,7 @@
   "pretty_hover": { "branch": "master", "commit": "bcc87e7a58225bed33f0881162f398c40c53049d" },
   "render-markdown.nvim": { "branch": "main", "commit": "76f7ce56ccb913632745714f160faa53164c5574" },
   "rustaceanvim": { "branch": "master", "commit": "e9c5aaba16fead831379d5f44617547a90b913c7" },
-  "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
+  "snacks.nvim": { "branch": "main", "commit": "b240ddf39c842effeefb7fecab7dbf9ba05e133d" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "cac10593c4baaacd0f2a1f4d8ba9508667bf3f79" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
   "tokyonight.nvim": { "branch": "main", "commit": "057ef5d260c1931f1dffd0f052c685dcd14100a3" },
@@ -56,5 +56,6 @@
   "vim-table-mode": { "branch": "master", "commit": "e4365bde024f73e205eefa2fb78e3029ddb92ea9" },
   "vim-tmux-navigator": { "branch": "master", "commit": "412c474e97468e7934b9c217064025ea7a69e05e" },
   "vim-wakatime": { "branch": "master", "commit": "f39c4a201ae350aaba713b59d4a4fdd88e0811aa" },
-  "vscode-codicons": { "branch": "main", "commit": "32554bda7eed0e1d53eba4273b879cf046e5dc51" }
+  "vscode-codicons": { "branch": "main", "commit": "32554bda7eed0e1d53eba4273b879cf046e5dc51" },
+  "workspace-diagnostics.nvim": { "branch": "main", "commit": "60f9175b2501ae3f8b1aba9719c0df8827610c8e" }
 }

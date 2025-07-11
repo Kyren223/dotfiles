@@ -1,0 +1,19 @@
+local.file_match "eko_logs" {
+  path_targets = [
+    { __path__ = "/home/kyren/projects/eko/logs/*.log" },
+  ]
+  sync_period = "3s"
+}
+
+loki.source.file "eko_tail" {
+  targets       = local.file_match.eko_logs.targets
+  forward_to    = [loki.write.eko.receiver]
+  tail_from_end = true
+}
+
+loki.write "eko" {
+  endpoint {
+    url = "http://localhost:3100/loki/api/v1/push"
+  }
+  external_labels = { app = "eko-server" }
+}
