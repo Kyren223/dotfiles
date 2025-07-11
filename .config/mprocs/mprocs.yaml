@@ -7,3 +7,11 @@ keymap_term: # keymap when terminal is focused
     c: batch
     cmds:
       - { c: prev-proc }
+  <C-r>:
+    c: batch
+    cmds:
+      - { c: restart-proc }
+  <C-q>:
+    c: batch
+    cmds:
+      - { c: quit }
