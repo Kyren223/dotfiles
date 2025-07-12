@@ -75,6 +75,10 @@
     services.grafana.enable = true;
     services.grafana.settings.server.http_port = 3030;
 
+    # Prometheus for eko
+    services.prometheus.enable = true;
+    services.prometheus.configText = builtins.readFile ./eko-prometheus.yml;
+
     # Alloy service for eko
     systemd.services.alloy = {
       description = "Alloy";
