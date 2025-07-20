@@ -121,6 +121,10 @@ if [ ! -f "$MARKER_FILE" ]; then
   # Start linkwarden
   (pushd $HOME/personal/linkwarden > /dev/null && docker compose up -d > /dev/null && popd) &>/dev/null
 
+  # HACK: I need read access to home for sqlite access for eko
+  # in prod it'll be read access /var/lib/eko which is fine I guess?
+  chmod o+x /home/kyren/
+
   touch "$MARKER_FILE"
 fi
 
