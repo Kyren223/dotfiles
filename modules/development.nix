@@ -65,6 +65,7 @@
       go-tools # staticcheck
       gosec
       devtoolbox
+      busybox # A bunch of utils like lsof and fuser
 
       prometheus
       grafana-loki
@@ -74,6 +75,31 @@
     # Grafana for eko
     services.grafana.enable = true;
     services.grafana.settings.server.http_port = 3030;
+    services.grafana.settings.smtp.enabled = true;
+    services.grafana.settings.smtp = {
+      host          = "smtp.example.com:587";
+      user          = "your@user.com";
+      password      = "super-secret";  # Consider using a file for secret
+      skip_verify   = true;
+      from_address  = "your@user.com";
+      from_name     = "Grafana";
+      startTLS_policy = "OpportunisticStartTLS";
+    };
+
+    systemd.services.grafana = {
+      serviceConfig = {
+        ProtectHome = lib.mkForce false;
+        ProtectSystem = lib.mkForce false;
+        PrivateTmp = lib.mkForce false;
+        ReadWritePaths = [ "/home/kyren/projects/eko" ];
+      };
+    };
+
+    # # Allow grafana to access DB
+    # fileSystems."/var/lib/grafana/eko" = {
+    #   device = "/home/kyren/projects/eko";
+    #   options = [ "bind" "ro" ];
+    # };
 
     # Prometheus for eko
     services.prometheus.enable = true;
