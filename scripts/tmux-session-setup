@@ -42,6 +42,16 @@ elif [ "$sess" = "eko" ]; then
   # tmux send-keys -t $sess:logs.3 "go run ./cmd/server --stdout" C-m
 
   tmux select-window -t $sess:editor
+elif [ "$sess" = "blockbrawl" ]; then
+  tmux rename-window -t $sess:1 editor
+  tmux send-keys -t $sess:editor.1 "nix develop path:" C-m
+  tmux send-keys -t $sess:editor.1 "vim" C-m
+
+  tmux new-window -t $sess -n server -c $dir
+  tmux send-keys -t $sess:server "nix develop path:" C-m
+  # tmux send-keys -t $sess:server "" C-m
+
+  tmux select-window -t $sess:editor
 elif [ "$sess" = "server" ]; then
   tmux rename-window -t $sess:1 local
 
