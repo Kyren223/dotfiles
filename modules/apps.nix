@@ -1,8 +1,15 @@
-{ pkgs, lib, config, inputs, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
+{
 
   options.apps.enable = lib.mkOption {
-    type        = lib.types.bool;
-    default     = true;
+    type = lib.types.bool;
+    default = true;
     description = "enables apps";
   };
 
@@ -57,6 +64,7 @@
       # Communication
       wasistlos # Whatsapp
       vesktop
+      inputs.eko.packages."${system}".eko
 
       # Terminal
       ghostty

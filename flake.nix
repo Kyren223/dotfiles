@@ -19,6 +19,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    eko = {
+      url = "github:kyren223/eko/dev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-emoji-pin, ... }@inputs: {
