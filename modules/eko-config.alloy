@@ -2,7 +2,7 @@ local.file_match "eko_logs" {
   path_targets = [
     { __path__ = "/home/kyren/projects/eko/logs/*.log" },
   ]
-  sync_period = "3s"
+  sync_period = "1s"
 }
 
 loki.source.file "eko_tail" {
@@ -16,4 +16,49 @@ loki.write "eko" {
     url = "http://localhost:3100/loki/api/v1/push"
   }
   external_labels = { app = "eko-server" }
+}
+
+pyroscope.write "write_job_name" {
+  endpoint {
+    url = "http://localhost:4040"
+  }
+}
+
+pyroscope.scrape "scrape_job_name" {
+  targets    = [{"__address__" = "localhost:4040", "service_name" = "eko"}]
+  forward_to = [pyroscope.write.write_job_name.receiver]
+
+  profiling_config {
+    profile.process_cpu {
+      enabled = true
+    }
+
+    profile.godeltaprof_memory {
+      enabled = true
+    }
+
+    profile.memory { // disable memory, use godeltaprof_memory instead
+      enabled = false
+    }
+
+    profile.godeltaprof_mutex {
+      enabled = true
+    }
+
+    profile.mutex { // disable mutex, use godeltaprof_mutex instead
+      enabled = false
+    }
+
+    profile.godeltaprof_block {
+      enabled = true
+    }
+
+    profile.block { // disable block, use godeltaprof_block instead
+      enabled = false
+    }
+
+    profile.goroutine {
+      enabled = true
+    }
+  }
 }
