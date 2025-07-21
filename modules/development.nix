@@ -9,7 +9,7 @@
   config = lib.mkIf config.development.enable {
 
     environment.systemPackages = with pkgs; [
-      jetbrains.idea-community
+      # jetbrains.idea-community
 
       # LSP
       asm-lsp
@@ -70,6 +70,7 @@
       prometheus
       grafana-loki
       grafana-alloy
+      pyroscope
     ];
 
     # Grafana for eko
