@@ -10,6 +10,7 @@
 
     environment.systemPackages = with pkgs; [
       # jetbrains.idea-community
+      zed-editor
 
       # LSP
       asm-lsp

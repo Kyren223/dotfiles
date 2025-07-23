@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753104523,
-        "narHash": "sha256-X5vCKW/JbKwpc/A4BVIZPkTuEtMkcqFdttToBKgiVwg=",
+        "lastModified": 1753105838,
+        "narHash": "sha256-Ps3ZK67zcyTP4FUgYQbUB1p8HjcAiXJ0dZOubKo3FMg=",
         "owner": "kyren223",
         "repo": "eko",
-        "rev": "171230a9ded7901efdd44b575b6facf67678be2d",
+        "rev": "c2db60b773ad54e6991ca21b2775f9ed408c1cf9",
         "type": "github"
       },
       "original": {

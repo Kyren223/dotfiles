@@ -63,11 +63,11 @@
   };
 
   # Enable dynamic linking of apps that are not in nixpkgs
-  # Fixes issues with neovim plugins not working
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc
+    stdenv.cc.cc # Fixes issues with neovim plugins not working
 
+    # Fixes issues with running games (nallo's)
     wayland
     libxkbcommon
     libGL
