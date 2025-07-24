@@ -13,13 +13,17 @@ if [ "$dir" = "$HOME" ]; then
   tmux new-window -t $sess -n "grimoire" -c $HOME/personal/grimoire/
   tmux send-keys -t $sess:"grimoire".1 "vim" C-m
   tmux select-window -t $sess:main
-elif [[ "$sess" == "ratry" || "$sess" == "kiwen-prototype" ]]; then
+elif [[ "$sess" == "ratry" || "$sess" == "kiwen-prototype" || "$sess" == "hackathon" ]]; then
   tmux rename-window -t $sess:1 editor
   tmux send-keys -t $sess:editor.1 "nix develop" C-m
+  tmux send-keys -t $sess:editor.1 "zsh && exit" C-m
+  tmux send-keys -t $sess:editor.1 "clear" C-m
   tmux send-keys -t $sess:editor.1 "nvim" C-m
 
   tmux new-window -t $sess -n game -c $dir
   tmux send-keys -t $sess:game.1 "nix develop" C-m
+  tmux send-keys -t $sess:game.1 "zsh && exit" C-m
+  tmux send-keys -t $sess:game.1 "clear" C-m
 
   tmux select-window -t $sess:editor
 elif [ "$sess" = "eko" ]; then
