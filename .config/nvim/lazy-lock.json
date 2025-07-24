@@ -28,6 +28,7 @@
   "markdown-toggle.nvim": { "branch": "main", "commit": "0b9d917c6999672279e6178f76dbfb470e872419" },
   "mini.ai": { "branch": "main", "commit": "d172ada7b0281044a06cb9a625a862553c457b6f" },
   "neogit": { "branch": "master", "commit": "473486f7715dd5cc31906fe27ce6d6d12a249e84" },
+  "neocodeium": { "branch": "main", "commit": "b4daf6805511681f83b37829e98f2d79418a93a6" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim-autopairs": { "branch": "master", "commit": "2647cce4cb64fb35c212146663384e05ae126bdf" },
