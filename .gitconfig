@@ -4,8 +4,8 @@
 	helper = !gh auth git-credential
 [user]
 	name = Kyren223
-	email = Kyren223@proton.me
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7P9K9D5RkBk+JCRRS6AtHuTAc6cRpXfRfRMg/Kyren Kyren223@proton.me
+	email = kyren223@proton.me
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7P9K9D5RkBk+JCRRS6AtHuTAc6cRpXfRfRMg/Kyren kyren223@proton.me
 [init]
 	defaultBranch = master
 [core]
