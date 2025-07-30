@@ -1,4 +1,5 @@
 return {
+    enabled = false, -- I don't do rust
     'mrcjkb/rustaceanvim',
     version = '^5',
     lazy = false, -- already lazy

@@ -67,6 +67,8 @@
       gosec
       devtoolbox
       busybox # A bunch of utils like lsof and fuser
+      cmake
+      libllvm
 
       prometheus
       grafana-loki

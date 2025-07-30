@@ -30,8 +30,11 @@ return {
                 -- Might be unrelated tho
                 -- Oil error is "cannot save, action already in progress"
 
-                -- Save only if the buffer is not a "special buffer"
-                return vim.fn.getbufvar(buf, '&buftype') == ''
+                local buftype = vim.fn.getbufvar(buf, '&buftype')
+                local filetype = vim.bo[buf].filetype
+
+                -- Don't autosave special buffers or Oil buffers
+                return buftype == '' and filetype ~= 'oil'
             end,
         }
     end,

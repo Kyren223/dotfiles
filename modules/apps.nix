@@ -37,6 +37,7 @@
       piper # ^ GUI frontend
 
       # Utility
+      obs-studio
       gimp
       inkscape
       keepassxc
@@ -45,6 +46,7 @@
         pypkgs.matplotlib
         pypkgs.pandas
         pypkgs.pygithub
+        pypkgs.pipx
       ]))
       kdePackages.filelight
       kdePackages.korganizer

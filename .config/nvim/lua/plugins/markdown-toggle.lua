@@ -3,21 +3,21 @@ return {
     opts = {},
     keys = {
         {
-            '<leader>tu',
+            '<leader>tl', -- toggle list
             function()
                 require('markdown-toggle').list()
             end,
             mode = { 'n', 'x' },
         },
         {
-            '<leader>to',
+            '<leader>tn', -- toggle numbered list
             function()
                 require('markdown-toggle').olist()
             end,
             mode = { 'n', 'x' },
         },
         {
-            '<leader>tm',
+            '<leader>tm', -- toggle checkbox (why the m??? I don't remember)
             function()
                 require('markdown-toggle').checkbox()
             end,

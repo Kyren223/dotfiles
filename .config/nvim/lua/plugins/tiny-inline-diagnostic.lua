@@ -14,7 +14,7 @@ return {
             -- If multiple diagnostics are under the cursor, display all of them.
             multiple_diag_under_cursor = true,
 
-            --- Enable it if you want to always have message with `after` characters length.
+            -- Enable it if you want to always have message with `after` characters length.
             break_line = {
                 enabled = false,
                 after = 30,

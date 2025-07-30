@@ -6,10 +6,10 @@ return {
         lint.linters_by_ft = {
             -- c = { 'clangtidy' },
             -- cpp = { 'clangtidy' },
-            -- go = { 'golangcilint' },
+            go = { 'golangcilint' },
             -- python = { 'flake8' },
             -- json = { 'jsonlint' },
-            bash = { 'shellcheck' },
+            -- bash = { 'shellcheck' },
         }
 
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave', 'TextChanged', 'TextChangedI' }, {
