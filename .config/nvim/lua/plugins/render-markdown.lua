@@ -2,7 +2,7 @@ return {
     'MeanderingProgrammer/render-markdown.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     keys = {
-        { '<leader>mt', '<<cmd>RenderMarkdown toggle<cr>'}
+        -- { '<leader>mt', '<<cmd>RenderMarkdown toggle<cr>'}
     },
     opts = {
         render_modes = true,
