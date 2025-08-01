@@ -122,3 +122,59 @@ vim.api.nvim_create_autocmd('BufWritePre', {
         vim.lsp.buf.format({ async = false })
     end,
 })
+
+-- NOTE: template for C/C++ files
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufEnter' }, {
+    pattern = { '*.c', '*.h', '*.cpp' },
+    callback = function()
+        local buf = vim.api.nvim_get_current_buf()
+        local line_count = vim.api.nvim_buf_line_count(buf)
+        local is_empty = line_count == 1 and vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1] == ''
+        if not is_empty then
+            return
+        end
+
+        local ext = vim.fn.expand('%:e')
+        local cwd = vim.fn.getcwd()
+        local project_name = vim.fn.fnamemodify(cwd, ':t')
+        local copyright = nil
+        local lines = nil
+
+        if project_name == 'krypton' then
+            copyright = {
+                '// Copyright (c) Kyren223',
+                '// Licensed under the MIT license (https://opensource.org/license/mit/)',
+                '',
+            }
+
+            local c_template = {
+                '#include "base.h"',
+                '',
+            }
+
+            lines = {
+                c = c_template,
+                h = {
+                    '#ifndef ' .. string.upper(vim.fn.expand('%:t:r')) .. '_H',
+                    '#define ' .. string.upper(vim.fn.expand('%:t:r')) .. '_H',
+                    '',
+                    '#include "' .. vim.fn.expand('%:t:r') .. '.meta.h"',
+                    '',
+                    '#endif',
+                },
+                cpp = c_template,
+            }
+        end
+
+        if not lines then
+            return
+        end
+        local content = lines[ext]
+
+        if copyright then
+            content = vim.list_extend(copyright, content)
+        end
+
+        vim.api.nvim_buf_set_lines(0, 0, -1, false, content)
+    end,
+})
