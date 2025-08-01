@@ -74,6 +74,7 @@ return {
             'xml',
             'yaml',
             'zig',
+            'comment',
         },
 
         incremental_selection = {
