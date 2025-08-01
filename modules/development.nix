@@ -9,7 +9,7 @@
   config = lib.mkIf config.development.enable {
 
     environment.systemPackages = with pkgs; [
-      # jetbrains.idea-community
+      jetbrains.idea-community
       zed-editor
       jetbrains.clion
 
@@ -70,6 +70,8 @@
       busybox # A bunch of utils like lsof and fuser
       cmake
       libllvm
+      lld
+      file
 
       prometheus
       grafana-loki
