@@ -1,17 +1,19 @@
 -- NORMAL: lorem ipsum
--- T ODO: lorem ipsum
--- F IX: lorem ipsum
--- O PTIMIZE: lorem ipsum
--- W ARN: lorem ipsum
--- P ERF: lorem ipsum
--- H ACK: lorem ipsum
--- N OTE: lorem ipsum
--- T EST: lorem ipsum
--- U NSAFE: lorem ipsum
--- T ODO(kyren223): lorem ipsum
--- N OTE:(broken) lorem ipsum
--- t odo!(a);
--- t odo!(aaa);
+-- TODO: lorem ipsum
+-- FIX: lorem ipsum
+-- OPTIMIZE: lorem ipsum
+-- WARN: lorem ipsum
+-- PERF: lorem ipsum
+-- HACK: lorem ipsum
+-- NOTE: lorem ipsum
+-- TEST: lorem ipsum
+-- UNSAFE: lorem ipsum
+-- TODO(kyren223): lorem ipsum
+-- NOTE:(broken) lorem ipsum
+-- todo!(a);
+-- todo!(aaa);
+-- Test
+-- TODO: blabla
 
 return {
     'folke/todo-comments.nvim',
@@ -25,7 +27,7 @@ return {
                     layout = 'telescope',
                     follow = true,
                     hidden = true,
-                    keywords = { 'TODO', 'FIX', 'FIXME', 'BUG', 'ISSUE', 'OPTIMIZE' },
+                    keywords = { 'TODO', 'WIP', 'FIX', 'FIXME', 'BUG', 'OPTIMIZE', 'SECURE' },
                 })
             end,
             desc = '[S]earch [T]odos',
@@ -43,55 +45,34 @@ return {
         },
     },
     opts = {
-        signs = false, -- show icons in the signs column
-        sign_priority = 8, -- sign priority
+        signs = false,
         keywords = {
             -- These are "todos"
-            TODO = { icon = ' ', color = 'info', alt = { 'todo' } },
-            FIX = { icon = ' ', color = 'error', alt = { 'FIXME', 'BUG', 'ISSUE' } },
-            OPTIMIZE = { icon = ' ', color = 'performance' },
+            TODO = { icon = ' ', color = 'todo', alt = { 'WIP' } },
+            FIX = { icon = ' ', color = 'error', alt = { 'FIXME', 'BUG' } },
+            OPTMZE = { icon = ' ', color = 'perf', alt = { 'OPTIMIZE' } },
+            SECURE = { icon = '󰣮 ', color = 'warning' },
             -- These are "notes"
-            WARN = { icon = ' ', color = 'warning', alt = { 'WARNING' } },
-            PERF = { icon = ' ', color = 'performance', alt = { 'PERFORMANCE' } },
-            HACK = { icon = ' ', color = 'warning', alt = { 'SMELL', 'CODE SMELL', 'BAD', 'BAD PRACTICE' } },
-            NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
-            TEST = { icon = '󰙨 ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
+            NOTE = { icon = ' ', color = 'note', alt = { 'INFO', 'DOCS' } },
+            TEST = { icon = '󰙨 ', color = 'note' },
+            WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'SECURITY' } },
+            HACK = { icon = ' ', color = 'warning' },
+            PERF = { icon = ' ', color = 'perf' },
             UNSAFE = { icon = '󰍛 ', color = 'error', alt = { 'SAFETY' } },
         },
-        gui_style = {
-            fg = 'NONE',
-            bg = 'BOLD',
-        },
-        merge_keywords = true, -- when true, custom keywords will be merged with the defaults
-        -- highlighting of the line containing the todo comment
-        -- * before: highlights before the keyword (typically comment characters)
-        -- * keyword: highlights of the keyword
-        -- * after: highlights after the keyword (todo text)
         highlight = {
-            multiline = true,
-            multiline_pattern = '^.', -- lua pattern to match the next multiline from the start of the matched keyword
-            multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
             before = '', -- "fg" or "bg" or empty
-            keyword = 'wide', -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-            after = 'fg', -- "fg" or "bg" or empty
-            pattern = {
-                [[.*<((KEYWORDS)%(\(.{-1,}\))?):]],
-                [[((KEYWORDS)!%(\(.{-}\))?)]],
-            }, -- pattern or table of patterns, used for highlighting (vim regex)
+            keyword = '', -- "wide" or empty
+            after = '', -- "fg" or empty
+            pattern = { [[.*<((KEYWORDS)%(\(.{-1,}\))?):]] }, -- vim regex
             comments_only = false,
-            max_line_len = 400,
-            exclude = {}, -- list of excluded filetypes
         },
-        -- list of named colors where we try to extract the gui fg from the
-        -- list of highlight groups or use the hex color if hl not found as a fallback
         colors = {
-            default = { 'Identifier', '#7C3AED' },
-            error = { 'DiagnosticError', 'ErrorMsg', '#DC2626' },
-            warning = { 'DiagnosticWarn', 'WarningMsg', '#FBBF24' },
-            info = { 'DiagnosticInfo', '#2563EB' },
-            hint = { '#10B981' },
-            test = { 'Identifier', '#FF00FF' },
-            performance = { '#7C3AED' },
+            todo = { '@comment.todo' },
+            note = { '@comment.todo' },
+            warning = { '@comment.warning' },
+            error = { '@comment.error' },
+            perf = { '@comment.perf' },
         },
         search = {
             command = 'rg',
@@ -104,7 +85,7 @@ return {
                 '--hidden', -- show todos in hidden directories and files
                 '--follow', -- follow symlinks
             },
-            search = { pattern = [[\b(KEYWORDS)(\([^\)]*\))?:]] },
+            pattern = [[\b(KEYWORDS)\s*(\([^\)]*\))?\s*:]],
         },
     },
 }
