@@ -3,6 +3,7 @@ return {
     cmd = { 'Neogit', 'NeogitCommit', 'NeogitLogCurrent', 'NeogitResetState' },
     keys = {
         { '<leader>gs', '<cmd>Neogit<cr>' },
+        { '<leader>gh', '<cmd>NeogitLogCurrent<cr>' },
     },
     opts = function()
         return {
