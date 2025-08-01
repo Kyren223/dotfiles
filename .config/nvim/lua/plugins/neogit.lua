@@ -1,6 +1,6 @@
 return {
     'NeogitOrg/neogit',
-    cmd = 'Neogit',
+    cmd = { 'Neogit', 'NeogitCommit', 'NeogitLogCurrent', 'NeogitResetState' },
     keys = {
         { '<leader>gs', '<cmd>Neogit<cr>' },
     },
