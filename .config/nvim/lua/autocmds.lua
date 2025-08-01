@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     desc = 'Disable newlines on commented lines from continuing the comment',
     group = augroup('disable-comments-continuation'),
     callback = function()
-        -- vim.opt_local.formatoptions:remove('r') -- no comments on enter
+        vim.opt_local.formatoptions:remove('r') -- no comments on enter
         vim.opt_local.formatoptions:remove('o') -- no comments on `o` or `O`
     end,
 })

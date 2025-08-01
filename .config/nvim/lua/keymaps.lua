@@ -113,7 +113,6 @@ local keymaps = {
     { 'n', 'K', '<cmd>Lspsaga hover_doc<cr>', { desc = 'Documentation' } },
     { 'n', 'R', '<cmd>Lspsaga rename<cr>', { desc = '[R]ename' } },
     { { 'n', 'i' }, '<M-Enter>', '<cmd>Lspsaga code_action<cr>', { desc = 'Code Actions' } },
-    { 'n', '<leader>ca', '<cmd>Lspsaga code_action<cr><Esc>', { desc = '[C]ode [A]ctions' } },
     { 'n', '<leader>e', next_diagnostic(severity.ERROR), { desc = 'Goto [E]rror' } },
     { 'n', '<leader>E', prev_diagnostic(severity.ERROR), { desc = 'Goto [E]rror (prev)' } },
     { 'n', '<leader>w', next_diagnostic(severity.WARN), { desc = 'Goto [W]arning' } },
