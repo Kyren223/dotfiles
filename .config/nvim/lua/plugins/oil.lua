@@ -12,6 +12,7 @@ return {
             ['<C-l>'] = false,
             ['<C-k>'] = false,
             ['<C-j>'] = false,
+            ["<C-t>"] = false,
             ['<M-h>'] = 'actions.select_split',
             ['<M-v>'] = 'actions.select_vsplit',
             ['<C-r>'] = 'actions.refresh',
