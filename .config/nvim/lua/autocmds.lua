@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end,
 })
 
--- highlight %v, %s etc in go string literals
+-- NOTE: highlight %v, %s etc in go string literals
 vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
     pattern = '*.go',
     callback = function()
@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
     end,
 })
 
--- Snacks snippet to notify LSP servers when renaming files in oil.nvim
+-- NOTE: Snacks snippet to notify LSP servers when renaming files in oil.nvim
 vim.api.nvim_create_autocmd('User', {
     pattern = 'OilActionsPost',
     callback = function(event)
@@ -176,5 +176,81 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufEnter' }, {
         end
 
         vim.api.nvim_buf_set_lines(0, 0, -1, false, content)
+    end,
+})
+
+-- NOTE: Function to highlight TODO/NOTE patterns
+local ns = vim.api.nvim_create_namespace('todo_highlight')
+local groups = {
+    todo = {
+        keywords = { 'TODO', 'WIP' },
+        hl = '@comment.todo.comment',
+    },
+    warning = {
+        keywords = { 'WARN', 'WARNING', 'HACK', 'SECURITY', 'SECURE' },
+        hl = '@comment.warning.comment',
+    },
+    error = {
+        keywords = { 'FIX', 'FIXME', 'BUG', 'ERROR', 'UNSAFE', 'SAFETY' },
+        hl = '@comment.fix.comment',
+    },
+    perf = {
+        keywords = { 'PERF', 'OPTIMIZE' },
+        hl = '@comment.perf.comment',
+    },
+    note = {
+        keywords = { 'NOTE', 'INFO', 'DOCS', 'TEST' },
+        hl = '@comment.note.comment',
+    },
+}
+local scopes = {
+    bracket = '@punctuation.bracket.comment',
+    constant = '@constant.comment',
+    delimiter = '@punctuation.delimiter.comment',
+}
+
+function RenderTodoHighlights(bufnr)
+    vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+    local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+
+    for i, line in ipairs(lines) do
+        -- 1) highlight keywords per group
+        for _, cfg in pairs(groups) do
+            for _, kw in ipairs(cfg.keywords) do
+                for s, e in line:gmatch('()' .. kw .. '()') do
+                    vim.api.nvim_buf_add_highlight(bufnr, ns, cfg.hl, i - 1, s - 1, e - 1)
+
+                    -- 2) highlight (...) parts only if a group keyword was found
+                    local start = 1
+                    while true do
+                        local s, e = line:find('%b()', start)
+                        if not s then
+                            break
+                        end
+                        -- "(" and ")"
+                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, s - 1, s)
+                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, e - 1, e)
+                        -- inner constant
+                        if e - s > 1 then
+                            vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.constant, i - 1, s, e - 1)
+                        end
+                        start = e + 1
+                    end
+
+                    -- 3) highlight any ":" as delimiter only if a group keyword was found
+                    for s, _ in line:gmatch('():') do
+                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.delimiter, i - 1, s - 1, s)
+                    end
+                end
+            end
+        end
+    end
+end
+
+vim.api.nvim_create_autocmd({ 'VimEnter', 'BufRead', 'BufWinEnter', 'BufWritePost', 'TextChanged', 'TextChangedI' }, {
+    nested = true,
+    callback = function(args)
+        local bufnr = args.buf
+        RenderTodoHighlights(bufnr)
     end,
 })

@@ -12,12 +12,14 @@ end
 vim.print = _G.dd
 
 require('options')
-vim.schedule(function()
+-- WARNING: not sure why it was in schedule but that caused issues
+-- WARNING: so I removed it
+-- vim.schedule(function()
     require('keymaps')
     require('autocmds')
     require('usrcmds')
     require('extra')
-end)
+-- end)
 
 -- Enable all LSPs
 local lsp = require('lsp')
