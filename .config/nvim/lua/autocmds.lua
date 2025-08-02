@@ -214,28 +214,26 @@ function RenderTodoHighlights(bufnr)
     local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 
     for i, line in ipairs(lines) do
-        -- 1) highlight keywords per group
         for _, cfg in pairs(groups) do
             for _, kw in ipairs(cfg.keywords) do
                 for s, e in line:gmatch('()' .. kw .. '()') do
+                    -- 1) highlight keyword
                     vim.api.nvim_buf_add_highlight(bufnr, ns, cfg.hl, i - 1, s - 1, e - 1)
 
-                    -- 2) highlight (...) parts only if a group keyword was found
+                    -- 2) highlight (...) parts only if a keyword was found
                     local start = 1
-                    while true do
-                        local s, e = line:find('%b()', start)
-                        if not s then
-                            break
-                        end
-                        -- "(" and ")"
-                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, s - 1, s)
-                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, e - 1, e)
-                        -- inner constant
-                        if e - s > 1 then
-                            vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.constant, i - 1, s, e - 1)
-                        end
-                        start = e + 1
+                    local s, e = line:find('%b()', start)
+                    if not s then
+                        break
                     end
+                    -- "(" and ")"
+                    vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, s - 1, s)
+                    vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, e - 1, e)
+                    -- inner constant
+                    if e - s > 1 then
+                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.constant, i - 1, s, e - 1)
+                    end
+                    start = e + 1
 
                     -- 3) highlight any ":" as delimiter only if a group keyword was found
                     for s, _ in line:gmatch('():') do
