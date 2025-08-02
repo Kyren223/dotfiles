@@ -39,6 +39,20 @@ return {
                     layout = 'telescope',
                     follow = true,
                     hidden = true,
+                    keywords = {
+                        'NOTE',
+                        'INFO',
+                        'DOCS',
+                        'TEST',
+                        'WARN',
+                        'WARNING',
+                        'SECURITY',
+                        'HACK',
+                        'PERF',
+                        'UNSAFE',
+                        'SAFETY',
+                        'ERROR',
+                    },
                 })
             end,
             desc = '[S]earch [N]otes',
@@ -49,7 +63,7 @@ return {
         keywords = {
             -- These are "todos"
             TODO = { icon = ' ', color = 'todo', alt = { 'WIP' } },
-            FIX = { icon = ' ', color = 'error', alt = { 'FIXME', 'BUG' } },
+            FIX = { icon = ' ', color = 'error', alt = { 'FIXME', 'BUG', 'ERROR' } },
             OPTMZE = { icon = ' ', color = 'perf', alt = { 'OPTIMIZE' } },
             SECURE = { icon = '󰣮 ', color = 'warning' },
             -- These are "notes"
