@@ -357,7 +357,7 @@ return {
             desc = '[F]ind [H]elp',
         },
         {
-            '<leader>hi',
+            '<leader>H',
             function()
                 Snacks.picker.highlights({
                     layout = 'telescope',
@@ -365,7 +365,7 @@ return {
                     follow = true,
                 })
             end,
-            desc = '[Hi]light Groups',
+            desc = '[H]light Groups',
         },
         {
             '<leader>si',
