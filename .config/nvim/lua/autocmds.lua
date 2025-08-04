@@ -220,24 +220,38 @@ function RenderTodoHighlights(bufnr)
                     -- 1) highlight keyword
                     vim.api.nvim_buf_add_highlight(bufnr, ns, cfg.hl, i - 1, s - 1, e - 1)
 
-                    -- 2) highlight (...) parts only if a keyword was found
-                    local start = 1
-                    local s, e = line:find('%b()', start)
-                    if not s then
-                        break
-                    end
-                    -- "(" and ")"
-                    vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, s - 1, s)
-                    vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, e - 1, e)
-                    -- inner constant
-                    if e - s > 1 then
-                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.constant, i - 1, s, e - 1)
-                    end
-                    start = e + 1
+                    local next_char = line:sub(e, e)
 
-                    -- 3) highlight any ":" as delimiter only if a group keyword was found
-                    for s, _ in line:gmatch('():') do
-                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.delimiter, i - 1, s - 1, s)
+                    -- 2) highlight (...) if it directly follows keyword
+                    if next_char == '(' then
+                        local ps = e
+                        local pe = nil
+                        for j = e + 1, math.min(#line, e + 100) do
+                            if line:sub(j, j) == ')' then
+                                pe = j
+                                break
+                            end
+                        end
+
+                        if pe then
+                            vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, ps - 1, ps)
+                            vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, pe - 1, pe)
+                            if pe - ps > 1 then
+                                vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.constant, i - 1, ps, pe - 1)
+                            end
+
+                            e = pe
+                        end
+                    end
+
+                    -- -- 3) highlight ":" if directly after keyword or after parens
+                    local colon_pos = nil
+                    if line:sub(e, e) == ':' then
+                        colon_pos = e
+                    end
+
+                    if colon_pos then
+                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.delimiter, i - 1, colon_pos - 1, colon_pos)
                     end
                 end
             end
