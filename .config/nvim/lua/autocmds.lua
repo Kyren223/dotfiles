@@ -191,7 +191,7 @@ local groups = {
         hl = '@comment.warning.comment',
     },
     error = {
-        keywords = { 'FIX', 'FIXME', 'BUG', 'ERROR', 'UNSAFE', 'SAFETY' },
+        keywords = { 'FIX', 'FIXME', 'ERROR', 'UNSAFE', 'SAFETY' },
         hl = '@comment.error.comment',
     },
     perf = {
