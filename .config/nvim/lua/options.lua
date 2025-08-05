@@ -15,7 +15,7 @@ vim.opt.shiftwidth = 4 -- number of spaces to insert on tab
 
 -- UI
 vim.opt.number = true
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = '100'
 vim.opt.signcolumn = 'auto:9'
 vim.opt.relativenumber = true
 vim.opt.cursorline = true -- highlight current line
