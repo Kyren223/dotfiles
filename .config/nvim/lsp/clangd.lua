@@ -65,7 +65,7 @@ return {
         '--header-insertion=iwyu',
         '--completion-style=detailed',
         '--function-arg-placeholders=false',
-        -- '--fallback-style=llvm',
+        '--fallback-style=none',
     },
     filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
     root_markers = {
