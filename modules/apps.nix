@@ -62,6 +62,11 @@
       gnome-clocks
       inputs.zen-browser.packages."${system}".twilight
       chromium # for firefox/zen issue not rendering emojis properly
+      butterfly
+      obsidian
+      krita
+      rnote
+      lorien
 
       # Communication
       wasistlos # Whatsapp
