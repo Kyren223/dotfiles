@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   imports = [
-    ./nvidia.nix
+    # ./nvidia.nix
   ];
 
   environment.systemPackages = with pkgs; [
