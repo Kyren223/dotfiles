@@ -5,6 +5,6 @@
    "i8" "i16" "i32" "i64"
    "f32" "f64"
    "b8" "b32" "b64"
-   "rune" "usize" "isize"
+   "rune" "usize" "isize" "uptr" "iptr"
    "true" "false" "null" "void")
   (#set! "priority" 200))

@@ -1,0 +1,10 @@
+{
+  "ccase": {
+    "body": [
+      "case $0: {",
+      "",
+      "}break;"
+    ],
+    "prefix": "ccase"
+  }
+}

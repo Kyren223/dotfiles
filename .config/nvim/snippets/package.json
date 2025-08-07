@@ -22,6 +22,12 @@
           "go"
         ],
         "path": "./eko-go.json"
+      },
+      {
+        "language": [
+          "c"
+        ],
+        "path": "./c.json"
       }
     ]
   },

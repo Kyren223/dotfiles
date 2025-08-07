@@ -6,3 +6,9 @@ InlayHints:
   DeducedTypes: true
   DefaultArguments: true
   TypeNameLimit: 24
+Diagnostics:
+  Suppress: "*"
+Index:
+  StandardLibrary: false
+CompileFlags:
+  Add: [-x, c]
