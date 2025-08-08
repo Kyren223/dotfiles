@@ -21,7 +21,7 @@
     };
 
     eko = {
-      url = "github:kyren223/eko/dev";
+      url = "github:kyren223/eko/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

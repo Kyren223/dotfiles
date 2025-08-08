@@ -10,16 +10,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1753897714,
-        "narHash": "sha256-Z83NOfCa/KpRxW/EfkC/WjZhXi8ebLNxxP6GtatKCrI=",
+        "lastModified": 1754670455,
+        "narHash": "sha256-JC/zNqLaBe4sskeGuxsMifCZTpHScU9KZGV4/yORKOI=",
         "owner": "kyren223",
         "repo": "eko",
-        "rev": "262d735986fed9337a91ba814596fed121fed3e3",
+        "rev": "3842aa28cf74e90dd0998b2a4343f9ad83766b60",
         "type": "github"
       },
       "original": {
         "owner": "kyren223",
-        "ref": "dev",
         "repo": "eko",
         "type": "github"
       }
