@@ -72,6 +72,7 @@
       libllvm
       lld
       file
+      universal-ctags
 
       prometheus
       grafana-loki
