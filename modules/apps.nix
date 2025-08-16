@@ -67,6 +67,12 @@
       krita
       rnote
       lorien
+      texliveFull
+      zathura
+      poppler
+      (texlive.combine {
+        inherit (texlive) scheme-basic titlesec enumitem hyperref;
+      })
 
       # Communication
       wasistlos # Whatsapp

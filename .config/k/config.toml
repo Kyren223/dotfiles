@@ -1,4 +1,4 @@
 github-user = "kyren223"
 
 [workspace]
-paths = ["$HOME/projects", "$HOME/personal", "$HOME/"]
+paths = ["$HOME/projects", "$HOME/personal", "$HOME/Documents", "$HOME/"]
