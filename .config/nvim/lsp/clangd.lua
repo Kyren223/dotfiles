@@ -57,6 +57,61 @@ local function symbol_info()
     end, bufnr)
 end
 
+local function find_build_buf()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_get_option_value('buftype', { buf = buf }) == 'terminal' then
+            local ok, val = pcall(vim.api.nvim_buf_get_var, buf, 'is_build_term')
+            if ok and val then
+                return buf
+            end
+        end
+    end
+    return -1
+end
+
+local function compile_project()
+    local orig_win = vim.api.nvim_get_current_win()
+    local build_buf = find_build_buf()
+    local build_win = -1
+
+    if build_buf == -1 then
+        vim.cmd('botright vsplit')
+        -- vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.395))
+        vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.46))
+        build_win = vim.api.nvim_get_current_win()
+        vim.cmd('terminal')
+        build_buf = vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_set_var(build_buf, 'is_build_term', true)
+        vim.opt_local.bufhidden = 'delete'
+    else
+        vim.cmd("CompileClose")
+        compile_project()
+        return
+        -- build_win = vim.fn.bufwinid(build_buf)
+        -- if build_win == -1 then
+        --     vim.cmd('botright vsplit')
+        --     build_win = vim.api.nvim_get_current_win()
+        --     vim.api.nvim_win_set_buf(build_win, build_buf)
+        -- end
+    end
+
+    vim.api.nvim_set_current_win(build_win)
+    local chan = vim.api.nvim_buf_get_var(build_buf, 'terminal_job_id')
+    vim.api.nvim_chan_send(chan, 'clear && ./build.sh krypton\n')
+    vim.api.nvim_set_current_win(orig_win)
+end
+
+vim.api.nvim_create_user_command("CompileClose", function()
+    local build_buf = find_build_buf()
+    if build_buf ~= -1 then
+        local chan = vim.api.nvim_buf_get_var(build_buf, 'terminal_job_id')
+        vim.fn.jobstop(chan)
+        vim.api.nvim_buf_delete(build_buf, { force = true })
+    end
+end, {})
+
+vim.keymap.set({ 'i', 'n', 'v' }, '<C-q>', '<cmd>CompileClose<cr><cmd>wqa<cr>')
+
 return {
     cmd = {
         'clangd',
@@ -98,6 +153,7 @@ return {
             symbol_info()
         end, { desc = 'Show symbol info' })
 
+        vim.keymap.set('n', '<A-m>', compile_project, { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', '<leader>h', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', 'K', '<cmd>lua require("pretty_hover").hover()<cr>', { desc = 'Documentation Hover' })
         -- TODO: do I need pretty_hover? maybe that's what causes issues?

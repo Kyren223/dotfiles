@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
     desc = 'Disable newlines on commented lines from continuing the comment',
     group = augroup('disable-comments-continuation'),
     callback = function()
-        vim.opt_local.formatoptions:remove('r') -- no comments on enter
+        -- vim.opt_local.formatoptions:remove('r') -- no comments on enter
         vim.opt_local.formatoptions:remove('o') -- no comments on `o` or `O`
     end,
 })
@@ -264,5 +264,43 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'BufRead', 'BufWinEnter', 'BufWritePos
     callback = function(args)
         local bufnr = args.buf
         RenderTodoHighlights(bufnr)
+    end,
+})
+
+function Jump_to_error(focus)
+    local line = vim.api.nvim_get_current_line()
+    local path, lnum, col = line:match('([^:]+):(%d+):(%d+):')
+    if not (path and lnum) then
+        vim.cmd('normal! gd')
+        return
+    end
+
+    local main_win = nil
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        if vim.api.nvim_buf_get_option(buf, 'buftype') ~= 'terminal' then
+            main_win = win
+            break
+        end
+    end
+
+    if main_win then
+        vim.api.nvim_win_call(main_win, function()
+            vim.cmd('edit ' .. path)
+            vim.api.nvim_win_set_cursor(0, { tonumber(lnum), tonumber(col) - 1 })
+        end)
+        if focus then
+            vim.api.nvim_set_current_win(main_win)
+        end
+    else
+        vim.cmd('edit ' .. path)
+        vim.api.nvim_win_set_cursor(0, { tonumber(lnum), tonumber(col) - 1 })
+    end
+end
+
+vim.api.nvim_create_autocmd('TermOpen', {
+    callback = function(args)
+        vim.api.nvim_buf_set_keymap(args.buf, 'n', 'gd', '<cmd>lua Jump_to_error(true)<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(args.buf, 'n', 'go', '<cmd>lua Jump_to_error(false)<CR>', { noremap = true, silent = true })
     end,
 })
