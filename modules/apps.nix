@@ -73,6 +73,7 @@
       (texlive.combine {
         inherit (texlive) scheme-basic titlesec enumitem hyperref;
       })
+      thunderbird-latest-unwrapped
 
       # Communication
       wasistlos # Whatsapp
