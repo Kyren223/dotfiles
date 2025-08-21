@@ -54,7 +54,6 @@
       syncthingtray
       libreoffice
       albert
-      goldendict-ng # for albert dictionary feature
       aseprite
       cloudflare-warp
       haruna
@@ -62,18 +61,7 @@
       gnome-clocks
       inputs.zen-browser.packages."${system}".twilight
       chromium # for firefox/zen issue not rendering emojis properly
-      butterfly
-      obsidian
       krita
-      rnote
-      lorien
-      texliveFull
-      zathura
-      poppler
-      (texlive.combine {
-        inherit (texlive) scheme-basic titlesec enumitem hyperref;
-      })
-      thunderbird-latest-unwrapped
 
       # Communication
       wasistlos # Whatsapp
