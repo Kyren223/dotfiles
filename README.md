@@ -31,5 +31,5 @@ You may need to add the `--adopt` flag to stow to override your existing dotfile
 If using NixOS, rebuild your system using the flake
 
 ```sh
-sudo nixos-rebuild switch --flake ~/dotfiles#kyren-laptop
+sudo nixos-rebuild switch --flake ~/dotfiles#kyren-desktop
 ```
