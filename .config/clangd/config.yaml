@@ -7,6 +7,8 @@ InlayHints:
   DefaultArguments: true
   TypeNameLimit: 24
 Diagnostics:
+  # ClangTidy:
+  #   Remove: "*"
   Suppress: "*"
 Index:
   StandardLibrary: false
