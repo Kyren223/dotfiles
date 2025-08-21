@@ -4,8 +4,8 @@
 	helper = !gh auth git-credential
 [user]
 	name = Kyren223
-	email = kyren223@proton.me
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7P9K9D5RkBk+JCRRS6AtHuTAc6cRpXfRfRMg/Kyren kyren223@proton.me
+	email = contact@kyren.codes
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7P9K9D5RkBk+JCRRS6AtHuTAc6cRpXfRfRMg/Kyren contact@kyren.codes
 [init]
 	defaultBranch = master
 [core]
@@ -25,8 +25,10 @@
 	format = ssh
 [log]
 	date = iso
+[url "git@git.kyren.codes:kyren223/"]
+    insteadOf = "kgt:"
 [url "git@github.com:kyren223/"]
-    insteadOf = "k:"
+    insteadOf = "kgh:"
 [url "git@github.com:"]
     insteadOf = "gh:"
 [url "git@gitlab.com:"]

@@ -10,7 +10,7 @@ def read_token(var: str) -> str:
     if path is None:
         print(f"Missing env var: {var}", file=sys.stderr)
         sys.exit(1)
-    return open(path).read().strip()
+    return path.strip()
 
 GITHUB_TOKEN: str = read_token("GITHUB_TOKEN_FILE")
 GITHUB_USERNAME = "Kyren223"
