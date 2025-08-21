@@ -158,7 +158,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufEnter' }, {
                     '#ifndef ' .. string.upper(vim.fn.expand('%:t:r')) .. '_H',
                     '#define ' .. string.upper(vim.fn.expand('%:t:r')) .. '_H',
                     '',
-                    '#include "' .. vim.fn.expand('%:t:r') .. '.meta.h"',
+                    '#include "generated/' .. vim.fn.expand('%:t:r') .. '.meta.h"',
                     '',
                     '#endif',
                 },
