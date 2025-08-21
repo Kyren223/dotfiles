@@ -75,6 +75,7 @@ return {
             'yaml',
             'zig',
             'comment',
+            'gotmpl'
         },
 
         incremental_selection = {
