@@ -17,7 +17,7 @@ Use your preferred package manager to install GNU stow
 Then clone the repository
 
 ```sh
-git clone https://github.com/kyren223/dotfiles
+git clone https://git.kyren.codes/kyren223/dotfiles
 ```
 
 Let stow generate all the symlinks for you
