@@ -67,6 +67,8 @@
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc # Fixes issues with neovim plugins not working
 
+    glib
+
     # Fixes issues with running games (nallo's)
     wayland
     libxkbcommon
@@ -113,8 +115,12 @@
   virtualisation.libvirtd.qemu = {
     runAsRoot = true;
     ovmf.enable = true;
+    # Fix, see https://www.reddit.com/r/NixOS/comments/11j9qf7/virtio_fs_with_virtmanager/
+    vhostUserPackages = with pkgs; [ virtiofsd ];
   };
   environment.systemPackages = [ pkgs.virtiofsd ]; # For shared fs
+  # Fix no internet in libvirt, see https://discourse.nixos.org/t/issues-with-virt-manager-default-network-down-in-nixos-25-11/66808/3
+  networking.firewall.trustedInterfaces = [ "wlp5s0" "virbr0" ];
 
   services.syncthing.enable = true;
   services.syncthing = {
