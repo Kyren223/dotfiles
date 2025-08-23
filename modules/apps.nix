@@ -118,6 +118,7 @@
       kopia
       kopia-ui
       appimage-run
+      flameshot
     ];
 
     # VPN for Vault Hunters to avoid connection issues
