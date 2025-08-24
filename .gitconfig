@@ -27,6 +27,8 @@
 	date = iso
 [url "git@git.kyren.codes:kyren223/"]
     insteadOf = "k:"
+[url "git@git.kyren.codes:kyren223/"]
+    insteadOf = "kgt:"
 [url "git@github.com:kyren223/"]
     insteadOf = "kgh:"
 [url "git@github.com:"]
