@@ -7,12 +7,13 @@ return {
         config = function()
             local dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
             if dir == 'kyren' then
-                vim.cmd.colorscheme('carbonight-tokyo')
+                vim.g.theme = 'carbonight-tokyo'
             elseif dir == 'grimoire' then
-                vim.cmd.colorscheme('tokyonight-storm')
+                vim.g.theme = 'tokyonight-storm'
             else
-                vim.cmd.colorscheme('carbonight')
+                vim.g.theme = 'carbonight'
             end
+            vim.cmd.colorscheme(vim.g.theme)
         end,
     },
     'folke/tokyonight.nvim',
