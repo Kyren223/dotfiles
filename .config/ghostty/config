@@ -34,6 +34,9 @@ confirm-close-surface = false
 # font-family = "JetBrainsMono NF"
 font-synthetic-style = false
 
+# default font size is 12, so ctrl+minus is -1
+font-size = 11
+
 adjust-underline-thickness = 2
 adjust-box-thickness = 2
 
