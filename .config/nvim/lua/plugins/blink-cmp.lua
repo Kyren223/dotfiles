@@ -59,8 +59,13 @@ return {
             },
         },
 
-        -- TODO: configure this when I get to fixing the LSP signature thing
-        signature = {},
+        signature = {
+            enabled = true,
+            window = {
+                border = 'single',
+                show_documentation = false,
+            },
+        },
 
         fuzzy = { implementation = 'prefer_rust_with_warning' },
 
