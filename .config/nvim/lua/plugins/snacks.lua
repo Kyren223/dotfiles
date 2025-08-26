@@ -396,7 +396,6 @@ return {
             end,
             desc = '[R]e[n]ame',
         },
-
         {
             '<leader>.',
             function()
@@ -411,13 +410,12 @@ return {
             end,
             desc = 'Select [S]cratch Buffer',
         },
-
         {
             '<C-t>',
             function()
-                Snacks.terminal()
+                Snacks.terminal(nil, { win = { style = 'minimal' } })
             end,
-            desc = '[N]ew [T]erminal',
+            desc = 'Toggle [T]erminal',
         },
     },
 }
