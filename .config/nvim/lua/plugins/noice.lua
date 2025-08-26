@@ -50,6 +50,14 @@ return {
                 },
             },
         },
+        messages = {
+            enabled = true, -- enables the Noice messages UI
+            view = 'notify', -- default view for messages
+            view_error = 'messages', -- view for errors
+            view_warn = 'notify', -- view for warnings
+            view_history = 'messages', -- view for :messages
+            view_search = false, -- view for search count messages. Set to `false` to disable
+        },
         -- you can enable a preset for easier configuration
         cmdline = {
             enabled = true, -- enables the Noice cmdline UI
@@ -69,29 +77,30 @@ return {
         },
         routes = {
             {
+                -- NOTE: filters errors from the command line
                 filter = {
                     event = 'msg_show',
-                    kind = 'search_count',
+                    error = true,
+                    cmdline = true,
                 },
                 opts = { skip = true },
             },
-            {
-                filter = {
-                    event = 'msg_show',
-                    kind = '',
-                    find = 'written',
-                },
-                opts = { skip = true },
-            },
-            {
-                view = 'popup',
-                filter = {
-                    event = 'msg_show',
-                    kind = '',
-                    find = 'written',
-                },
-                -- opts = { skip = true },
-            },
+            -- TODO: Do I need this?
+            -- {
+            --     filter = {
+            --         event = 'msg_show',
+            --         kind = 'search_count',
+            --     },
+            --     opts = { skip = true },
+            -- },
+            -- {
+            --     filter = {
+            --         event = 'msg_show',
+            --         kind = '',
+            --         find = 'written',
+            --     },
+            --     -- opts = { skip = true },
+            -- },
         },
         presets = {
             bottom_search = true, -- use a classic bottom cmdline for search
