@@ -56,12 +56,14 @@ return {
             options = {
                 globalstatus = true,
                 theme = 'auto',
+                disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'ministarter', 'snacks_dashboard' } },
             },
             sections = {
                 lualine_a = { { 'mode', icon = '' } },
-                lualine_b = {
-                    -- require('auto-session.lib').current_session_name,
-                    { 'branch', icon = '' },
+                lualine_b = { { 'branch', icon = '' } },
+                lualine_c = {
+                    { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
+                    { 'filename', separator = '', padding = { left = 0, right = 0 } },
                     {
                         'diagnostics',
                         symbols = {
@@ -71,15 +73,13 @@ return {
                             hint = '󰌵 ',
                         },
                     },
-                },
-                lualine_c = {
                     function()
                         return lsp_progress.progress()
                     end,
                     {
                         require('noice').api.status.mode.get,
                         cond = require('noice').api.status.mode.has,
-                        color = { fg = '#ff9e64' },
+                        color = 'LualineNoiceMacro',
                     },
                 },
                 lualine_x = {
@@ -91,7 +91,7 @@ return {
                 lualine_y = { 'progress' },
                 lualine_z = { 'location' },
             },
-            extensions = { 'oil', 'trouble' },
+            extensions = { 'oil', 'lazy' },
         })
 
         -- Refresh lualine when lsp progress is updated
