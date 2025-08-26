@@ -1,4 +1,7 @@
 return {
+    -- TODO: see what I don't need from here
+    -- maybe I can just fork the renaming and change
+    -- it a bit to my linking?
     -- 'nvimdev/lspsaga.nvim',
     'Kyren223/lspsaga.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
@@ -10,7 +13,6 @@ return {
             title = false,
             kind = nil,
         },
-        hover = { open_cmd = '!firefox.exe' },
         diagnostic = {
             show_layout = 'float',
             keys = {

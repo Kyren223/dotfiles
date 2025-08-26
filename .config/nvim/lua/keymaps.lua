@@ -100,9 +100,10 @@ local function cursor_diagnostics()
 end
 
 local keymaps = {
+    -- TODO: replace goto def with normal goto def or do I like the red thing?
     { 'n', 'gd', '<cmd>Lspsaga goto_definition<cr>', { desc = '[G]oto [D]efinition' } },
+    -- TODO: replace goto def with normal goto def or do I like the red thing? (maybe picker?)
     { 'n', 'gu', '<cmd>Lspsaga finder<cr>', { desc = '[G]oto [U]sages' } },
-    { 'n', 'K', '<cmd>Lspsaga hover_doc<cr>', { desc = 'Documentation' } },
     { { 'n', 'i' }, '<C-p>', function() vim.lsp.buf.signature_help() end, { desc = 'Show [P]arameters' } },
     { 'n', 'R', '<cmd>Lspsaga rename<cr>', { desc = '[R]ename' } },
     { { 'n', 'i' }, '<M-Enter>', '<cmd>Lspsaga code_action<cr>', { desc = 'Code Actions' } },
