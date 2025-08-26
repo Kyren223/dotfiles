@@ -188,30 +188,6 @@ return {
         },
         picker = {},
         quickfile = {},
-        scratch = {
-            filekey = { branch = false },
-            ft = function()
-                return 'markdown'
-            end,
-            win = {
-                style = 'scratch',
-                keys = {
-                    ['reset'] = {
-                        '<M-r>',
-                        function(self)
-                            local file = vim.api.nvim_buf_get_name(self.buf)
-                            Snacks.bufdelete.delete(self.buf)
-                            os.remove(file)
-
-                            local name = 'scratch.' .. vim.fn.fnamemodify(file, ':e')
-                            Snacks.notify.info('Deleted ' .. name)
-                        end,
-                        desc = 'Reset',
-                        mode = { 'n', 'x' },
-                    },
-                },
-            },
-        },
         terminal = {
             win = {
                 keys = {
@@ -395,20 +371,6 @@ return {
                 Snacks.rename.rename_file()
             end,
             desc = '[R]e[n]ame',
-        },
-        {
-            '<leader>.',
-            function()
-                Snacks.scratch()
-            end,
-            desc = 'Toggle Scratch Buffer',
-        },
-        {
-            '<leader>S',
-            function()
-                Snacks.scratch.select()
-            end,
-            desc = 'Select [S]cratch Buffer',
         },
         {
             '<C-t>',
