@@ -62,6 +62,7 @@
       inputs.zen-browser.packages."${system}".twilight
       chromium # for firefox/zen issue not rendering emojis properly
       krita
+      pipeline
 
       # Communication
       wasistlos # Whatsapp
