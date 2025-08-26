@@ -156,7 +156,7 @@ return {
         end, { desc = 'Show symbol info' })
 
         vim.keymap.set('n', '<A-m>', compile_project('clear && ./build.sh krypton\n'), { desc = '[H]eader and Source Switcher' })
-        vim.keymap.set('n', '<A-t>', compile_project('clear && ./build.sh test\n'), { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', '<leader>t', compile_project('clear && ./build.sh test\n'), { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', '<leader>h', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', 'K', '<cmd>lua require("pretty_hover").hover()<cr>', { desc = 'Documentation Hover' })
         -- TODO: do I need pretty_hover? maybe that's what causes issues?
