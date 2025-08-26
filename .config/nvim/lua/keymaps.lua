@@ -5,12 +5,6 @@ local function unbind(mode, keymap)
     set(mode, keymap, function() end)
 end
 
-local function toggle_zen()
-    vim.cmd('Neotree close')
-    vim.cmd('Trouble todo close')
-    vim.cmd('UndotreeHide')
-end
-
 local function yank_filepath_to_clipboard(absolute)
     return function()
         local filepath = vim.fn.expand('%:p')
@@ -50,7 +44,6 @@ set({ 'n', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Visually Highlight [A]ll' })
 set('i', '<C-H>', '<C-w>', { desc = 'Ctrl + Backspace to delete word' })
 set('n', '<esc>', '<cmd>nohlsearch<cr>', { silent = true })
 set({ 'i', 'c' }, '<C-v>', paste)
-set('n', '<leader>z', toggle_zen, { desc = '[Z]en Mode', silent = true })
 set('n', '<leader><tab>', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 unbind({ 'i', 'n', 'v' }, '<C-r>')
 
