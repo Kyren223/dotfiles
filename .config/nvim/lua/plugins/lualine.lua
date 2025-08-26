@@ -55,7 +55,9 @@ return {
         lualine.setup({
             options = {
                 globalstatus = true,
-                theme = 'auto',
+                theme = function()
+                    return vim.g.theme
+                end,
                 disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'ministarter', 'snacks_dashboard' } },
             },
             sections = {
@@ -63,7 +65,10 @@ return {
                 lualine_b = { { 'branch', icon = '' } },
                 lualine_c = {
                     { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
-                    { 'filename', separator = '', padding = { left = 0, right = 0 } },
+                    -- TODO(kyren): experiment with path = 1 or path = 4?
+                    -- I feel like it's too long right now, so I prefer 0, but maybe shove the
+                    -- path somewhere else?
+                    { 'filename', separator = '', padding = { left = 0, right = 0 }, path = 0 },
                     {
                         'diagnostics',
                         symbols = {
@@ -86,6 +91,7 @@ return {
                     'searchcount',
                     'encoding',
                     'fileformat',
+                    'filesize',
                     'filetype',
                 },
                 lualine_y = { 'progress' },
