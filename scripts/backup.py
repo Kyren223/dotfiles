@@ -9,13 +9,18 @@ folders_existed = 0
 files_uploaded = 0
 files_existed = 0
 files_replaced = 0
+errors = 0
 
 def run_cmd(cmd):
     print(f"Running: {cmd}")
     p = subprocess.run(cmd, shell=True, capture_output=True, text=True)
     if p.stderr:
         print(f"Error running command: {p.stderr}")
-        raise Exception(f"Command failed: {cmd} - {p.stderr}")
+        # ERROR
+        global errors
+        errors += 1
+        time.sleep(1)
+        return run_cmd(cmd)
     try:
         return json.loads(p.stdout)
     except json.JSONDecodeError:
@@ -29,7 +34,11 @@ def get_listing(remote_id):
         return out['list']
     else:
         print(f"List failed: {out.get('message', 'Unknown error')}")
-        raise Exception(f"Failed to list {remote_id}")
+        # ERROR
+        global errors
+        errors += 1
+        time.sleep(1)
+        return get_listing(remote_id)
 
 def find_folder_uuid(parent_id, name):
     listing = get_listing(parent_id)
@@ -48,17 +57,21 @@ def create_folder(parent_id, name):
         return uuid
     else:
         print(f"Failed to create folder '{name}': {out.get('message', 'Unknown error')}")
-        raise Exception(f"Failed to create folder {name}")
+        # ERROR
+        global errors
+        errors += 1
+        time.sleep(1)
+        return create_folder(parent_id, name)
 
 def find_or_create_folder(parent_id, name):
     global folders_created, folders_existed
     uuid = find_folder_uuid(parent_id, name)
     if uuid:
         folders_existed += 1
-        return uuid
+        return uuid, False
     else:
         folders_created += 1
-        return create_folder(parent_id, name)
+        return create_folder(parent_id, name), True
 
 def find_file_uuid(parent_uuid, full_name):
     stem, ext = os.path.splitext(full_name)
@@ -90,13 +103,13 @@ def trash_file(file_uuid):
         print(f"Failed to trash '{file_uuid}': {out.get('message', 'Unknown error')}")
         return False
 
-def handle_file(local_path, dest_uuid, mode):
+def handle_file(local_path, parent_id, mode):
     global files_uploaded, files_existed, files_replaced
     full_name = os.path.basename(local_path)
-    print(f"Handling file '{local_path}' in '{dest_uuid}' (mode: {mode})")
-    existing_uuid = find_file_uuid(dest_uuid, full_name)
+    print(f"Handling file '{local_path}' in '{parent_id}' (mode: {mode})")
+    existing_uuid = find_file_uuid(parent_id, full_name)
     if not existing_uuid:
-        if upload_file(local_path, dest_uuid):
+        if upload_file(local_path, parent_id):
             files_uploaded += 1
     else:
         if mode == 'append':
@@ -104,22 +117,29 @@ def handle_file(local_path, dest_uuid, mode):
             files_existed += 1
         elif mode == 'replace':
             if trash_file(existing_uuid):
-                if upload_file(local_path, dest_uuid):
+                if upload_file(local_path, parent_id):
                     files_replaced += 1
                 else:
                     print(f"Failed to replace '{local_path}' after trashing")
             else:
                 print(f"Failed to trash '{full_name}', skipping replacement")
 
-def backup_dir(local_dir, remote_uuid, mode):
-    print(f"Backing up directory '{local_dir}' to '{remote_uuid}'")
+def backup_dir(local_dir, parent_id, mode):
+    print(f"Backing up directory '{local_dir}' to '{parent_id}'")
+    base = os.path.basename(local_dir)
+
+    current_id, created = find_or_create_folder(parent_id, base)
+    if not created and mode == 'append':
+        # TODO: add datetime check and only skip if older
+        print(f"Directory '{local_dir}' exists, skipping in append mode")
+        return
+
     for entry in os.listdir(local_dir):
         local_path = os.path.join(local_dir, entry)
         if os.path.isdir(local_path):
-            sub_uuid = find_or_create_folder(remote_uuid, entry)
-            backup_dir(local_path, sub_uuid, mode)
+            backup_dir(local_path, current_id, mode)
         elif os.path.isfile(local_path):
-            handle_file(local_path, remote_uuid, mode)
+            handle_file(local_path, current_id, mode)
         else:
             print(f"Skipping non-file/non-dir '{local_path}'")
 
@@ -148,8 +168,8 @@ if __name__ == "__main__":
     total_size = get_total_size(local_root)
     base_name = os.path.basename(os.path.abspath(local_root))
     root_parent = ""
-    remote_root_uuid = find_or_create_folder(root_parent, base_name)
-    backup_dir(local_root, remote_root_uuid, mode)
+    # remote_root_uuid = find_or_create_folder(root_parent, base_name)
+    backup_dir(local_root, root_parent, mode)
     end_time = time.time()
     total_time = end_time - start_time
     print("\nBackup Summary:")
@@ -164,7 +184,9 @@ if __name__ == "__main__":
     if total_size > 0:
         time_per_gb = (total_time / 60) / (total_size / (1024**3))
         print(f"Time per GB: {time_per_gb:.2f} minutes/GB")
-        megabits = total_size * 1024 * 128 # 128 is 1024/8
+        megabits = total_size / (1024 * 128) # 128 is 1024/8
+        print(f"Megabits: {megabits}mb | total_time: {total_time}")
         print(f"Speed: {megabits / total_time}mbps")
     else:
         print("Time per GB: N/A (zero size)")
+    print(f"Total errors: {errors}")
