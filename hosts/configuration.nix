@@ -133,4 +133,14 @@
     "d /home/kyren/.config/syncthing 0700 kyren users"
   ];
 
+  # App image fix, see https://github.com/internxt/drive-desktop-linux/issues/80
+  # Hopefully this also fixes the other errors with fuse, not just for internxt
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+  programs.appimage.package = pkgs.appimage-run.override {
+    extraPkgs = pkgs: [
+      pkgs.fuse
+    ];
+  };
+
 }
