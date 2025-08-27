@@ -128,7 +128,10 @@ def get_total_size(local_dir):
     for root, dirs, files in os.walk(local_dir):
         for f in files:
             fp = os.path.join(root, f)
-            total += os.path.getsize(fp)
+            try:
+                total += os.path.getsize(fp)
+            except (OSError, PermissionError) as e:
+                print(f"Error getting size of '{fp}': {e}")
     return total
 
 if __name__ == "__main__":
@@ -156,10 +159,12 @@ if __name__ == "__main__":
     print(f"Files existed (skipped): {files_existed}")
     if mode == 'replace':
         print(f"Files replaced (trashed + uploaded): {files_replaced}")
-    print(f"Total file size: {total_size / (1024**3):.2f} GB")
-    print(f"Total time: {total_time:.2f} seconds")
+    print(f"Total file size: {total_size / (1024**2):.2f} MB")
+    print(f"Total time: {total_time / 60:.2f} minutes")
     if total_size > 0:
-        time_per_gb = total_time / (total_size / (1024**3))
-        print(f"Time per GB: {time_per_gb:.2f} seconds/GB")
+        time_per_gb = (total_time / 60) / (total_size / (1024**3))
+        print(f"Time per GB: {time_per_gb:.2f} minutes/GB")
+        megabits = total_size * 1024 * 128 # 128 is 1024/8
+        print(f"Speed: {megabits / total_time}mbps")
     else:
         print("Time per GB: N/A (zero size)")
