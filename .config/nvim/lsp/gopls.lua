@@ -72,7 +72,7 @@ return {
             semanticTokens = true,
         },
     },
-    on_attach = function(client, bufnr)
+    on_attach = function(client)
         -- workaround for gopls not supporting semanticTokensProvider
         -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
         if not client.server_capabilities.semanticTokensProvider then
@@ -87,7 +87,5 @@ return {
             }
         end
         -- end workaround
-
-        require('workspace-diagnostics').populate_workspace_diagnostics(client, bufnr)
     end,
 }
