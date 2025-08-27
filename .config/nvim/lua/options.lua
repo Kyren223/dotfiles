@@ -4,7 +4,7 @@ vim.opt.mouse = 'a' -- enable mouse
 vim.opt.clipboard = 'unnamedplus' -- use system clipboard
 vim.opt.undofile = true -- persist undo history by saving it to a file
 vim.opt.undolevels = 10000
-vim.opt.exrc = true -- WARNING: runs .nvim.lua in cwd, which may execute arbitrary code
+vim.opt.exrc = false -- WARNING: runs .nvim.lua in cwd, which may execute arbitrary code
 vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
 
 -- Tab
