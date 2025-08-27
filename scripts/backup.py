@@ -12,9 +12,9 @@ files_replaced = 0
 def run_cmd(cmd):
     print(f"Running: {cmd}")
     p = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-    if p.returncode != 0:
+    if p.stderr:
         print(f"Error running command: {p.stderr}")
-        raise Exception(f"Command failed: {cmd}")
+        raise Exception(f"Command failed: {cmd} - {p.stderr}")
     try:
         return json.loads(p.stdout)
     except json.JSONDecodeError:
@@ -59,11 +59,13 @@ def find_or_create_folder(parent_id, name):
         folders_created += 1
         return create_folder(parent_id, name)
 
-def find_file_uuid(parent_uuid, name):
+def find_file_uuid(parent_uuid, full_name):
+    stem, ext = os.path.splitext(full_name)
+    ext = ext.lstrip('.')
     listing = get_listing(parent_uuid)
     for file in listing['files']:
-        if file['plainName'] == name:
-            print(f"File '{name}' exists in '{parent_uuid}', uuid: {file['uuid']}")
+        if file['plainName'] == stem and file.get('type', '') == ext:
+            print(f"File '{full_name}' exists in '{parent_uuid}', uuid: {file['uuid']}")
             return file['uuid']
     return None
 
@@ -89,15 +91,15 @@ def trash_file(file_uuid):
 
 def handle_file(local_path, dest_uuid, mode):
     global files_uploaded, files_existed, files_replaced
-    name = os.path.basename(local_path)
+    full_name = os.path.basename(local_path)
     print(f"Handling file '{local_path}' in '{dest_uuid}' (mode: {mode})")
-    existing_uuid = find_file_uuid(dest_uuid, name)
+    existing_uuid = find_file_uuid(dest_uuid, full_name)
     if not existing_uuid:
         if upload_file(local_path, dest_uuid):
             files_uploaded += 1
     else:
         if mode == 'append':
-            print(f"File '{name}' exists, skipping")
+            print(f"File '{full_name}' exists, skipping")
             files_existed += 1
         elif mode == 'replace':
             if trash_file(existing_uuid):
@@ -106,7 +108,7 @@ def handle_file(local_path, dest_uuid, mode):
                 else:
                     print(f"Failed to replace '{local_path}' after trashing")
             else:
-                print(f"Failed to trash '{name}', skipping replacement")
+                print(f"Failed to trash '{full_name}', skipping replacement")
 
 def backup_dir(local_dir, remote_uuid, mode):
     print(f"Backing up directory '{local_dir}' to '{remote_uuid}'")
