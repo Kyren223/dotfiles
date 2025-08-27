@@ -15,7 +15,6 @@ vim.opt.shiftwidth = 4 -- number of spaces to insert on tab
 
 -- UI
 vim.opt.number = true
-vim.opt.colorcolumn = '100'
 vim.opt.signcolumn = 'no'
 vim.opt.relativenumber = true
 vim.opt.cursorline = true -- highlight current line
@@ -31,6 +30,13 @@ vim.opt.wrap = false
 vim.opt.linebreak = true -- wrap lines at convenient points
 vim.opt.laststatus = 3 -- global stautsline
 vim.opt.smoothscroll = true
+
+local dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+if dir == 'grimoire' then
+    vim.opt.colorcolumn = '0'
+else
+    vim.opt.colorcolumn = '100'
+end
 
 -- Searching
 vim.opt.hlsearch = true
