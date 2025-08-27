@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import subprocess
+import time
 
 folders_created = 0
 folders_existed = 0
@@ -122,6 +123,14 @@ def backup_dir(local_dir, remote_uuid, mode):
         else:
             print(f"Skipping non-file/non-dir '{local_path}'")
 
+def get_total_size(local_dir):
+    total = 0
+    for root, dirs, files in os.walk(local_dir):
+        for f in files:
+            fp = os.path.join(root, f)
+            total += os.path.getsize(fp)
+    return total
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python backup.py <local_dir> <mode: append|replace>")
@@ -132,10 +141,14 @@ if __name__ == "__main__":
         print("Invalid mode: must be 'append' or 'replace'")
         sys.exit(1)
     print(f"Local root directory: {local_root}")
+    start_time = time.time()
+    total_size = get_total_size(local_root)
     base_name = os.path.basename(os.path.abspath(local_root))
     root_parent = ""
     remote_root_uuid = find_or_create_folder(root_parent, base_name)
     backup_dir(local_root, remote_root_uuid, mode)
+    end_time = time.time()
+    total_time = end_time - start_time
     print("\nBackup Summary:")
     print(f"Folders created: {folders_created}")
     print(f"Folders existed: {folders_existed}")
@@ -143,3 +156,10 @@ if __name__ == "__main__":
     print(f"Files existed (skipped): {files_existed}")
     if mode == 'replace':
         print(f"Files replaced (trashed + uploaded): {files_replaced}")
+    print(f"Total file size: {total_size / (1024**3):.2f} GB")
+    print(f"Total time: {total_time:.2f} seconds")
+    if total_size > 0:
+        time_per_gb = total_time / (total_size / (1024**3))
+        print(f"Time per GB: {time_per_gb:.2f} seconds/GB")
+    else:
+        print("Time per GB: N/A (zero size)")
