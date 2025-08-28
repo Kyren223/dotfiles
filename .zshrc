@@ -118,9 +118,6 @@ if [ ! -f "$MARKER_FILE" ]; then
   # Start albert (app launcher like krunner)
   nohup albert --platform xcb &>/dev/null & disown
 
-  # Start linkwarden
-  (pushd $HOME/personal/linkwarden > /dev/null && docker compose up -d > /dev/null && popd) &>/dev/null
-
   # HACK: I need read access to home for sqlite access for eko
   # in prod it'll be read access /var/lib/eko which is fine I guess?
   chmod o+x /home/kyren/
@@ -132,9 +129,4 @@ fi
 if [[ ! -d "$HOME/.config/tmux/plugins/catppuccin" ]]; then
   mkdir -p $HOME/.config/tmux/plugins/catppuccin
   git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
-fi
-
-# Open tmux in default user session if it's not open
-if [ -z "$TMUX" ]; then
-    k switch $HOME
 fi
