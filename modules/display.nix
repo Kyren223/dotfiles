@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: 
+{ pkgs, lib, inputs, ... }: 
   with lib; let
     hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.system};
     hypr-plugin-dir = pkgs.symlinkJoin {
@@ -9,7 +9,11 @@
     };
 in {
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
   environment.sessionVariables = { HYPR_PLUGIN_DIR = hypr-plugin-dir; };
 
   # Optional, hint electron apps to use wayland:
