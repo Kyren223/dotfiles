@@ -5,13 +5,14 @@ dir=$2
 
 if [ "$dir" = "$HOME" ]; then
   # 𐌲𐍂𐌹𐌼𐍉𐌹𐍂𐌴
-  tmux new-window -t $sess -n "grimoire" -c $HOME/personal/grimoire/
-  tmux send-keys -t $sess:"grimoire".1 "vim" C-m
+  tmux rename-window -t $sess:1 grimoire
+  tmux send-keys -t $sess:grimoire.1 "cd $HOME/personal/grimoire/" C-m
+  tmux send-keys -t $sess:grimoire.1 "vim" C-m
 
   tmux new-window -t $sess -n dotfiles -c $HOME/dotfiles
   tmux send-keys -t $sess:dotfiles.1 "vim" C-m
 
-  tmux rename-window -t $sess:1 main
+  tmux new-window -t $sess -n main -c $HOME
   tmux send-keys -t $sess:main.1 "fastfetch" C-m
 
   tmux select-window -t $sess:grimoire
