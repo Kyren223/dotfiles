@@ -63,6 +63,9 @@
       chromium # for firefox/zen issue not rendering emojis properly
       krita
       pipeline
+      flameshot
+      qdirstat
+      wofi
 
       # Communication
       wasistlos # Whatsapp
@@ -120,8 +123,6 @@
       kopia
       kopia-ui
       appimage-run
-      flameshot
-      qdirstat
     ];
 
     # VPN for Vault Hunters to avoid connection issues
