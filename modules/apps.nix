@@ -71,6 +71,7 @@
 
       # Terminal
       ghostty
+      kitty # Temp for hyprland
       nerd-fonts.jetbrains-mono
       oh-my-posh
       tmux
