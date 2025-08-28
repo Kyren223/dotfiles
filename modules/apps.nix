@@ -66,6 +66,9 @@
       (flameshot.override { enableWlrSupport = true; })
       qdirstat
       wofi
+      kdePackages.dolphin
+      kdePackages.gwenview
+      kdePackages.ark
 
       # Communication
       wasistlos # Whatsapp
