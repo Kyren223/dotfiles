@@ -69,6 +69,7 @@
       kdePackages.dolphin
       kdePackages.gwenview
       kdePackages.ark
+      kdePackages.xwaylandvideobridge
 
       # Communication
       wasistlos # Whatsapp
