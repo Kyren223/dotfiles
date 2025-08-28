@@ -3,10 +3,7 @@ return {
     event = 'InsertEnter',
     version = '1.*',
     dependencies = {
-        {
-            'Kaiser-Yang/blink-cmp-git',
-            dependencies = { 'nvim-lua/plenary.nvim' },
-        },
+        { 'Kaiser-Yang/blink-cmp-git', dependencies = { 'nvim-lua/plenary.nvim' } },
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -31,9 +28,6 @@ return {
             },
 
             keyword = { range = 'full' },
-            -- Full seems cool but might be annoying
-            -- TODO: after a while, did I like this?
-            -- If so keep, otherwise switch to prefix
 
             -- Preselect first one, don't complete until confirmation
             list = { selection = { preselect = true, auto_insert = false } },
