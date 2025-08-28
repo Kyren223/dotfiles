@@ -1,6 +1,17 @@
-{ ... }: {
-  
+{ pkgs, lib, ... }: 
+  with lib; let
+    hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.system};
+    hypr-plugin-dir = pkgs.symlinkJoin {
+      name = "hyrpland-plugins";
+      paths = with hyprPluginPkgs; [
+        hyprbars
+      ];
+    };
+in {
+
   programs.hyprland.enable = true;
+  environment.sessionVariables = { HYPR_PLUGIN_DIR = hypr-plugin-dir; };
+
   # Optional, hint electron apps to use wayland:
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
