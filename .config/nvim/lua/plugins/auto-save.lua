@@ -34,7 +34,7 @@ return {
                 local filetype = vim.bo[buf].filetype
 
                 -- Don't autosave special buffers or Oil buffers
-                return buftype == '' and filetype ~= 'oil'
+                return buftype == '' and filetype ~= 'oil' and filetype ~= 'hyprlang'
             end,
         }
     end,
