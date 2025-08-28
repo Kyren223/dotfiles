@@ -5,6 +5,7 @@
     ../modules/apps.nix
     ../modules/overrides.nix
     ../modules/kde.nix
+    ../modules/hyprland.nix
     ../modules/networking.nix
     ../modules/development.nix
     ../modules/gaming.nix
