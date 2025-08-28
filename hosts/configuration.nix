@@ -143,4 +143,10 @@
     ];
   };
 
+  # Fixes "The name org.freedesktop.UDisks2 was not provided by any .service files"
+  # See https://www.reddit.com/r/NixOS/comments/1goziru/dolphin_on_hyprland/
+  services.udisks2.enable = true;
+
+  # See https://github.com/rumboon/dolphin-overlay/tree/main
+  nixpkgs.overlays = [ inputs.dolphin-overlay.overlays.default ];
 }

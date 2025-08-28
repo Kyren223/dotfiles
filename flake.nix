@@ -30,6 +30,9 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    # Fix for dolphin on hyprland, see https://github.com/rumboon/dolphin-overlay/tree/main
+    dolphin-overlay.url = "github:rumboon/dolphin-overlay";
   };
 
   outputs = { self, nixpkgs, nixpkgs-emoji-pin, ... }@inputs: {
