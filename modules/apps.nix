@@ -63,7 +63,7 @@
       chromium # for firefox/zen issue not rendering emojis properly
       krita
       pipeline
-      flameshot
+      (flameshot.override { enableWlrSupport = true; })
       qdirstat
       wofi
 
