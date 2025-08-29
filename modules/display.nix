@@ -1,11 +1,5 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
-with lib;
-let
+{ pkgs, lib, inputs, ... }:
+with lib; let
   hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.system};
   hypr-plugin-dir = pkgs.symlinkJoin {
     name = "hyrpland-plugins";
@@ -13,8 +7,7 @@ let
       hyprbars
     ];
   };
-in
-{
+in {
 
   programs.hyprland = {
     enable = true;
@@ -24,6 +17,25 @@ in
   };
   environment.sessionVariables = {
     HYPR_PLUGIN_DIR = hypr-plugin-dir;
+  };
+
+  xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+
+      extraPortals = with pkgs; [
+          kdePackages.xdg-desktop-portal-kde
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-wlr
+      ];
+
+      config = {
+          hyprland = {
+              default = [ "hyprland" "gtk" ];
+              # "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+              "org.freedesktop.impl.portal.FileChooser" = [ "kde" ];
+          };
+      };
   };
 
   # Optional, hint electron apps to use wayland:
