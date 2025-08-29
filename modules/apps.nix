@@ -64,7 +64,7 @@
       qdirstat
       wofi
       kdePackages.dolphin
-      kdePackages.gwenview
+      eog
       kdePackages.ark
       kdePackages.xwaylandvideobridge
       rose-pine-kvantum
