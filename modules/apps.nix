@@ -71,6 +71,7 @@
       kdePackages.qt5compat
       kdePackages.qt6ct
       kdePackages.breeze-icons
+      waybar
 
       # Communication
       wasistlos # Whatsapp
