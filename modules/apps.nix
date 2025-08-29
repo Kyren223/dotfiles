@@ -27,11 +27,8 @@
       libnotify
       wl-clipboard
       jdk
-      noto-fonts
 
-      dejavu_fonts
-      font-awesome
-      material-design-icons
+      nerd-fonts.jetbrains-mono
 
       libratbag # Mouse software (GHUB replacement)
       piper # ^ GUI frontend
@@ -70,6 +67,7 @@
       kdePackages.gwenview
       kdePackages.ark
       kdePackages.xwaylandvideobridge
+      grim
 
       # Communication
       wasistlos # Whatsapp
@@ -79,7 +77,6 @@
       # Terminal
       ghostty
       kitty # Temp for hyprland
-      nerd-fonts.jetbrains-mono
       oh-my-posh
       tmux
       neovim

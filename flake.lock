@@ -507,22 +507,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-emoji-pin": {
-      "locked": {
-        "lastModified": 1727390236,
-        "narHash": "sha256-X2LaWM0WwoxUfu7cQmKyVbkYn0xwdRvBA+vkLg/OgnI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ab7b6889ae9d484eed2876868209e33eb262511d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ab7b6889ae9d484eed2876868209e33eb262511d",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1756266583,
@@ -586,7 +570,6 @@
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-emoji-pin": "nixpkgs-emoji-pin",
         "sops-nix": "sops-nix",
         "zen-browser": "zen-browser"
       }

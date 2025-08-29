@@ -3,7 +3,6 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     ../modules/apps.nix
-    ../modules/overrides.nix
     ../modules/display.nix
     ../modules/networking.nix
     ../modules/development.nix
@@ -39,6 +38,31 @@
     "C.UTF-8/UTF-8"
     "en_IL/UTF-8"
   ];
+
+  # Fonts
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-emoji
+      noto-fonts-color-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      font-awesome
+      nerd-fonts.jetbrains-mono
+    ];
+
+    fontconfig = {
+      defaultFonts = {
+        # serif = [  "Liberation Serif" "Vazirmatn" ];
+        # sansSerif = [ "Ubuntu" "Vazirmatn" ];
+        monospace = [ "JetBrainsMono Nerd Font" ];
+      };
+    };
+  };
+
+  # Fix for noto color emoji not rendering in firefox-based browsers
+  fonts.fontconfig.useEmbeddedBitmaps = true;
 
   # Allow sudo without a password if in "wheel" group.
   security.sudo.wheelNeedsPassword = false;
