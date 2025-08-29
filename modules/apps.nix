@@ -72,6 +72,7 @@
       kdePackages.qt6ct
       kdePackages.breeze-icons
       waybar
+      swaynotificationcenter # For notifications
 
       # Communication
       wasistlos # Whatsapp
