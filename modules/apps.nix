@@ -67,7 +67,10 @@
       kdePackages.gwenview
       kdePackages.ark
       kdePackages.xwaylandvideobridge
-      grim
+      rose-pine-kvantum
+      kdePackages.qt5compat
+      kdePackages.qt6ct
+      kdePackages.breeze-icons
 
       # Communication
       wasistlos # Whatsapp
@@ -124,6 +127,7 @@
       kopia
       kopia-ui
       appimage-run
+      grim
     ];
 
     # VPN for Vault Hunters to avoid connection issues
