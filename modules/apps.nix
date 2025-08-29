@@ -1,11 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}:
-{
+{ pkgs, lib, config, inputs, ... }: {
 
   options.apps.enable = lib.mkOption {
     type = lib.types.bool;
@@ -27,6 +20,9 @@
       libnotify
       wl-clipboard
       jdk
+      waybar
+      swaynotificationcenter # For notifications
+      cliphist # Clipboard history
 
       nerd-fonts.jetbrains-mono
 
@@ -71,8 +67,6 @@
       kdePackages.qt5compat
       kdePackages.qt6ct
       kdePackages.breeze-icons
-      waybar
-      swaynotificationcenter # For notifications
 
       # Communication
       wasistlos # Whatsapp
