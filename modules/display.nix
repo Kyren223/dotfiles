@@ -1,45 +1,4 @@
-{ pkgs, lib, inputs, ... }:
-with lib; let
-  hyprPluginPkgs = inputs.hyprland-plugins.packages.${pkgs.system};
-  hypr-plugin-dir = pkgs.symlinkJoin {
-    name = "hyrpland-plugins";
-    paths = with hyprPluginPkgs; [
-      hyprbars
-    ];
-  };
-in {
-
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-  environment.sessionVariables = {
-    HYPR_PLUGIN_DIR = hypr-plugin-dir;
-  };
-
-  xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-
-      extraPortals = with pkgs; [
-          kdePackages.xdg-desktop-portal-kde
-          xdg-desktop-portal-gtk
-          xdg-desktop-portal-wlr
-      ];
-
-      config = {
-          hyprland = {
-              default = [ "hyprland" "gtk" ];
-              # "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-              "org.freedesktop.impl.portal.FileChooser" = [ "kde" ];
-          };
-      };
-  };
-
-  # Optional, hint electron apps to use wayland:
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+{ pkgs, ... }: {
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -59,6 +18,18 @@ in {
   services.xserver.xkb = {
     layout = "us";
     variant = "";
+  };
+
+  # From when I tried hyprland, might aswell keep this?
+  xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+
+      extraPortals = with pkgs; [
+          kdePackages.xdg-desktop-portal-kde
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-wlr
+      ];
   };
 
 }

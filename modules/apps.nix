@@ -20,10 +20,6 @@
       libnotify
       wl-clipboard
       jdk
-      waybar
-      swaynotificationcenter # For notifications
-      wl-clip-persist # Persist clipboard history after app closes
-      cliphist # Clipboard history
 
       nerd-fonts.jetbrains-mono
 
@@ -54,20 +50,13 @@
       gparted
       gnome-clocks
       inputs.zen-browser.packages."${system}".twilight
-      chromium # for firefox/zen issue not rendering emojis properly
       krita
-      pipeline
+      pipeline # Youtube desktop app
       (flameshot.override { enableWlrSupport = true; })
-      qdirstat
-      wofi
+      qdirstat # WizTree for linux
+      kdePackages.ark
       kdePackages.dolphin
       eog
-      kdePackages.ark
-      kdePackages.xwaylandvideobridge
-      rose-pine-kvantum
-      kdePackages.qt5compat
-      kdePackages.qt6ct
-      kdePackages.breeze-icons
       kopia-ui
       rclone-ui
 
@@ -78,7 +67,6 @@
 
       # Terminal
       ghostty
-      kitty # Temp for hyprland
       oh-my-posh
       tmux
       neovim
