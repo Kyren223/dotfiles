@@ -130,3 +130,7 @@ if [[ ! -d "$HOME/.config/tmux/plugins/catppuccin" ]]; then
   mkdir -p $HOME/.config/tmux/plugins/catppuccin
   git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 fi
+
+if [ -v K_SWITCH_HOME ]; then
+  k switch $HOME
+fi

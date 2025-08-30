@@ -68,6 +68,8 @@
       kdePackages.qt5compat
       kdePackages.qt6ct
       kdePackages.breeze-icons
+      kopia-ui
+      rclone-ui
 
       # Communication
       wasistlos # Whatsapp
@@ -122,9 +124,9 @@
       nh
       kondo # Cleans build caches
       kopia
-      kopia-ui
       appimage-run
       grim
+      rclone
     ];
 
     # VPN for Vault Hunters to avoid connection issues
