@@ -22,6 +22,7 @@
       jdk
       waybar
       swaynotificationcenter # For notifications
+      wl-clip-persist # Persist clipboard history after app closes
       cliphist # Clipboard history
 
       nerd-fonts.jetbrains-mono
