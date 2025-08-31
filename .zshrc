@@ -122,6 +122,8 @@ if [ ! -f "$MARKER_FILE" ]; then
   # in prod it'll be read access /var/lib/eko which is fine I guess?
   chmod o+x /home/kyren/
 
+  K_SWITCH_HOME=
+
   touch "$MARKER_FILE"
 fi
 
