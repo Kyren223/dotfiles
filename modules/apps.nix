@@ -59,6 +59,7 @@
       eog
       kopia-ui
       rclone-ui
+      kdePackages.spectacle
 
       # Communication
       wasistlos # Whatsapp
