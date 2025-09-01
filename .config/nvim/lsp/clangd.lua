@@ -156,6 +156,8 @@ return {
         end, { desc = 'Show symbol info' })
 
         vim.keymap.set('n', '<A-m>', compile_project('clear && ./build.sh krypton\n'), { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', '<A-r>', compile_project('clear && ./build.sh krypton\n'), { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', '<A-c>', compile_project('clear && ./build.sh krypton\n'), { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', '<A-t>', compile_project('clear && ./build.sh test\n'), { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', '<leader>h', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
     end,
