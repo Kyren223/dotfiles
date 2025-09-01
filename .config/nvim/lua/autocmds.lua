@@ -187,7 +187,7 @@ local groups = {
         hl = '@comment.todo.comment',
     },
     warning = {
-        keywords = { 'WARN', 'WARNING', 'HACK', 'SECURITY', 'SECURE' },
+        keywords = { 'WARN', 'WARNING', 'HACK', 'SECURITY', 'SECURE', 'IMPORTANT' },
         hl = '@comment.warning.comment',
     },
     error = {
@@ -195,7 +195,7 @@ local groups = {
         hl = '@comment.error.comment',
     },
     perf = {
-        keywords = { 'PERF', 'OPTIMIZE' },
+        keywords = { 'PERF', 'OPTIMIZE', 'STUDY' },
         hl = '@comment.perf.comment',
     },
     note = {
@@ -300,7 +300,19 @@ end
 
 vim.api.nvim_create_autocmd('TermOpen', {
     callback = function(args)
-        vim.api.nvim_buf_set_keymap(args.buf, 'n', 'gd', '<cmd>lua Jump_to_error(true)<CR>', { noremap = true, silent = true })
-        vim.api.nvim_buf_set_keymap(args.buf, 'n', 'go', '<cmd>lua Jump_to_error(false)<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(
+            args.buf,
+            'n',
+            'gd',
+            '<cmd>lua Jump_to_error(true)<CR>',
+            { noremap = true, silent = true }
+        )
+        vim.api.nvim_buf_set_keymap(
+            args.buf,
+            'n',
+            'go',
+            '<cmd>lua Jump_to_error(false)<CR>',
+            { noremap = true, silent = true }
+        )
     end,
 })

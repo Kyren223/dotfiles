@@ -1,20 +1,3 @@
--- NORMAL: lorem ipsum
--- TODO: lorem ipsum
--- FIX: lorem ipsum
--- OPTIMIZE: lorem ipsum
--- WARN: lorem ipsum
--- PERF: lorem ipsum
--- HACK: lorem ipsum
--- NOTE: lorem ipsum
--- TEST: lorem ipsum
--- UNSAFE: lorem ipsum
--- TODO(kyren223): lorem ipsum
--- NOTE:(broken) lorem ipsum
--- todo!(a);
--- todo!(aaa);
--- Test
--- TODO: blabla
-
 return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -48,7 +31,9 @@ return {
                         'WARNING',
                         'SECURITY',
                         'HACK',
+                        'IMPORTANT',
                         'PERF',
+                        'STUDY',
                         'UNSAFE',
                         'SAFETY',
                         'ERROR',
@@ -71,7 +56,9 @@ return {
             TEST = { icon = '󰙨 ', color = 'note' },
             WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'SECURITY' } },
             HACK = { icon = ' ', color = 'warning' },
+            IMPORTANT = { icon = ' ', color = 'warning' },
             PERF = { icon = ' ', color = 'perf' },
+            STUDY = { icon = ' ', color = 'perf' },
             UNSAFE = { icon = '󰍛 ', color = 'error', alt = { 'SAFETY' } },
         },
         highlight = {
