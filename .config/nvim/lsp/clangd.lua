@@ -57,58 +57,91 @@ local function symbol_info()
     end, bufnr)
 end
 
-local function find_build_buf()
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_get_option_value('buftype', { buf = buf }) == 'terminal' then
-            local ok, val = pcall(vim.api.nvim_buf_get_var, buf, 'is_build_term')
-            if ok and val then
-                return buf
-            end
-        end
-    end
-    return -1
-end
-
 local function compile_project(command)
     return function()
-        local orig_win = vim.api.nvim_get_current_win()
-        local build_buf = find_build_buf()
-        local build_win = -1
-
-        if build_buf == -1 then
-            vim.cmd('botright vsplit')
-            -- vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.395))
-            vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.46))
-            build_win = vim.api.nvim_get_current_win()
-            vim.cmd('terminal')
-            build_buf = vim.api.nvim_get_current_buf()
-            vim.api.nvim_buf_set_var(build_buf, 'is_build_term', true)
-            vim.opt_local.bufhidden = 'delete'
-        else
-            vim.cmd('CompileClose')
-            compile_project(command)()
-            return
-            -- build_win = vim.fn.bufwinid(build_buf)
-            -- if build_win == -1 then
-            --     vim.cmd('botright vsplit')
-            --     build_win = vim.api.nvim_get_current_win()
-            --     vim.api.nvim_win_set_buf(build_win, build_buf)
-            -- end
+        local x = 2
+        local y = 1
+        local filter = function(win)
+            return vim.api.nvim_win_is_valid(win) and vim.api.nvim_win_get_config(win).relative == ''
         end
 
+        local current = vim.api.nvim_get_current_win()
+        if not filter(current) then
+            return
+        end
+        local pos = vim.api.nvim_win_get_position(current)
+        local is_build = nil
+        if pos[x] == 0 then
+            is_build = function(pos)
+                return pos ~= 0
+            end
+        else
+            is_build = function(pos)
+                return pos == 0
+            end
+        end
+        -- vim.notify('Current window: ' .. vim.inspect(current), vim.log.levels.INFO)
+
+        local windows = vim.tbl_filter(filter, vim.api.nvim_list_wins())
+        -- vim.notify('Valid windows: ' .. vim.inspect(windows), vim.log.levels.INFO)
+
+        local build_win = -1
+        for _, win in ipairs(windows) do
+            local pos = vim.api.nvim_win_get_position(win)
+            -- vim.notify('Window id: ' .. vim.inspect(win) .. ' Window pos: ' .. vim.inspect(pos), vim.log.levels.INFO)
+            -- vim.notify(
+            --     'is build: ' .. vim.inspect(is_build(pos[1])) .. ' y == 0: ' .. vim.inspect(pos[2] == 0),
+            --     vim.log.levels.INFO
+            -- )
+            if is_build(pos[x]) and pos[y] == 0 then
+                build_win = win
+                -- vim.notify('SET BUILD_WIN: ' .. vim.inspect(build_win), vim.log.levels.INFO)
+            end
+        end
+
+        if build_win == -1 then
+            vim.cmd('botright vsplit')
+            -- vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.395))
+            -- vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.46))
+            build_win = vim.api.nvim_get_current_win()
+            -- vim.notify('SET BUILD_WIN: ' .. vim.inspect(build_win), vim.log.levels.INFO)
+        end
+
+        if not filter(build_win) then
+            return
+        end
+        -- local build_pos = vim.api.nvim_win_get_position(build_win)
+        -- vim.notify(
+        --     'Build ID: ' .. vim.inspect(build_win) .. ' Build pos: ' .. vim.inspect(build_pos),
+        --     vim.log.levels.INFO
+        -- )
+
         vim.api.nvim_set_current_win(build_win)
-        local chan = vim.api.nvim_buf_get_var(build_buf, 'terminal_job_id')
-        vim.api.nvim_chan_send(chan, command)
-        vim.api.nvim_set_current_win(orig_win)
+
+        local build_buf = vim.api.nvim_win_get_buf(build_win)
+        if vim.api.nvim_win_get_buf(current) == BuildTerminalBuf then
+            -- NOTE(kyren): switch buffers
+            vim.api.nvim_win_set_buf(current, build_buf)
+        end
+
+        local old_terminal = BuildTerminalBuf
+        BuildTerminalBuf = vim.api.nvim_create_buf(false, true)
+        vim.api.nvim_buf_call(BuildTerminalBuf, function()
+            vim.fn.termopen(command, vim.empty_dict())
+        end)
+        vim.api.nvim_win_set_buf(build_win, BuildTerminalBuf)
+
+        if old_terminal then
+            vim.api.nvim_buf_delete(old_terminal, { force = true })
+        end
+
+        vim.api.nvim_set_current_win(current)
     end
 end
 
 vim.api.nvim_create_user_command('CompileClose', function()
-    local build_buf = find_build_buf()
-    if build_buf ~= -1 then
-        local chan = vim.api.nvim_buf_get_var(build_buf, 'terminal_job_id')
-        vim.fn.jobstop(chan)
-        vim.api.nvim_buf_delete(build_buf, { force = true })
+    if vim.api.nvim_buf_is_valid(BuildTerminalBuf) then
+        vim.api.nvim_buf_delete(BuildTerminalBuf, { force = true })
     end
 end, {})
 
@@ -155,10 +188,14 @@ return {
             symbol_info()
         end, { desc = 'Show symbol info' })
 
-        vim.keymap.set('n', '<A-m>', compile_project('clear && ./build.sh krypton\n'), { desc = '[H]eader and Source Switcher' })
-        vim.keymap.set('n', '<A-r>', compile_project('clear && ./build.sh krypton\n'), { desc = '[H]eader and Source Switcher' })
-        vim.keymap.set('n', '<A-c>', compile_project('clear && ./build.sh krypton\n'), { desc = '[H]eader and Source Switcher' })
-        vim.keymap.set('n', '<A-t>', compile_project('clear && ./build.sh test\n'), { desc = '[H]eader and Source Switcher' })
+        local compile = compile_project('clear && ./build.sh krypton\n')
+        local test = compile_project('clear && ./build.sh test\n')
+
+        vim.keymap.set('n', '<A-m>', compile, { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', '<A-r>', compile, { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', '<A-c>', compile, { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', '<A-t>', test, { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', '<leader>h', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', 'H', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
     end,
 }
