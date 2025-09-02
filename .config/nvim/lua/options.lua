@@ -34,6 +34,8 @@ vim.opt.smoothscroll = true
 local dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 if dir == 'grimoire' then
     vim.opt.colorcolumn = '0'
+elseif dir == 'krypton' then
+    vim.opt.colorcolumn = ''
 else
     vim.opt.colorcolumn = '100'
 end
