@@ -2,7 +2,7 @@ return {
     'folke/noice.nvim',
     event = 'VeryLazy',
     opts = {
-        notify = { enabled = false },
+        -- notify = { enabled = false },
         lsp = {
             progress = { enabled = false },
             override = {
@@ -105,5 +105,6 @@ return {
     },
     dependencies = {
         'MunifTanjim/nui.nvim',
+        'rcarriga/nvim-notify',
     },
 }
