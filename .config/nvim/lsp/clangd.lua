@@ -140,7 +140,7 @@ local function compile_project(command)
 end
 
 vim.api.nvim_create_user_command('CompileClose', function()
-    if vim.api.nvim_buf_is_valid(BuildTerminalBuf) then
+    if BuildTerminalBuf ~= nil and vim.api.nvim_buf_is_valid(BuildTerminalBuf) then
         vim.api.nvim_buf_delete(BuildTerminalBuf, { force = true })
     end
 end, {})
