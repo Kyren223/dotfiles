@@ -159,34 +159,6 @@ return {
         gitbrowse = {},
         image = {},
         input = {},
-        -- TODO: do I need this still?
-        -- notifier = {
-        --     ---@type snacks.notifier.style
-        --     style = 'compact',
-        --     filter = function(notif)
-        --         local exact_filter = { 'No information available', 'No code actions available' }
-        --         local contains_filter = {
-        --             'lines',
-        --             'fewer lines',
-        --             'lines indented',
-        --             'lines yanked',
-        --             'more lines',
-        --             'lines moved',
-        --             'E486:',
-        --         }
-        --         for _, msg in ipairs(exact_filter) do
-        --             if notif.msg == msg then
-        --                 return false
-        --             end
-        --         end
-        --         for _, msg in ipairs(contains_filter) do
-        --             if string.find(notif.msg, msg) then
-        --                 return false
-        --             end
-        --         end
-        --         return true
-        --     end,
-        -- },
         picker = {},
         quickfile = {},
         terminal = {

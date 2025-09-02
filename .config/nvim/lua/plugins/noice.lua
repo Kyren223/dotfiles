@@ -79,22 +79,15 @@ return {
                 },
                 opts = { skip = true },
             },
-            -- TODO: Do I need this?
-            -- {
-            --     filter = {
-            --         event = 'msg_show',
-            --         kind = 'search_count',
-            --     },
-            --     opts = { skip = true },
-            -- },
-            -- {
-            --     filter = {
-            --         event = 'msg_show',
-            --         kind = '',
-            --         find = 'written',
-            --     },
-            --     -- opts = { skip = true },
-            -- },
+            {
+                -- NOTE: filters "fewer/more lines" messages
+                filter = {
+                    event = 'msg_show',
+                    kind = '',
+                    find = 'lines',
+                },
+                opts = { skip = true },
+            },
         },
         presets = {
             bottom_search = true, -- use a classic bottom cmdline for search
