@@ -48,7 +48,7 @@ vim.opt.inccommand = 'split' -- shows preview for commands like :%s/from/to
 
 -- Misc
 vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
+vim.opt.sidescrolloff = 0 -- TODO(kyren): do I like this as 0? (was 8)
 vim.opt.termguicolors = true
 vim.opt.splitkeep = 'screen'
 vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
