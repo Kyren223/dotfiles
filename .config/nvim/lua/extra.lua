@@ -359,14 +359,14 @@ vim.api.nvim_create_autocmd('TermOpen', {
             args.buf,
             'n',
             'gd',
-            '<cmd>lua Jump_to_error(true)<CR>',
+            '<cmd>lua Jump_to_file_location(true)<CR>',
             { noremap = true, silent = true }
         )
         vim.api.nvim_buf_set_keymap(
             args.buf,
             'n',
             'go',
-            '<cmd>lua Jump_to_error(false)<CR>',
+            '<cmd>lua Jump_to_file_location(false)<CR>',
             { noremap = true, silent = true }
         )
     end,
