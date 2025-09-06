@@ -104,7 +104,14 @@ local keymaps = {
     { 'n', 'gd', '<cmd>Lspsaga goto_definition<cr>', { desc = '[G]oto [D]efinition' } },
     -- TODO: replace goto def with normal goto def or do I like the red thing? (maybe picker?)
     { 'n', 'gu', '<cmd>Lspsaga finder<cr>', { desc = '[G]oto [U]sages' } },
-    { { 'n', 'i' }, '<C-p>', function() vim.lsp.buf.signature_help() end, { desc = 'Show [P]arameters' } },
+    {
+        { 'n', 'i' },
+        '<C-p>',
+        function()
+            vim.lsp.buf.signature_help()
+        end,
+        { desc = 'Show [P]arameters' },
+    },
     { 'n', 'R', '<cmd>Lspsaga rename<cr>', { desc = '[R]ename' } },
     { { 'n', 'i' }, '<M-Enter>', '<cmd>Lspsaga code_action<cr>', { desc = 'Code Actions' } },
     { 'n', '<leader>e', next_diagnostic(severity.ERROR), { desc = 'Goto [E]rror' } },
@@ -142,3 +149,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
     end,
 })
+
+local compile = function()
+    Compile_project(vim.g.project_compile_cmd)
+    -- vim.notify(vim.g.project_compile_cmd)
+end
+local run = function()
+    Compile_project(vim.g.project_run_cmd)
+    -- vim.notify(vim.g.project_run_cmd)
+end
+local test = function()
+    Compile_project(vim.g.project_test_cmd)
+    -- vim.notify(vim.g.project_test_cmd)
+end
+
+vim.keymap.set('n', '<A-m>', compile, { desc = 'Idk? lol' })
+vim.keymap.set('n', '<A-c>', compile, { desc = '[C]ompile Project' })
+vim.keymap.set('n', '<A-b>', compile, { desc = '[B]uild Project' })
+vim.keymap.set('n', '<A-r>', run, { desc = '[R]un Project' })
+vim.keymap.set('n', '<A-t>', test, { desc = '[T]est Project' })
+
+vim.keymap.set('n', '<A-s>', function() Run_nvim_lua() end, { desc = '[S]ource .nvim.lua' })
