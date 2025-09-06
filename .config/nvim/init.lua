@@ -16,7 +16,6 @@ require('options')
 -- WARNING: so I removed it
 -- vim.schedule(function()
     require('keymaps')
-    require('autocmds')
     require('usrcmds')
     require('extra')
 -- end)
