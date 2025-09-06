@@ -151,16 +151,28 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local compile = function()
-    Compile_project(vim.g.project_compile_cmd)
-    -- vim.notify(vim.g.project_compile_cmd)
+    if vim.g.project_compile_cmd then
+        Compile_project(vim.g.project_compile_cmd)
+        -- vim.notify(vim.g.project_compile_cmd)
+    else
+        vim.notify('vim.g.project_compile_cmd is not set', 'warn')
+    end
 end
 local run = function()
-    Compile_project(vim.g.project_run_cmd)
-    -- vim.notify(vim.g.project_run_cmd)
+    if vim.g.project_run_cmd then
+        run_project(vim.g.project_compile_cmd)
+        -- vim.notify(vim.g.project_run_cmd)
+    else
+        vim.notify('vim.g.project_run_cmd is not set', 'warn')
+    end
 end
 local test = function()
-    Compile_project(vim.g.project_test_cmd)
-    -- vim.notify(vim.g.project_test_cmd)
+    if vim.g.project_test_cmd then
+        test_project(vim.g.project_compile_cmd)
+        -- vim.notify(vim.g.project_test_cmd)
+    else
+        vim.notify('vim.g.project_test_cmd is not set', 'warn')
+    end
 end
 
 vim.keymap.set('n', '<A-m>', compile, { desc = 'Idk? lol' })
@@ -169,4 +181,6 @@ vim.keymap.set('n', '<A-b>', compile, { desc = '[B]uild Project' })
 vim.keymap.set('n', '<A-r>', run, { desc = '[R]un Project' })
 vim.keymap.set('n', '<A-t>', test, { desc = '[T]est Project' })
 
-vim.keymap.set('n', '<A-s>', function() Run_nvim_lua() end, { desc = '[S]ource .nvim.lua' })
+vim.keymap.set('n', '<A-s>', function()
+    Run_nvim_lua()
+end, { desc = '[S]ource .nvim.lua' })
