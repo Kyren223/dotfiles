@@ -160,7 +160,7 @@ local compile = function()
 end
 local run = function()
     if vim.g.project_run_cmd then
-        Compile_project(vim.g.project_compile_cmd)
+        Compile_project(vim.g.project_run_cmd)
         -- vim.notify(vim.g.project_run_cmd)
     else
         vim.notify('vim.g.project_run_cmd is not set', 'warn')
@@ -168,7 +168,7 @@ local run = function()
 end
 local test = function()
     if vim.g.project_test_cmd then
-        Compile_project(vim.g.project_compile_cmd)
+        Compile_project(vim.g.project_test_cmd)
         -- vim.notify(vim.g.project_test_cmd)
     else
         vim.notify('vim.g.project_test_cmd is not set', 'warn')
