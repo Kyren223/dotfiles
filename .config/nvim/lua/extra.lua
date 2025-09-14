@@ -483,7 +483,7 @@ function Run_nvim_lua()
     end
 end
 
-vim.api.nvim_create_autocmd({ 'VimEnter' }, {
+vim.api.nvim_create_autocmd({ 'VimEnter', 'BufWritePost' }, {
     callback = function()
         vim.schedule(function()
             vim.wait(100)

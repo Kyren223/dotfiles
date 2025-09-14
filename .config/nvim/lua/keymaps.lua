@@ -183,4 +183,5 @@ vim.keymap.set('n', '<A-t>', test, { desc = '[T]est Project' })
 
 vim.keymap.set('n', '<A-s>', function()
     Run_nvim_lua()
+    vim.notify("Reloaded .nvim.lua")
 end, { desc = '[S]ource .nvim.lua' })
