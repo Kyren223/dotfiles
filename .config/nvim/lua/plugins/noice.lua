@@ -88,6 +88,14 @@ return {
                 },
                 opts = { skip = true },
             },
+            {
+                -- NOTE: filters "pattern not found" messages
+                filter = {
+                    event = 'msg_show',
+                    find = 'E486',
+                },
+                opts = { skip = true },
+            },
         },
         presets = {
             bottom_search = true, -- use a classic bottom cmdline for search
