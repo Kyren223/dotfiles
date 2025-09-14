@@ -3,7 +3,7 @@ return {
     astro = true,
     basedpyright = true, -- python
     bashls = true,
-    clangd = true,
+    clangd = false,
     css_variables = true,
     cssls = true,
     gh_actions_ls = true,

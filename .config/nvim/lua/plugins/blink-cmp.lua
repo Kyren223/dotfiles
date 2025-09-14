@@ -1,4 +1,5 @@
 return {
+    enabled = false,
     'saghen/blink.cmp',
     event = 'InsertEnter',
     version = '1.*',
