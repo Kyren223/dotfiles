@@ -24,5 +24,12 @@ return {
         -- vim.notify('COLOR: ' .. color)
         assert(icon == '')
         assert(color == 'DevIconKrypton')
+
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = 'krypton',
+            callback = function()
+                vim.bo.commentstring = '// %s'
+            end,
+        })
     end,
 }
