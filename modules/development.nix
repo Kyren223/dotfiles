@@ -73,6 +73,7 @@
       lld
       file
       universal-ctags
+      valgrind
 
       prometheus
       grafana-loki
