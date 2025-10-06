@@ -23,9 +23,11 @@
       url = "github:kyren223/eko/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixpkgs-mesa-pin.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-mesa-pin, ... }@inputs: {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -39,9 +41,17 @@
           ./hosts/lapsktop.nix
         ];
       };
-      kyren-desktop = nixpkgs.lib.nixosSystem {
+      # kyren-desktop = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   specialArgs = { inherit inputs; };
+      #   modules = [
+      #     ./hosts/desktop.nix
+      #   ];
+      # };
+
+      kyren-desktop = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs; pkgs-mesa-pin = import nixpkgs-mesa-pin { inherit system; config.allowUnfree = true; }; };
         modules = [
           ./hosts/desktop.nix
         ];

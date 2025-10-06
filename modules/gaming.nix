@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, pkgs-mesa-pin, lib, config, ... }: {
 
   options.gaming.enable = lib.mkOption {
     type        = lib.types.bool;
@@ -35,6 +35,8 @@
       osu-lazer-bin
 
       lutris
+    ] ++ [
+      pkgs-mesa-pin.mesa
     ];
 
   };
