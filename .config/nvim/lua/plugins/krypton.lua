@@ -31,5 +31,7 @@ return {
                 vim.bo.commentstring = '// %s'
             end,
         })
+
+        vim.treesitter.language.register('odin', 'krypton')
     end,
 }
