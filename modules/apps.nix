@@ -60,6 +60,10 @@
       kopia-ui
       rclone-ui
       kdePackages.spectacle
+      binsider
+      filezilla
+      yt-dlp
+      spotify
 
       # Communication
       wasistlos # Whatsapp
