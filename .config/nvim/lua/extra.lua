@@ -478,18 +478,37 @@ function JumpToError(direction)
 
         local error_parsers = {
             function(line)
+                -- Clang: ABS:LINE:COL: error: ...
                 local file, lnum = line:match('^(.-):(%d+):%d+:%s+error:')
                 if file and lnum then
                     return { file = file, line = tonumber(lnum) }
                 end
             end,
-            function(_)
+
+            function(line)
+                -- MSVC: PATH(LINE): error ...
+                -- Z:\home\kyren\projects\krypton\src\krypton\libkrypton.c(22): error C2220: ...
+                -- Z:\home\kyren\projects\krypton\src\krypton\libkrypton.c(22): warning C4018: ...
+                local file, lnum, kind = line:match('^(.-)%((%d+)%)%:%s*(%a+)')
+                if file and lnum and kind then
+                    kind = kind:lower()
+
+                    -- Convert Z:\home\... to /home/...
+                    -- Only if it matches the expected WSL mount pattern
+                    local wsl_path = file:gsub('^Z:\\', '/'):gsub('\\', '/')
+
+                    return {
+                        file = wsl_path,
+                        line = tonumber(lnum),
+                        kind = kind,
+                    }
+                end
                 return nil
             end,
         }
 
         local lines = vim.api.nvim_buf_get_lines(BuildTerminalBuf, 0, -1, false)
-        -- vim.notify("Build buffer line count: " .. #lines, "warn")
+        -- vim.notify('Build buffer line count: ' .. #lines, 'warn')
 
         local errors = {}
         for _, line in ipairs(lines) do
@@ -502,7 +521,7 @@ function JumpToError(direction)
             end
         end
 
-        -- vim.notify("Error count: " .. #errors, "warn")
+        -- vim.notify('Error count: ' .. #errors, 'warn')
         if #errors == 0 then
             return
         end
