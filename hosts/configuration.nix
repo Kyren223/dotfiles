@@ -24,7 +24,7 @@
   users.users.kyren = {
     isNormalUser = true;
     description = "Kyren";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
 
@@ -99,6 +99,20 @@
     libGL
 
     noto-fonts
+
+    pkg-config
+    xorg.libX11
+    xorg.libxcb
+    fontconfig
+    freetype
+    dbus
+
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libxcb
+    xorg.libXi
+    libxkbcommon
+    libz 
   ];
 
   # Enable sound with pipewire.
@@ -140,9 +154,13 @@
     runAsRoot = true;
     ovmf.enable = true;
     # Fix, see https://www.reddit.com/r/NixOS/comments/11j9qf7/virtio_fs_with_virtmanager/
-    vhostUserPackages = with pkgs; [ virtiofsd ];
+    vhostUserPackages = with pkgs; [ virtiofsd virtio-win pkgs.swtpm ];
   };
-  environment.systemPackages = [ pkgs.virtiofsd ]; # For shared fs
+  environment.systemPackages = [
+    pkgs.virtiofsd # For shared fs
+    pkgs.virtio-win  # For using virtio stuff in windows I think?
+    pkgs.swtpm # For being able to emulate TPM 2.0 (otherwise it errors)
+  ];
   # Fix no internet in libvirt, see https://discourse.nixos.org/t/issues-with-virt-manager-default-network-down-in-nixos-25-11/66808/3
   networking.firewall.trustedInterfaces = [ "wlp5s0" "virbr0" ];
 
@@ -171,4 +189,10 @@
   # Fixes "The name org.freedesktop.UDisks2 was not provided by any .service files"
   # See https://www.reddit.com/r/NixOS/comments/1goziru/dolphin_on_hyprland/
   services.udisks2.enable = true;
+
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d030", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d030", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  '';
 }
