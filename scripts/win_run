@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 1 ]; then
+  echo "Usage: $0 <command>"
+  exit 1
+fi
+
+VM_NAME=win11-dev
+COMMAND=$1
+
+# Execute command in VM
+PID=$(sudo virsh qemu-agent-command "$VM_NAME" --pretty \
+  "{\"execute\":\"guest-exec\", \"arguments\":{\"path\":\"C:\\\\Windows\\\\System32\\\\cmd.exe\", \"arg\":[\"/c\", \"$COMMAND\"], \"capture-output\":true}}" \
+  | jq -r '.return.pid')
+
+if [ -z "$PID" ]; then
+  echo "Error: Failed to execute command"
+  exit 1
+fi
+
+# Check command status and get output
+sleep 1
+OUTPUT=$(sudo virsh qemu-agent-command "$VM_NAME" --pretty \
+  "{\"execute\":\"guest-exec-status\", \"arguments\":{\"pid\":$PID}}" \
+  | jq -r '.return | select(.exited == true) | .["out-data"]')
+
+if [ -z "$OUTPUT" ]; then
+  echo "Error: Command not completed or failed"
+  exit 1
+fi
+
+# Decode base64 output
+echo -n "$OUTPUT" | base64 -d
