@@ -80,6 +80,9 @@ export EDITOR=nvim
 export PAGER=less
 export MANPAGER=$PAGER
 
+# Stop wine from spamming debug
+export WINEDEBUG=-all
+
 # Path
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
@@ -87,6 +90,7 @@ export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.zig:$PATH"
 export PATH="$HOME/.zls:$PATH"
 export PATH="$HOME/projects/k/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
