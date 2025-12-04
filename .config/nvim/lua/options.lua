@@ -30,6 +30,7 @@ vim.opt.wrap = false
 vim.opt.linebreak = true -- wrap lines at convenient points
 vim.opt.laststatus = 3 -- global stautsline
 vim.opt.smoothscroll = true
+vim.opt.guicursor = 'i:block'
 
 local dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 if dir == 'grimoire' then
