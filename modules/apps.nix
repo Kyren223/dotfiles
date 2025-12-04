@@ -64,6 +64,9 @@
       filezilla
       yt-dlp
       spotify
+      inotify-tools
+      _010editor
+      chromium
 
       # Communication
       wasistlos # Whatsapp
@@ -118,8 +121,8 @@
       kondo # Cleans build caches
       kopia
       appimage-run
-      grim
       rclone
+      usbutils
     ];
 
     # VPN for Vault Hunters to avoid connection issues
@@ -135,6 +138,5 @@
       enable = true;
       setSocketVariable = true;
     };
-
   };
 }
