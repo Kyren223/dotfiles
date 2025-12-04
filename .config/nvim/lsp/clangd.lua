@@ -100,5 +100,7 @@ return {
 
         vim.keymap.set('n', '<leader>h', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
         vim.keymap.set('n', 'H', '<cmd>ClangdSwitchSourceHeader<cr>', { desc = '[H]eader and Source Switcher' })
+        vim.keymap.set('n', '<leader>e', JumpToNextError)
+        vim.keymap.set('n', '<leader>E', JumpToPrevError)
     end,
 }

@@ -464,6 +464,103 @@ end, {})
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-q>', '<cmd>CompileClose<cr><cmd>wqa<cr>')
 
 ----------------------------------------------------------------------------
+-- NOTE: Jump to next error based on compile()
+----------------------------------------------------------------------------
+
+function JumpToError(direction)
+    vim.defer_fn(function()
+        -- vim.notify("Running JumpToError after delay", "warn")
+
+        if BuildTerminalBuf == nil or not vim.api.nvim_buf_is_valid(BuildTerminalBuf) then
+            -- vim.notify("BuildTerminalBuf not ready", "warn")
+            return
+        end
+
+        local error_parsers = {
+            function(line)
+                local file, lnum = line:match('^(.-):(%d+):%d+:%s+error:')
+                if file and lnum then
+                    return { file = file, line = tonumber(lnum) }
+                end
+            end,
+            function(_)
+                return nil
+            end,
+        }
+
+        local lines = vim.api.nvim_buf_get_lines(BuildTerminalBuf, 0, -1, false)
+        -- vim.notify("Build buffer line count: " .. #lines, "warn")
+
+        local errors = {}
+        for _, line in ipairs(lines) do
+            for _, f in ipairs(error_parsers) do
+                local err = f(line)
+                if err then
+                    table.insert(errors, err)
+                    break
+                end
+            end
+        end
+
+        -- vim.notify("Error count: " .. #errors, "warn")
+        if #errors == 0 then
+            return
+        end
+
+        local current_file = vim.api.nvim_buf_get_name(0)
+        local filtered = {}
+        for _, e in ipairs(errors) do
+            if e.file == current_file then
+                table.insert(filtered, e)
+            end
+        end
+
+        -- vim.notify("Filtered errors: " .. #filtered, "warn")
+        if #filtered == 0 then
+            return
+        end
+
+        table.sort(filtered, function(a, b)
+            return a.line < b.line
+        end)
+
+        local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+
+        if direction == 1 then
+            for _, e in ipairs(filtered) do
+                if e.line > cursor_line then
+                    vim.api.nvim_win_set_cursor(0, { e.line, 0 })
+                    return
+                end
+            end
+            vim.api.nvim_win_set_cursor(0, { filtered[1].line, 0 })
+        else
+            for i = #filtered, 1, -1 do
+                if filtered[i].line < cursor_line then
+                    vim.api.nvim_win_set_cursor(0, { filtered[i].line, 0 })
+                    return
+                end
+            end
+            vim.api.nvim_win_set_cursor(0, { filtered[#filtered].line, 0 })
+        end
+    end, 1) -- 1 second async delay
+
+    -- if vim.g.project_compile_cmd then
+    --     Compile_project(vim.g.project_compile_cmd)
+    -- else
+    --     -- vim.notify("vim.g.project_compile_cmd missing", "warn")
+    -- end
+end
+
+function JumpToNextError()
+    return JumpToError(1)
+end
+
+function JumpToPrevError()
+    return JumpToError(-1)
+end
+
+----------------------------------------------------------------------------
 -- NOTE: Run arbitrary code (if trusted) when opening a project
 ----------------------------------------------------------------------------
 
