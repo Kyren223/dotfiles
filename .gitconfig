@@ -37,6 +37,8 @@
     insteadOf = "gl:"
 [url "git@git.kyren.codes:"]
     insteadOf = "gt:"
+[url "git@git.kyren.codes:mirrors/"]
+    insteadOf = "mirrors:"
 [status]
     showStash = true
     showUntrackedFiles = all
