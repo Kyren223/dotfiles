@@ -38,14 +38,14 @@
 
   ###########################################################################
 
-  systemd.timers."git-auto-mirror" = {
-    wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnBootSec = "1m";
-        OnUnitActiveSec = "5h";
-        Unit = "git-auto-mirror.service";
-      };
-  };
+  # systemd.timers."git-auto-mirror" = {
+  #   wantedBy = [ "timers.target" ];
+  #     timerConfig = {
+  #       OnBootSec = "1m";
+  #       OnUnitActiveSec = "5h";
+  #       Unit = "git-auto-mirror.service";
+  #     };
+  # };
 
   sops.secrets.gitea-sync-token = { owner = "kyren"; };
   sops.secrets.github-mirror-token = { owner = "kyren"; };
