@@ -67,6 +67,7 @@
       inotify-tools
       _010editor
       chromium
+      fsearch
 
       # Communication
       wasistlos # Whatsapp

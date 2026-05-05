@@ -521,7 +521,7 @@ function JumpToError(direction)
             end
         end
 
-        -- vim.notify('Error count: ' .. #errors, 'warn')
+        vim.notify('Error count: ' .. #errors, 'warn')
         if #errors == 0 then
             return
         end
