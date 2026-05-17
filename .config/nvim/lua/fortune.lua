@@ -149,7 +149,7 @@ local fortune_list = {
         '- C.A.R. Hoare',
     },
     { "If you don't make mistakes, you're not working on hard enough problems.", '', '- Frank Wilczek' },
-    { "If you don't start with a spec, every piece of code you write is a patch.", '', '- Leslie Lamport' },
+    { '"If you don\'t start with a spec, every piece of code you write is a patch." -Leslie Lamport --  This is stupid', '', '- Kyren' },
     { 'Caches are bugs waiting to happen.', '', '- Rob Pike' },
     {
         'Abstraction is not about vagueness, it is about being precise at a new semantic level.',

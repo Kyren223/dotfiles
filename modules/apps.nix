@@ -1,4 +1,11 @@
-{ pkgs, lib, config, inputs, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
+{
 
   options.apps.enable = lib.mkOption {
     type = lib.types.bool;
@@ -68,6 +75,10 @@
       _010editor
       chromium
       fsearch
+      warpd
+      wl-kbptr
+      nnd
+      cppcheck
 
       # Communication
       wasistlos # Whatsapp

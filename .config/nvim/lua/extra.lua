@@ -322,7 +322,22 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'BufRead', 'BufWinEnter', 'BufWritePos
 ----------------------------------------------------------------------------
 -- NOTE: Jump to a file location from a "path:line:column" in terminal buffers
 ----------------------------------------------------------------------------
-function Jump_to_file_location(focus)
+function Jump_to_file_location(win, path, lnum, col, focus)
+    if win then
+        vim.api.nvim_win_call(win, function()
+            vim.cmd('edit ' .. path)
+            vim.api.nvim_win_set_cursor(0, { tonumber(lnum), tonumber(col) - 1 })
+        end)
+        if focus then
+            vim.api.nvim_set_current_win(win)
+        end
+    else
+        vim.cmd('edit ' .. path)
+        vim.api.nvim_win_set_cursor(0, { tonumber(lnum), tonumber(col) - 1 })
+    end
+end
+
+function Jump_to_file_location_at_cursor(focus)
     local line = vim.api.nvim_get_current_line()
     local path, lnum, col = line:match('([^:]+):(%d+):(%d+):')
     if not (path and lnum) then
@@ -339,18 +354,7 @@ function Jump_to_file_location(focus)
         end
     end
 
-    if main_win then
-        vim.api.nvim_win_call(main_win, function()
-            vim.cmd('edit ' .. path)
-            vim.api.nvim_win_set_cursor(0, { tonumber(lnum), tonumber(col) - 1 })
-        end)
-        if focus then
-            vim.api.nvim_set_current_win(main_win)
-        end
-    else
-        vim.cmd('edit ' .. path)
-        vim.api.nvim_win_set_cursor(0, { tonumber(lnum), tonumber(col) - 1 })
-    end
+    Jump_to_file_location(main_win, path, lnum, col, focus)
 end
 
 vim.api.nvim_create_autocmd('TermOpen', {
@@ -359,14 +363,14 @@ vim.api.nvim_create_autocmd('TermOpen', {
             args.buf,
             'n',
             'gd',
-            '<cmd>lua Jump_to_file_location(true)<CR>',
+            '<cmd>lua Jump_to_file_location_at_cursor(true)<CR>',
             { noremap = true, silent = true }
         )
         vim.api.nvim_buf_set_keymap(
             args.buf,
             'n',
             'go',
-            '<cmd>lua Jump_to_file_location(false)<CR>',
+            '<cmd>lua Jump_to_file_location_at_cursor(false)<CR>',
             { noremap = true, silent = true }
         )
     end,
@@ -388,21 +392,33 @@ function Compile_project(command)
     end
     local pos = vim.api.nvim_win_get_position(current)
     local is_build = nil
-    if pos[x] == 0 then
-        is_build = function(pos)
-            return pos ~= 0
+    -- if pos[x] == 0 then
+    --     is_build = function(pos)
+    --         return pos ~= 0
+    --     end
+    -- else
+    --     is_build = function(pos)
+    --         return pos == 0
+    --     end
+    -- end
+
+    -- NOTE: for new monitor setup, temporary
+    if pos[x] < 160 then
+        is_build = function(pos_x)
+            return pos_x > 160
         end
     else
-        is_build = function(pos)
-            return pos == 0
+        is_build = function(pos_x)
+            return pos_x == 0
         end
     end
-    -- vim.notify('Current window: ' .. vim.inspect(current), vim.log.levels.INFO)
+    -- vim.notify('Current window: ' .. vim.inspect(current) .. ' ' .. vim.inspect(pos), vim.log.levels.INFO)
 
     local windows = vim.tbl_filter(filter, vim.api.nvim_list_wins())
     -- vim.notify('Valid windows: ' .. vim.inspect(windows), vim.log.levels.INFO)
 
-    local build_win = -1
+    local old_build_win = -1
+    local new_build_win = -1
     for _, win in ipairs(windows) do
         local pos = vim.api.nvim_win_get_position(win)
         -- vim.notify('Window id: ' .. vim.inspect(win) .. ' Window pos: ' .. vim.inspect(pos), vim.log.levels.INFO)
@@ -410,21 +426,27 @@ function Compile_project(command)
         --     'is build: ' .. vim.inspect(is_build(pos[1])) .. ' y == 0: ' .. vim.inspect(pos[2] == 0),
         --     vim.log.levels.INFO
         -- )
+        if vim.api.nvim_win_get_buf(win) == BuildTerminalBuf then
+            old_build_win = win
+        end
         if is_build(pos[x]) and pos[y] == 0 then
-            build_win = win
+            new_build_win = win
             -- vim.notify('SET BUILD_WIN: ' .. vim.inspect(build_win), vim.log.levels.INFO)
         end
     end
+    if old_build_win == new_build_win then
+        old_build_win = -1
+    end
 
-    if build_win == -1 then
+    if new_build_win == -1 then
         vim.cmd('botright vsplit')
         -- vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.395))
         -- vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.46))
-        build_win = vim.api.nvim_get_current_win()
+        new_build_win = vim.api.nvim_get_current_win()
         -- vim.notify('SET BUILD_WIN: ' .. vim.inspect(build_win), vim.log.levels.INFO)
     end
 
-    if not filter(build_win) then
+    if not filter(new_build_win) then
         return
     end
     -- local build_pos = vim.api.nvim_win_get_position(build_win)
@@ -433,9 +455,9 @@ function Compile_project(command)
     --     vim.log.levels.INFO
     -- )
 
-    vim.api.nvim_set_current_win(build_win)
+    vim.api.nvim_set_current_win(new_build_win)
 
-    local build_buf = vim.api.nvim_win_get_buf(build_win)
+    local build_buf = vim.api.nvim_win_get_buf(new_build_win)
     if vim.api.nvim_win_get_buf(current) == BuildTerminalBuf then
         -- NOTE(kyren): switch buffers
         vim.api.nvim_win_set_buf(current, build_buf)
@@ -443,10 +465,16 @@ function Compile_project(command)
 
     local old_terminal = BuildTerminalBuf
     BuildTerminalBuf = vim.api.nvim_create_buf(false, true)
+    vim.bo[BuildTerminalBuf].filetype = 'build_terminal'
     vim.api.nvim_buf_call(BuildTerminalBuf, function()
         vim.fn.termopen(command, vim.empty_dict())
     end)
-    vim.api.nvim_win_set_buf(build_win, BuildTerminalBuf)
+
+    local previous_buffer = vim.api.nvim_win_get_buf(new_build_win)
+    vim.api.nvim_win_set_buf(new_build_win, BuildTerminalBuf)
+    if old_build_win ~= -1 then
+        vim.api.nvim_win_set_buf(old_build_win, previous_buffer)
+    end
 
     if old_terminal then
         vim.api.nvim_buf_delete(old_terminal, { force = true })
@@ -469,6 +497,10 @@ vim.keymap.set({ 'i', 'n', 'v' }, '<C-q>', '<cmd>CompileClose<cr><cmd>wqa<cr>')
 
 function JumpToError(direction)
     vim.defer_fn(function()
+        vim.cmd('w')
+    end, 10)
+
+    vim.defer_fn(function()
         -- vim.notify("Running JumpToError after delay", "warn")
 
         if BuildTerminalBuf == nil or not vim.api.nvim_buf_is_valid(BuildTerminalBuf) then
@@ -480,6 +512,14 @@ function JumpToError(direction)
             function(line)
                 -- Clang: ABS:LINE:COL: error: ...
                 local file, lnum = line:match('^(.-):(%d+):%d+:%s+error:')
+                if file and lnum then
+                    return { file = file, line = tonumber(lnum) }
+                end
+            end,
+
+            function(line)
+                -- Clang: ABS:LINE:COL: warning: ...
+                local file, lnum = line:match('^(.-):(%d+):%d+:%s+warning:')
                 if file and lnum then
                     return { file = file, line = tonumber(lnum) }
                 end
@@ -526,7 +566,8 @@ function JumpToError(direction)
             return
         end
 
-        local current_file = vim.api.nvim_buf_get_name(0)
+        local win = 0
+        local current_file = vim.api.nvim_buf_get_name(win)
         local filtered = {}
         for _, e in ipairs(errors) do
             if e.file == current_file then
@@ -543,32 +584,34 @@ function JumpToError(direction)
             return a.line < b.line
         end)
 
-        local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+        local cursor_line = vim.api.nvim_win_get_cursor(win)[1]
 
         if direction == 1 then
             for _, e in ipairs(filtered) do
                 if e.line > cursor_line then
-                    vim.api.nvim_win_set_cursor(0, { e.line, 0 })
+                    vim.api.nvim_win_set_cursor(win, { e.line, 0 })
                     return
                 end
             end
-            vim.api.nvim_win_set_cursor(0, { filtered[1].line, 0 })
+            vim.api.nvim_win_set_cursor(win, { filtered[1].line, 0 })
         else
             for i = #filtered, 1, -1 do
                 if filtered[i].line < cursor_line then
-                    vim.api.nvim_win_set_cursor(0, { filtered[i].line, 0 })
+                    vim.api.nvim_win_set_cursor(win, { filtered[i].line, 0 })
                     return
                 end
             end
-            vim.api.nvim_win_set_cursor(0, { filtered[#filtered].line, 0 })
+            vim.api.nvim_win_set_cursor(win, { filtered[#filtered].line, 0 })
         end
-    end, 1) -- 1 second async delay
+    end, 0) -- in milliseconds
 
-    -- if vim.g.project_compile_cmd then
-    --     Compile_project(vim.g.project_compile_cmd)
-    -- else
-    --     -- vim.notify("vim.g.project_compile_cmd missing", "warn")
-    -- end
+    vim.defer_fn(function()
+        if vim.g.project_compile_cmd then
+            Compile_project(vim.g.project_compile_cmd)
+        else
+            vim.notify('vim.g.project_compile_cmd missing', 'warn')
+        end
+    end, 100) -- in milliseconds
 end
 
 function JumpToNextError()
