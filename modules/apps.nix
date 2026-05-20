@@ -80,6 +80,10 @@
       nnd # Terminal debugger for linux
       cppcheck
       smartmontools # For ZFS monitoring apparently
+      libsodium # Needed for webzfs, seems to be a python crypto library
+      libsodium.dev
+      libsodium.out
+      python313Packages.libnacl
 
       # Communication
       wasistlos # Whatsapp

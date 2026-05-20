@@ -113,6 +113,10 @@
     xorg.libXi
     libxkbcommon
     libz 
+
+    libsodium # Needed for webzfs, seems to be a python crypto library
+    libsodium.dev
+    libsodium.out
   ];
 
   # Enable sound with pipewire.
