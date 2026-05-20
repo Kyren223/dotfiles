@@ -21,10 +21,11 @@
     };
   };
 
+  users.groups.kyren = {};
   users.users.kyren = {
     isNormalUser = true;
     description = "Kyren";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "kyren" "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
 
@@ -199,4 +200,9 @@
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d030", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
   '';
+
+  # Disk health monitoring
+  services.smartd.enable = true;
+  services.syncoid.enable = true;
+  services.sanoid.enable = true;
 }

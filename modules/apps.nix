@@ -84,6 +84,8 @@
       libsodium.dev
       libsodium.out
       python313Packages.libnacl
+      # syncoid # ZFS Syncing across pools
+      sanoid  # ZFS Scheduled snapshots
 
       # Communication
       wasistlos # Whatsapp
