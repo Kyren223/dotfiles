@@ -16,11 +16,15 @@
     options = [ "rw" "noatime" "uid=1000" "nofail" ];
   };
 
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+  networking.hostId = "7223ffff";
+
   # Automatically mount E drive
   # fileSystems."/mnt/e" = {
   #   device = "/dev/sda2";
   #   fsType = "ntfs-3g";
-  #   options = [ "rw" "noatime" "uid=1000" ];
+  #   options = [ "rw" "noatime" "uid=1000" "nofail" ];
   # };
 
 }

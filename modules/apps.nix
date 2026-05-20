@@ -77,8 +77,9 @@
       fsearch
       warpd
       wl-kbptr
-      nnd
+      nnd # Terminal debugger for linux
       cppcheck
+      smartmontools # For ZFS monitoring apparently
 
       # Communication
       wasistlos # Whatsapp
