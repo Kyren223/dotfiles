@@ -3,7 +3,7 @@
   (#any-of? @keyword
    "kr_proc" "inlined"
    "u8" "u16" "u32" "u64"
-   "i8" "i16" "i32" "i64"
+   "i8" "i16" "i32" "i64" "i128"
    "f32" "f64"
    "b8" "b32" "b64"
    "rune" "usize" "isize" "uptr" "iptr"

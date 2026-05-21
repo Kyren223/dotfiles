@@ -495,7 +495,7 @@ vim.keymap.set({ 'i', 'n', 'v' }, '<C-q>', '<cmd>CompileClose<cr><cmd>wqa<cr>')
 -- NOTE: Jump to next error based on compile()
 ----------------------------------------------------------------------------
 
-function JumpToError(direction)
+function JumpToDiagnostic(direction, is_error, is_warning)
     vim.defer_fn(function()
         vim.cmd('w')
     end, 10)
@@ -508,18 +508,20 @@ function JumpToError(direction)
             return
         end
 
-        local error_parsers = {
+        local warning_parsers = {
             function(line)
-                -- Clang: ABS:LINE:COL: error: ...
-                local file, lnum = line:match('^(.-):(%d+):%d+:%s+error:')
+                -- Clang: ABS:LINE:COL: warning: ...
+                local file, lnum = line:match('^(.-):(%d+):%d+:%s+warning:')
                 if file and lnum then
                     return { file = file, line = tonumber(lnum) }
                 end
             end,
+        }
 
+        local error_parsers = {
             function(line)
-                -- Clang: ABS:LINE:COL: warning: ...
-                local file, lnum = line:match('^(.-):(%d+):%d+:%s+warning:')
+                -- Clang: ABS:LINE:COL: error: ...
+                local file, lnum = line:match('^(.-):(%d+):%d+:%s+error:')
                 if file and lnum then
                     return { file = file, line = tonumber(lnum) }
                 end
@@ -550,26 +552,38 @@ function JumpToError(direction)
         local lines = vim.api.nvim_buf_get_lines(BuildTerminalBuf, 0, -1, false)
         -- vim.notify('Build buffer line count: ' .. #lines, 'warn')
 
-        local errors = {}
+        local diagnostics = {}
         for _, line in ipairs(lines) do
-            for _, f in ipairs(error_parsers) do
-                local err = f(line)
-                if err then
-                    table.insert(errors, err)
-                    break
+            if is_warning then
+                for _, f in ipairs(warning_parsers) do
+                    local warning = f(line)
+                    if warning then
+                        table.insert(diagnostics, warning)
+                        break
+                    end
+                end
+            end
+
+            if is_error then
+                for _, f in ipairs(error_parsers) do
+                    local error = f(line)
+                    if error then
+                        table.insert(diagnostics, error)
+                        break
+                    end
                 end
             end
         end
 
-        vim.notify('Error count: ' .. #errors, 'warn')
-        if #errors == 0 then
+        -- vim.notify('Diagnostics count: ' .. #diagnostics, 'warn')
+        if #diagnostics == 0 then
             return
         end
 
         local win = 0
         local current_file = vim.api.nvim_buf_get_name(win)
         local filtered = {}
-        for _, e in ipairs(errors) do
+        for _, e in ipairs(diagnostics) do
             if e.file == current_file then
                 table.insert(filtered, e)
             end
@@ -615,11 +629,19 @@ function JumpToError(direction)
 end
 
 function JumpToNextError()
-    return JumpToError(1)
+    return JumpToDiagnostic(1, true, false)
 end
 
 function JumpToPrevError()
-    return JumpToError(-1)
+    return JumpToDiagnostic(-1, true, false)
+end
+
+function JumpToNextWarning()
+    return JumpToDiagnostic(1, true, true)
+end
+
+function JumpToPrevWarning()
+    return JumpToDiagnostic(-1, true, true)
 end
 
 ----------------------------------------------------------------------------
