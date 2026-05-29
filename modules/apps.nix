@@ -53,7 +53,7 @@
       albert
       aseprite
       cloudflare-warp
-      haruna
+      haruna mpv vlc
       gparted
       gnome-clocks
       inputs.zen-browser.packages."${system}".twilight
