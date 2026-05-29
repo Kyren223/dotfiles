@@ -21,6 +21,15 @@
     password = "";
   };
 
+  hardware.keyboard.qmk.enable = true;
+  services.udev.extraRules = ''
+    # Match ANY Keychron device via hidraw (covers Q1 HE in all modes)
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", MODE="0666", TAG+="uaccess", TAG+="udev-acl"
+
+    # STM bootloader for flashing firmware
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0666", TAG+="uaccess"
+  '';
+
   security.sudo.extraRules = [
     {
       users = [ "webzfs" ];
