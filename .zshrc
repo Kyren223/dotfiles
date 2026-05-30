@@ -1,3 +1,12 @@
+# Start measuring time
+typeset -F SECONDS=0
+
+# Install catppuccin automatically if it's not installed already
+if [[ ! -d "$HOME/.config/tmux/plugins/catppuccin" ]]; then
+  mkdir -p $HOME/.config/tmux/plugins/catppuccin
+  git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+fi
+
 # Install zinit if missing
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
   print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -12,11 +21,13 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+autoload -Uz compinit
+compinit
+
 # Zsh plugins
 zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid && zinit light zsh-users/zsh-completions
 zinit ice wait lucid && zinit light Aloxaf/fzf-tab
-zinit ice wait lucid atload'_zsh_autosuggest_start && bindkey "^y" autosuggest-accept'
 zinit light zsh-users/zsh-autosuggestions
 
 # Completion styling
@@ -26,73 +37,13 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
 
-# Load oh my posh
+# Shell integrations
+zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"'
+zinit ice wait lucid atload'source <(k completion zsh)'
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 
-# Shell integrations
-zinit ice wait lucid atload'source <(fzf --zsh)' && zinit load zdharma-continuum/null
-zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"' && zinit load zdharma-continuum/null
-zinit ice wait lucid atload'source <(k completion zsh)' && zinit load zdharma-continuum/null
-
-# # Keybindings
-bindkey -v # Vim Mode
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-
-# History
-HISTSIZE=10000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
-# Aliases
-alias ls='eza --group-directories-first --across --icons auto'
-alias tree='eza --tree --icons'
-alias c='clear'
-alias vim='nvim'
-
-# K aliases
-alias ks='k switch'
-alias kn='k new'
-
-# Git Aliases
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-
-alias gp='git push'
-alias gP='git pull'
-
-alias gl='git log'
-alias glo='git log --oneline'
-alias gb='git branch'
-
-# Env vars
-export NH_FLAKE=~/dotfiles/
-export EDITOR=nvim
-export PAGER=less
-export MANPAGER=$PAGER
-
-# Stop wine from spamming debug
-export WINEDEBUG=-all
-
-# Path
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/scripts:$PATH"
-export PATH="$HOME/.zig:$PATH"
-export PATH="$HOME/.zls:$PATH"
-export PATH="$HOME/projects/k/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-
 # Fzf
+zinit ice wait lucid atload'source <(fzf --zsh)'
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -110,33 +61,77 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# History
+HISTSIZE=100000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# # Keybindings
+bindkey -v # Vim Mode
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey "^y" autosuggest-accept
+
+# Misc Aliases
+alias ls='eza --group-directories-first --across --icons auto'
+alias tree='eza --tree --icons'
+alias c='clear'
+alias vim='nvim'
+
+# K aliases
+alias ks='k switch'
+alias kn='k new'
+
+# Git Aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gP='git pull'
+alias gl='git log'
+alias glo='git log --oneline'
+alias gb='git branch'
+
+# Env vars
+export EDITOR=nvim
+export PAGER=less
+export MANPAGER=$PAGER
+
+# Stop wine from spamming debug
+export WINEDEBUG=-all
+
+# Path
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/.zig:$PATH"
+export PATH="$HOME/.zls:$PATH"
+export PATH="$HOME/projects/k/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
 # Start ssh-agent if not running
 # export SSH_ASKPASS_REQUIRE="prefer"
 eval $(keychain --quiet --quick --lockwait 60 --eval ~/.ssh/id_ed25519)
 
 MARKER_FILE="/run/user/$(id -u)/autorun_once_marker"
 if [ ! -f "$MARKER_FILE" ]; then
-  # HACK: Send a notification so systemd notification will work
-  notify-send --urgency=normal --expire-time=1 " "
-
-  # Start albert (app launcher like krunner)
-  nohup albert --platform xcb &>/dev/null & disown
-
-  # HACK: I need read access to home for sqlite access for eko
-  # in prod it'll be read access /var/lib/eko which is fine I guess?
-  chmod o+x /home/kyren/
-
-  K_SWITCH_HOME=
-
   touch "$MARKER_FILE"
-fi
-
-# Install catppuccin automatically if it's not installed already
-if [[ ! -d "$HOME/.config/tmux/plugins/catppuccin" ]]; then
-  mkdir -p $HOME/.config/tmux/plugins/catppuccin
-  git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+  K_SWITCH_HOME=
 fi
 
 if [ -v K_SWITCH_HOME ]; then
   k switch $HOME
+fi
+
+if false; then
+  printf "\e[38;5;34m⚡ \e[38;5;220m.zshrc parsed in \e[38;5;33m%.0fms\e[0m\n" "$(( SECONDS * 1000 ))"
 fi
