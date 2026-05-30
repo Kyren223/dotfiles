@@ -1,7 +1,6 @@
 return {
     -- 'numToStr/Comment.nvim',
     'os-mey/Comment.nvim',
-    branch = 'fix-inline-visual-linewise-comment',
     keys = {
         { 'gc', mode = { 'n', 'v' } },
         { 'gb', mode = { 'n', 'v' } },
