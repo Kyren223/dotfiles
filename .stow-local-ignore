@@ -6,6 +6,7 @@
 ^/LICENSE.*
 ^/COPYING
 
+modules
 hosts
 flake.nix
 flake.lock
