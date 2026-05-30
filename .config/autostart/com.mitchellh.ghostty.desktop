@@ -1,0 +1,35 @@
+[Desktop Entry]
+Actions=new-window;
+Categories=System;TerminalEmulator;
+Comment[en_US]=A terminal emulator
+Comment=A terminal emulator
+DBusActivatable=true
+Exec=/usr/bin/ghostty --gtk-single-instance=true
+GenericName[en_US]=
+GenericName=
+Icon=com.mitchellh.ghostty
+Keywords=terminal;tty;pty;
+MimeType=
+Name[en_US]=Ghostty
+Name=Ghostty
+Path=
+StartupNotify=true
+StartupWMClass=com.mitchellh.ghostty
+Terminal=false
+TerminalOptions=
+TryExec=/usr/bin/ghostty
+Type=Application
+Version=1.0
+X-GNOME-UsesNotifications=true
+X-KDE-Shortcuts=Ctrl+Alt+T
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+X-TerminalArgAppId=--class=
+X-TerminalArgDir=--working-directory=
+X-TerminalArgExec=-e
+X-TerminalArgHold=--wait-after-command
+X-TerminalArgTitle=--title=
+
+[Desktop Action new-window]
+Exec=/usr/bin/ghostty --gtk-single-instance=true
+Name=New Window
