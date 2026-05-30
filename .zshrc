@@ -25,9 +25,9 @@ autoload -Uz compinit
 compinit
 
 # Zsh plugins
+zinit ice wait lucid && zinit light Aloxaf/fzf-tab
 zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
 zinit ice wait lucid && zinit light zsh-users/zsh-completions
-zinit ice wait lucid && zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 
 # Completion styling
@@ -43,7 +43,6 @@ zinit ice wait lucid atload'source <(k completion zsh)'
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 
 # Fzf
-zinit ice wait lucid atload'source <(fzf --zsh)'
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -52,6 +51,7 @@ export FZF_DEFAULT_OPTS=" \
   --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
   --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 source fzf-git.sh
+source <(fzf --zsh)
 
 # pnpm
 export PNPM_HOME="/home/kyren/.local/share/pnpm"
@@ -132,6 +132,6 @@ if [ -v K_SWITCH_HOME ]; then
   k switch $HOME
 fi
 
-if false; then
+if true; then
   printf "\e[38;5;34m⚡ \e[38;5;220m.zshrc parsed in \e[38;5;33m%.0fms\e[0m\n" "$(( SECONDS * 1000 ))"
 fi
