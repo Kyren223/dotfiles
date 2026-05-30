@@ -132,6 +132,6 @@ if [ -v K_SWITCH_HOME ]; then
   k switch $HOME
 fi
 
-if true; then
+if false; then
   printf "\e[38;5;34m⚡ \e[38;5;220m.zshrc parsed in \e[38;5;33m%.0fms\e[0m\n" "$(( SECONDS * 1000 ))"
 fi
