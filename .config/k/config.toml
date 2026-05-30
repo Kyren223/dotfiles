@@ -2,3 +2,47 @@ github-user = "kyren223"
 
 [workspace]
 paths = ["$HOME/projects", "$HOME/personal", "$HOME/Documents", "$HOME/"]
+
+[system]
+packages = '''
+keepassxc
+git
+stow
+delta
+nix
+dnf-command(versionlock)
+zsh
+oh-my-posh
+keychain
+fzf
+zoxide
+ghostty
+eza
+golang
+gcc
+clang
+tmux
+tree-sitter-cli
+fastfetch
+find
+fd
+gopls
+golang-mvdan-gofumpt
+rg
+gimp
+bat
+bc
+btop
+dua
+sqlite
+unzip
+gitleaks
+hyperfine
+'''
+
+[system.copr]
+"scottames/ghostty" = {}
+
+# sudo dnf install ./path/to/package.rpm
+# rpm -qp ./path/to/package.rpm
+# sudo dnf remove package-name
