@@ -41,6 +41,11 @@ sqlite
 unzip
 gitleaks
 hyperfine
+vesktop-1.6.5.x86_64.rpm
+qdbus
+eog
+loupe
+nomacs
 '''
 
 [system.copr]
