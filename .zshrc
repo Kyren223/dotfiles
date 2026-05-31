@@ -24,18 +24,18 @@ autoload -Uz _zinit
 autoload -Uz compinit
 compinit
 
-# Zsh plugins
-zinit ice wait lucid && zinit light Aloxaf/fzf-tab
-zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
-zinit ice wait lucid && zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-
-# Completion styling
+# Fzf Completions
+zinit light Aloxaf/fzf-tab # Needs to be loaded before other plugins
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
+
+# Zsh plugins
+zinit ice wait lucid && zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid && zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
 
 # Shell integrations
 zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"'
