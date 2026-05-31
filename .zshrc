@@ -51,7 +51,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyocat.omp.yml)"
 # Shell integrations
 zinit ice wait lucid atload'source <(fzf --zsh)' && zinit load zdharma-continuum/null
 zinit ice wait lucid atload'eval "$(zoxide init --cmd cd zsh)"' && zinit load zdharma-continuum/null
-zinit ice wait lucid atload'source <(k completion zsh)' && zinit load zdharma-continuum/null
+zinit ice wait lucid atload'source <(k completion zsh --no-rebuild-self)' && zinit load zdharma-continuum/null
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
