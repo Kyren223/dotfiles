@@ -43,10 +43,27 @@ gitleaks
 hyperfine
 vesktop-1.6.5.x86_64.rpm
 qdbus
-eog
 loupe
-nomacs
+
+# ZFS
+https://zfsonlinux.org/fedora/zfs-release-3-1$(rpm --eval "%{dist}").noarch.rpm
+kernel-devel-$(uname -r | awk -F'-' '{print $1}')
+# NOTE: zfs must be after kernel was installed (as 2 separate k sync!!!!)
+zfs
+
+# For webzfs
+libsodium-devel
+libffi-devel
+python3-devel
+
 '''
+
+[system.dnf]
+# TODO(kyren): add a way to undo these options if they are removed?
+options = [
+  "zfs*.enabled=0",
+  "zfs-latest.enabled=1",
+]
 
 [system.copr]
 "scottames/ghostty" = {}
