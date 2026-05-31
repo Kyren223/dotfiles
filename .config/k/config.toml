@@ -1,9 +1,12 @@
-github-user = "kyren223"
+[development]
+rebuild_before_running = true
+enable_rebuild_indicator = true
 
 [workspace]
 paths = ["$HOME/projects", "$HOME/personal", "$HOME/Documents", "$HOME/"]
 
 [system]
+rpms_path = "$HOME/rpms"
 packages = '''
 keepassxc
 git
