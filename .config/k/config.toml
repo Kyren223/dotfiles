@@ -47,6 +47,7 @@ hyperfine
 vesktop-1.6.5.x86_64.rpm
 qdbus
 loupe
+chromium
 
 # ZFS
 https://zfsonlinux.org/fedora/zfs-release-3-1$(rpm --eval "%{dist}").noarch.rpm
