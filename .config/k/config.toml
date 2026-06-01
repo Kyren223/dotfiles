@@ -56,6 +56,8 @@ libsodium-devel
 libffi-devel
 python3-devel
 
+stylua
+
 '''
 
 [system.dnf]
@@ -67,6 +69,7 @@ options = [
 
 [system.copr]
 "scottames/ghostty" = {}
+"yorickpeterse/stylua" = {}
 
 # sudo dnf install ./path/to/package.rpm
 # rpm -qp ./path/to/package.rpm

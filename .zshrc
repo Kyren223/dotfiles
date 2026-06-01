@@ -119,6 +119,7 @@ export PATH="$PATH:$HOME/.zls"
 export PATH="$PATH:$HOME/projects/k/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/opt/lua-language-server-linux-x64/bin"
 
 # Start ssh-agent if not running
 # export SSH_ASKPASS_REQUIRE="prefer"
