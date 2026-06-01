@@ -5,6 +5,9 @@ enable_rebuild_indicator = true
 [workspace]
 paths = ["$HOME/projects", "$HOME/personal", "$HOME/Documents", "$HOME/"]
 
+[memories]
+path = "$HOME/personal/grimoire/memories/"
+
 [system]
 rpms_path = "$HOME/rpms"
 packages = '''

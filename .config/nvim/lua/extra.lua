@@ -674,5 +674,69 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'BufWritePost' }, {
 })
 
 ----------------------------------------------------------------------------
+-- NOTE: utility to create a new "k memory"
+----------------------------------------------------------------------------
+local function create_and_or_open_memory()
+    vim.ui.input({ prompt = 'Enter title: ' }, function(title)
+        if not title or title == '' then
+            return
+        end
+
+        local sanitized_title = title:gsub('%s+', '-')
+        local cmd = { 'k', 'memory', sanitized_title, '--output-path', '--edit=false', '--no-rebuild-self' }
+        local output_lines = {}
+        vim.notify('Memory command: ' .. vim.inspect(cmd))
+
+        vim.fn.jobstart(cmd, {
+            stdout_buffered = true,
+            stderr_buffered = true,
+
+            on_stdout = function(_, data)
+                if data then
+                    for _, line in ipairs(data) do
+                        if line ~= '' then
+                            table.insert(output_lines, line)
+                        end
+                    end
+                end
+            end,
+
+            on_stderr = function(_, data)
+                if data then
+                    for _, line in ipairs(data) do
+                        if line ~= '' then
+                            table.insert(output_lines, line)
+                        end
+                    end
+                end
+            end,
+
+            on_exit = function(_, exit_code)
+                if exit_code == 0 then
+                    local target_file = output_lines[#output_lines]
+                    vim.notify(vim.inspect(output_lines))
+
+                    if target_file and target_file ~= '' then
+                        -- Trim any trailing carriage returns or spaces
+                        target_file = target_file:gsub('%s+$', '')
+
+                        vim.schedule(function()
+                            vim.cmd('edit ' .. vim.fn.fnameescape(target_file))
+                        end)
+                    else
+                        vim.notify('Error: CLI succeeded but stdout was empty!', vim.log.levels.ERROR)
+                    end
+                else
+                    vim.api.nvim_err_writeln("Error: 'k memory' failed with exit code " .. exit_code)
+                end
+            end,
+        })
+    end)
+end
+
+-- 5. Create the Neovim user command (:MyCliCreate)
+vim.api.nvim_create_user_command('KMemory', create_and_or_open_memory, {})
+
+----------------------------------------------------------------------------
 -- NOTE:
 ----------------------------------------------------------------------------
