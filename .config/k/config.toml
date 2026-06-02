@@ -50,6 +50,7 @@ loupe
 chromium
 stylua
 caddy
+krita
 
 # ZFS
 @RAW https://zfsonlinux.org/fedora/zfs-release-3-1$(rpm --eval "%{dist}").noarch.rpm
@@ -62,6 +63,11 @@ libsodium-devel libffi-devel python3-devel
 
 # For sanoid/syncoid
 perl-Config-IniFiles perl-Data-Dumper perl-Capture-Tiny perl-Getopt-Long lzop mbuffer mhash pv
+
+# For building aseprite from source
+cmake ninja-build
+libxcb-devel libX11-devel libXcursor-devel libXi-devel libXrandr-devel
+libX11-devel libXext-devel libXcursor-devel libXi-devel libglvnd-devel fontconfig-devel pixman-devel
 
 '''
 
