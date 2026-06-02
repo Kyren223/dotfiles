@@ -34,7 +34,8 @@ sync_repo() {
         return
     fi
 
-    if git diff --quiet; then
+    # Check for ANY changes, including untracked files
+    if [[ -z $(git status --porcelain) ]]; then
         echo "No unstaged changes in $repo_path"
     else
         echo "Committing changes in $repo_path..."
