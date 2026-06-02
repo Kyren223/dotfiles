@@ -122,6 +122,7 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:/opt/lua-language-server-linux-x64/bin"
 export PATH="$PATH:/opt/zen"
 export PATH="$PATH:/opt/aseprite"
+export PATH="/opt/ark-vcs:$PATH" # Ark is also the KDE zip tool thing, so we gotta prioritize this ark
 
 # Start ssh-agent if not running
 # export SSH_ASKPASS_REQUIRE="prefer"
