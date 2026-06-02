@@ -51,6 +51,7 @@ chromium
 stylua
 caddy
 krita
+steam
 
 # ZFS
 @RAW https://zfsonlinux.org/fedora/zfs-release-3-1$(rpm --eval "%{dist}").noarch.rpm
