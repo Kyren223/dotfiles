@@ -8,7 +8,6 @@
     ../modules/development.nix
     ../modules/gaming.nix
     ../modules/secrets.nix
-    ../modules/systemd.nix
     inputs.home-manager.nixosModules.default
   ];
 

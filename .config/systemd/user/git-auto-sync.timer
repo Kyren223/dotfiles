@@ -1,0 +1,10 @@
+[Unit]
+Description=Automated Git Sync Timer
+
+[Timer]
+OnBootSec=5m
+OnUnitActiveSec=5m
+Unit=git-auto-sync.service
+
+[Install]
+WantedBy=timers.target

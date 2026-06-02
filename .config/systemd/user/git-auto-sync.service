@@ -1,0 +1,6 @@
+[Unit]
+Description=Automated Git Sync Service
+
+[Service]
+Type=oneshot
+ExecStart=%h/scripts/git-auto-sync.sh
