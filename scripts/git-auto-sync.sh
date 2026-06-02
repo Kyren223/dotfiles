@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Make sure my ssh key is loaded in ssh-agent for use when committing
 eval $(keychain --quiet --eval $HOME/.ssh/id_ed25519)
 
