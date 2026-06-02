@@ -133,7 +133,7 @@ if [ ! -f "$MARKER_FILE" ]; then
 fi
 
 if [ -v K_SWITCH_HOME ]; then
-  k switch $HOME
+  k switch $HOME --no-rebuild-self
 fi
 
 if false; then
