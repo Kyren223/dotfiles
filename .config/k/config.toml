@@ -35,11 +35,13 @@ fd
 gopls
 golang-mvdan-gofumpt
 rg
-gimp
+krita gimp inkscape
 bat
 bc
 btop
 dua
+unzip
+unrar
 sqlite
 unzip
 gitleaks
@@ -50,8 +52,13 @@ loupe
 chromium
 stylua
 caddy
-krita
-steam
+pnpm
+etckeeper
+vicinae
+
+# Games
+steam lutris Heroic-2.22.0-linux-x86_64.rpm
+mangohud gamemode gamescope
 
 # ZFS
 @RAW https://zfsonlinux.org/fedora/zfs-release-3-1$(rpm --eval "%{dist}").noarch.rpm
@@ -70,11 +77,13 @@ cmake ninja-build
 libxcb-devel libX11-devel libXcursor-devel libXi-devel libXrandr-devel
 libX11-devel libXext-devel libXcursor-devel libXi-devel libglvnd-devel fontconfig-devel pixman-devel
 
+
 '''
 
 [system.copr]
 "scottames/ghostty" = {}
 "yorickpeterse/stylua" = {}
+"quadratech188/vicinae" = {}
 
 # sudo dnf install ./path/to/package.rpm
 # rpm -qp ./path/to/package.rpm
