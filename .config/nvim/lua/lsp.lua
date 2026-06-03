@@ -1,29 +1,33 @@
 return {
-    -- asm_lsp = true,
+    asm_lsp = true,
+    basedpyright = true, -- python
+    bashls = true,
+    clangd = true,
+    gopls = true,
+    jsonls = true,
+    lemminx = true, -- xml
+    lua_ls = true,
+    markdown_oxide = true,
+    nil_ls = true, -- nix
+    taplo = true, -- toml
+    yamlls = true,
+    zls = true, -- zig
+
     -- astro = true,
-    -- basedpyright = true, -- python
-    -- bashls = true,
-    -- clangd = true,
     -- css_variables = true,
     -- cssls = true,
-    -- gh_actions_ls = true,
-    gopls = true,
+    -- ts_ls = true, -- typescript and yavashit
+    -- tailwindcss = true,
     -- html = true,
-    -- jsonls = true,
+    -- mdx_analyzer = true,
+
     -- kotlin_language_server = true,
     -- kotlin_lsp = false,
-    -- lemminx = true, -- xml
-    lua_ls = true,
-    -- markdown_oxide = true,
-    -- marksman = false, -- markdown
-    -- mdx_analyzer = true,
+
+    -- TODO(kyren): delete these?
+    -- gh_actions_ls = true,
     -- neocmake = true,
-    -- nil_ls = true, -- nix
-    -- tailwindcss = true,
-    -- taplo = true, -- toml
-    -- ts_ls = true, -- typescript and yavashit
-    -- yamlls = true,
-    -- zls = true, -- zig
+    -- marksman = false, -- markdown
 
     global = {
         capabilities = {

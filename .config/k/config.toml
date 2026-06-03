@@ -55,6 +55,11 @@ caddy
 pnpm
 etckeeper
 vicinae
+cargo
+python3-pip
+nodejs
+java-openjdk-headless java-25-openjdk-devel
+filezilla
 
 # Games
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
@@ -77,6 +82,9 @@ cmake ninja-build
 libxcb-devel libX11-devel libXcursor-devel libXi-devel libXrandr-devel
 libX11-devel libXext-devel libXcursor-devel libXi-devel libglvnd-devel fontconfig-devel pixman-devel
 
+# LSPs
+nodejs-bash-language-server
+clangd
 
 '''
 
