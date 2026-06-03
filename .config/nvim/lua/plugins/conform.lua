@@ -12,9 +12,6 @@ return {
     opts = {
         formatters_by_ft = {
             ['lua'] = { 'stylua' },
-            -- ['c'] = { 'clang-format' },
-            -- ['python'] = { 'isort', 'black' },
-            -- ['rust'] = { 'rustfmt' },
             ['go'] = { 'gofumpt', 'goimports-reviser' },
             ['markdown'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['yaml'] = { 'prettierd' },
@@ -23,6 +20,9 @@ return {
             ['css'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['javascript'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['typescript'] = { 'prettierd', 'prettier', stop_after_first = true },
+            -- ['c'] = { 'clang-format' },
+            -- ['python'] = { 'isort', 'black' },
+            -- ['rust'] = { 'rustfmt' },
         },
         format_on_save = function(bufnr)
             -- Disable with a global or buffer local variable

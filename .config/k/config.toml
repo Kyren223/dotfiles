@@ -60,6 +60,7 @@ python3-pip
 nodejs
 java-openjdk-headless java-25-openjdk-devel
 filezilla
+jq
 
 # Games
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
