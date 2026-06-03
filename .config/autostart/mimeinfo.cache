@@ -1,0 +1,10 @@
+[MIME Cache]
+application/vnd.mozilla.xul+xml=org.mozilla.firefox.desktop;
+application/x-keepass2=org.keepassxc.KeePassXC.desktop;
+application/xhtml+xml=org.mozilla.firefox.desktop;
+inode/directory=org.kde.dolphin.desktop;
+text/html=org.mozilla.firefox.desktop;
+text/mml=org.mozilla.firefox.desktop;
+text/xml=org.mozilla.firefox.desktop;
+x-scheme-handler/http=org.mozilla.firefox.desktop;
+x-scheme-handler/https=org.mozilla.firefox.desktop;
