@@ -10,6 +10,14 @@ path = "$HOME/personal/grimoire/memories/"
 
 [system]
 rpms_path = "$HOME/rpms"
+
+copr = '''
+scottames/ghostty
+yorickpeterse/stylua
+quadratech188/vicinae
+ilyaz/LACT
+'''
+
 packages = '''
 keepassxc
 git
@@ -73,11 +81,17 @@ openrgb
 kdelibs-webkit
 qdirstat
 tokei
+piper
+pipewire-codec-aptx # Bluetooth codec, probably not needed but why not (oh, this was already installed)
 
 # Games
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
 mangohud gamemode gamescope
 r2modman-3.2.17.x86_64.rpm
+wine winetricks protontricks
+
+# AMD Control/Monitoring tools
+corectrl lact radeontop amdgpu_top-0.11.5-1.x86_64.rpm
 
 # ZFS
 @RAW https://zfsonlinux.org/fedora/zfs-release-3-1$(rpm --eval "%{dist}").noarch.rpm
@@ -97,14 +111,4 @@ libxcb-devel libX11-devel libXcursor-devel libXi-devel libXrandr-devel
 libX11-devel libXext-devel libXcursor-devel libXi-devel libglvnd-devel fontconfig-devel pixman-devel
 
 kopia kopia-ui
-
 '''
-
-[system.copr]
-"scottames/ghostty" = {}
-"yorickpeterse/stylua" = {}
-"quadratech188/vicinae" = {}
-
-# sudo dnf install ./path/to/package.rpm
-# rpm -qp ./path/to/package.rpm
-# sudo dnf remove package-name
