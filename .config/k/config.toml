@@ -25,7 +25,7 @@ zoxide
 ghostty
 eza
 golang
-gcc clang
+gcc clang lld mold gdb lldb
 tmux
 tree-sitter-cli
 fastfetch
@@ -68,6 +68,11 @@ yt-dlp mpv
 xlsclients xwininfo
 nodejs-bash-language-server
 clangd
+fuse-libs # For AppImages to work
+openrgb
+kdelibs-webkit
+qdirstat
+tokei
 
 # Games
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
@@ -90,6 +95,8 @@ perl-Config-IniFiles perl-Data-Dumper perl-Capture-Tiny perl-Getopt-Long lzop mb
 cmake ninja-build
 libxcb-devel libX11-devel libXcursor-devel libXi-devel libXrandr-devel
 libX11-devel libXext-devel libXcursor-devel libXi-devel libglvnd-devel fontconfig-devel pixman-devel
+
+kopia kopia-ui
 
 '''
 
