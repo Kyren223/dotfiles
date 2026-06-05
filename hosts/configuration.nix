@@ -3,8 +3,6 @@
   imports = [
     inputs.sops-nix.nixosModules.sops
     ../modules/apps.nix
-    ../modules/display.nix
-    ../modules/networking.nix
     ../modules/development.nix
     ../modules/gaming.nix
     ../modules/secrets.nix

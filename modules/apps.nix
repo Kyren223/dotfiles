@@ -14,9 +14,6 @@
   };
 
   config = lib.mkIf config.apps.enable {
-
-    programs.firefox.enable = true;
-
     programs.kdeconnect.enable = true; # Opens TCP/UDP ports (does not when it's a pkg)
 
     environment.systemPackages = with pkgs; [
@@ -34,10 +31,6 @@
       piper # ^ GUI frontend
 
       # Utility
-      obs-studio
-      gimp
-      inkscape
-      keepassxc
       protonvpn-gui
       (python312.withPackages (pypkgs: [
         pypkgs.matplotlib
@@ -45,85 +38,39 @@
         pypkgs.pygithub
         pypkgs.pipx
       ]))
-      kdePackages.filelight
       kdePackages.korganizer
       kdePackages.kaddressbook
       syncthingtray
-      libreoffice
-      albert
-      aseprite
       cloudflare-warp
-      haruna mpv vlc
-      gparted
       gnome-clocks
-      inputs.zen-browser.packages."${system}".twilight
-      krita
       pipeline # Youtube desktop app
-      (flameshot.override { enableWlrSupport = true; })
-      qdirstat # WizTree for linux
-      kdePackages.ark
-      kdePackages.dolphin
-      eog
       kopia-ui
       rclone-ui
-      kdePackages.spectacle
       binsider
-      filezilla
       yt-dlp
       spotify
       inotify-tools
       _010editor
-      chromium
-      fsearch
       warpd
       wl-kbptr
       nnd # Terminal debugger for linux
       cppcheck
       smartmontools # For ZFS monitoring apparently
-      libsodium # Needed for webzfs, seems to be a python crypto library
-      libsodium.dev
-      libsodium.out
-      python313Packages.libnacl
-      # syncoid # ZFS Syncing across pools
-      sanoid  # ZFS Scheduled snapshots
 
       # Communication
       wasistlos # Whatsapp
-      vesktop
       inputs.eko.packages."${system}".eko
 
       # Terminal
-      ghostty
-      oh-my-posh
-      tmux
-      neovim
       tree-sitter
 
       # CLI
-      git
-      delta
-      gh
-      stow
-      eza
-      keychain
-      bc
-      bat
-      fd
-      ripgrep
       wakatime-cli
-      fastfetch
-      btop
-      sqlite
-      unzip
-      fzf
-      zoxide
       watchexec
-      gitleaks
       rar
       dig
       minisign
       libisoburn
-      dua
       mprocs
       imagemagick
       ghostscript # for imagemagick to support pdf files
@@ -131,15 +78,10 @@
       duf
       tldr
       bottom
-      hyperfine # for benchmarking
-      wget
       tectonic
       mermaid-cli
-      ffmpeg
-      nh
       kondo # Cleans build caches
       kopia
-      appimage-run
       rclone
       usbutils
     ];
@@ -147,9 +89,6 @@
     # VPN for Vault Hunters to avoid connection issues
     # Note, will break discord, also tried proton VPN, still has conn issues
     services.cloudflare-warp.enable = true;
-
-    # Mouse config service (used with piper)
-    services.ratbagd.enable = true;
 
     # Install Docker (without using root access)
     #virtualisation.docker.enable = true;

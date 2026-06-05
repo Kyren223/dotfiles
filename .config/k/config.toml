@@ -33,14 +33,13 @@ fzf
 zoxide
 ghostty
 eza
-golang
-gcc clang lld mold gdb lldb
+golang gopls
+gcc clang lld mold gdb lldb nasm clangd
 tmux
 tree-sitter-cli
 fastfetch
 find
 fd
-gopls
 golang-mvdan-gofumpt
 rg
 krita gimp inkscape
@@ -49,24 +48,22 @@ bat
 bc
 btop
 dua
-unzip
 unrar
 sqlite
 unzip
 gitleaks
-hyperfine
+hyperfine # For benchmarking
 vesktop-1.6.5.x86_64.rpm
 qdbus
 loupe
 chromium
 stylua
 caddy
-pnpm
 etckeeper
 vicinae
 cargo
 python3-pip
-nodejs
+pnpm nodejs
 java-openjdk-headless java-25-openjdk-devel
 filezilla
 jq
@@ -76,13 +73,12 @@ libreoffice
 yt-dlp mpv
 xlsclients xwininfo
 nodejs-bash-language-server
-clangd
 fuse-libs # For AppImages to work
 openrgb
 kdelibs-webkit
-qdirstat
+qdirstat # WizTree for linux
 tokei
-piper
+piper # Uses ratbagd under the hood
 pipewire-codec-aptx # Bluetooth codec, probably not needed but why not (oh, this was already installed)
 obs-studio-plugin-vkcapture
 
