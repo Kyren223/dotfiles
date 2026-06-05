@@ -84,6 +84,7 @@ qdirstat
 tokei
 piper
 pipewire-codec-aptx # Bluetooth codec, probably not needed but why not (oh, this was already installed)
+obs-studio-plugin-vkcapture
 
 # Gaming
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
