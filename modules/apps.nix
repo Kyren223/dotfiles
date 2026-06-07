@@ -47,7 +47,6 @@
       kopia-ui
       rclone-ui
       binsider
-      yt-dlp
       spotify
       inotify-tools
       _010editor
@@ -60,9 +59,6 @@
       # Communication
       wasistlos # Whatsapp
       inputs.eko.packages."${system}".eko
-
-      # Terminal
-      tree-sitter
 
       # CLI
       wakatime-cli
