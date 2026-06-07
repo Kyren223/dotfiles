@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=inode/directory;
+Actions=unlockZfs;lockZfs;
+X-KDE-Priority=TopLevel
+
+[Desktop Action unlockZfs]
+Name=Unlock ZFS Vault
+Icon=dialog-password
+Exec=bash -c 'PASS=$(zenity --password --title="Unlock ZFS Dataset"); if [ -n "$PASS" ]; then echo "$PASS" | sudo zfs load-key iron-wolf/media/documents && sudo zfs mount iron-wolf/media/documents || zenity --error --text="Failed to mount dataset."; fi'
+
+[Desktop Action lockZfs]
+Name=Lock & Unload ZFS Vault
+Icon=object-locked
+Exec=bash -c 'sudo zfs unmount iron-wolf/media/documents && sudo zfs unload-key iron-wolf/media/documents && zenity --info --text="Dataset locked successfully." || zenity --error --text="Failed to unmount. Is the directory in use?"'
