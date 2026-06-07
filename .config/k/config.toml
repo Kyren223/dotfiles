@@ -81,6 +81,10 @@ tokei
 piper # Uses ratbagd under the hood
 pipewire-codec-aptx # Bluetooth codec, probably not needed but why not (oh, this was already installed)
 obs-studio-plugin-vkcapture
+PureRef-2.1.3_x64.rpm
+podman-compose
+jellyfin
+nss-tools
 
 # Gaming
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
@@ -108,6 +112,9 @@ perl-Config-IniFiles perl-Data-Dumper perl-Capture-Tiny perl-Getopt-Long lzop mb
 cmake ninja-build
 libxcb-devel libX11-devel libXcursor-devel libXi-devel libXrandr-devel
 libX11-devel libXext-devel libXcursor-devel libXi-devel libglvnd-devel fontconfig-devel pixman-devel
+
+# Virtual Machine
+qemu-kvm libvirt virt-manager
 
 kopia kopia-ui
 '''
