@@ -1,10 +1,10 @@
 # Dotfiles
 
-My personal dotfiles for reproducing my entire machine.
+My personal dotfiles for reproducing my setup.
 
 Includes
 
-- Operating System and packages (NixOS)
+- System Packages (via my own custom config tool)
 - Neovim config
 - Ghostty Terminal config
 - Tmux config
@@ -12,24 +12,22 @@ Includes
 
 ## Installation
 
-Use your preferred package manager to install GNU stow
-
-Then clone the repository
+Install GNU stow via your package manager and clone the repository:
 
 ```sh
 git clone https://git.kyren.codes/kyren223/dotfiles
 ```
 
-Let stow generate all the symlinks for you
+Let stow generate all the symlinks for you by running:
 
 ```sh
 cd ~/dotfiles && stow .
 ```
 
-You may need to add the `--adopt` flag to stow to override your existing dotfiles.
+You may need to add the `--adopt` flag to override your existing configs.
 
-If using NixOS, rebuild your system using the flake
+To install all system packages configured in `k config` run:
 
 ```sh
-sudo nixos-rebuild switch --flake ~/dotfiles#kyren-desktop
+k sync
 ```
