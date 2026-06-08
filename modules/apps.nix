@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 {
@@ -17,69 +16,23 @@
     programs.kdeconnect.enable = true; # Opens TCP/UDP ports (does not when it's a pkg)
 
     environment.systemPackages = with pkgs; [
-      # System
-      glib-networking
-      openssl
-      glibcLocales
-      libnotify
-      wl-clipboard
-      jdk
 
       nerd-fonts.jetbrains-mono
 
-      libratbag # Mouse software (GHUB replacement)
-      piper # ^ GUI frontend
+      pipeline # Youtube desktop app
 
       # Utility
       protonvpn-gui
-      (python312.withPackages (pypkgs: [
-        pypkgs.matplotlib
-        pypkgs.pandas
-        pypkgs.pygithub
-        pypkgs.pipx
-      ]))
+      cloudflare-warp
+
       kdePackages.korganizer
       kdePackages.kaddressbook
+
       syncthingtray
-      cloudflare-warp
+
       gnome-clocks
-      pipeline # Youtube desktop app
-      kopia-ui
-      rclone-ui
-      binsider
+
       spotify
-      inotify-tools
-      _010editor
-      warpd
-      wl-kbptr
-      nnd # Terminal debugger for linux
-      cppcheck
-      smartmontools # For ZFS monitoring apparently
-
-      # Communication
-      wasistlos # Whatsapp
-      inputs.eko.packages."${system}".eko
-
-      # CLI
-      wakatime-cli
-      watchexec
-      rar
-      dig
-      minisign
-      libisoburn
-      mprocs
-      imagemagick
-      ghostscript # for imagemagick to support pdf files
-      xxd
-      duf
-      tldr
-      bottom
-      tectonic
-      mermaid-cli
-      kondo # Cleans build caches
-      kopia
-      rclone
-      usbutils
     ];
 
     # VPN for Vault Hunters to avoid connection issues

@@ -34,17 +34,16 @@ fzf
 zoxide
 ghostty
 eza
-golang gopls
-gcc clang lld mold gdb lldb nasm clangd
+gcc clang lld mold gdb lldb nasm clangd cppcheck valgrind
 tmux
 tree-sitter-cli
 fastfetch
 find
 fd
-golang-mvdan-gofumpt
+golang gopls golang-mvdan-gofumpt golangci-lint gosec staticcheck goose
 rg
 krita gimp inkscape
-drawio-x86_64-30.0.4.rpm
+drawio-x86_64-30.0.4.rpm # For vault hunters
 bat
 bc
 btop
@@ -62,7 +61,7 @@ stylua
 caddy
 etckeeper
 vicinae
-cargo
+rustup cargo
 python3-pip
 pnpm nodejs
 java-openjdk-headless java-25-openjdk-devel
@@ -86,17 +85,24 @@ PureRef-2.1.3_x64.rpm
 podman-compose
 jellyfin
 nss-tools
+opensnitch-1.8.0-1.x86_64.rpm opensnitch-ui-1.8.0-1.noarch.rpm
+Portmaster-2.1.19-1.x86_64.rpm
 entr
 chafa
 kitten # Fix fastfetch not rendering images properly inside tmux
-tectonic # For rendering latex (math) in markdown files via kitty image protocol + snacks
+dig
+minisign
+inotify-tools # inotifywait and inotifywatch
+imhex-1.38.1-Fedora-43-x86_64.rpm
+gnome-clocks
+uctags-2026.06.05-1.fc44.x86_64.rpm # C document symbols kinda I think
 
 # Gaming
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
 mangohud gamemode gamescope
-r2modman-3.2.17.x86_64.rpm
+r2modman-3.2.17.x86_64.rpm # Valheim mods launcher
 wine winetricks protontricks
-prismlauncher
+prismlauncher # Minecraft
 
 # AMD Control/Monitoring tools
 corectrl lact radeontop amdgpu_top-0.11.5-1.x86_64.rpm
