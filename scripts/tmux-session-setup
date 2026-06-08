@@ -32,15 +32,9 @@ if [ "$dir" = "$HOME" ]; then
   ) &
 elif [[ "$sess" == "ratry" || "$sess" == "kiwen-prototype" || "$sess" == "cpu-vs-ai" ]]; then
   tmux rename-window -t $sess:1 editor
-  tmux send-keys -t $sess:editor.1 "nix develop" C-m
-  tmux send-keys -t $sess:editor.1 "zsh && exit" C-m
-  tmux send-keys -t $sess:editor.1 "clear" C-m
   tmux send-keys -t $sess:editor.1 "nvim" C-m
 
   tmux new-window -t $sess -n game -c $dir
-  tmux send-keys -t $sess:game.1 "nix develop" C-m
-  tmux send-keys -t $sess:game.1 "zsh && exit" C-m
-  tmux send-keys -t $sess:game.1 "clear" C-m
 
   tmux select-window -t $sess:editor
 elif [ "$sess" = "eko" ]; then
@@ -65,12 +59,9 @@ elif [ "$sess" = "eko" ]; then
   tmux select-window -t $sess:editor
 elif [ "$sess" = "blockbrawl" ]; then
   tmux rename-window -t $sess:1 editor
-  tmux send-keys -t $sess:editor.1 "nix develop path:" C-m
   tmux send-keys -t $sess:editor.1 "vim" C-m
 
   tmux new-window -t $sess -n server -c $dir
-  tmux send-keys -t $sess:server "nix develop path:" C-m
-  # tmux send-keys -t $sess:server "" C-m
 
   tmux select-window -t $sess:editor
 elif [ "$sess" = "server" ]; then
