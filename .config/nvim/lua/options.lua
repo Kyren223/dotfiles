@@ -9,9 +9,9 @@ vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
 
 -- Tab
 vim.opt.expandtab = true -- convert tabs to spaces
-vim.opt.tabstop = 4 -- number of visual spaces per TAB
-vim.opt.softtabstop = 4 -- number of idfk tab when editing
-vim.opt.shiftwidth = 4 -- number of spaces to insert on tab
+vim.opt.tabstop = 2 -- number of visual spaces per TAB
+vim.opt.softtabstop = 2 -- number of idfk tab when editing
+vim.opt.shiftwidth = 2 -- number of spaces to insert on tab
 
 -- UI
 vim.opt.number = true

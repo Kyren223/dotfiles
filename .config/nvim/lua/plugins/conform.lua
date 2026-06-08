@@ -16,6 +16,7 @@ return {
             ['markdown'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['yaml'] = { 'prettierd' },
             ['json'] = { 'jq' },
+            ['jsonc'] = { 'jq' },
             ['html'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['css'] = { 'prettierd', 'prettier', stop_after_first = true },
             ['javascript'] = { 'prettierd', 'prettier', stop_after_first = true },

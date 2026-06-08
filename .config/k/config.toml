@@ -4,6 +4,7 @@ enable_rebuild_indicator = true
 
 [workspace]
 paths = ["$HOME/projects", "$HOME/personal", "$HOME/Documents", "$HOME/"]
+terminal = { width = 284, height = 86 }
 
 [memories]
 path = "$HOME/personal/grimoire/memories/"
@@ -85,6 +86,10 @@ PureRef-2.1.3_x64.rpm
 podman-compose
 jellyfin
 nss-tools
+entr
+chafa
+kitten # Fix fastfetch not rendering images properly inside tmux
+tectonic # For rendering latex (math) in markdown files via kitty image protocol + snacks
 
 # Gaming
 steam lutris Heroic-2.22.0-linux-x86_64.rpm

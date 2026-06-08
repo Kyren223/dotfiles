@@ -12,10 +12,24 @@ if [ "$dir" = "$HOME" ]; then
   tmux new-window -t $sess -n dotfiles -c $HOME/dotfiles
   tmux send-keys -t $sess:dotfiles.1 "vim" C-m
 
+  # sleep 1
   tmux new-window -t $sess -n main -c $HOME
-  tmux send-keys -t $sess:main.1 "fastfetch" C-m
+  tmux split-window -h -b -t $sess:main.1 -l 120 -c $HOME
+  tmux split-window -v -b -t $sess:main.1 -l 27 -c $HOME
+  tmux split-window -v -b -t $sess:main.3 -l 42 -c $HOME
+  tmux select-pane -t $sess:main.4
 
-  tmux select-window -t $sess:grimoire
+  tmux send-keys -t $sess:main.3 "btop" C-m
+  tmux send-keys -t $sess:main.2 "vim ." C-m
+  tmux send-keys -t $sess:main.4 "cd $HOME/Desktop && clear" C-m
+  # tmux send-keys -t $sess:main.1 "watch -n 5 --color fastfetch -c ~/.config/fastfetch/config.jsonc" C-m
+  # tmux send-keys -t $sess:main.1 "while true; do fastfetch; sleep 5; done &" C-m
+  (
+    sleep 0.1
+    tmux send-keys -t $sess:main.1 "fastfetch" C-m
+    sleep 0.2
+    tmux select-window -t $sess:grimoire
+  ) &
 elif [[ "$sess" == "ratry" || "$sess" == "kiwen-prototype" || "$sess" == "cpu-vs-ai" ]]; then
   tmux rename-window -t $sess:1 editor
   tmux send-keys -t $sess:editor.1 "nix develop" C-m

@@ -1,0 +1,280 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "source": "/home/kyren/Pictures/Creations/pfp/pfp.png",
+    "type": "kitty-icat",
+    "width": 33,
+    // "height": 17,
+    "padding": {
+      "top": 2,
+      // "left": 2,
+      // "right": 5
+      "left": 10,
+      "right": 13
+    }
+  },
+  "display": {
+    "separator": " "
+  },
+  // ┃  ├ └
+  "modules": [
+
+    // {
+    //   "type": "colors",
+    //   "symbol": "circle",
+    //   // "key": "\u001b[A",
+    // },
+    "break",
+    "break",
+    {
+      "type": "command",
+      "key": " ",
+      "text": "echo -e \" \\033[1;38;2;141;222;224m$(whoami)\\033[1;38;2;20;99;157m@\\033[1;38;2;54;215;169m$(hostname)\"",
+      // "keyIcon": "{user-name}@{host-name}"
+    },
+
+    "break",
+    // {
+    //   "type": "colors",
+    //   "symbol": "circle",
+    //   "paddingLeft": 17,
+    // },
+    {
+      "type": "colors",
+      "symbol": "circle",
+      // "key": "\u001b[A",
+    },
+    "break",
+    // {
+    //   "type": "custom",
+    //   "key": " System",
+    //   "keyColor": "yellow"
+    // },
+    {
+      "type": "os",
+      "key": "┌ OS",
+      "keyColor": "yellow",
+      "format": "{name} {version-id}"
+    },
+    {
+      "type": "de",
+      "key": "├ DE",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "kernel",
+      "key": "├ Kernel",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "packages",
+      "key": "├ Packages",
+      "keyColor": "yellow",
+      "format": "{rpm} (rpm)"
+    },
+    {
+      "type": "localIP",
+      "key": "├󰋜 Local IP",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "uptime",
+      "key": "└󰥔 Uptime",
+      "keyColor": "yellow"
+    },
+
+    "break",
+
+    {
+      "type": "memory",
+      "key": "┌ RAM",
+      "keyColor": "blue",
+      // "outputColor": "#808080"
+    },
+    {
+      "type": "cpu",
+      "key": "├ CPU",
+      "keyColor": "blue",
+      // "outputColor": "#f77678"
+      // "outputColor": "red"
+    },
+    {
+      "type": "gpu",
+      "key": "├󰢮 GPU",
+      "keyColor": "blue",
+      // "outputColor": "#f77678"
+      // "outputColor": "red"
+    },
+    {
+      "type": "display",
+      "key": "├󰍹 Display ({name})",
+      // "outputColor": "yellow",
+      // "format": "{name} ({width}x{height}) @ {refresh-rate}Hz",
+      "format": "{width}x{height} @ {refresh-rate}Hz",
+      // "outputColor": "#808080"
+    },
+    {
+      "type": "disk",
+      "key": "├󰋊 Disk ({mountpoint})",
+      "folders": "/:/home",
+      // "outputColor": "#808080"
+      // "outputColor": "#cc9999"
+    },
+    {
+      "type": "command",
+      "key": "└󰋊 Disk (/iron-wolf)",
+      "keyColor": "blue",
+      // "text": "zfs list -H -o used,available iron-wolf | awk '{print $1 \"iB / \" $1+$2 \"iB (\" $1/($1+$2)*100 \"%) - zfs\"}'",
+      "text": "read -r used avail < <(zfs list -H -p -o used,available iron-wolf); total=$((used + avail)); pct=$(( used * 100 / total )); if [ \"$pct\" -lt 75 ]; then col='\\033[32m'; elif [ \"$pct\" -lt 90 ]; then col='\\033[33m'; else col='\\033[31m'; fi; used_t=$(awk \"BEGIN {printf \\\"%.2f\\\", $used/1024/1024/1024/1024}\"); total_t=$(awk \"BEGIN {printf \\\"%.2f\\\", $total/1024/1024/1024/1024}\"); echo -e \"${used_t}TiB / ${total_t}TiB (${col}${pct}%\\033[0m) - zfs\"",
+      // "outputColor": "#cc9999"
+    },
+
+    "break",
+
+    // {
+    //   "type": "custom",
+    //   "key": "󰌢 Hardware",
+    //   "keyColor": "blue"
+    // },
+    // {
+    //   "type": "memory",
+    //   "key": "│  RAM",
+    //   "outputColor": "yellow"
+    // },
+    // {
+    //   "type": "cpu",
+    //   "key": "│  CPU",
+    //   "keyColor": "blue",
+    //   "outputColor": "red"
+    // },
+    // {
+    //   "type": "gpu",
+    //   "key": "│ 󰢮 GPU",
+    //   "keyColor": "bold_blue",
+    //   "outputColor": "red"
+    // },
+    // {
+    //   "type": "display",
+    //   "key": "│ 󰍹 Display",
+    //   "outputColor": "yellow",
+    //   "format": "{name} ({width}x{height}) @ {refresh-rate}Hz"
+    // },
+    // {
+    //   "type": "disk",
+    //   "key": "│ 󰋊 Disk ({mountpoint})",
+    //   "folders": "/:/home",
+    //   "outputColor": "#cc9999"
+    // },
+    // {
+    //   "type": "command",
+    //   "key": "│ 󰋊 Disk (/iron-wolf)",
+    //   "keyColor": "blue",
+    //   "shell": "bash",
+    //   // "text": "zfs list -H -o used,available iron-wolf | awk '{print $1 \"iB / \" $1+$2 \"iB (\" $1/($1+$2)*100 \"%) - zfs\"}'",
+    //   "text": "read -r used avail < <(zfs list -H -p -o used,available iron-wolf); total=$((used + avail)); pct=$(( used * 100 / total )); if [ \"$pct\" -lt 75 ]; then col='\\033[32m'; elif [ \"$pct\" -lt 90 ]; then col='\\033[33m'; else col='\\033[31m'; fi; used_t=$(awk \"BEGIN {printf \\\"%.2f\\\", $used/1024/1024/1024/1024}\"); total_t=$(awk \"BEGIN {printf \\\"%.2f\\\", $total/1024/1024/1024/1024}\"); echo -e \"${used_t}TiB / ${total_t}TiB (${col}${pct}%\\033[0m) - zfs\"",
+    //   "outputColor": "#cc9999"
+    // }
+    // "separator",
+    // "os",
+    // "host",
+    // "kernel",
+    // "uptime",
+    // "packages",
+    // "shell",
+    // "display",
+    // "de",
+    // "wm",
+    // "wmtheme",
+    // "theme",
+    // "icons",
+    // "font",
+    // "cursor",
+    // "terminal",
+    // "terminalfont",
+    // "cpu",
+    // "gpu",
+    // "memory",
+    // "swap",
+    // "disk",
+    // "localip",
+    // "battery",
+    // "poweradapter",
+    // "locale",
+    "break",
+    // {
+    //   "type": "title",
+    //   "keyWidth": 10
+    // },
+    // {
+    //   "type": "os",
+    //   "key": " OS",
+    //   "keyColor": "yellow"
+    // },
+    // {
+    //   "type": "kernel",
+    //   "key": "├ Kernel",
+    //   "keyColor": "yellow"
+    // },
+    // {
+    //   "type": "packages",
+    //   "key": "├󰏖 Packages",
+    //   "keyColor": "yellow"
+    // },
+    // {
+    //   "type": "shell",
+    //   "key": "├ Shell",
+    //   "keyColor": "yellow"
+    // },
+    // {
+    //   "type": "localIP",
+    //   "key": "├󰩟 Local IP",
+    //   "keyColor": "yellow"
+    // },
+    // {
+    //   "type": "uptime",
+    //   "key": "└󰅐 Start Time",
+    //   "keyColor": "yellow"
+    // },
+    // "break",
+    // {
+    //   "type": "de",
+    //   "key": " DE",
+    //   "keyColor": "blue"
+    // },
+    // {
+    //   "type": "wm",
+    //   "key": "├󰧨 Window Manager",
+    //   "keyColor": "blue"
+    // },
+    // {
+    //   "type": "lm",
+    //   "key": "├󰧨 Login Manager",
+    //   "keyColor": "blue"
+    // },
+    // {
+    //   "type": "wmtheme",
+    //   "key": "├󰉼 WM Theme",
+    //   "keyColor": "blue"
+    // },
+    // {
+    //   "type": "theme",
+    //   "key": "├󰉼 Color Themes",
+    //   "keyColor": "blue"
+    // },
+    // {
+    //   "type": "icons",
+    //   "key": "├󰸉 System Icons",
+    //   "keyColor": "blue"
+    // },
+    // {
+    //   "type": "font",
+    //   "key": "├ System Fonts",
+    //   "keyColor": "blue"
+    // },
+    // {
+    //   "type": "terminal",
+    //   "key": "└ Terminal",
+    //   "keyColor": "blue"
+    // }
+  ]
+}
