@@ -189,7 +189,7 @@ return {
                     end,
                 })
             end,
-            desc = '[G]it [O]pen',
+            desc = '[G]it [C]opy',
         },
 
         {
@@ -329,6 +329,13 @@ return {
                 Snacks.picker.keymaps({ layout = 'dropdown' })
             end,
             desc = '[S]earch [K]eymaps',
+        },
+        {
+            '<leader>bl',
+            function()
+                Snacks.picker.buffers({ layout = 'dropdown' })
+            end,
+            desc = '[B]uffers [L]ist',
         },
         {
             '<leader>th',
