@@ -85,8 +85,8 @@ PureRef-2.1.3_x64.rpm
 podman-compose
 jellyfin
 nss-tools
-opensnitch-1.8.0-1.x86_64.rpm opensnitch-ui-1.8.0-1.noarch.rpm
-Portmaster-2.1.19-1.x86_64.rpm
+# opensnitch-1.8.0-1.x86_64.rpm opensnitch-ui-1.8.0-1.noarch.rpm
+# Portmaster-2.1.19-1.x86_64.rpm
 entr
 chafa
 kitten # Fix fastfetch not rendering images properly inside tmux
@@ -96,6 +96,7 @@ inotify-tools # inotifywait and inotifywatch
 imhex-1.38.1-Fedora-43-x86_64.rpm
 gnome-clocks
 uctags-2026.06.05-1.fc44.x86_64.rpm # C document symbols kinda I think
+vivaldi-stable-8.0.4033.46-1.x86_64.rpm
 
 # Gaming
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
@@ -128,4 +129,5 @@ libX11-devel libXext-devel libXcursor-devel libXi-devel libglvnd-devel fontconfi
 qemu-kvm libvirt virt-manager
 
 kopia kopia-ui
+
 '''
