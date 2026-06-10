@@ -157,7 +157,9 @@ return {
             },
         },
         gitbrowse = {},
-        image = {},
+        image = {
+            math = { enabled = false },
+        },
         input = {},
         picker = {},
         quickfile = {},
