@@ -1,6 +1,6 @@
 // raddbg 0.9.21 user file
 
-recent_project: path: ".kr_raddbg_project"
+recent_project: path: "../../projects/krypton/.kr_raddbg_project"
 recent_project: path: ".kr_raddbg_project"
 recent_project: path: ".kr_raddbg_project"
 recent_project: path: ".kr_raddbg_project"
@@ -83,10 +83,10 @@ window:
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/libkrypton.c\".data"
         auto: 0
         query: input: ""
-        cursor_line: 2820
-        cursor_column: 1
-        mark_line: 2820
-        mark_column: 1
+        cursor_line: 2834
+        cursor_column: 54
+        mark_line: 2834
+        mark_column: 54
       }
       text:
       {
@@ -190,7 +190,7 @@ window:
     }
   }
   split_x
-  pos: 512 263
+  pos: 512 266
   monitor: "\\\\.\\DISPLAY1"
   maximized
 }
@@ -320,4 +320,4 @@ keybindings:
   { halt h }
   { kill_all k }
 }
-current_path: "Z:/home/kyren/projects/krypton/src/krypton"
+current_path: "Z:/home/kyren/projects/krypton"
