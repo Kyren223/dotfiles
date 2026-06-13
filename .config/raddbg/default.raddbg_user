@@ -1,6 +1,6 @@
 // raddbg 0.9.21 user file
 
-recent_project: path: "../../projects/krypton/.kr_raddbg_project"
+recent_project: path: ".kr_raddbg_project"
 recent_project: path: ".kr_raddbg_project"
 recent_project: path: ".kr_raddbg_project"
 recent_project: path: ".kr_raddbg_project"
@@ -39,6 +39,7 @@ window:
   {
     0.347440:
     {
+      selected
       disasm:
       {
         expression: ""
@@ -70,43 +71,35 @@ window:
       {
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
-        query:
-        {
-          input: ""
-          cmd: search
-        }
-        cursor_line: 88
-        cursor_column: 1
-        mark_line: 88
-        mark_column: 1
+        query: input: ""
+        cursor_line: 75
+        cursor_column: 71
+        mark_line: 75
+        mark_column: 71
       }
       text:
       {
         selected
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/libkrypton.c\".data"
         auto: 0
-        query:
-        {
-          input: ""
-          cmd: search
-        }
-        cursor_line: 6004
+        query: input: ""
+        cursor_line: 2820
         cursor_column: 1
-        mark_line: 6004
+        mark_line: 2820
         mark_column: 1
       }
       text:
       {
-        expression: "file:\"D:/a/_work/1/s/src/vctools/crt/vcstartup/src/startup/exe_common.inl\".data"
+        expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/platform_win32.c\".data"
         auto: 1
         query:
         {
           input: ""
           cmd: search_backwards
         }
-        cursor_line: 1
+        cursor_line: 25
         cursor_column: 1
-        mark_line: 1
+        mark_line: 25
         mark_column: 1
       }
       text:
@@ -118,16 +111,6 @@ window:
         cursor_column: 1
         mark_line: 96
         mark_column: 1
-      }
-      text:
-      {
-        expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/platform_win32.c\".data"
-        project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
-        query: input: ""
-        cursor_line: 20
-        cursor_column: 42
-        mark_line: 20
-        mark_column: 42
       }
     }
     0.652560:
@@ -178,7 +161,9 @@ window:
         {
           selected
           expression: ""
-          watch: result
+          normal: 0.348101 0.401899 0.250000
+          watch: "hex(c)"
+          watch: "bin(c)"
         }
         watch: expression: "query:watch_pins"
       }
@@ -186,31 +171,26 @@ window:
       {
         0.347078:
         {
-          watch: selected expression: "query:call_stack"
+          watch: expression: "query:call_stack"
           watch:
           {
+            selected
             expression: "query:threads"
             call_stack_frame: 0.050000 0.850000 0.050000 0.050000
           }
         }
         0.652922:
         {
-          selected
-          watch: selected expression: "query:targets"
+          watch: expression: "query:targets"
           watch: expression: "query:breakpoints"
           watch: expression: "query:watch_pins"
-          watch: expression: "query:type_views"
-          disasm:
-          {
-            expression: ""
-            query: input: ""
-          }
+          watch: selected expression: "query:type_views"
         }
       }
     }
   }
   split_x
-  pos: 512 266
+  pos: 512 263
   monitor: "\\\\.\\DISPLAY1"
   maximized
 }
@@ -339,6 +319,5 @@ keybindings:
   { restart r shift }
   { halt h }
   { kill_all k }
-  { add_type_view b }
 }
 current_path: "Z:/home/kyren/projects/krypton/src/krypton"
