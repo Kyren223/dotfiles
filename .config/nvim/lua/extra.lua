@@ -467,7 +467,12 @@ function Compile_project(command)
     BuildTerminalBuf = vim.api.nvim_create_buf(false, true)
     vim.bo[BuildTerminalBuf].filetype = 'build_terminal'
     vim.api.nvim_buf_call(BuildTerminalBuf, function()
-        vim.fn.termopen(command, vim.empty_dict())
+        -- vim.fn.termopen(command, vim.empty_dict())
+        -- local job_id = vim.fn.termopen(vim.o.shell)
+        local job_id = vim.fn.jobstart(vim.o.shell, { term = true })
+        if job_id > 0 then
+            vim.fn.chansend(job_id, command)
+        end
     end)
 
     local previous_buffer = vim.api.nvim_win_get_buf(new_build_win)

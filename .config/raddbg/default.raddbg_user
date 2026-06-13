@@ -1,6 +1,10 @@
-// raddbg 0.9.21 user file
+// raddbg 0.9.27 user file
 
-recent_project: path: "../../projects/krypton/.kr_raddbg_project"
+recent_project:
+{
+  path: "../../projects/krypton/.kr_raddbg_project"
+  name: ""
+}
 recent_project: path: "C:\\users\\kyren\\AppData\\Roaming/raddbg/default.raddbg_project"
 window:
 {
@@ -42,58 +46,53 @@ window:
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
         query: input: ""
-        cursor_line: 75
-        cursor_column: 71
-        mark_line: 75
-        mark_column: 71
-      }
-      text:
-      {
-        selected
-        expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/libkrypton.c\".data"
-        auto: 0
-        query: input: ""
-        cursor_line: 2832
+        cursor_line: 82
         cursor_column: 1
-        mark_line: 2832
+        mark_line: 82
         mark_column: 1
       }
       text:
       {
-        expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/platform_win32.c\".data"
+        expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/libkrypton.c\".data"
+        auto: 0
+        query: input: ""
+        cursor_line: 2841
+        cursor_column: 1
+        mark_line: 2841
+        mark_column: 1
+      }
+      text:
+      {
+        expression: "file:\"D:/a/_work/1/s/src/vctools/crt/vcruntime/src/string/amd64/memcmp.asm\".data"
         auto: 1
         query:
         {
           input: ""
           cmd: search_backwards
         }
-        cursor_line: 25
+        cursor_line: 1
         cursor_column: 1
-        mark_line: 25
+        mark_line: 1
         mark_column: 1
+        project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
       }
       text:
       {
+        selected
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
         query: input: ""
-        cursor_line: 96
-        cursor_column: 1
-        mark_line: 96
-        mark_column: 1
+        cursor_line: 64
+        cursor_column: 53
+        mark_line: 64
+        mark_column: 53
       }
     }
     0.652560:
     {
       0.514383:
       {
-        watch:
-        {
-          selected
-          expression: "query:locals"
-          normal: 0.326976 0.513992 0.159032
-          root_type: 0.152421 0.597864 0.249715
-        }
+        watch: selected expression: "query:locals"
         watch: expression: "query:thread_locals"
         watch:
         {
@@ -124,6 +123,13 @@ window:
             input: TokenStri
           }
         }
+        memory:
+        {
+          expression: ""
+          zoom: 1.000000f
+          cursor: 0x100158870
+          mark: 0x100158870
+        }
       }
       0.189655:
       {
@@ -132,8 +138,6 @@ window:
           selected
           expression: ""
           normal: 0.348101 0.401899 0.250000
-          watch: "hex(c)"
-          watch: "bin(c)"
         }
         watch: expression: "query:watch_pins"
       }
@@ -141,10 +145,14 @@ window:
       {
         0.347078:
         {
-          watch: expression: "query:call_stack"
           watch:
           {
             selected
+            expression: "query:call_stack"
+            call_stack_frame: 0.050000 0.750000 0.200000
+          }
+          watch:
+          {
             expression: "query:threads"
             call_stack_frame: 0.050000 0.850000 0.050000 0.050000
           }
@@ -291,3 +299,52 @@ keybindings:
   { kill_all k }
 }
 current_path: "Z:/home/kyren/projects/krypton"
+auto_load_last_project: 1
+breakpoint:
+{
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+  source_location: "../../projects/krypton/src/krypton/platform_win32.c:21:1"
+  hit_count: 0
+}
+breakpoint:
+{
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+  source_location: "../../projects/krypton/src/krypton/krypton_main.c:85:1"
+  hit_count: 0
+}
+breakpoint:
+{
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+  source_location: "../../projects/krypton/src/krypton/krypton_main.c:83:1"
+  hit_count: 0
+}
+breakpoint:
+{
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+  source_location: "../../projects/krypton/src/krypton/krypton_main.c:78:1"
+  hit_count: 0
+}
+debug_info:
+{
+  path: "Z:/home/kyren/projects/krypton/build/kc.pdb"
+  timestamp: 66217366842963
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+}
+debug_info:
+{
+  path: "C:/windows/system32/ntdll.dll"
+  timestamp: 66217366216501
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+}
+debug_info:
+{
+  path: "C:/windows/system32/kernel32.dll"
+  timestamp: 66217366216316
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+}
+debug_info:
+{
+  path: "C:/windows/system32/kernelbase.dll"
+  timestamp: 66217366216317
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+}
