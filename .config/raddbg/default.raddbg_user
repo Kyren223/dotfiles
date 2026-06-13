@@ -1,5 +1,7 @@
 // raddbg 0.9.21 user file
 
+recent_project: path: "../../projects/krypton/.kr_raddbg_project"
+recent_project: path: "C:\\users\\kyren\\AppData\\Roaming/raddbg/default.raddbg_project"
 window:
 {
   size: 1536 861
@@ -51,9 +53,9 @@ window:
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/libkrypton.c\".data"
         auto: 0
         query: input: ""
-        cursor_line: 2820
+        cursor_line: 2832
         cursor_column: 1
-        mark_line: 2820
+        mark_line: 2832
         mark_column: 1
       }
       text:
@@ -149,16 +151,16 @@ window:
         }
         0.652922:
         {
-          watch: expression: "query:targets"
+          watch: selected expression: "query:targets"
           watch: expression: "query:breakpoints"
           watch: expression: "query:watch_pins"
-          watch: selected expression: "query:type_views"
+          watch: expression: "query:type_views"
         }
       }
     }
   }
   split_x
-  pos: 512 263
+  pos: 512 266
   monitor: "\\\\.\\DISPLAY1"
   maximized
 }
@@ -288,4 +290,4 @@ keybindings:
   { halt h }
   { kill_all k }
 }
-current_path: "Z:/home/kyren/projects/krypton/src/krypton"
+current_path: "Z:/home/kyren/projects/krypton"
