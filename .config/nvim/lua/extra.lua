@@ -469,7 +469,7 @@ function Compile_project(command)
     vim.api.nvim_buf_call(BuildTerminalBuf, function()
         -- vim.fn.termopen(command, vim.empty_dict())
         -- local job_id = vim.fn.termopen(vim.o.shell)
-        local job_id = vim.fn.jobstart(vim.o.shell, { term = true })
+       local job_id = vim.fn.jobstart(vim.o.shell, { term = true })
         if job_id > 0 then
             vim.fn.chansend(job_id, command)
         end

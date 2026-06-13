@@ -9,8 +9,9 @@ return {
     lua_ls = true,
     markdown_oxide = true,
     nil_ls = true, -- nix
+    rlsp_yaml = true,
     taplo = true, -- toml
-    yamlls = true,
+    yamlls = false,
     zls = true, -- zig
 
     -- astro = true,
