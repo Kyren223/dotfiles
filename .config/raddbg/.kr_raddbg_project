@@ -1,8 +1,0 @@
-// raddbg 0.9.21 project file
-
-target:
-{
-  executable: "../../projects/krypton/.kr_raddbg_project"
-  working_directory: "../../projects/krypton/"
-  enabled: 1
-}

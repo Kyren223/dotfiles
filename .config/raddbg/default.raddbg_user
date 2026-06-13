@@ -1,37 +1,5 @@
 // raddbg 0.9.21 user file
 
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
-recent_project: path: ".kr_raddbg_project"
 window:
 {
   size: 1536 861
@@ -105,7 +73,7 @@ window:
       text:
       {
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
-        project: ".kr_raddbg_project"
+        project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
         query: input: ""
         cursor_line: 96
         cursor_column: 1
