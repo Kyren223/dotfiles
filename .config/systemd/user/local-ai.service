@@ -1,0 +1,17 @@
+[Unit]
+Description=Local AI Podman Compose Stack
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=%h/projects/local-ai
+
+ExecStart=/usr/bin/podman-compose up -d
+ExecStop=/usr/bin/podman-compose down
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
