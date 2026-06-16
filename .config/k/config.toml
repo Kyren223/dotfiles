@@ -70,7 +70,7 @@ jq
 kate
 gh
 libreoffice
-yt-dlp mpv
+yt-dlp mpv vlc
 xlsclients xwininfo
 nodejs-bash-language-server
 fuse-libs # For AppImages to work
@@ -97,6 +97,8 @@ imhex-1.38.1-Fedora-43-x86_64.rpm
 gnome-clocks
 uctags-2026.06.05-1.fc44.x86_64.rpm # C document symbols kinda I think
 vivaldi-stable-8.0.4033.46-1.x86_64.rpm
+pipewire-module-roc
+pavucontrol
 
 # Gaming
 steam lutris Heroic-2.22.0-linux-x86_64.rpm
