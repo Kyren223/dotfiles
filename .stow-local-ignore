@@ -1,3 +1,4 @@
 \.git
 \.gitignore
 ^/README.*
+.config/pipewire/pipewire.conf.d/roc-sink.conf

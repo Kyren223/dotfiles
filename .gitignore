@@ -1,1 +1,2 @@
 .config/tmux/plugins
+.config/pipewire/pipewire.conf.d/roc-sink.conf
