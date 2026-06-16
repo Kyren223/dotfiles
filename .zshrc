@@ -113,6 +113,8 @@ export WINEDEBUG=-all
 # Path
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
+export PATH="/opt/ark-vcs:$PATH" # Ark is also the KDE zip tool thing, so we gotta prioritize this ark
+export PATH="$HOME/opt/cross/bin:$PATH"
 export PATH="$PATH:$HOME/scripts"
 export PATH="$PATH:$HOME/.zig"
 export PATH="$PATH:$HOME/.zls"
@@ -124,7 +126,6 @@ export PATH="$PATH:/opt/zen"
 export PATH="$PATH:/opt/aseprite"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="/opt/ark-vcs:$PATH" # Ark is also the KDE zip tool thing, so we gotta prioritize this ark
 
 # Start ssh-agent if not running
 # export SSH_ASKPASS_REQUIRE="prefer"

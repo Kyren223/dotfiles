@@ -129,6 +129,9 @@ libX11-devel libXext-devel libXcursor-devel libXi-devel libglvnd-devel fontconfi
 
 # Virtual Machine
 qemu-kvm libvirt virt-manager
+# OSdev
+gmp-devel libmpc-devel mpfr-devel
+grub2-pc
 
 kopia kopia-ui
 

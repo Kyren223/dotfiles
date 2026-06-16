@@ -1,5 +1,5 @@
 return {
-    asm_lsp = true,
+    asm_lsp = false,
     basedpyright = true, -- python
     bashls = true,
     clangd = true,

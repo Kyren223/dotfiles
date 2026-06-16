@@ -11,6 +11,8 @@ return {
     ---@type conform.setupOpts
     opts = {
         formatters_by_ft = {
+            -- asm = { 'asmfmt' },
+            -- nasm = { 'asmfmt' },
             ['lua'] = { 'stylua' },
             ['go'] = { 'gofumpt', 'goimports-reviser' },
             ['markdown'] = { 'prettierd' },
