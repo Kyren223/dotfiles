@@ -63,16 +63,16 @@ window:
       }
       text:
       {
-        expression: "file:\"D:/a/_work/1/s/src/vctools/crt/vcruntime/src/string/amd64/memcmp.asm\".data"
+        expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/platform_win32.c\".data"
         auto: 1
         query:
         {
           input: ""
           cmd: search_backwards
         }
-        cursor_line: 1
+        cursor_line: 29
         cursor_column: 1
-        mark_line: 1
+        mark_line: 29
         mark_column: 1
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
       }
@@ -82,10 +82,10 @@ window:
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
         query: input: ""
-        cursor_line: 64
-        cursor_column: 53
-        mark_line: 64
-        mark_column: 53
+        cursor_line: 74
+        cursor_column: 1
+        mark_line: 74
+        mark_column: 1
       }
     }
     0.652560:
@@ -143,7 +143,7 @@ window:
       }
       0.295960:
       {
-        0.347078:
+        0.491649:
         {
           watch:
           {
@@ -157,7 +157,7 @@ window:
             call_stack_frame: 0.050000 0.850000 0.050000 0.050000
           }
         }
-        0.652922:
+        0.508351:
         {
           watch: selected expression: "query:targets"
           watch: expression: "query:breakpoints"
@@ -277,7 +277,7 @@ keybindings:
   { find_next f3 }
   { find_prev f3 ctrl }
   { find_selected_thread f4 }
-  { goto_name j ctrl }
+  { goto_name n ctrl }
   { goto_name_at_cursor f12 }
   { toggle_watch_expr_at_cursor w alt }
   { toggle_watch_expr_at_mouse d ctrl }
@@ -290,44 +290,40 @@ keybindings:
   { open_palette p ctrl shift }
   { log_marker m ctrl shift alt }
   { toggle_dev_menu d ctrl shift alt }
+
+  { step_out a }
   { step_over s }
-  { step_into i }
-  { step_out o }
-  { run r }
-  { restart r shift }
-  { halt h }
-  { kill_all k }
+  { step_into d }
+  { run c }
+  { restart r }
+  { kill_all b }
+  { run_to_line g }
+
+  { move_left h }
+  { move_down j }
+  { move_up k }
+  { move_right l }
+  { move_up_page u ctrl }
+  { move_down_page d ctrl }
+  { move_left_select h shift }
+  { move_down_select j shift }
+  { move_up_select k shift }
+  { move_right_select l shift }
+  { move_left_chunk h ctrl }
+  { move_down_chunk j ctrl }
+  { move_up_chunk k ctrl }
+  { move_right_chunk l ctrl }
+  { move_left_chunk_select h ctrl shift }
+  { move_down_chunk_select j ctrl shift }
+  { move_up_chunk_select k ctrl shift }
+  { move_right_chunk_select l ctrl shift }
 }
 current_path: "Z:/home/kyren/projects/krypton"
 auto_load_last_project: 1
-breakpoint:
-{
-  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
-  source_location: "../../projects/krypton/src/krypton/platform_win32.c:21:1"
-  hit_count: 0
-}
-breakpoint:
-{
-  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
-  source_location: "../../projects/krypton/src/krypton/krypton_main.c:85:1"
-  hit_count: 0
-}
-breakpoint:
-{
-  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
-  source_location: "../../projects/krypton/src/krypton/krypton_main.c:83:1"
-  hit_count: 0
-}
-breakpoint:
-{
-  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
-  source_location: "../../projects/krypton/src/krypton/krypton_main.c:78:1"
-  hit_count: 0
-}
 debug_info:
 {
   path: "Z:/home/kyren/projects/krypton/build/kc.pdb"
-  timestamp: 66217366842963
+  timestamp: 66217653147944
   project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
 }
 debug_info:
