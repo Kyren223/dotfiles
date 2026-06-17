@@ -82,9 +82,9 @@ window:
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
         query: input: ""
-        cursor_line: 74
+        cursor_line: 88
         cursor_column: 1
-        mark_line: 74
+        mark_line: 88
         mark_column: 1
       }
     }
@@ -92,7 +92,7 @@ window:
     {
       0.514383:
       {
-        watch: selected expression: "query:locals"
+        watch: expression: "query:locals"
         watch: expression: "query:thread_locals"
         watch:
         {
@@ -125,6 +125,7 @@ window:
         }
         memory:
         {
+          selected
           expression: ""
           zoom: 1.000000f
           cursor: 0x100158870
@@ -138,6 +139,8 @@ window:
           selected
           expression: ""
           normal: 0.348101 0.401899 0.250000
+          watch: result
+          watch: "array(argv, argc)"
         }
         watch: expression: "query:watch_pins"
       }
@@ -147,7 +150,6 @@ window:
         {
           watch:
           {
-            selected
             expression: "query:call_stack"
             call_stack_frame: 0.050000 0.750000 0.200000
           }
@@ -155,6 +157,16 @@ window:
           {
             expression: "query:threads"
             call_stack_frame: 0.050000 0.850000 0.050000 0.050000
+          }
+          text:
+          {
+            selected
+            expression: "query:output"
+            query: input: ""
+            cursor_line: 8
+            cursor_column: 1
+            mark_line: 8
+            mark_column: 1
           }
         }
         0.508351:
@@ -290,15 +302,15 @@ keybindings:
   { open_palette p ctrl shift }
   { log_marker m ctrl shift alt }
   { toggle_dev_menu d ctrl shift alt }
-
   { step_out a }
   { step_over s }
   { step_into d }
   { run c }
   { restart r }
   { kill_all b }
+  { kill_all x }
+  { kill_all f }
   { run_to_line g }
-
   { move_left h }
   { move_down j }
   { move_up k }
@@ -318,12 +330,12 @@ keybindings:
   { move_up_chunk_select k ctrl shift }
   { move_right_chunk_select l ctrl shift }
 }
-current_path: "Z:/home/kyren/projects/krypton"
+current_path: "Z:/home/kyren/projects/krypton/build"
 auto_load_last_project: 1
 debug_info:
 {
   path: "Z:/home/kyren/projects/krypton/build/kc.pdb"
-  timestamp: 66217653147944
+  timestamp: 66217657129348
   project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
 }
 debug_info:
