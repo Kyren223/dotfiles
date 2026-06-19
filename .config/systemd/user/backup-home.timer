@@ -1,0 +1,10 @@
+[Unit]
+Description=Trigger personal home backup every 45 minutes
+Requires=backup-home.service
+
+[Timer]
+OnCalendar=*:00,30
+Persistent=true
+
+[Install]
+WantedBy=timers.target

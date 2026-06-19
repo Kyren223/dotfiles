@@ -1,0 +1,10 @@
+[Unit]
+Description=Run home directory rsync backup script
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/scripts/backup-home.sh
+
+[Install]
+WantedBy=default.target
