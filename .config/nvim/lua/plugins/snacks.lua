@@ -161,7 +161,60 @@ return {
             math = { enabled = false },
         },
         input = {},
-        picker = {},
+        picker = {
+            actions = {
+                -- NOTE(kyren): fixes oil buffers not getting replaced
+                smart_open = function(picker, item)
+                    if not item then
+                        return
+                    end
+
+                    local target_win = picker.main
+                    local alt_win = vim.fn.win_getid(vim.fn.winnr('#'))
+
+                    if vim.api.nvim_win_is_valid(alt_win) then
+                        local alt_buf = vim.api.nvim_win_get_buf(alt_win)
+                        local alt_ft = vim.bo[alt_buf].filetype
+                        if alt_ft == 'oil' or alt_ft == 'build_terminal' then
+                            target_win = alt_win
+                        end
+                    end
+
+                    local target_buf = vim.api.nvim_win_get_buf(target_win)
+                    local ft = vim.bo[target_buf].filetype
+
+                    if (ft == 'oil' or ft == 'build_terminal') and item.file then
+                        picker:close()
+                        -- CRITICAL: Force execution AFTER the picker finishes tearing down its UI
+                        vim.schedule(function()
+                            if vim.api.nvim_win_is_valid(target_win) then
+                                vim.api.nvim_set_current_win(target_win)
+                                vim.cmd('edit ' .. vim.fn.fnameescape(item.file))
+                            end
+                        end)
+                        return
+                    end
+
+                    -- Fallback to standard confirm behavior for everything else
+                    return picker:action('confirm')
+                end,
+                -- NOTE(kyren): end
+            },
+            win = {
+                -- NOTE(kyren): fixes oil buffers not getting replaced
+                input = {
+                    keys = {
+                        ['<CR>'] = { 'smart_open', mode = { 'n', 'i' } },
+                    },
+                },
+                list = {
+                    keys = {
+                        ['<CR>'] = 'smart_open',
+                    },
+                },
+                -- NOTE(kyren): end
+            },
+        },
         quickfile = {},
         terminal = {
             win = {
