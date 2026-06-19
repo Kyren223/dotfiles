@@ -14,33 +14,6 @@ window:
     0.347440:
     {
       selected
-      disasm:
-      {
-        expression: ""
-        query: input: ""
-      }
-      text:
-      {
-        expression: "query:output"
-        query:
-        {
-          input: ""
-          cmd: search
-        }
-        cursor_line: 175
-        cursor_column: 1
-        mark_line: 175
-        mark_column: 1
-        scroll_to_bottom_on_change: 1
-        font_size: 9
-        auto: 0
-      }
-      memory:
-      {
-        expression: ""
-        cursor: 0x0
-        mark: 0x0
-      }
       text:
       {
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
@@ -53,12 +26,13 @@ window:
       }
       text:
       {
+        selected
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/libkrypton.c\".data"
         auto: 0
         query: input: ""
-        cursor_line: 2841
+        cursor_line: 1370
         cursor_column: 1
-        mark_line: 2841
+        mark_line: 1370
         mark_column: 1
       }
       text:
@@ -70,29 +44,28 @@ window:
           input: ""
           cmd: search_backwards
         }
-        cursor_line: 29
+        cursor_line: 57
         cursor_column: 1
-        mark_line: 29
+        mark_line: 57
         mark_column: 1
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
       }
       text:
       {
-        selected
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
         query: input: ""
-        cursor_line: 88
+        cursor_line: 89
         cursor_column: 1
-        mark_line: 88
+        mark_line: 89
         mark_column: 1
       }
     }
     0.652560:
     {
-      0.514383:
+      0.363801:
       {
-        watch: expression: "query:locals"
+        watch: selected expression: "query:locals"
         watch: expression: "query:thread_locals"
         watch:
         {
@@ -125,14 +98,13 @@ window:
         }
         memory:
         {
-          selected
           expression: ""
           zoom: 1.000000f
           cursor: 0x100158870
           mark: 0x100158870
         }
       }
-      0.189655:
+      0.218107:
       {
         watch:
         {
@@ -144,12 +116,23 @@ window:
         }
         watch: expression: "query:watch_pins"
       }
-      0.295960:
+      0.196121: text:
+      {
+        selected
+        expression: "query:output"
+        query: input: ""
+        cursor_line: 8
+        cursor_column: 1
+        mark_line: 8
+        mark_column: 1
+      }
+      0.221970:
       {
         0.491649:
         {
           watch:
           {
+            selected
             expression: "query:call_stack"
             call_stack_frame: 0.050000 0.750000 0.200000
           }
@@ -157,16 +140,6 @@ window:
           {
             expression: "query:threads"
             call_stack_frame: 0.050000 0.850000 0.050000 0.050000
-          }
-          text:
-          {
-            selected
-            expression: "query:output"
-            query: input: ""
-            cursor_line: 8
-            cursor_column: 1
-            mark_line: 8
-            mark_column: 1
           }
         }
         0.508351:
@@ -182,7 +155,6 @@ window:
   split_x
   pos: 512 266
   monitor: "\\\\.\\DISPLAY1"
-  maximized
 }
 keybindings:
 {
@@ -330,12 +302,12 @@ keybindings:
   { move_up_chunk_select k ctrl shift }
   { move_right_chunk_select l ctrl shift }
 }
-current_path: "Z:/home/kyren/projects/krypton/build"
+current_path: "Z:/home/kyren/projects/krypton"
 auto_load_last_project: 1
 debug_info:
 {
   path: "Z:/home/kyren/projects/krypton/build/kc.pdb"
-  timestamp: 66217657129348
+  timestamp: 66217832699542
   project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
 }
 debug_info:

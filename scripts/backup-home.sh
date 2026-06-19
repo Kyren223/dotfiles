@@ -81,6 +81,7 @@ rsync -a --delete --info=progress2 \
   --include='Games/minecraft-dungeons/drive_c/users/steamuser/Saved Games/' \
   --include='Games/minecraft-dungeons/drive_c/users/steamuser/Saved Games/Mojang Studios/' \
   --include='Games/minecraft-dungeons/drive_c/users/steamuser/Saved Games/Mojang Studios/Dungeons/***' \
+  --include='keepassxc/***' \
   --exclude='personal/grimoire/' \
   --include='personal/***' \
   --include='.wakatime.cfg' \
