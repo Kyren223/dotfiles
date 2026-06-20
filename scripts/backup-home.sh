@@ -3,7 +3,6 @@
 SOURCE="$HOME"
 TARGET="/iron-wolf/fedora-home"
 
-# Desktop maybe
 # repositories maybe
 # data maybe
 # .zen maybe
@@ -36,7 +35,20 @@ rsync -a --delete --info=progress2 \
   --include='.local/share/osu/***' \
   --exclude='.local/share/PrismLauncher/cache/' \
   --include='.local/share/PrismLauncher/***' \
-  --include='.local/share/StardewValley/***' \
+  --include='.local/share/stardewvalley/***' \
+  --include='.local/share/Steam/' \
+  --include='.local/share/Steam/userdata/***' \
+  --include='.local/share/Steam/steamapps/' \
+  --include='.local/share/Steam/steamapps/compatdata/' \
+  --include='.local/share/Steam/steamapps/compatdata/892970/***' \
+  --include='.local/share/Steam/steamapps/compatdata/4597250/' \
+  --include='.local/share/Steam/steamapps/compatdata/4597250/' \
+  --include='.local/share/Steam/steamapps/compatdata/4597250/pfx/' \
+  --include='.local/share/Steam/steamapps/compatdata/4597250/pfx/drive_c/' \
+  --include='.local/share/Steam/steamapps/compatdata/4597250/pfx/drive_c/users/' \
+  --include='.local/share/Steam/steamapps/compatdata/4597250/pfx/drive_c/users/steamuser/' \
+  --include='.local/share/Steam/steamapps/compatdata/4597250/pfx/drive_c/users/steamuser/Saved Games/' \
+  --include='.local/share/Steam/steamapps/compatdata/4597250/pfx/drive_c/users/steamuser/Saved Games/Order of the Sinking Star/***' \
   --exclude='.local/share/vicinae/clipboard-data/' \
   --exclude='.local/share/vicinae/file-indexer.db' \
   --include='.local/share/vicinae/***' \
