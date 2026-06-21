@@ -5,6 +5,7 @@ return {
     clangd = true,
     gopls = true,
     jsonls = true,
+    kotlin_lsp = true,
     lemminx = true, -- xml
     lua_ls = true,
     markdown_oxide = true,
@@ -23,7 +24,6 @@ return {
     -- mdx_analyzer = true,
 
     -- kotlin_language_server = true,
-    -- kotlin_lsp = false,
 
     -- TODO(kyren): delete these?
     -- gh_actions_ls = true,

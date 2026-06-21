@@ -46,6 +46,7 @@ return {
             'jsdoc',
             'json',
             'jsonc',
+            'kotlin',
             'latex',
             'linkerscript',
             'lua',

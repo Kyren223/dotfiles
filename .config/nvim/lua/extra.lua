@@ -810,94 +810,133 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufEnter' }, {
 
 local nullaway_ns = vim.api.nvim_create_namespace('nullaway_diagnostics')
 
-vim.api.nvim_create_autocmd('BufWritePost', {
+-- TOGGLE: When true, isolates "[NullAway]" errors and strips the "[NullAway]"
+--         tag prefix from the inline diagnostic text.
+local strip_nullaway_prefix = true
+
+local debounce_timer = nil
+local active_job_id = nil
+local DEBOUNCE_MS = 800
+
+vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI', 'BufEnter', 'BufWritePost' }, {
     pattern = '*.java',
     callback = function()
-        print('[NullAway] File saved. Spawning background build...')
+        -- vim.notify("[NullAway] Event triggered, managing build window...", vim.log.levels.DEBUG)
 
         local bufnr = vim.api.nvim_get_current_buf()
         local current_file = vim.api.nvim_buf_get_name(bufnr)
 
         local gradlew_search = vim.fs.find('gradlew', { upward = true, path = vim.fs.dirname(current_file) })
         if #gradlew_search == 0 then
-            print('[NullAway Error] Could not find gradlew executable up the directory tree.')
             return
         end
 
         local gradlew_path = gradlew_search[1]
         local project_root = vim.fs.dirname(gradlew_path)
-        local diagnostics = {}
 
-        vim.fn.jobstart({ gradlew_path, 'compileJava', '--console=plain' }, {
-            cwd = project_root,
-            stdout_buffered = true,
-            stderr_buffered = true,
+        if debounce_timer then
+            debounce_timer:stop()
+            debounce_timer:close()
+            debounce_timer = nil
+        end
 
-            on_stderr = function(_, data)
-                if not data then
-                    return
+        debounce_timer = vim.uv.new_timer()
+        debounce_timer:start(
+            DEBOUNCE_MS,
+            0,
+            vim.schedule_wrap(function()
+                if active_job_id then
+                    vim.fn.jobstop(active_job_id)
+                    active_job_id = nil
                 end
 
-                -- Use a standard counter loop so we can look ahead to find javac carets
-                for i = 1, #data do
-                    local line = data[i]
-                    if line:find('error: %[NullAway%]') then
-                        local clean_line = line:match('^%s*(.*)')
-                        if clean_line then
-                            local path_and_line, msg = clean_line:match('^(.-):%s*error:%s*(.*)')
-                            if path_and_line and msg then
-                                local file_path, lnum_str = path_and_line:match('^(.*):(%d+)$')
-                                if file_path and lnum_str then
-                                    if vim.fs.normalize(file_path) == vim.fs.normalize(current_file) then
-                                        local col = 0
-                                        local end_col = nil
+                local diagnostics = {}
 
-                                        -- Look ahead up to 3 lines to grab the caret line (e.g., "           ^")
-                                        for offset = 1, 3 do
-                                            local lookahead_line = data[i + offset]
-                                            if lookahead_line then
-                                                local indent = lookahead_line:match('^(%s*)%^')
-                                                if indent then
-                                                    col = #indent -- Length of leading spaces equals the 0-indexed column
+                active_job_id = vim.fn.jobstart({ gradlew_path, 'compileJava', '--console=plain' }, {
+                    cwd = project_root,
+                    stdout_buffered = true,
+                    stderr_buffered = true,
 
-                                                    -- Smart Range: Extract the parameter text out of the message to calculate width
-                                                    local param_token = msg:match("parameter '([^']+)'")
-                                                    if param_token then
-                                                        end_col = col + #param_token
-                                                    end
-                                                    break
-                                                end
-                                            end
+                    on_stderr = function(_, data)
+                        if not data then
+                            return
+                        end
+
+                        local function process_entry(index)
+                            local line = data[index]
+
+                            if line:match('^%s') then
+                                return
+                            end
+                            if not line:find('error: %[NullAway%]') then
+                                return
+                            end
+
+                            local file_path, lnum_str, msg = line:match('^(.-):(%d+):%s+error:%s+(.*)')
+                            if not (file_path and lnum_str and msg) then
+                                return
+                            end
+                            if vim.fs.normalize(file_path) ~= vim.fs.normalize(current_file) then
+                                return
+                            end
+
+                            -- Clean up the diagnostic string based on the toggle configuration
+                            if strip_nullaway_prefix then
+                                msg = msg:gsub('^%[NullAway%]%s*', '')
+                            end
+
+                            local col = 0
+                            local end_col = nil
+
+                            for offset = 1, 3 do
+                                local lookahead = data[index + offset]
+                                if lookahead then
+                                    local indent = lookahead:match('^(%s*)%^')
+                                    if indent then
+                                        col = #indent
+                                        local param_token = msg:match("parameter '([^']+)'")
+                                        if param_token then
+                                            end_col = col + #param_token
                                         end
-
-                                        table.insert(diagnostics, {
-                                            lnum = tonumber(lnum_str) - 1,
-                                            col = col,
-                                            end_col = end_col, -- Neovim 0.11 will beautifully underline the exact token length
-                                            severity = vim.diagnostic.severity.ERROR,
-                                            message = msg,
-                                            source = 'NullAway',
-                                        })
+                                        break
                                     end
                                 end
                             end
-                        end
-                    end
-                end
-            end,
 
-            on_exit = function(_, exit_code)
-                vim.schedule(function()
-                    vim.diagnostic.reset(nullaway_ns, bufnr)
-                    if #diagnostics > 0 then
-                        vim.diagnostic.set(nullaway_ns, bufnr, diagnostics)
-                        print('[NullAway] Build complete. Placed ' .. #diagnostics .. ' error(s) inline.')
-                    else
-                        print('[NullAway] Build complete (Exit ' .. exit_code .. '). No errors for this file.')
-                    end
-                end)
-            end,
-        })
+                            table.insert(diagnostics, {
+                                lnum = tonumber(lnum_str) - 1,
+                                col = col,
+                                end_col = end_col,
+                                severity = vim.diagnostic.severity.ERROR,
+                                message = msg,
+                                source = 'NullAway',
+                            })
+                        end
+
+                        for i = 1, #data do
+                            process_entry(i)
+                        end
+                    end,
+
+                    on_exit = function(job_id, exit_code)
+                        if job_id ~= active_job_id then
+                            return
+                        end
+                        active_job_id = nil
+
+                        vim.schedule(function()
+                            vim.diagnostic.reset(nullaway_ns, bufnr)
+                            if #diagnostics > 0 then
+                                vim.diagnostic.set(nullaway_ns, bufnr, diagnostics)
+                            -- vim.notify("[NullAway] Live check placed " .. #diagnostics .. " error(s).", vim.log.levels.INFO)
+                            else
+                                -- vim.notify("[NullAway] Live check clean.", vim.log.levels.INFO)
+                            end
+                        end)
+                    end,
+                })
+            end)
+        )
     end,
 })
 
