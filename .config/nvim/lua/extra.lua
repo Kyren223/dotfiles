@@ -805,7 +805,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufEnter' }, {
 })
 
 ----------------------------------------------------------------------------
--- NOTE:
+-- NOTE: Show NullAway Jspecify diagnostics inside nvim
 ----------------------------------------------------------------------------
 
 local nullaway_ns = vim.api.nvim_create_namespace('nullaway_diagnostics')
@@ -943,3 +943,4 @@ vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI', 'BufEnter', 'BufWri
 ----------------------------------------------------------------------------
 -- NOTE:
 ----------------------------------------------------------------------------
+

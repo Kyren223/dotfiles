@@ -1,6 +1,8 @@
 return {
     'folke/noice.nvim',
     event = 'VeryLazy',
+    -- lazy = false,
+    -- enabled = false,
     opts = {
         -- notify = { enabled = false },
         lsp = {
@@ -8,13 +10,14 @@ return {
             override = {
                 -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                 -- override the default lsp markdown formatter with Noice
-                -- ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+                ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
                 -- override the lsp markdown formatter with Noice
                 -- ['vim.lsp.util.stylize_markdown'] = true,
+                -- ['cmp.entry.get_documentation'] = true,
             },
             hover = {
                 ---@type NoiceViewOptions
-                enabled = true,
+                enabled = false,
                 silent = false, -- set to true to not show a message if hover is not available
                 view = nil, -- when nil, use defaults from documentation
                 opts = {}, -- merged with defaults from documentation
@@ -34,13 +37,16 @@ return {
             -- defaults for hover and signature help
             documentation = {
                 view = 'hover',
-                ---@type NoiceViewOptions
+                --- @type NoiceViewOptions
                 opts = {
                     lang = 'markdown',
                     replace = true,
                     render = 'plain',
+                    -- render = function(buf, notif, hl, config)
+                    --     self:render(buf, { offset = offset, highlight = true, messages = messages })
+                    -- end,
                     format = { '{message}' },
-                    win_options = { concealcursor = 'n', conceallevel = 3 },
+                    win_options = { concealcursor = 'nvic', conceallevel = 3 },
                 },
             },
         },
@@ -108,4 +114,7 @@ return {
         'MunifTanjim/nui.nvim',
         'rcarriga/nvim-notify',
     },
+    config = function(_, opts)
+        require('noice').setup(opts)
+    end,
 }
