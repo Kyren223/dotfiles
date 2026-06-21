@@ -414,5 +414,88 @@ return {
             end,
             desc = 'Toggle [T]erminal',
         },
+
+        {
+            '<leader>st',
+            function()
+                -- vim.cmd('TodoLocList<cr>q')
+                require('snacks').picker({
+                    layout = 'telescope',
+                    follow = true,
+                    hidden = true,
+                    finder = 'proc',
+                    cmd = 'rg',
+                    args = {
+                        '--color=never',
+                        '--no-heading',
+                        '--with-filename',
+                        '--line-number',
+                        '--column',
+                        '--hidden',
+                        '--follow',
+                        -- The immutable background filter pattern
+                        [[\b(TODO|FIXME|BUG|HACK)\b]],
+                    },
+                    -- Transform raw ripgrep text output into structured items snacks can read
+                    transform = function(item)
+                        local file, line, col, text = item.text:match('^([^:]+):(%d+):(%d+):(.*)$')
+                        if file then
+                            item.file = file
+                            item.pos = { tonumber(line), tonumber(col) - 1 }
+                            item.text = text
+                        end
+                        return item
+                    end,
+                    -- Custom mapping injection
+                    win = {
+                        input = {
+                            keys = {
+                                ['<CR>'] = { 'confirm', mode = { 'n', 'i' } },
+                            },
+                        },
+                        list = {
+                            keys = {
+                                ['<CR>'] = 'confirm',
+                            },
+                        },
+                    },
+                })
+                -- Snacks.picker.grep({
+                --     layout = 'telescope',
+                --     follow = true,
+                --     hidden = true,
+                --     keywords = { 'TODO', 'WIP', 'FIX', 'FIXME', 'OPTIMIZE', 'SECURE' },
+                --     args = { '--regexp', '\\b(TODO|FIXME|BUG|HACK)\\b' },
+                -- })
+            end,
+            desc = '[S]earch [T]odos',
+        },
+        {
+            '<leader>sn',
+            function()
+                Snacks.picker.todo_comments({
+                    layout = 'telescope',
+                    follow = true,
+                    hidden = true,
+                    keywords = {
+                        'NOTE',
+                        'INFO',
+                        'DOCS',
+                        'TEST',
+                        'WARN',
+                        'WARNING',
+                        'SECURITY',
+                        'HACK',
+                        'IMPORTANT',
+                        'PERF',
+                        'STUDY',
+                        'UNSAFE',
+                        'SAFETY',
+                        'ERROR',
+                    },
+                })
+            end,
+            desc = '[S]earch [N]otes',
+        },
     },
 }

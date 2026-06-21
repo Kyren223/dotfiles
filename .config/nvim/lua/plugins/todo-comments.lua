@@ -3,45 +3,45 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     event = 'VeryLazy',
     keys = {
-        {
-            '<leader>st',
-            function()
-                Snacks.picker.todo_comments({
-                    layout = 'telescope',
-                    follow = true,
-                    hidden = true,
-                    keywords = { 'TODO', 'WIP', 'FIX', 'FIXME', 'OPTIMIZE', 'SECURE' },
-                })
-            end,
-            desc = '[S]earch [T]odos',
-        },
-        {
-            '<leader>sn',
-            function()
-                Snacks.picker.todo_comments({
-                    layout = 'telescope',
-                    follow = true,
-                    hidden = true,
-                    keywords = {
-                        'NOTE',
-                        'INFO',
-                        'DOCS',
-                        'TEST',
-                        'WARN',
-                        'WARNING',
-                        'SECURITY',
-                        'HACK',
-                        'IMPORTANT',
-                        'PERF',
-                        'STUDY',
-                        'UNSAFE',
-                        'SAFETY',
-                        'ERROR',
-                    },
-                })
-            end,
-            desc = '[S]earch [N]otes',
-        },
+        -- {
+        --     '<leader>st',
+        --     function()
+        --         Snacks.picker.todo_comments({
+        --             layout = 'telescope',
+        --             follow = true,
+        --             hidden = true,
+        --             keywords = { 'TODO', 'WIP', 'FIX', 'FIXME', 'OPTIMIZE', 'SECURE' },
+        --         })
+        --     end,
+        --     desc = '[S]earch [T]odos',
+        -- },
+        -- {
+        --     '<leader>sn',
+        --     function()
+        --         Snacks.picker.todo_comments({
+        --             layout = 'telescope',
+        --             follow = true,
+        --             hidden = true,
+        --             keywords = {
+        --                 'NOTE',
+        --                 'INFO',
+        --                 'DOCS',
+        --                 'TEST',
+        --                 'WARN',
+        --                 'WARNING',
+        --                 'SECURITY',
+        --                 'HACK',
+        --                 'IMPORTANT',
+        --                 'PERF',
+        --                 'STUDY',
+        --                 'UNSAFE',
+        --                 'SAFETY',
+        --                 'ERROR',
+        --             },
+        --         })
+        --     end,
+        --     desc = '[S]earch [N]otes',
+        -- },
     },
     opts = {
         signs = false,
