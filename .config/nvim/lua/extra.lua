@@ -232,7 +232,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufEnter' }, {
 ----------------------------------------------------------------------------
 -- NOTE: Function to highlight TODO/NOTE patterns
 ----------------------------------------------------------------------------
-local ns = vim.api.nvim_create_namespace('todo_highlight')
+local todo_ns = vim.api.nvim_create_namespace('todo_highlight')
 local groups = {
     todo = {
         keywords = { 'TODO', 'WIP' },
@@ -262,7 +262,7 @@ local scopes = {
 }
 
 function RenderTodoHighlights(bufnr)
-    vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+    vim.api.nvim_buf_clear_namespace(bufnr, todo_ns, 0, -1)
     local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 
     for i, line in ipairs(lines) do
@@ -270,7 +270,7 @@ function RenderTodoHighlights(bufnr)
             for _, kw in ipairs(cfg.keywords) do
                 for s, e in line:gmatch('()' .. kw .. '()') do
                     -- 1) highlight keyword
-                    vim.api.nvim_buf_add_highlight(bufnr, ns, cfg.hl, i - 1, s - 1, e - 1)
+                    vim.api.nvim_buf_add_highlight(bufnr, todo_ns, cfg.hl, i - 1, s - 1, e - 1)
 
                     local next_char = line:sub(e, e)
 
@@ -286,10 +286,10 @@ function RenderTodoHighlights(bufnr)
                         end
 
                         if pe then
-                            vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, ps - 1, ps)
-                            vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.bracket, i - 1, pe - 1, pe)
+                            vim.api.nvim_buf_add_highlight(bufnr, todo_ns, scopes.bracket, i - 1, ps - 1, ps)
+                            vim.api.nvim_buf_add_highlight(bufnr, todo_ns, scopes.bracket, i - 1, pe - 1, pe)
                             if pe - ps > 1 then
-                                vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.constant, i - 1, ps, pe - 1)
+                                vim.api.nvim_buf_add_highlight(bufnr, todo_ns, scopes.constant, i - 1, ps, pe - 1)
                             end
 
                             e = pe
@@ -303,7 +303,14 @@ function RenderTodoHighlights(bufnr)
                     end
 
                     if colon_pos then
-                        vim.api.nvim_buf_add_highlight(bufnr, ns, scopes.delimiter, i - 1, colon_pos - 1, colon_pos)
+                        vim.api.nvim_buf_add_highlight(
+                            bufnr,
+                            todo_ns,
+                            scopes.delimiter,
+                            i - 1,
+                            colon_pos - 1,
+                            colon_pos
+                        )
                     end
                 end
             end
@@ -469,7 +476,7 @@ function Compile_project(command)
     vim.api.nvim_buf_call(BuildTerminalBuf, function()
         -- vim.fn.termopen(command, vim.empty_dict())
         -- local job_id = vim.fn.termopen(vim.o.shell)
-       local job_id = vim.fn.jobstart(vim.o.shell, { term = true })
+        local job_id = vim.fn.jobstart(vim.o.shell, { term = true })
         if job_id > 0 then
             vim.fn.chansend(job_id, command)
         end
@@ -741,6 +748,158 @@ end
 
 -- 5. Create the Neovim user command (:MyCliCreate)
 vim.api.nvim_create_user_command('KMemory', create_and_or_open_memory, {})
+
+----------------------------------------------------------------------------
+-- NOTE: Generate java template
+----------------------------------------------------------------------------
+
+local function generate_java_boilerplate()
+    local buf_name = vim.api.nvim_buf_get_name(0)
+
+    if
+        buf_name == ''
+        or vim.bo.filetype ~= 'java'
+        or vim.api.nvim_buf_line_count(0) > 1
+        or vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] ~= ''
+    then
+        return
+    end
+
+    local filepath = buf_name
+    -- Find where the standard Java source roots begin
+    local source_root = filepath:match('.*/src/main/java/(.*)') or filepath:match('.*/src/test/java/(.*)')
+    if not source_root then
+        return -- Not inside a standard Java project directory structure
+    end
+
+    -- Separate the file name from the package directory paths
+    local package_path = source_root:match('(.*)/.*%.java$')
+    local class_name = source_root:match('.*/(.*)%.java$') or source_root:match('(.*)%.java$')
+    if not class_name then
+        return
+    end
+
+    local lines = {}
+
+    --  Generate the package declaration if it's not in the default root package
+    if package_path then
+        local package_name = package_path:gsub('/', '.')
+        table.insert(lines, 'package ' .. package_name .. ';')
+        table.insert(lines, '')
+    end
+
+    -- Generate the standard class declaration boilerplate
+    table.insert(lines, 'public final class ' .. class_name .. ' {')
+    table.insert(lines, '    ')
+    table.insert(lines, '}')
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+    local line = 4
+    local column = 4
+    pcall(vim.api.nvim_win_set_cursor, 0, { line, column }) -- put cursor inside the class
+end
+
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufEnter' }, {
+    pattern = '*.java',
+    callback = generate_java_boilerplate,
+})
+
+----------------------------------------------------------------------------
+-- NOTE:
+----------------------------------------------------------------------------
+
+local nullaway_ns = vim.api.nvim_create_namespace('nullaway_diagnostics')
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+    pattern = '*.java',
+    callback = function()
+        print('[NullAway] File saved. Spawning background build...')
+
+        local bufnr = vim.api.nvim_get_current_buf()
+        local current_file = vim.api.nvim_buf_get_name(bufnr)
+
+        local gradlew_search = vim.fs.find('gradlew', { upward = true, path = vim.fs.dirname(current_file) })
+        if #gradlew_search == 0 then
+            print('[NullAway Error] Could not find gradlew executable up the directory tree.')
+            return
+        end
+
+        local gradlew_path = gradlew_search[1]
+        local project_root = vim.fs.dirname(gradlew_path)
+        local diagnostics = {}
+
+        vim.fn.jobstart({ gradlew_path, 'compileJava', '--console=plain' }, {
+            cwd = project_root,
+            stdout_buffered = true,
+            stderr_buffered = true,
+
+            on_stderr = function(_, data)
+                if not data then
+                    return
+                end
+
+                -- Use a standard counter loop so we can look ahead to find javac carets
+                for i = 1, #data do
+                    local line = data[i]
+                    if line:find('error: %[NullAway%]') then
+                        local clean_line = line:match('^%s*(.*)')
+                        if clean_line then
+                            local path_and_line, msg = clean_line:match('^(.-):%s*error:%s*(.*)')
+                            if path_and_line and msg then
+                                local file_path, lnum_str = path_and_line:match('^(.*):(%d+)$')
+                                if file_path and lnum_str then
+                                    if vim.fs.normalize(file_path) == vim.fs.normalize(current_file) then
+                                        local col = 0
+                                        local end_col = nil
+
+                                        -- Look ahead up to 3 lines to grab the caret line (e.g., "           ^")
+                                        for offset = 1, 3 do
+                                            local lookahead_line = data[i + offset]
+                                            if lookahead_line then
+                                                local indent = lookahead_line:match('^(%s*)%^')
+                                                if indent then
+                                                    col = #indent -- Length of leading spaces equals the 0-indexed column
+
+                                                    -- Smart Range: Extract the parameter text out of the message to calculate width
+                                                    local param_token = msg:match("parameter '([^']+)'")
+                                                    if param_token then
+                                                        end_col = col + #param_token
+                                                    end
+                                                    break
+                                                end
+                                            end
+                                        end
+
+                                        table.insert(diagnostics, {
+                                            lnum = tonumber(lnum_str) - 1,
+                                            col = col,
+                                            end_col = end_col, -- Neovim 0.11 will beautifully underline the exact token length
+                                            severity = vim.diagnostic.severity.ERROR,
+                                            message = msg,
+                                            source = 'NullAway',
+                                        })
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end,
+
+            on_exit = function(_, exit_code)
+                vim.schedule(function()
+                    vim.diagnostic.reset(nullaway_ns, bufnr)
+                    if #diagnostics > 0 then
+                        vim.diagnostic.set(nullaway_ns, bufnr, diagnostics)
+                        print('[NullAway] Build complete. Placed ' .. #diagnostics .. ' error(s) inline.')
+                    else
+                        print('[NullAway] Build complete (Exit ' .. exit_code .. '). No errors for this file.')
+                    end
+                end)
+            end,
+        })
+    end,
+})
 
 ----------------------------------------------------------------------------
 -- NOTE:
