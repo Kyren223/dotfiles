@@ -120,21 +120,22 @@ local keymaps = {
     -- { 'n', '<leader>W', prev_diagnostic(severity.WARN), { desc = 'Goto [W]arning (prev)' } },
     { 'n', '<leader>D', cursor_diagnostics, { desc = '[D]iagnostics under cursor' } },
     -- MARK lsphover:
-    -- {
-    --     'n',
-    --     'K',
-    --     function()
-    --         vim.lsp.buf.hover({
-    --             border = 'rounded',
-    --             focusable = true,
-    --             relative = 'cursor',
-    --             wrap = true,
-    --             wrap_at = 120,
-    --             width = 120,
-    --         })
-    --     end,
-    --     { desc = '[D]iagnostics under cursor' },
-    -- },
+    {
+        'n',
+        'K',
+        function()
+            vim.lsp.buf.hover({
+                border = 'rounded',
+                focusable = true,
+                relative = 'cursor',
+                wrap = true,
+                wrap_at = 120,
+                width = 120,
+                height = 20,
+            })
+        end,
+        { desc = '[D]iagnostics under cursor' },
+    },
 }
 
 local function set_keymaps(tbl, bufnr)

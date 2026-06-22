@@ -10,7 +10,7 @@ return {
             override = {
                 -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                 -- override the default lsp markdown formatter with Noice
-                ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+                -- ['vim.lsp.util.convert_input_to_markdown_lines'] = false,
                 -- override the lsp markdown formatter with Noice
                 -- ['vim.lsp.util.stylize_markdown'] = true,
                 -- ['cmp.entry.get_documentation'] = true,
