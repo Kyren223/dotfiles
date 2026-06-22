@@ -15,9 +15,9 @@ require('options')
 -- WARNING: not sure why it was in schedule but that caused issues
 -- WARNING: so I removed it
 -- vim.schedule(function()
-    require('keymaps')
-    require('usrcmds')
-    require('extra')
+require('keymaps')
+require('usrcmds')
+require('extra')
 -- end)
 
 -- Enable all LSPs

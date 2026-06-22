@@ -1,11 +1,14 @@
 -- System
 vim.g.have_nerd_font = true
 vim.opt.mouse = 'a' -- enable mouse
-vim.opt.clipboard = 'unnamedplus' -- use system clipboard
 vim.opt.undofile = true -- persist undo history by saving it to a file
 vim.opt.undolevels = 10000
 vim.opt.exrc = false -- WARNING: runs .nvim.lua in cwd, which may execute arbitrary code
 vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
+
+vim.schedule(function()
+    vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- Tab
 vim.opt.expandtab = true -- convert tabs to spaces
@@ -52,7 +55,8 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 0 -- TODO(kyren): do I like this as 0? (was 8)
 vim.opt.termguicolors = true
 vim.opt.splitkeep = 'screen'
-vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+-- vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions'
+vim.opt.sessionoptions = 'blank,buffers,curdir,help,tabpages,winsize,winpos'
 
 -- Disable warnings for missing language providers
 vim.g.loaded_node_provider = 0
@@ -61,8 +65,13 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_python3_provider = 0
 
 -- LSP
-vim.lsp.inlay_hint.enable()
 vim.diagnostic.config({ virtual_text = false, update_in_insert = true })
+vim.lsp.inlay_hint.enable()
+-- vim.api.nvim_create_autocmd({ 'LspAttach' }, {
+--     callback = function()
+--         vim.lsp.inlay_hint.enable()
+--     end,
+-- })
 
 -- Add support for mdx files
 vim.filetype.add({
@@ -74,3 +83,7 @@ vim.filetype.add({
 -- Zig LSP settings
 vim.g.zig_fmt_parse_errors = 0
 vim.g.zig_fmt_autosave = 0
+
+-- Disable folds, might not need
+vim.o.foldmethod = 'manual'
+vim.o.foldenable = false
