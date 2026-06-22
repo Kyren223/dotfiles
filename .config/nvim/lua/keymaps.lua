@@ -112,7 +112,45 @@ local keymaps = {
         end,
         { desc = 'Show [P]arameters' },
     },
-    { 'n', 'R', '<cmd>Lspsaga rename<cr>', { desc = '[R]ename' } },
+    -- { 'n', 'R', '<cmd>Lspsaga rename<cr>', { desc = '[R]ename' } },
+    {
+        'n',
+        'r',
+        function()
+            -- require('live-rename').rename()
+            -- require('live-rename').rename({ cursorpos = -1 })
+            -- require('live-rename').rename({ insert = true, cursorpos = -1 })
+
+            require('live-rename').rename({ cursorpos = -1 })
+            vim.schedule(function()
+                vim.api.nvim_feedkeys('A', 'n', false)
+            end)
+        end,
+        { desc = '[R]ename' },
+    },
+    {
+        'n',
+        'rr',
+        function()
+            -- require('live-rename').rename()
+            -- require('live-rename').rename({ cursorpos = -1 })
+            -- require('live-rename').rename({ insert = true, cursorpos = -1 })
+
+            require('live-rename').rename({ cursorpos = -1 })
+            vim.schedule(function()
+                vim.api.nvim_feedkeys('A', 'n', false)
+            end)
+        end,
+        { desc = '[R]ename' },
+    },
+    {
+        'n',
+        'R',
+        function()
+            require('live-rename').rename({ insert = true, text = '' })
+        end,
+        { desc = '[R]ename' },
+    },
     { { 'n', 'i' }, '<M-Enter>', '<cmd>Lspsaga code_action<cr>', { desc = 'Code Actions' } },
     -- { 'n', '<leader>e', next_diagnostic(severity.ERROR), { desc = 'Goto [E]rror' } },
     -- { 'n', '<leader>E', prev_diagnostic(severity.ERROR), { desc = 'Goto [E]rror (prev)' } },
