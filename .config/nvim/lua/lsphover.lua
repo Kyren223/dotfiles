@@ -31,7 +31,7 @@ vim.lsp.util.convert_input_to_markdown_lines = function(input, contents)
     end
 
     if vim.bo.filetype == 'java' then
-        vim.notify('boop')
+        -- vim.notify('boop')
         -- vim.notify('lines before: ' .. vim.inspect(lines))
         -- vim.notify('lines after: ' .. vim.inspect(lines))
 
@@ -65,7 +65,7 @@ vim.lsp.util.convert_input_to_markdown_lines = function(input, contents)
         table.insert(lines, ' ')
     end
 
-    vim.notify('bomp')
+    -- vim.notify('bomp')
     return lines
 end
 
@@ -132,8 +132,8 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
             -- Ensure it's a floating window before applying local settings
             if win > -1 and vim.api.nvim_win_get_config(win).relative ~= '' then
                 -- Set your preferred conceal options
-                vim.wo[win].conceallevel = 2
-                vim.wo[win].concealcursor = 'n'
+                vim.wo[win].conceallevel = 3
+                vim.wo[win].concealcursor = 'nvic'
                 vim.wo[win].linebreak = true
 
                 -- if not vim.b[args.buf].padded then
