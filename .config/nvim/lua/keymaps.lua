@@ -131,7 +131,7 @@ local keymaps = {
                 wrap = true,
                 wrap_at = 120,
                 width = 120,
-                height = 20,
+                max_height = 20,
             })
         end,
         { desc = '[D]iagnostics under cursor' },

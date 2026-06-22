@@ -119,40 +119,40 @@ end
 --     end
 -- end, 2000)
 
--- To handle window-local options like conceallevel and concealcursor,
--- we need to hook into the buffer creation event for the LSP floating window.
-vim.api.nvim_create_autocmd('BufWinEnter', {
-    group = vim.api.nvim_create_augroup('LspHoverCustom', { clear = true }),
-    callback = function(args)
-        -- Check if the buffer is an LSP floating doc window (filetype is typically 'markdown')
-        if vim.bo[args.buf].filetype == 'markdown' then
-            -- Get the current window ID for the buffer that just entered
-            local win = vim.fn.bufwinid(args.buf)
+local function is_java_project()
+    -- Searches upward from the current buffer for common Java project markers
+    local java_root = vim.fs.root(0, { 'pom.xml', 'build.gradle', 'settings.gradle', '.project', 'gradlew' })
+    return java_root ~= nil
+end
 
-            -- Ensure it's a floating window before applying local settings
-            if win > -1 and vim.api.nvim_win_get_config(win).relative ~= '' then
-                -- Set your preferred conceal options
+pcall(vim.treesitter.language.register, 'markdown', 'lsphover')
+vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('LspHoverSyntaxLink', { clear = true }),
+    pattern = 'lsphover',
+    callback = function()
+        vim.cmd('runtime! syntax/markdown.vim')
+        vim.cmd('runtime! ftplugin/markdown.vim')
+    end,
+})
+vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('LspHoverCustom', { clear = true }),
+    pattern = 'markdown', -- Fires exactly when a buffer becomes 'markdown'
+    callback = function(args)
+        local win = vim.fn.bufwinid(args.buf)
+
+        -- Ensure it's a valid floating window
+        if win > -1 and vim.api.nvim_win_get_config(win).relative ~= '' then
+            if is_java_project() then
+                -- vim.notify('java')
                 vim.wo[win].conceallevel = 3
                 vim.wo[win].concealcursor = 'nvic'
-                vim.wo[win].linebreak = true
-
-                -- if not vim.b[args.buf].padded then
-                --     vim.b[args.buf].padded = true -- Guard flag against infinite loops
-                --     local lines = { 'foo' }
-                --     vim.api.nvim_buf_set_lines(args.buf, 0, -1, false, lines)
-                --
-                --     -- local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
-                --     -- for i, line in ipairs(lines) do
-                --     --     lines[i] = '  ' .. line .. '  ' -- 2 spaces left, 2 spaces right
-                --     -- end
-                --     -- vim.api.nvim_buf_set_lines(args.buf, 0, -1, false, lines)
-                --     --
-                --     -- -- 3. Expand the window width by 4 so the text doesn't wrap awkwardly
-                --     -- local config = vim.api.nvim_win_get_config(win)
-                --     -- config.width = config.width + 4
-                --     -- vim.api.nvim_win_set_config(win, config)
-                -- end
+            else
+                -- vim.notify('not java')
+                vim.wo[win].concealcursor = ''
+                vim.wo[win].conceallevel = 2
             end
+            vim.wo[win].linebreak = true
+            vim.bo[args.buf].filetype = 'lsphover'
         end
     end,
 })
