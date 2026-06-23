@@ -1,0 +1,9 @@
+{
+  "proc": {
+    "body": [
+      "public static void $0() {",
+      "}"
+    ],
+    "prefix": "proc"
+  }
+}
