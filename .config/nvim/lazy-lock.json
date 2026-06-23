@@ -1,8 +1,9 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "01019c2889fa6c63a80a223c55c1d28999b5c959" },
+  "LuaSnip": { "branch": "master", "commit": "642b0c595e11608b4c18219e93b88d7637af27bc" },
   "auto-save.nvim": { "branch": "main", "commit": "37c82fd548e3f5ffc2d9d020a65dac1044584f44" },
   "auto-session": { "branch": "main", "commit": "3e145ee9af42eb6764908a1a481f53fe7f0bdbe5" },
-  "blink-cmp-git": { "branch": "master", "commit": "a820245eb0e5cb44ed0c27c63a41d90635b39e0e" },
+  "blink-cmp-git": { "branch": "master", "commit": "d3f2a9067ab028e779d08e61bf0b054939011316" },
   "blink.cmp": { "branch": "main", "commit": "bae4bae0eedd1fa55f34b685862e94a222d5c6f8" },
   "ccc.nvim": { "branch": "main", "commit": "9d1a256e006decc574789dfc7d628ca11644d4c2" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "db28f29be928d18cbfb86fbfb9f83f584f658feb" },
