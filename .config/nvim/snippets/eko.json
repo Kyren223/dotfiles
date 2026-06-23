@@ -1,16 +1,18 @@
 {
-  "eko dberr": {
+  "dberr": {
     "body": "slog.ErrorContext(ctx, \"database error\", \"error\", err)",
-    "prefix": "dberr"
+    "prefix": "dberr",
+    "scope": "go"
   },
-  "eko serverapi": {
+  "serverapi": {
     "body": [
       "func $1(ctx context.Context, sess *session.Session, request *packet$0) packet.Payload {",
       "}"
     ],
-    "prefix": "serverapi"
+    "prefix": "serverapi",
+    "scope": "go"
   },
-  "eko teamodel": {
+  "teamodel": {
     "body": [
       "import (",
       "\t\"fmt\"",
@@ -42,6 +44,7 @@
       "\t}",
       "}"
     ],
-    "prefix": "teamodel"
+    "prefix": "teamodel",
+    "scope": "go"
   }
 }
