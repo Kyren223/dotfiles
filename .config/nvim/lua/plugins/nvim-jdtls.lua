@@ -53,6 +53,23 @@ return {
                         errors = {
                             incompleteClasspath = 'warning',
                         },
+                        completion = {
+                            -- Stops jdtls from injecting variable placeholders when autocompleting
+                            guessMethodArguments = 'off',
+
+                            filteredTypes = {
+                                'edu.umd.cs.findbugs.*',
+                                'javax.annotation.*',
+                                'org.checkerframework.*',
+                                'org.eclipse.sisu.*',
+                                -- 'org.jetbrains.annotations.*',
+                                'org.sonatype.inject.*',
+                                'java.awt.*',
+                                'com.sun.*',
+                                'sun.*',
+                                'jdk.*',
+                            },
+                        },
                     },
                 },
             }
