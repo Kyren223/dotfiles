@@ -126,9 +126,7 @@ return {
                             guessMethodArguments = 'off',
 
                             favoriteStaticMembers = {
-                                'codes.kyren.kapi.Kapi.expect',
-                                'codes.kyren.kapi.Kapi.panic',
-                                'codes.kyren.kapi.Kapi.unreachable',
+                                'codes.kyren.kapi.utility.Assert.*',
                             },
 
                             filteredTypes = {
