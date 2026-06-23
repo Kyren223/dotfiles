@@ -43,7 +43,13 @@ return {
                                 nonnullbydefault = { 'org.jspecify.annotations.NullMarked' },
                             },
                         },
-                        format = { enabled = true },
+                        format = {
+                            enabled = true,
+                            settings = {
+                                url = '/home/kyren/.config/nvim/eclipse-formatter.xml',
+                                profile = 'Custom_Style',
+                            },
+                        },
                         errors = {
                             incompleteClasspath = 'warning',
                         },
