@@ -11,20 +11,6 @@ return {
     ---@type blink.cmp.Config
     opts = {
         snippets = { preset = 'luasnip' },
-        -- snippets = {
-        --     expand = function(snippet)
-        --         require('luasnip').lsp_expand(snippet)
-        --     end,
-        --     active = function(filter)
-        --         if filter and filter.direction then
-        --             return require('luasnip').jumpable(filter.direction)
-        --         end
-        --         return require('luasnip').in_snippet()
-        --     end,
-        --     jump = function(direction)
-        --         require('luasnip').jump(direction)
-        --     end,
-        -- },
         keymap = {
             preset = 'enter',
             ['<C-e>'] = {},
@@ -38,7 +24,16 @@ return {
                 function(cmp)
                     local item = cmp.get_selected_item()
 
+                    -- NOTE(kyren): a bunch of annoying hacky stuff that basically takes a thing
+                    -- like "foo.unw|" and turns it into "foo.unwrap|" by adding only the "rap"
+                    -- part, then expands this with luasnip to the full completion.
+                    -- Because I have auto_insert set to false it means blink doesn't insert the
+                    -- actual .unwrap and even when selecting it, it just exapnds it without
+                    -- inserting it into the actual buffer, so the solution for me was to just
+                    -- add it, then manually expand it by hijacking this function.
                     if item and item.label == '.unwrap' then
+                        -- I think it must be schedule so it doesn't happen immediately but on the
+                        -- next "tick", so blink doesn't explain
                         vim.schedule(function()
                             local ctx = cmp.get_context()
                             if not ctx or not ctx.bounds then
@@ -211,7 +206,7 @@ return {
     },
     opts_extend = { 'sources.default' },
 
-    -- TODO: pressing backk (deleting), should re-show completion menu
+    -- TODO: pressing back (deleting), should re-show completion menu
 }
 
 -- From LazyVim

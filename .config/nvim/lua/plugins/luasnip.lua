@@ -66,11 +66,11 @@ return {
                 trig = '.unwrap',
             }, {
                 f(function(_, parent)
-                    -- Use POSTFIX_MATCH instead of LS_TSMATCH
                     local match = parent.snippet.env.LS_TSMATCH
                     -- vim.notify('postfix: "' .. vim.inspect(match) .. '"')
 
                     if not match then
+                        vim.notify('warning empty unwrap', vim.log.levels.WARN)
                         return { 'unwrap()' }
                     end
 
@@ -84,64 +84,6 @@ return {
                     return vim.split(wrapped, '\n', { plain = true })
                 end),
             }),
-
-            -- ts_postfix({
-            --     trig = 'unwrap',
-            --     matchTSNode = {
-            --         query = [[
-            --               (field_access
-            --                 object: (
-            --                     field_access
-            --                     method_invocation
-            --                     identifier
-            --                 ) @my_object
-            --               ) @my_field
-            --         ]],
-            --         query_lang = 'java',
-            --         select = 'longest',
-            --     },
-            -- }, {
-            --     f(function(_, parent)
-            --         -- Use POSTFIX_MATCH instead of LS_TSMATCH
-            --         local match = parent.snippet.env.POSTFIX_MATCH
-            --         vim.notify('postfix: "' .. vim.inspect(match) .. '"')
-            --
-            --         if not match then
-            --             return { 'unwrap()' }
-            --         end
-            --
-            --         -- If LuaSnip provides the match as a table, concat it
-            --         if type(match) == 'table' then
-            --             match = table.concat(match, '\n')
-            --         end
-            --
-            --         -- Format the string
-            --         local wrapped = string.format('unwrap(%s)', match)
-            --
-            --         -- Split it back into a table of strings to safely handle any newlines
-            --         return vim.split(wrapped, '\n', { plain = true })
-            --     end),
-            -- }, { condition = require('luasnip.util.util').yes }),
         })
-        -- postfix({ trig = 'unwrap', match_pattern = [[[%w%.%_%-%"%']+$]] }, {
-        --     f(function(_, parent)
-        --         local match = parent.snippet.env.POSTFIX_MATCH
-        --         if match == nil then
-        --             return 'bunger'
-        --         end
-        --         -- match = match:sub(1, -2)
-        --         return 'unwrap(' .. match .. ')'
-        --     end, {}),
-        -- }, { condition = require('luasnip.util.util').yes }),
-
-        -- postfix({ trig = '.unwrap', snippetType = 'snippet' }, {
-        --     f(function(_, parent)
-        --         local match = parent.snippet.env.POSTFIX_MATCH
-        --         if match == nil then
-        --             return 'bunger'
-        --         end
-        --         return '[' .. match .. ']'
-        --     end, {}),
-        -- }),
     end,
 }
