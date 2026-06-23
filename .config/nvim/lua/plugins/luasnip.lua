@@ -52,7 +52,7 @@ return {
         local k = require('luasnip.nodes.key_indexer').new_key
         local postfix_builtin = require('luasnip.extras.treesitter_postfix').builtin
 
-        ls.add_snippets('all', {
+        ls.add_snippets('java', {
             ts_postfix({
                 matchTSNode = postfix_builtin.tsnode_matcher.find_topmost_types({
                     'identifier',
