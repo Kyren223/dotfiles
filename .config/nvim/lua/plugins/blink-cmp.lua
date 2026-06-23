@@ -5,10 +5,26 @@ return {
     version = '1.*',
     dependencies = {
         { 'Kaiser-Yang/blink-cmp-git', dependencies = { 'nvim-lua/plenary.nvim' } },
+        { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
+        snippets = { preset = 'luasnip' },
+        -- snippets = {
+        --     expand = function(snippet)
+        --         require('luasnip').lsp_expand(snippet)
+        --     end,
+        --     active = function(filter)
+        --         if filter and filter.direction then
+        --             return require('luasnip').jumpable(filter.direction)
+        --         end
+        --         return require('luasnip').in_snippet()
+        --     end,
+        --     jump = function(direction)
+        --         require('luasnip').jump(direction)
+        --     end,
+        -- },
         keymap = {
             preset = 'enter',
             ['<C-e>'] = {},
@@ -18,6 +34,36 @@ return {
             ['<C-f>'] = {},
             ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
             ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+            ['<cr>'] = {
+                function(cmp)
+                    local item = cmp.get_selected_item()
+
+                    if item and item.label == '.unwrap' then
+                        vim.schedule(function()
+                            local ctx = cmp.get_context()
+                            if not ctx or not ctx.bounds then
+                                return cmp.accept()
+                            end
+                            local partial = ctx.get_keyword() or ''
+                            local full = cmp.get_selected_item().label
+                            local rest = full:sub(#partial + 1 + 1)
+
+                            local row = ctx.bounds.line_number - 1
+                            local col = ctx.bounds.start_col + ctx.bounds.length
+
+                            local line = vim.api.nvim_buf_get_lines(ctx.bufnr, row, row + 1, false)[1]
+                            local cursor_at_eol = col > #line
+
+                            vim.api.nvim_put({ rest }, 'c', cursor_at_eol, true)
+                            require('luasnip').expand()
+                        end)
+                        return true
+                    end
+
+                    return cmp.accept()
+                end,
+                'fallback',
+            },
         },
 
         completion = {
@@ -31,7 +77,16 @@ return {
             keyword = { range = 'full' },
 
             -- Preselect first one, don't complete until confirmation
-            list = { selection = { preselect = true, auto_insert = false } },
+            list = {
+                selection = {
+                    preselect = true,
+                    -- auto_insert = false,
+                    auto_insert = function(ctx)
+                        -- vim.notify()
+                        return ctx.get_keyword() == 'unwrap'
+                    end,
+                },
+            },
 
             menu = {
                 draw = {
@@ -82,31 +137,7 @@ return {
                 },
 
                 snippets = {
-                    -- score_offset = 200, -- make snippets highest priority
-                    transform_items = function(_, items)
-                        return vim.tbl_filter(function(item)
-                            -- vim.print(item)
-                            if item.kind ~= require('blink.cmp.types').CompletionItemKind.Snippet then
-                                return true
-                            end
-
-                            local name = item.description
-                            -- vim.print(name)
-                            local parts = vim.split(name, ' ', { trimempty = false })
-                            local namespace = #parts > 1 and parts[1] or nil
-                            -- vim.print(namespace)
-                            if not namespace then
-                                return true
-                            end
-
-                            -- vim.print(vim.fn.getcwd())
-                            local path = vim.split(vim.fn.getcwd(), '/')
-                            local dir = path[#path]
-                            -- vim.print(dir)
-
-                            return dir == namespace
-                        end, items)
-                    end,
+                    score_offset = 200, -- make snippets highest priority
                 },
 
                 lsp = {
@@ -181,7 +212,6 @@ return {
     opts_extend = { 'sources.default' },
 
     -- TODO: pressing backk (deleting), should re-show completion menu
-    -- TODO: ghost text only for LLMs?
 }
 
 -- From LazyVim
