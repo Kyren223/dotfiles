@@ -1,3 +1,11 @@
+local java_package_weights = {
+    ['codes%.kyren'] = 100,
+    ['org%.bukkit'] = 100,
+    ['io%.papermc'] = 100,
+    ['org%.jspecify'] = 80,
+    ['org%.jetbrains'] = 80,
+    ['net%.minecraft'] = 50,
+}
 return {
     'mfussenegger/nvim-jdtls',
     ft = { 'java' },
@@ -21,6 +29,15 @@ return {
 
             -- Safely mix standard blink capabilities with internal jdtls mappings
             local lsp_capabilities = require('blink.cmp').get_lsp_capabilities()
+
+            local function get_action_weight(title)
+                for pattern, weight in pairs(java_package_weights) do
+                    if title:match(pattern) then
+                        return weight
+                    end
+                end
+                return 0 -- Neutral weight for untracked packages
+            end
 
             local opts = {
                 cmd = { 'jdtls', '-data', workspace_dir },
@@ -57,6 +74,12 @@ return {
                             -- Stops jdtls from injecting variable placeholders when autocompleting
                             guessMethodArguments = 'off',
 
+                            favoriteStaticMembers = {
+                                'codes.kyren.kapi.Kapi.expect',
+                                'codes.kyren.kapi.Kapi.panic',
+                                'codes.kyren.kapi.Kapi.unreachable',
+                            },
+
                             filteredTypes = {
                                 'edu.umd.cs.findbugs.*',
                                 'javax.annotation.*',
@@ -79,6 +102,46 @@ return {
                         },
                     },
                 },
+
+                on_attach = function(client, bufnr)
+                    if client._code_action_sorted then
+                        return
+                    end
+                    client._code_action_sorted = true
+
+                    -- Hook into the absolute lowest-level RPC pipe.
+                    -- This catches 100% of traffic, bypassing any plugin API overrides.
+                    local orig_rpc_request = client.rpc.request
+
+                    client.rpc.request = function(method, params, handler, ...)
+                        if method == 'textDocument/codeAction' then
+                            local wrapped_handler = function(err, result, ctx, config)
+                                if not err and result and type(result) == 'table' then
+                                    -- Sort the raw array (Respected by native vim.ui.select)
+                                    table.sort(result, function(a, b)
+                                        local title_a = a.title or ''
+                                        local title_b = b.title or ''
+                                        local weight_a = get_action_weight(title_a)
+                                        local weight_b = get_action_weight(title_b)
+
+                                        if weight_a ~= weight_b then
+                                            return weight_a > weight_b
+                                        end
+                                        return title_a < title_b
+                                    end)
+                                end
+
+                                if handler then
+                                    return handler(err, result, ctx, config)
+                                end
+                            end
+
+                            return orig_rpc_request(method, params, wrapped_handler, ...)
+                        end
+
+                        return orig_rpc_request(method, params, handler, ...)
+                    end
+                end,
             }
 
             require('jdtls').start_or_attach(opts)
@@ -91,4 +154,5 @@ return {
             callback = setup_jdtls,
         })
     end,
+    java_package_weights = java_package_weights,
 }

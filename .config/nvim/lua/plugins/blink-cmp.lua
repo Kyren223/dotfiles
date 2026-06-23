@@ -108,6 +108,32 @@ return {
                         end, items)
                     end,
                 },
+
+                lsp = {
+                    name = 'lsp',
+                    module = 'blink.cmp.sources.lsp',
+                    transform_items = function(ctx, items)
+                        if vim.bo[ctx.bufnr].filetype == 'java' then
+                            local java_package_weights = require('plugins.nvim-jdtls').java_package_weights
+
+                            for _, item in ipairs(items) do
+                                -- jdtls puts the fully qualified package path inside 'detail'
+                                local detail = item.detail or ''
+                                if detail ~= '' then
+                                    for pattern, weight in pairs(java_package_weights) do
+                                        pattern = '^' .. pattern
+                                        if detail:match(pattern) then
+                                            item.score_offset = weight
+                                            break -- Match found, move to the next item
+                                        end
+                                    end
+                                end
+                            end
+                        end
+
+                        return items
+                    end,
+                },
             },
         },
 
