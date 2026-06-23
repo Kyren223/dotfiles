@@ -1,11 +1,62 @@
-local java_package_weights = {
-    ['codes%.kyren'] = 100,
-    ['org%.bukkit'] = 100,
-    ['io%.papermc'] = 100,
-    ['org%.jspecify'] = 80,
-    ['org%.jetbrains'] = 80,
-    ['net%.minecraft'] = 50,
+local java_packages_order = {
+    'codes%.kyren',
+    'org%.bukkit',
+    { 'io%.papermc', 100 },
+    'org%.jspecify',
+    { 'org%.jetbrains', 50 },
+    { 'net%.minecraft', 10 },
 }
+
+local function process_weights(list)
+    local result = {}
+    local current_weight = 0
+
+    -- Process in reverse: from bottom to top
+    for i = #list, 1, -1 do
+        local entry = list[i]
+        local pattern, weight
+
+        -- Extract pattern and potential explicit weight
+        if type(entry) == 'table' then
+            pattern = entry[1]
+            weight = entry[2]
+        else
+            pattern = entry
+            weight = nil
+        end
+
+        -- Determine the weight to assign
+        local final_weight
+        if weight then
+            if weight >= current_weight then
+                final_weight = weight
+                current_weight = weight + 1 -- Update counter for next iteration
+            else
+                local message = string.format(
+                    'Weight %d for %s is smaller than previous, using current counter %d',
+                    weight,
+                    pattern,
+                    current_weight
+                )
+                vim.defer_fn(function()
+                    vim.notify(message, vim.log.levels.WARN)
+                end, 5 * 1000)
+                final_weight = weight
+                current_weight = current_weight + 1 -- Increment counter normally
+            end
+        else
+            final_weight = current_weight
+            current_weight = current_weight + 1
+        end
+
+        result[pattern] = final_weight
+    end
+
+    return result
+end
+
+local java_package_weights = process_weights(java_packages_order)
+
 return {
     'mfussenegger/nvim-jdtls',
     ft = { 'java' },
