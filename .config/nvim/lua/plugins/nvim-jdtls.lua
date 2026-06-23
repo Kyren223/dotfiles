@@ -70,6 +70,13 @@ return {
                                 'jdk.*',
                             },
                         },
+                        jdt = {
+                            ls = {
+                                kotlinSupport = {
+                                    enabled = true,
+                                },
+                            },
+                        },
                     },
                 },
             }
