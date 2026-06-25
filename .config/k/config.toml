@@ -14,11 +14,9 @@ rpms_path = "$HOME/rpms"
 
 copr = '''
 scottames/ghostty
-yorickpeterse/stylua
 quadratech188/vicinae
 ilyaz/LACT
 g3tchoo/prismlauncher
-kylegospo/obs-vkcapture
 '''
 
 packages = '''
@@ -58,7 +56,6 @@ vesktop-1.6.5.x86_64.rpm
 qdbus
 loupe
 chromium
-stylua
 caddy
 etckeeper
 vicinae
@@ -97,7 +94,7 @@ inotify-tools # inotifywait and inotifywatch
 imhex-1.38.1-Fedora-43-x86_64.rpm
 gnome-clocks
 uctags-2026.06.05-1.fc44.x86_64.rpm # C document symbols kinda I think
-vivaldi-stable-8.0.4033.46-1.x86_64.rpm
+# vivaldi-stable-8.0.4033.46-1.x86_64.rpm
 protonvpn-stable-release-1.0.4-1.noarch.rpm proton-vpn-gnome-desktop 
 kvantum
 pipewire-module-roc
