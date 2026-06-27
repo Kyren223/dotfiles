@@ -117,14 +117,13 @@ local keymaps = {
         'n',
         'r',
         function()
-            -- require('live-rename').rename()
+            require('live-rename').rename()
             -- require('live-rename').rename({ cursorpos = -1 })
             -- require('live-rename').rename({ insert = true, cursorpos = -1 })
-
-            require('live-rename').rename({ cursorpos = -1 })
-            vim.schedule(function()
-                vim.api.nvim_feedkeys('A', 'n', false)
-            end)
+            -- require('live-rename').rename({ cursorpos = -1 })
+            -- vim.schedule(function()
+            --     vim.api.nvim_feedkeys('A', 'n', false)
+            -- end)
         end,
         { desc = '[R]ename' },
     },

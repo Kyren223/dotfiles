@@ -132,7 +132,7 @@ return {
                 },
 
                 snippets = {
-                    score_offset = 200, -- make snippets highest priority
+                    -- score_offset = 200, -- make snippets highest priority
                 },
 
                 lsp = {
