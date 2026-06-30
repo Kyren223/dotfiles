@@ -19,10 +19,10 @@ window:
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
         query: input: ""
-        cursor_line: 82
-        cursor_column: 1
-        mark_line: 82
-        mark_column: 1
+        cursor_line: 159
+        cursor_column: 42
+        mark_line: 159
+        mark_column: 42
       }
       text:
       {
@@ -31,13 +31,13 @@ window:
         auto: 0
         query:
         {
-          input: kr_node_span
+          input: ""
           cmd: search
         }
-        cursor_line: 6977
-        cursor_column: 45
-        mark_line: 6977
-        mark_column: 45
+        cursor_line: 647
+        cursor_column: 46
+        mark_line: 647
+        mark_column: 46
       }
       text:
       {
@@ -48,9 +48,9 @@ window:
           input: ""
           cmd: search_backwards
         }
-        cursor_line: 17
+        cursor_line: 29
         cursor_column: 1
-        mark_line: 17
+        mark_line: 29
         mark_column: 1
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
       }
@@ -63,9 +63,9 @@ window:
           input: ""
           cmd: search
         }
-        cursor_line: 208
+        cursor_line: 165
         cursor_column: 1
-        mark_line: 208
+        mark_line: 165
         mark_column: 1
       }
     }
@@ -124,6 +124,10 @@ window:
           watch: "text(array(src.value + token.index, src.length))"
           watch: "text(array(span.content.value + line_start_offset, span.end - line_start_offset))"
           watch: "span.content.value[span.end]"
+          watch: token
+          watch: "(char)c"
+          watch: tokenizer
+          watch: "text(array(tokenizer.src_.value + tokenizer.current, tokenizer.src_.length - tokenizer.current))"
         }
         watch: expression: "query:watch_pins"
       }
@@ -147,7 +151,6 @@ window:
         {
           text:
           {
-            selected
             expression: "query:output"
             query: input: ""
             cursor_line: 3
@@ -155,7 +158,7 @@ window:
             mark_line: 3
             mark_column: 1
           }
-          watch: expression: "query:targets"
+          watch: selected expression: "query:targets"
           watch: expression: "query:breakpoints"
           watch: expression: "query:watch_pins"
           watch: expression: "query:type_views"
@@ -320,18 +323,24 @@ breakpoint:
 {
   project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
   source_location: "../../projects/krypton/src/krypton/libkrypton.c:6977:1"
-  hit_count: 1
+  hit_count: 0
 }
 breakpoint:
 {
   project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
   source_location: "../../projects/krypton/src/krypton/libkrypton.c:5250:1"
+  hit_count: 0
+}
+breakpoint:
+{
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+  source_location: "../../projects/krypton/src/krypton/krypton_main.c:162:1"
   hit_count: 1
 }
 debug_info:
 {
   path: "Z:/home/kyren/projects/krypton/build/kc.pdb"
-  timestamp: 66218528287435
+  timestamp: 66218673059082
   project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
 }
 debug_info:
