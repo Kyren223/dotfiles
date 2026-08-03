@@ -192,8 +192,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufEnter' }, {
 
         if project_name == 'krypton' then
             copyright = {
-                '// Copyright (c) Kyren223',
-                '// Licensed under the MIT license (https://opensource.org/license/mit/)',
+                '// Copyright (c) 2026 Kyren <contact@kyren.codes>. All rights reserved.',
                 '',
             }
 
@@ -944,6 +943,93 @@ vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI', 'BufEnter', 'BufWri
 -- NOTE: LSP hover
 ----------------------------------------------------------------------------
 require('lsphover')
+
+----------------------------------------------------------------------------
+-- NOTE: Global and per-project Scratch buffers
+----------------------------------------------------------------------------
+
+local global_scratch_path = '$HOME/personal/grimoire/scratch.md'
+local workspace_scratch_path = '.scratch.md'
+
+local function open_scratch_buffer(is_global)
+    local scratch_file = is_global and global_scratch_path or vim.fn.fnamemodify(workspace_scratch_path, ':p')
+    scratch_file = vim.fn.expand(scratch_file)
+
+    -- Open the file in a new tab
+    vim.cmd('tabedit ' .. vim.fn.fnameescape(scratch_file))
+    vim.bo.filetype = 'markdown' -- syntax highlighting
+
+    -- Map `q` in normal mode to save and close the tab (buffer-local)
+    vim.keymap.set('n', 'q', function()
+        vim.cmd('silent! write')
+        vim.cmd('tabclose')
+    end, { buffer = true, silent = true })
+
+    -- Enable auto-saving on text change or leaving the buffer
+    vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI', 'BufLeave' }, {
+        buffer = 0,
+        callback = function()
+            vim.cmd('silent! write')
+        end,
+    })
+end
+
+local function open_scratch_buffer_map(is_global)
+    return function()
+        open_scratch_buffer(is_global)
+    end
+end
+
+vim.keymap.set('n', '<leader>ge', open_scratch_buffer_map(true))
+vim.keymap.set('n', '<leader>we', open_scratch_buffer_map(false))
+
+----------------------------------------------------------------------------
+-- NOTE: Insert commit msg into commit buffer in neogit
+----------------------------------------------------------------------------
+
+local commit_msg = 'Your default commit message\nTest\nMultiline'
+
+local group = vim.api.nvim_create_augroup('NeogitCommitMessage', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = group,
+    pattern = 'gitcommit',
+    callback = function(args)
+        local buf = args.buf
+
+        local line = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1]
+        if line ~= '' then
+            return
+        end
+
+        local path = vim.fn.fnamemodify(workspace_scratch_path, ':p')
+        local lines = vim.fn.readfile(path)
+        local scratch_bufnr = vim.fn.bufnr(path)
+        if scratch_bufnr ~= -1 and vim.api.nvim_buf_is_loaded(scratch_bufnr) then
+            lines = vim.api.nvim_buf_get_lines(scratch_bufnr, 0, -1, false)
+        end
+
+        vim.notify('path:' .. path)
+        vim.notify('file:' .. vim.inspect(vim.fn.readfile(path)))
+        vim.notify('lines:' .. vim.inspect(lines))
+
+        local commit_lines = {}
+        for _, line in ipairs(lines) do
+            if line:find('---', 1, true) then
+                break
+            end
+            table.insert(commit_lines, line)
+        end
+
+        vim.notify('commit_lines:' .. vim.inspect(commit_lines))
+
+        if #commit_lines > 0 then
+            vim.api.nvim_buf_set_lines(buf, 0, 1, false, commit_lines)
+            -- Place cursor at end of first line
+            vim.api.nvim_win_set_cursor(0, { 1, #commit_lines[#commit_lines] })
+        end
+    end,
+})
 
 ----------------------------------------------------------------------------
 -- NOTE:

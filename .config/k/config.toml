@@ -85,6 +85,7 @@ jellyfin
 nss-tools
 # opensnitch-1.8.0-1.x86_64.rpm opensnitch-ui-1.8.0-1.noarch.rpm
 # Portmaster-2.1.19-1.x86_64.rpm
+# littlesnitch-1.0.9-1.x86_64.rpm
 entr
 chafa
 kitten # Fix fastfetch not rendering images properly inside tmux
@@ -134,6 +135,9 @@ qemu-kvm libvirt virt-manager
 # OSdev
 gmp-devel libmpc-devel mpfr-devel
 grub2-pc
+
+# Gamedev
+raylib-devel
 
 kopia kopia-ui
 
