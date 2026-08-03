@@ -3,7 +3,6 @@
 SOURCE="$HOME"
 TARGET="/iron-wolf/fedora-home"
 
-# repositories maybe
 # data maybe
 # .zen maybe
 
@@ -18,6 +17,21 @@ rsync -a --delete --info=progress2 \
   --include='.local/' \
   --include='.local/share/' \
   --include='.local/state/' \
+  --include='.local/share/bottles/' \
+  --include='.local/share/bottles/bottles/' \
+  --include='.local/share/bottles/bottles/BG3/' \
+  --include='.local/share/bottles/bottles/BG3/drive_c/' \
+  --include='.local/share/bottles/bottles/BG3/drive_c/users/' \
+  --include='.local/share/bottles/bottles/BG3/drive_c/users/steamuser/' \
+  --include='.local/share/bottles/bottles/BG3/drive_c/users/steamuser/AppData/' \
+  --include='.local/share/bottles/bottles/BG3/drive_c/users/steamuser/AppData/Local/' \
+  --include='.local/share/bottles/bottles/BG3/drive_c/users/steamuser/AppData/Local/Larian Studios/***' \
+  --include='.local/share/bottles/bottles/Hades/' \
+  --include='.local/share/bottles/bottles/Hades/drive_c/' \
+  --include='.local/share/bottles/bottles/Hades/drive_c/users/' \
+  --include='.local/share/bottles/bottles/Hades/drive_c/users/steamuser/' \
+  --include='.local/share/bottles/bottles/Hades/drive_c/users/steamuser/Documents/' \
+  --include='.local/share/bottles/bottles/Hades/drive_c/users/steamuser/Documents/Saved Games/***' \
   --include='.local/share/color-schemes/***' \
   --include='.local/share/containers/' \
   --include='.local/share/containers/storage/' \
@@ -94,8 +108,10 @@ rsync -a --delete --info=progress2 \
   --include='Games/minecraft-dungeons/drive_c/users/steamuser/Saved Games/Mojang Studios/' \
   --include='Games/minecraft-dungeons/drive_c/users/steamuser/Saved Games/Mojang Studios/Dungeons/***' \
   --include='keepassxc/***' \
-  --exclude='personal/grimoire/' \
   --include='personal/***' \
+  --include='projects/' \
+  --include='projects/WorldBuilding/***' \
+  --include='Public/***' \
   --include='.wakatime.cfg' \
   --include='.zsh_history' \
   --exclude='*' "$SOURCE"/ "$TARGET"/
