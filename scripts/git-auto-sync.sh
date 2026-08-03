@@ -5,6 +5,7 @@ eval $(keychain --quiet --eval $HOME/.ssh/id_ed25519)
 
 REPOS=(
     "$HOME/personal/grimoire/"
+    "$HOME/projects/WorldBuilding/"
 )
 
 COMMIT_MSG="Auto-sync: $(date +'%Y-%m-%d %H:%M:%S')"
