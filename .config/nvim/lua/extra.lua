@@ -1002,7 +1002,10 @@ vim.api.nvim_create_autocmd('FileType', {
         end
 
         local path = vim.fn.fnamemodify(workspace_scratch_path, ':p')
-        local lines = vim.fn.readfile(path)
+        local ok, lines = pcall(vim.fn.readfile, path)
+        if not ok then
+            return
+        end
         local scratch_bufnr = vim.fn.bufnr(path)
         if scratch_bufnr ~= -1 and vim.api.nvim_buf_is_loaded(scratch_bufnr) then
             lines = vim.api.nvim_buf_get_lines(scratch_bufnr, 0, -1, false)
