@@ -385,7 +385,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 ----------------------------------------------------------------------------
 -- NOTE: Compile a project by opening a terminal, inspired by Casey's workflow
 ----------------------------------------------------------------------------
-function Compile_project(command)
+function RunCommand(command)
     local x = 2
     local y = 1
     local filter = function(win)
@@ -631,10 +631,11 @@ function JumpToDiagnostic(direction, is_error, is_warning)
     end, 0) -- in milliseconds
 
     vim.defer_fn(function()
-        if vim.g.project_compile_cmd then
-            Compile_project(vim.g.project_compile_cmd)
+        local build_task = vim.g.workspace_tasks['build']
+        if build_task and build_task.cmd then
+            RunCommand(build_task.cmd)
         else
-            vim.notify('vim.g.project_compile_cmd missing', 'warn')
+            vim.notify('vim.g.workspace_tasks["build"].cmd missing', 'warn')
         end
     end, 100) -- in milliseconds
 end
@@ -648,11 +649,11 @@ function JumpToPrevError()
 end
 
 function JumpToNextWarning()
-    return JumpToDiagnostic(1, true, true)
+    return JumpToDiagnostic(1, false, true)
 end
 
 function JumpToPrevWarning()
-    return JumpToDiagnostic(-1, true, true)
+    return JumpToDiagnostic(-1, false, true)
 end
 
 ----------------------------------------------------------------------------
@@ -980,14 +981,12 @@ local function open_scratch_buffer_map(is_global)
     end
 end
 
-vim.keymap.set('n', '<leader>ge', open_scratch_buffer_map(true))
-vim.keymap.set('n', '<leader>we', open_scratch_buffer_map(false))
+vim.keymap.set('n', '<leader>go', open_scratch_buffer_map(true))
+vim.keymap.set('n', '<leader>so', open_scratch_buffer_map(false))
 
 ----------------------------------------------------------------------------
 -- NOTE: Insert commit msg into commit buffer in neogit
 ----------------------------------------------------------------------------
-
-local commit_msg = 'Your default commit message\nTest\nMultiline'
 
 local group = vim.api.nvim_create_augroup('NeogitCommitMessage', { clear = true })
 

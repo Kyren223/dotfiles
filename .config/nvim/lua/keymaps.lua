@@ -204,36 +204,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-local compile = function()
-    if vim.g.project_compile_cmd then
-        Compile_project(vim.g.project_compile_cmd)
-        -- vim.notify(vim.g.project_compile_cmd)
-    else
-        vim.notify('vim.g.project_compile_cmd is not set', 'warn')
-    end
-end
-local run = function()
-    if vim.g.project_run_cmd then
-        Compile_project(vim.g.project_run_cmd)
-        -- vim.notify(vim.g.project_run_cmd)
-    else
-        vim.notify('vim.g.project_run_cmd is not set', 'warn')
-    end
-end
-local test = function()
-    if vim.g.project_test_cmd then
-        Compile_project(vim.g.project_test_cmd)
-        -- vim.notify(vim.g.project_test_cmd)
-    else
-        vim.notify('vim.g.project_test_cmd is not set', 'warn')
+function RunTask(task_name)
+    return function()
+        local task = vim.g.workspace_tasks[task_name]
+        if task and task.cmd then
+            RunCommand(task.cmd)
+        else
+            vim.notify('either ' .. task_name .. "or vim.g.workspace_tasks[task_name].cmd don't exist", 'warn')
+        end
     end
 end
 
-vim.keymap.set('n', '<A-m>', compile, { desc = 'Idk? lol' })
-vim.keymap.set('n', '<A-c>', compile, { desc = '[C]ompile Project' })
-vim.keymap.set('n', '<A-b>', compile, { desc = '[B]uild Project' })
-vim.keymap.set('n', '<A-r>', run, { desc = '[R]un Project' })
-vim.keymap.set('n', '<A-t>', test, { desc = '[T]est Project' })
+vim.keymap.set('n', '<A-b>', RunTask('build'), { desc = '[B]uild Project' })
+vim.keymap.set('n', '<A-r>', RunTask('run'), { desc = '[R]un Project' })
+vim.keymap.set('n', '<A-t>', RunTask('test'), { desc = '[T]est Project' })
 
 vim.keymap.set('n', '<A-s>', function()
     Run_nvim_lua()
