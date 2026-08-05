@@ -34,10 +34,10 @@ window:
           input: ""
           cmd: search
         }
-        cursor_line: 6347
-        cursor_column: 45
-        mark_line: 6347
-        mark_column: 45
+        cursor_line: 1719
+        cursor_column: 1
+        mark_line: 1719
+        mark_column: 1
       }
       text:
       {
@@ -63,10 +63,10 @@ window:
           input: ""
           cmd: search
         }
-        cursor_line: 99
-        cursor_column: 17
-        mark_line: 99
-        mark_column: 17
+        cursor_line: 92
+        cursor_column: 4
+        mark_line: 92
+        mark_column: 4
       }
     }
     0.652560:
@@ -319,16 +319,10 @@ keybindings:
 }
 current_path: "Z:/home/kyren/projects/krypton"
 auto_load_last_project: 1
-breakpoint:
-{
-  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
-  source_location: "../../projects/krypton/src/krypton/libkrypton.c:1740:1"
-  hit_count: 0
-}
 debug_info:
 {
   path: "Z:/home/kyren/projects/krypton/build/kc.pdb"
-  timestamp: 66221843214143
+  timestamp: 66222043913124
   project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
 }
 debug_info:

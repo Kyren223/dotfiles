@@ -10,6 +10,8 @@ return {
                 vim.g.theme = 'carbonight-tokyo'
             elseif dir == 'grimoire' then
                 vim.g.theme = 'tokyonight-storm'
+            elseif dir == 'WorldBuilding' then
+                vim.g.theme = 'tokyonight-storm'
             else
                 vim.g.theme = 'carbonight'
             end
