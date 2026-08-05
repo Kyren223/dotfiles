@@ -1011,9 +1011,9 @@ vim.api.nvim_create_autocmd('FileType', {
             lines = vim.api.nvim_buf_get_lines(scratch_bufnr, 0, -1, false)
         end
 
-        vim.notify('path:' .. path)
-        vim.notify('file:' .. vim.inspect(vim.fn.readfile(path)))
-        vim.notify('lines:' .. vim.inspect(lines))
+        -- vim.notify('path:' .. path)
+        -- vim.notify('file:' .. vim.inspect(vim.fn.readfile(path)))
+        -- vim.notify('lines:' .. vim.inspect(lines))
 
         local commit_lines = {}
         for _, line in ipairs(lines) do
@@ -1023,7 +1023,7 @@ vim.api.nvim_create_autocmd('FileType', {
             table.insert(commit_lines, line)
         end
 
-        vim.notify('commit_lines:' .. vim.inspect(commit_lines))
+        -- vim.notify('commit_lines:' .. vim.inspect(commit_lines))
 
         if #commit_lines > 0 then
             vim.api.nvim_buf_set_lines(buf, 0, 1, false, commit_lines)
