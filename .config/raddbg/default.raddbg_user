@@ -19,10 +19,10 @@ window:
         expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/krypton_main.c\".data"
         project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
         query: input: ""
-        cursor_line: 159
-        cursor_column: 42
-        mark_line: 159
-        mark_column: 42
+        cursor_line: 150
+        cursor_column: 4
+        mark_line: 150
+        mark_column: 4
       }
       text:
       {
@@ -34,25 +34,10 @@ window:
           input: ""
           cmd: search
         }
-        cursor_line: 1719
+        cursor_line: 8091
         cursor_column: 1
-        mark_line: 1719
+        mark_line: 8091
         mark_column: 1
-      }
-      text:
-      {
-        expression: "file:\"Z:/home/kyren/projects/krypton/src/krypton/platform_win32.c\".data"
-        auto: 1
-        query:
-        {
-          input: ""
-          cmd: search_backwards
-        }
-        cursor_line: 67
-        cursor_column: 1
-        mark_line: 67
-        mark_column: 1
-        project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
       }
       text:
       {
@@ -63,10 +48,10 @@ window:
           input: ""
           cmd: search
         }
-        cursor_line: 92
-        cursor_column: 4
-        mark_line: 92
-        mark_column: 4
+        cursor_line: 58
+        cursor_column: 3
+        mark_line: 58
+        mark_column: 3
       }
     }
     0.652560:
@@ -118,11 +103,11 @@ window:
         {
           selected
           expression: ""
-          normal: 0.348101 0.401899 0.250000
+          normal: 0.476278 0.523722 0.250000
           watch: result
-          watch: stmts
-          watch: stmts_count
-          watch: "(KrNodeIdx)expr"
+          watch: "text(slice(ast->src.value +token.index, 10))"
+          watch: token
+          watch: "(KrNodeIdx)secondary_expr"
         }
         watch: expression: "query:watch_pins"
       }
@@ -319,10 +304,16 @@ keybindings:
 }
 current_path: "Z:/home/kyren/projects/krypton"
 auto_load_last_project: 1
+breakpoint:
+{
+  project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
+  source_location: "../../projects/krypton/src/krypton/libkrypton.c:1595:1"
+  hit_count: 0
+}
 debug_info:
 {
   path: "Z:/home/kyren/projects/krypton/build/kc.pdb"
-  timestamp: 66222043913124
+  timestamp: 66222587361029
   project: "Z:/home/kyren/projects/krypton/.kr_raddbg_project"
 }
 debug_info:
